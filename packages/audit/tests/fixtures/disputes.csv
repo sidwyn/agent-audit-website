@@ -1,0 +1,4 @@
+order_id,status,type,amount,initiated_at
+1003,needs_response,chargeback,89,2026-04-20T10:00:00Z
+1007,under_review,chargeback,36,2026-05-01T08:30:00Z
+1012,won,inquiry,36,2026-04-02T12:00:00Z
