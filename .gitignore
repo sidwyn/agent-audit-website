@@ -13,3 +13,5 @@ sample-report.pdf
 .DS_Store
 test-results/
 playwright-report/
+*.tsbuildinfo
+.vercel/
