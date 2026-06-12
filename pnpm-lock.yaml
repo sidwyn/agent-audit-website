@@ -49,6 +49,34 @@ importers:
         specifier: ^3.1.0
         version: 3.2.6(@types/node@20.19.43)(tsx@4.22.4)(yaml@2.9.0)
 
+  packages/report:
+    dependencies:
+      '@agentaudit/audit':
+        specifier: workspace:*
+        version: link:../audit
+      commander:
+        specifier: ^13.1.0
+        version: 13.1.0
+      playwright:
+        specifier: ^1.52.0
+        version: 1.60.0
+      yaml:
+        specifier: ^2.7.0
+        version: 2.9.0
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      '@types/node':
+        specifier: ^20.17.0
+        version: 20.19.43
+      tsx:
+        specifier: ^4.19.0
+        version: 4.22.4
+      vitest:
+        specifier: ^3.1.0
+        version: 3.2.6(@types/node@20.19.43)(tsx@4.22.4)(yaml@2.9.0)
+
 packages:
 
   '@esbuild/aix-ppc64@0.27.7':
