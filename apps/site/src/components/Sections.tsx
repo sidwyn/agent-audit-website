@@ -113,13 +113,25 @@ export function About({ copy }: { copy: LandingCopy["about"] }) {
   return (
     <section className="about" id="about">
       <h2>About</h2>
-      {blocks.map((b, i) =>
-        b.type === "p" ? (
-          <p key={i}>
-            <Inline text={b.text} />
-          </p>
-        ) : null,
-      )}
+      <div className="about-inner">
+        <img
+          alt="Sidwyn Koh"
+          className="about-portrait"
+          height="128"
+          loading="lazy"
+          src="/sidwyn-koh.jpeg"
+          width="128"
+        />
+        <div className="about-copy">
+          {blocks.map((b, i) =>
+            b.type === "p" ? (
+              <p key={i}>
+                <Inline text={b.text} />
+              </p>
+            ) : null,
+          )}
+        </div>
+      </div>
     </section>
   );
 }

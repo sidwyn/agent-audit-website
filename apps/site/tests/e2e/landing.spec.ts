@@ -60,3 +60,25 @@ test("all sections render in order", async ({ page }) => {
   }
   await expect(page.locator("footer")).toContainText("run by Sidwyn Koh");
 });
+
+test("about section shows Sidwyn's circular portrait", async ({ page }) => {
+  await page.goto("/");
+  const portrait = page.getByAltText("Sidwyn Koh");
+  await expect(portrait).toBeVisible();
+  await expect(portrait).toHaveAttribute("src", "/sidwyn-koh.jpeg");
+  const shape = await portrait.evaluate((img) => {
+    const style = getComputedStyle(img);
+    return {
+      borderRadius: style.borderRadius,
+      height: img.getBoundingClientRect().height,
+      objectFit: style.objectFit,
+      width: img.getBoundingClientRect().width,
+    };
+  });
+  expect(shape).toEqual({
+    borderRadius: "50%",
+    height: 128,
+    objectFit: "cover",
+    width: 128,
+  });
+});

@@ -287,8 +287,34 @@ summary:focus-visible {
 }
 
 /* ---- about ---- */
-.about p {
+.about-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.about-portrait {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 auto;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--rule), 0 10px 28px rgba(14, 15, 18, 0.12);
+}
+
+.about-copy p {
   max-width: 62ch;
+  margin-top: 0;
+}
+
+@media (min-width: 720px) {
+  .about-inner {
+    flex-direction: row;
+    gap: 28px;
+    align-items: flex-start;
+  }
 }
 
 /* ---- bottom cta ---- */
