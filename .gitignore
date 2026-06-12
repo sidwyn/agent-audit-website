@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.next/
+out/
+data/
+!data/.gitkeep
+artifacts/
+!artifacts/.gitkeep
+sample-report.pdf
+*.log
+.env
+.env.*
+.DS_Store
+test-results/
+playwright-report/
