@@ -16,6 +16,7 @@ const TYPES = {
   ".svg": "image/svg+xml",
   ".png": "image/png",
   ".ico": "image/x-icon",
+  ".pdf": "application/pdf",
   ".txt": "text/plain; charset=utf-8",
   ".woff2": "font/woff2",
 };
