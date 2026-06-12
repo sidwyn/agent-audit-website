@@ -1,6 +1,6 @@
-# AgentAudit: Agent Commerce Audit — Marketing Kit
+# AgentProof: Agent Commerce Audit — Marketing Kit
 
-Working name: **AgentAudit**. It reads two ways: proof your store works for agents, and proof of what agents already do on it. Check domain availability before printing it anywhere. Backups: StoreSignal, AuditCart.
+Working name: **AgentProof**. It reads two ways: proof your store works for agents, and proof of what agents already do on it. Check domain availability before printing it anywhere. Backups: StoreSignal, AuditCart.
 
 ---
 
@@ -65,17 +65,41 @@ A buyer's assistant gives up in seconds. No error, no trace in analytics.
 
 [K] audit slots left at $99.
 
-## LinkedIn launch post
-I keep hearing "agentic commerce" in every earnings call and conference talk. So I started asking store owners one question: can an AI agent buy from your store today?
+## Community posts — exact venues
 
-Nobody knew. So I tested it. The failures are consistent and invisible: the agent hits a variant picker it can't parse or a popup it can't close, gives up, and the merchant sees nothing.
+Rule for all of these: post data, not the offer. Run free audits on 3–5 friendly stores first so every post carries real numbers. People who want the audit will DM.
 
-I'm auditing 20 Shopify stores at a $99 founding rate. Each store gets a readiness score against three shopping agents, 90 days of orders classified as human or agent-placed, and dispute exposure mapped under Visa's new 1.5% threshold.
+### Tier 1 — exact ICP, post here first
 
-I spent the last decade running payments and commerce at Meta and Lyft. This is the measurement layer I'd want if I ran a store. Comment "audit" or DM me and I'll send details.
+**eCommerceFuel forum** (ecommercefuel.com) — paid, vetted community of $1M+ store owners. The single best venue on this list. Apply for membership, then post the classification-method thread below in the operations category. Members hire vendors out of forum threads routinely.
 
-## Community post (eCommTalk, Talk Shop, DTC FAM — value first, no link)
+**r/shopify** (~1M members) — self-promo gets removed; findings survive. Post: "I ran ChatGPT's shopping agent against 25 Shopify stores. 19 couldn't finish checkout. Here's where each one died." Data inline, no link. Answer every comment.
+
+**r/ecommerce** — same data, reframed as a question: "Has anyone measured what % of orders come from AI assistants? I classified 90 days for a few stores and the number surprised me."
+
+**Shopify Community forums** (community.shopify.com, Ecommerce Discussions board) — strict promo rules; the question-format post below fits as written.
+
+### Tier 2 — reach and press
+
+**Hacker News** — write the findings up as a blog post ("I tested whether AI agents can buy from 50 Shopify stores") and submit. HN loves empirical takedowns of hype, and a front page hit brings store owners and journalists at once.
+
+**X reply strategy** — replies, not posts. Watch these accounts and reply with data whenever they touch agentic commerce: @SeanEcom (Ridge), @codyplof (Jones Road), @TaylorHoliday, @mrsharma, @moizali, @ashvinmelwani (Obvi), @mikebeckhamsm (Simple Modern). Also reply within the hour to any OpenAI/Perplexity shopping announcement — those threads fill with merchants asking what it means for their store.
+
+**Indie Hackers** — build-in-public angle: "Selling a $99 audit before building the product: getting the first 10 customers."
+
+### Tier 3 — Slack/Discord, lower volume
+
+**eCommTalk Slack**, **Online Geniuses Slack** (#ecommerce channel) — the question post verbatim. **DTC FAM / Talk Shop** if you have access. Facebook Shopify groups skew dropshipper and sub-$500K — skip unless bored.
+
+### Podcasts (pitch the dataset, not the product)
+
+The Unofficial Shopify Podcast (Kurt Elster — closest fit), Honest Ecommerce, eCommerceFuel podcast, Limited Supply (Sharma/Ali), DTC Pod, Chew On This. Pitch: "first dataset on whether AI agents can actually buy from real stores." Same pitch works for Modern Retail and Practical Ecommerce as press.
+
+### The post (value first, no link)
 Question for folks doing $1M+: has anyone measured what share of your orders come through ChatGPT or Perplexity? I classified order exports for a few stores this week. [X]% were agent-placed and none carried a label in the dashboard. Happy to share the classification method if useful, it's about 30 lines of logic against the Admin API.
+
+## Warm outreach
+Target list (100 stores) and sending automation: [[agent-audit-outreach]]
 
 ## Warm DM — founder
 Hey [name], I'm testing whether AI shopping agents can buy from Shopify stores, and what share of orders they already place. I'm auditing 20 stores at $99 before the price goes to $499: readiness score, order classification, dispute exposure under the new Visa rules. Ten minutes of setup on your side. Want me to run [store]?
