@@ -1,0 +1,86 @@
+{
+  "store": "demo-store.example",
+  "generatedAt": "2026-06-12T23:03:15.028Z",
+  "windowDays": 90,
+  "totals": {
+    "orders": 40,
+    "gmv": 3485,
+    "disputes": 3,
+    "disputeRate": 0.075
+  },
+  "byClass": {
+    "confirmed_channel": {
+      "orders": 2,
+      "orderShare": 0.05,
+      "gmv": 183,
+      "gmvShare": 0.052510760401721666,
+      "disputes": 0,
+      "disputeRate": 0
+    },
+    "high_confidence_agent": {
+      "orders": 5,
+      "orderShare": 0.125,
+      "gmv": 592,
+      "gmvShare": 0.16987087517934002,
+      "disputes": 1,
+      "disputeRate": 0.2
+    },
+    "heuristic_agent": {
+      "orders": 2,
+      "orderShare": 0.05,
+      "gmv": 64,
+      "gmvShare": 0.01836441893830703,
+      "disputes": 1,
+      "disputeRate": 0.5
+    },
+    "human": {
+      "orders": 31,
+      "orderShare": 0.775,
+      "gmv": 2646,
+      "gmvShare": 0.7592539454806313,
+      "disputes": 1,
+      "disputeRate": 0.03225806451612903
+    }
+  },
+  "distinctSources": [
+    {
+      "sourceName": "web",
+      "appId": "580111",
+      "orders": 37,
+      "flaggedAssistant": false
+    },
+    {
+      "sourceName": "chatgpt",
+      "appId": null,
+      "orders": 1,
+      "flaggedAssistant": true
+    },
+    {
+      "sourceName": "web",
+      "appId": "999001",
+      "orders": 1,
+      "flaggedAssistant": false
+    },
+    {
+      "sourceName": "pos",
+      "appId": "129785",
+      "orders": 1,
+      "flaggedAssistant": false
+    }
+  ],
+  "agentVsHuman": {
+    "agentOrders": 8,
+    "agentDisputeRate": 0.25,
+    "humanDisputeRate": 0.03225806451612903,
+    "delta": 0.21774193548387097
+  },
+  "vamp": {
+    "config": {
+      "aboveStandard": 0.005,
+      "excessive": 0.015
+    },
+    "combinedRatio": 0.075,
+    "band": "excessive",
+    "headroomToNextBand": null
+  }
+}

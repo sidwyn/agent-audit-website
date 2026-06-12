@@ -1,0 +1,97 @@
+{
+  "store": "demo-store.example",
+  "generatedAt": "2026-06-10T17:25:00.000Z",
+  "robots": [
+    { "agent": "GPTBot", "allowed": false, "matchedGroup": "GPTBot", "matchedRule": "Disallow: /" },
+    { "agent": "ChatGPT-User", "allowed": true, "matchedGroup": "*", "matchedRule": null },
+    { "agent": "OAI-SearchBot", "allowed": true, "matchedGroup": "*", "matchedRule": null },
+    { "agent": "PerplexityBot", "allowed": true, "matchedGroup": "*", "matchedRule": null },
+    { "agent": "Perplexity-User", "allowed": true, "matchedGroup": "*", "matchedRule": null },
+    { "agent": "ClaudeBot", "allowed": false, "matchedGroup": "ClaudeBot", "matchedRule": "Disallow: /" },
+    { "agent": "Claude-User", "allowed": true, "matchedGroup": "*", "matchedRule": null },
+    { "agent": "Claude-SearchBot", "allowed": true, "matchedGroup": "*", "matchedRule": null },
+    { "agent": "Google-Extended", "allowed": true, "matchedGroup": "*", "matchedRule": null },
+    { "agent": "Amazonbot", "allowed": true, "matchedGroup": "*", "matchedRule": null },
+    { "agent": "Applebot-Extended", "allowed": true, "matchedGroup": "*", "matchedRule": null },
+    { "agent": "meta-externalagent", "allowed": true, "matchedGroup": "*", "matchedRule": null },
+    { "agent": "Bytespider", "allowed": false, "matchedGroup": "Bytespider", "matchedRule": "Disallow: /" }
+  ],
+  "feeds": {
+    "productsJson": { "pass": true, "status": 200, "notes": "products.json accessible" },
+    "sitemap": { "pass": true, "status": 200, "notes": "sitemap ok, 8 product urls sampled", "productUrlCount": 8 },
+    "llmsTxt": { "pass": false, "status": 404, "notes": "llms.txt returned 404" }
+  },
+  "productPages": [
+    {
+      "url": "https://demo-store.example/products/field-jacket",
+      "jsonLd": { "found": true, "price": true, "priceCurrency": true, "availability": true, "skuOrGtin": true, "image": true },
+      "og": { "title": true, "image": true },
+      "canonical": "https://demo-store.example/products/field-jacket",
+      "problems": []
+    },
+    {
+      "url": "https://demo-store.example/products/canvas-tote",
+      "jsonLd": { "found": true, "price": true, "priceCurrency": true, "availability": true, "skuOrGtin": true, "image": true },
+      "og": { "title": true, "image": true },
+      "canonical": "https://demo-store.example/products/canvas-tote",
+      "problems": []
+    },
+    {
+      "url": "https://demo-store.example/products/trail-bottle",
+      "jsonLd": { "found": true, "price": true, "priceCurrency": true, "availability": true, "skuOrGtin": true, "image": true },
+      "og": { "title": true, "image": true },
+      "canonical": "https://demo-store.example/products/trail-bottle",
+      "problems": []
+    },
+    {
+      "url": "https://demo-store.example/products/wool-beanie",
+      "jsonLd": { "found": true, "price": true, "priceCurrency": true, "availability": true, "skuOrGtin": true, "image": true },
+      "og": { "title": true, "image": true },
+      "canonical": "https://demo-store.example/products/wool-beanie",
+      "problems": []
+    },
+    {
+      "url": "https://demo-store.example/products/camp-mug",
+      "jsonLd": { "found": true, "price": true, "priceCurrency": true, "availability": true, "skuOrGtin": true, "image": true },
+      "og": { "title": true, "image": true },
+      "canonical": "https://demo-store.example/products/camp-mug",
+      "problems": []
+    },
+    {
+      "url": "https://demo-store.example/products/dry-bag",
+      "jsonLd": { "found": true, "price": true, "priceCurrency": true, "availability": true, "skuOrGtin": true, "image": true },
+      "og": { "title": true, "image": true },
+      "canonical": "https://demo-store.example/products/dry-bag",
+      "problems": []
+    },
+    {
+      "url": "https://demo-store.example/products/trek-socks",
+      "jsonLd": { "found": true, "price": true, "priceCurrency": false, "availability": false, "skuOrGtin": true, "image": true },
+      "og": { "title": true, "image": true },
+      "canonical": null,
+      "problems": ["offer missing priceCurrency", "offer missing availability", "missing canonical"]
+    },
+    {
+      "url": "https://demo-store.example/products/gift-card",
+      "jsonLd": { "found": true, "price": true, "priceCurrency": true, "availability": true, "skuOrGtin": false, "image": true },
+      "og": { "title": true, "image": false },
+      "canonical": "https://demo-store.example/products/gift-card",
+      "problems": ["product missing sku/gtin", "missing og:image"]
+    }
+  ],
+  "checkout": {
+    "productUrl": "https://demo-store.example/products/field-jacket",
+    "reachedCart": true,
+    "reachedCheckout": true,
+    "blockers": [
+      { "stage": "product_page", "kind": "popup", "detail": "interstitial matched [role=\"dialog\"] (newsletter signup)" }
+    ],
+    "jsErrors": [],
+    "timeToCheckoutMs": 41000,
+    "screenshots": [
+      "artifacts/demo-store.example/01-product.png",
+      "artifacts/demo-store.example/02-cart.png",
+      "artifacts/demo-store.example/03-checkout.png"
+    ]
+  }
+}
