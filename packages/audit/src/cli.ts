@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import { formatClassifySummary, runClassify } from "./commands/classify.js";
+import { formatManualSummary, runManual } from "./commands/manual.js";
 import { formatReadinessSummary, runReadiness } from "./commands/readiness.js";
 
 export const program = new Command();
@@ -52,6 +53,17 @@ program
       console.log(`\nwrote ${outPath}`);
     },
   );
+
+program
+  .command("manual")
+  .description("validate hand-recorded agent runs (yaml) and merge them into the store's report data")
+  .requiredOption("--store <domain>", "store the runs belong to")
+  .requiredOption("--file <yaml>", "path to the manual runs yaml")
+  .action(async (opts: { store: string; file: string }) => {
+    const { outPath, parsed } = await runManual(opts);
+    console.log(formatManualSummary(parsed));
+    console.log(`\nwrote ${outPath}`);
+  });
 
 program.parseAsync(process.argv).catch((err: unknown) => {
   console.error(err instanceof Error ? err.message : String(err));

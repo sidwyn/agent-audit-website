@@ -1,0 +1,37 @@
+store: demo-store.example
+runs:
+  - agent: chatgpt
+    task: Buy the field jacket in size M
+    steps:
+      - Asked agent mode to find and buy the field jacket from demo-store.example
+      - Agent located the product via site search
+      - Selected size M, added to cart
+      - Reached checkout information page; run canceled before payment per protocol
+    outcome: success
+    notes: Smooth run; agent handled the variant picker without help.
+    screenshots:
+      - artifacts/demo-store.example/manual-chatgpt-01.png
+  - agent: perplexity
+    task: Buy the field jacket in size M
+    steps:
+      - Asked Perplexity shopping to purchase the field jacket
+      - Agent opened the product page
+      - Stalled on the size selector; kept re-reading the page
+    outcome: abandoned
+    failure_stage: variant
+    notes: Variant radio group has no accessible labels; agent could not pick a size.
+    screenshots:
+      - artifacts/demo-store.example/manual-perplexity-01.png
+  - agent: claude
+    task: Buy the field jacket in size M
+    steps:
+      - Asked Claude to complete a purchase on demo-store.example
+      - Agent added the jacket to cart and proceeded to checkout
+      - Newsletter popup appeared over the checkout button on cart page
+      - Agent dismissed it after two attempts, then a geo-gate modal blocked checkout
+    outcome: abandoned
+    failure_stage: checkout
+    notes: Stacked modals; second one has no close button visible to the agent.
+    screenshots:
+      - artifacts/demo-store.example/manual-claude-01.png
+      - artifacts/demo-store.example/manual-claude-02.png
