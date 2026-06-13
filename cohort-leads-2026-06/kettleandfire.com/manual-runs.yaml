@@ -1,0 +1,23 @@
+store: kettleandfire.com
+runs:
+  - agent: claude
+    task: Buy Lemon Thyme Chicken Bone Broth and go all the way to the payment step (stop before "Pay now")
+    steps:
+      - Opened the product page — loaded normally, no CAPTCHA challenge.
+      - Added to cart ($40.74 in the cart drawer). A cookie-consent dialog ("We value your privacy") overlaid the cart and had to be dismissed first.
+      - Clicked "Go to checkout" — reached the Shopify checkout (contact email + Shop Pay / PayPal express checkout).
+      - Entered contact + shipping (placeholder test data, @example.com email so no real inbox is contacted).
+      - Shipping computed automatically; order total $51.56.
+      - Reached the PAYMENT step — the credit-card entry section (Visa / Mastercard / Amex), name pre-filled, "use shipping address as billing" checked, the screen immediately before "Pay now".
+      - Stopped here. No card details entered, no "Pay now" click, no order placed.
+    outcome: success
+    notes: >-
+      Live assisted browser session driven via Claude in Chrome on 2026-06-13 (a real
+      agent-style run, not the consumer Claude shopping feature). Completed the full flow up to
+      the payment step: cart -> contact -> shipping -> credit-card payment screen, stopping before
+      "Pay now". No CAPTCHA on the path. Friction worth flagging on the readout: a cookie-consent
+      dialog overlays the cart and must be dismissed before checkout — an extra hurdle for agents.
+    screenshots:
+      - cohort-leads-2026-06/kettleandfire.com/live-session/kf-after-add.png
+      - cohort-leads-2026-06/kettleandfire.com/live-session/kf-checkout.png
+      - cohort-leads-2026-06/kettleandfire.com/live-session/kf-payment.png
