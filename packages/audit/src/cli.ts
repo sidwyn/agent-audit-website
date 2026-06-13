@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import { formatClassifySummary, runClassify } from "./commands/classify.js";
-import { formatManualSummary, runManual } from "./commands/manual.js";
+import { formatManualSummary, runManual, runManualFromReplies } from "./commands/manual.js";
 import { formatReadinessSummary, runReadiness } from "./commands/readiness.js";
+import { buildAgentPrompts } from "./manual/prompts.js";
 
 export const program = new Command();
 
@@ -55,14 +56,46 @@ program
   );
 
 program
+  .command("agent-prompts")
+  .description("print copy-paste prompts (one per assistant) for a directed human-in-the-loop run")
+  .requiredOption("--store <domain>", "store to test")
+  .option("--product <url>", "specific product URL (else the agent picks one)")
+  .option("--task <text>", "custom task description")
+  .action((opts: { store: string; product?: string; task?: string }) => {
+    const prompts = buildAgentPrompts(opts.store, { product: opts.product, task: opts.task });
+    for (const p of prompts) {
+      console.log(`\n${"=".repeat(70)}\n# ${p.label} — paste this into the agent\n${"=".repeat(70)}\n${p.prompt}`);
+    }
+    console.log(
+      `\n${"-".repeat(70)}\nThen paste each agent's reply into one file and run:\n  audit manual --store ${opts.store} --from-replies <file> [--out <dir>]\n`,
+    );
+  });
+
+program
   .command("manual")
-  .description("validate hand-recorded agent runs (yaml) and merge them into the store's report data")
+  .description("merge hand-recorded agent runs into the store's report data (yaml file or pasted replies)")
   .requiredOption("--store <domain>", "store the runs belong to")
-  .requiredOption("--file <yaml>", "path to the manual runs yaml")
-  .action(async (opts: { store: string; file: string }) => {
-    const { outPath, parsed } = await runManual(opts);
-    console.log(formatManualSummary(parsed));
-    console.log(`\nwrote ${outPath}`);
+  .option("--file <yaml>", "path to a manual-runs yaml")
+  .option("--from-replies <file>", "path to a file of pasted agent replies containing RESULT lines")
+  .option("--task <text>", "task description recorded with the runs (replies mode)")
+  .option("--out <dir>", "output directory (default data/<store>)")
+  .action(async (opts: { store: string; file?: string; fromReplies?: string; task?: string; out?: string }) => {
+    if (opts.fromReplies) {
+      const { yamlPath, parsed } = await runManualFromReplies({
+        store: opts.store,
+        file: opts.fromReplies,
+        task: opts.task,
+        out: opts.out,
+      });
+      console.log(formatManualSummary(parsed));
+      console.log(`\nwrote ${yamlPath}`);
+    } else if (opts.file) {
+      const { outPath, parsed } = await runManual({ store: opts.store, file: opts.file });
+      console.log(formatManualSummary(parsed));
+      console.log(`\nwrote ${outPath}`);
+    } else {
+      throw new Error("provide --file <yaml> or --from-replies <file>");
+    }
   });
 
 program.parseAsync(process.argv).catch((err: unknown) => {
