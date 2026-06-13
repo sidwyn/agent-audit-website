@@ -34,6 +34,7 @@ export function StatsBar({ copy }: { copy: LandingCopy["statsBar"] }) {
   const items = first?.type === "ul" ? first.items : [];
   return (
     <section className="stats" aria-label="Key stats">
+      <h2>Why optimize for agents?</h2>
       <ul>
         {items.map((item) => (
           <li key={item}>

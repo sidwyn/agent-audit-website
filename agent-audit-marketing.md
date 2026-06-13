@@ -15,9 +15,9 @@ ChatGPT, Perplexity, and Claude now shop on behalf of real buyers. Their orders 
 Founding rate for the first 20 stores. List price $499.
 
 ### Stats bar
-- Agent traffic to retail sites grew 1,200% in a year (Visa)
-- Visa cut the chargeback monitoring threshold to 1.5% in April 2026
-- Orders placed through assistants carry no label in Shopify
+- [AI traffic to U.S. retail sites grew 393% YoY in Q1 2026](https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable)
+- [AI traffic converted 42% better than non-AI traffic in March 2026](https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable)
+- [Visa's excessive VAMP threshold fell to 1.5% on April 1, 2026](https://merchantriskcouncil.org/learning/resource-center/member-news/blog/2026/stricter-vamp-ratio-thresholds-are-now-in-effect-heres-how-to-stay-compliant)
 
 ### What you get
 A scored report and a 30-minute readout call.

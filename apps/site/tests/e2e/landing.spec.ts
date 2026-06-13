@@ -13,9 +13,20 @@ test("hero renders the verbatim headline and subcopy", async ({ page }) => {
 
 test("stats bar shows the three stats with tabular numerals", async ({ page }) => {
   await page.goto("/");
+  await expect(page.locator(".stats h2")).toHaveText("Why optimize for agents?");
   const stats = page.locator(".stats li");
   await expect(stats).toHaveCount(3);
-  await expect(stats.first()).toContainText("1,200%");
+  await expect(stats.first()).toContainText("393%");
+  const links = page.locator(".stats li a");
+  await expect(links).toHaveCount(3);
+  await expect(links.nth(0)).toHaveAttribute(
+    "href",
+    "https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable",
+  );
+  await expect(links.nth(2)).toHaveAttribute(
+    "href",
+    "https://merchantriskcouncil.org/learning/resource-center/member-news/blog/2026/stricter-vamp-ratio-thresholds-are-now-in-effect-heres-how-to-stay-compliant",
+  );
 });
 
 test("email capture renders when stripe link is unset at build time", async ({ page }) => {

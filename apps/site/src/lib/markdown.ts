@@ -8,7 +8,7 @@ export type Block =
   | { type: "ol"; items: string[] }
   | { type: "ul"; items: string[] };
 
-export type InlineSegment = { bold: boolean; text: string };
+export type InlineSegment = { bold: boolean; text: string; href?: string };
 
 const CTA_RE = /^\*\*\[(.+)\]\*\*$/;
 
@@ -70,11 +70,15 @@ export function parseBlocks(md: string): Block[] {
 
 export function parseInline(text: string): InlineSegment[] {
   const segments: InlineSegment[] = [];
-  const re = /\*\*(.+?)\*\*/g;
+  const re = /\*\*(.+?)\*\*|\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g;
   let last = 0;
   for (const m of text.matchAll(re)) {
     if (m.index! > last) segments.push({ bold: false, text: text.slice(last, m.index) });
-    segments.push({ bold: true, text: m[1]! });
+    if (m[1]) {
+      segments.push({ bold: true, text: m[1] });
+    } else if (m[2] && m[3]) {
+      segments.push({ bold: false, href: m[3], text: m[2] });
+    }
     last = m.index! + m[0].length;
   }
   if (last < text.length) segments.push({ bold: false, text: text.slice(last) });

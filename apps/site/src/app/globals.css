@@ -152,6 +152,16 @@ summary:focus-visible {
   padding: 36px 20px;
 }
 
+.stats h2 {
+  max-width: var(--max);
+  margin: 0 auto 22px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .stats ul {
   list-style: none;
   display: grid;
@@ -166,6 +176,13 @@ summary:focus-visible {
   font-variant-numeric: tabular-nums;
   border-left: 3px solid var(--accent-bright);
   padding-left: 14px;
+}
+
+.stats a {
+  color: #fff;
+  text-decoration-color: var(--accent-bright);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
 
 @media (min-width: 720px) {

@@ -47,6 +47,21 @@ describe("parseInline / stripBold", () => {
       "Agent Readiness Score. Automated checks",
     );
   });
+
+  it("splits markdown links into href segments", () => {
+    expect(parseInline("See [Adobe data](https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable).")).toEqual([
+      { bold: false, text: "See " },
+      {
+        bold: false,
+        href: "https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable",
+        text: "Adobe data",
+      },
+      { bold: false, text: "." },
+    ]);
+    expect(stripBold("[Adobe data](https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable)")).toBe(
+      "Adobe data",
+    );
+  });
 });
 
 describe("parseFaq", () => {

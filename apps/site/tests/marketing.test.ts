@@ -14,7 +14,9 @@ describe("loadLandingCopy", () => {
     expect(copy.hero).toContain("**Can an AI agent buy from your store?**");
     expect(copy.hero).toContain("ChatGPT, Perplexity, and Claude now shop on behalf of real buyers.");
     expect(copy.hero).toContain("**[Get the audit for $99]**");
-    expect(copy.statsBar).toContain("Agent traffic to retail sites grew 1,200% in a year (Visa)");
+    expect(copy.statsBar).toContain("[AI traffic to U.S. retail sites grew 393% YoY in Q1 2026]");
+    expect(copy.statsBar).toContain("https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable");
+    expect(copy.statsBar).toContain("https://merchantriskcouncil.org/learning/resource-center/member-news/blog/2026/stricter-vamp-ratio-thresholds-are-now-in-effect-heres-how-to-stay-compliant");
     expect(copy.guarantee).toBe("Three or more actionable findings, or your $99 back.");
     expect(copy.about).toContain("I'm Sidwyn Koh.");
     expect(copy.faq).not.toContain("### ");
