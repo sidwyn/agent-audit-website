@@ -20,7 +20,7 @@ const OUT_PATH = path.join(
 
 type AwsRanges = { prefixes?: { ip_prefix?: string }[]; ipv6_prefixes?: { ipv6_prefix?: string }[] };
 type GcpRanges = { prefixes?: { ipv4Prefix?: string; ipv6Prefix?: string }[] };
-type AzureServiceTags = { values?: { properties?: { addressPrefixes?: string[] } }[] };
+type AzureServiceTags = { values?: { name?: string; properties?: { addressPrefixes?: string[] } }[] };
 type Output = { updatedAt: string; aws: string[]; gcp: string[]; azure: string[] };
 
 async function fetchJson<T>(url: string): Promise<T> {
@@ -43,7 +43,12 @@ async function main(): Promise<void> {
   let azure: string[];
   if (azureFile) {
     const tags = JSON.parse(readFileSync(azureFile, "utf8")) as AzureServiceTags;
-    azure = dedupe((tags.values ?? []).flatMap((v) => v.properties?.addressPrefixes ?? []));
+    // The "AzureCloud" service tag is the deduplicated union of all Azure public
+    // ranges; prefer it over flattening every per-service/region tag.
+    const cloud = (tags.values ?? []).find((v) => v.name === "AzureCloud");
+    azure = cloud
+      ? dedupe(cloud.properties?.addressPrefixes ?? [])
+      : dedupe((tags.values ?? []).flatMap((v) => v.properties?.addressPrefixes ?? []));
   } else {
     try {
       const existing = JSON.parse(readFileSync(OUT_PATH, "utf8")) as Output;

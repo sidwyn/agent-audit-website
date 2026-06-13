@@ -16,10 +16,24 @@ import type { Blocker, CheckoutProbeResult } from "./types.js";
 
 export type ProbeOpts = { headed?: boolean; stepTimeoutMs?: number };
 
-const ADD_TO_CART_SELECTORS =
-  'form[action*="/cart/add"] button[type="submit"]:not([disabled]), form[action*="/cart/add"] input[type="submit"]:not([disabled]), button[name="add"]:not([disabled])';
+// Broad set: standard Shopify themes use form[action*="/cart/add"]; custom
+// React/Hydrogen storefronts use data attributes, web components, or only a
+// text label. Generic automation still can't cover every bespoke theme — a
+// "not_found" here is inconclusive, never published as a definitive verdict.
+const ADD_TO_CART_SELECTORS = [
+  'form[action*="/cart/add"] button[type="submit"]:not([disabled])',
+  'form[action*="/cart/add"] input[type="submit"]:not([disabled])',
+  'button[name="add"]:not([disabled])',
+  "product-form button[type=submit]:not([disabled])",
+  "[data-add-to-cart]:not([disabled])",
+  '[data-testid*="add-to-cart" i]:not([disabled])',
+  'button[aria-label*="add to cart" i]:not([disabled])',
+  'button:has-text("Add to cart"):not([disabled])',
+  'button:has-text("Add to bag"):not([disabled])',
+  'button:has-text("Add to Cart"):not([disabled])',
+].join(", ");
 const CHECKOUT_SELECTORS =
-  'button[name="checkout"], input[name="checkout"], a[href*="/checkout"], [data-testid*="checkout"]';
+  'button[name="checkout"], input[name="checkout"], a[href*="/checkout"], [data-testid*="checkout"], button:has-text("Checkout"), a:has-text("Checkout")';
 
 async function screenshot(page: Page, dir: string, name: string, out: string[]): Promise<void> {
   const file = path.join(dir, name);
@@ -107,6 +121,10 @@ export async function probeCheckout(
     page.on("pageerror", (err) => result.jsErrors.push(err.message));
 
     await page.goto(productUrl, { waitUntil: "domcontentloaded" });
+    // Custom React/Hydrogen storefronts hydrate the buy controls after load;
+    // give them a moment so add-to-cart isn't a false "not_found".
+    await page.waitForLoadState("networkidle", { timeout: 8000 }).catch(() => undefined);
+    await page.locator(ADD_TO_CART_SELECTORS).first().waitFor({ state: "visible", timeout: 5000 }).catch(() => undefined);
     const productHtml = await page.content();
     if (detectPasswordPage(page.url(), productHtml)) {
       result.blockers.push({ stage, kind: "password_page", detail: "store is password-protected" });

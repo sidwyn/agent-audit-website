@@ -1,0 +1,15 @@
+{
+  "disputes": [
+    {
+      "id": 998877,
+      "order_id": 5678901234568,
+      "type": "chargeback",
+      "amount": "89.50",
+      "currency": "USD",
+      "reason": "fraudulent",
+      "status": "needs_response",
+      "evidence_due_by": "2026-05-20T23:59:59-04:00",
+      "initiated_at": "2026-05-10T12:00:00-04:00"
+    }
+  ]
+}

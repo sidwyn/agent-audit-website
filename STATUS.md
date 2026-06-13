@@ -91,6 +91,10 @@ To enable payments: set STRIPE_PAYMENT_LINK before `next build` (build-time env,
 1. **DNS**: A record `@ → 76.76.21.21` at Hover, then agentaudit.site goes live (Vercel verifies + issues TLS automatically).
 2. FORM_ENDPOINT (Formspree or similar) not set yet — email form posts to "#".
 3. STRIPE_PAYMENT_LINK not set yet — page shows email capture instead of pay button.
-4. Azure CIDR list is a seed; refresh via `packages/audit/scripts/update-cidrs.ts --azure <ServiceTags.json>`.
+4. Datacenter CIDRs now vendor real AWS (10.5k) + GCP (976) + Azure AzureCloud union (15.3k). Refresh: download Azure Service Tags JSON (`https://download.microsoft.com/download/7/1/D/71D86715-5596-4529-9B13-DA13A5DE5B63/ServiceTags_Public_<YYYYMMDD>.json`, a recent Monday) then `pnpm --filter @agentaudit/audit exec tsx scripts/update-cidrs.ts --azure <file>`.
 5. Smoke-test `audit readiness` against a real store before the first paid audit (`SMOKE_STORE_URL=... pnpm --filter @agentaudit/audit test` runs the gated probe test).
+
+## Transaction-layer reliability (important)
+
+The automated Playwright checkout probe is **not reliable on heavily-custom storefronts** (verified: Ridge — a flagship Shopify Plus store — reads `cart/not_found` because its React app defeats generic add-to-cart selectors, even after broadening selectors + a hydration wait). A "not_found"/"timeout" blocker is INCONCLUSIVE and must never be published as a definitive "an agent can't check out" verdict in outreach — that risks a false-negative that burns the lead. CAPTCHA/popup/password/login blockers are higher-confidence. **For the transaction layer in sellable reports, use `audit manual`** (human runs ChatGPT/Perplexity/Claude and records the YAML) — this is the product's intended design. The probe is a useful manual-assisted signal, not an automated outreach claim.
 6. Untracked working file: docs/marketing/agent-audit-target-pitches.csv (Sidwyn's outreach list — not part of the build).

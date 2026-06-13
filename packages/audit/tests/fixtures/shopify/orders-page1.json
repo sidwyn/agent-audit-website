@@ -1,0 +1,39 @@
+{
+  "orders": [
+    {
+      "id": 5678901234567,
+      "name": "#1001",
+      "source_name": "web",
+      "app_id": 580111,
+      "referring_site": "https://www.google.com/",
+      "landing_site": "/products/field-jacket?utm_source=google",
+      "total_price": "189.00",
+      "subtotal_price": "189.00",
+      "currency": "USD",
+      "created_at": "2026-05-02T14:11:03-04:00",
+      "financial_status": "paid",
+      "client_details": {
+        "accept_language": "en-US",
+        "browser_ip": "98.42.17.5",
+        "browser_width": 1280,
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15"
+      }
+    },
+    {
+      "id": 5678901234568,
+      "name": "#1002",
+      "source_name": "chatgpt",
+      "app_id": null,
+      "referring_site": "https://chatgpt.com/",
+      "landing_site": "/products/canvas-tote",
+      "total_price": "89.50",
+      "currency": "USD",
+      "created_at": "2026-05-03T09:22:40-04:00",
+      "financial_status": "paid",
+      "client_details": {
+        "browser_ip": "23.102.4.11",
+        "user_agent": "Mozilla/5.0 (compatible; ChatGPT-User/1.0; +https://openai.com/bot)"
+      }
+    }
+  ]
+}

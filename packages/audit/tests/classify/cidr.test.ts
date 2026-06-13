@@ -33,7 +33,8 @@ describe("ipInAnyCidr", () => {
 describe("loadDatacenterCidrs", () => {
   it("loads a non-empty vendored list covering aws, gcp and azure", () => {
     const cidrs = loadDatacenterCidrs();
-    expect(cidrs.length).toBeGreaterThan(100);
+    expect(cidrs.length).toBeGreaterThan(10000); // real AWS + GCP + Azure ranges
     expect(ipInAnyCidr("3.5.140.9", cidrs)).toBe(true); // AWS us-east range
+    expect(ipInAnyCidr("102.133.5.5", cidrs)).toBe(true); // Azure (102.133.0.0/19) — where ChatGPT/OpenAI egress
   });
 });

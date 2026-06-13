@@ -1,0 +1,20 @@
+{
+  "orders": [
+    {
+      "id": 5678901234569,
+      "name": "#1003",
+      "source_name": "web",
+      "app_id": 580111,
+      "referring_site": null,
+      "landing_site": "/products/trail-bottle",
+      "total_price": "36.00",
+      "currency": "USD",
+      "created_at": "2026-05-04T18:40:00-04:00",
+      "financial_status": "refunded",
+      "client_details": {
+        "browser_ip": "3.5.140.9",
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/125.0 Safari/537.36"
+      }
+    }
+  ]
+}
