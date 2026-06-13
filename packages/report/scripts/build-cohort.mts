@@ -12,7 +12,7 @@
  * (e.g. the top-50) and the canonical fixture cohort-stats.json is left untouched
  * — used when auditing a list of prospects against the established baseline.
  */
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -126,11 +126,20 @@ async function main(): Promise<void> {
   await writeFile(path.join(cohortDir, "cohort-stats.json"), JSON.stringify(stats, null, 2));
   console.log(`cohort: n=${stats.n} median=${[...stats.scores].sort((a, b) => a - b)[Math.floor(stats.scores.length / 2)]} | benchmark=${benchmark.source} (n=${benchmark.n})`);
 
+  const dataUri = (p: string): string | undefined => {
+    if (!existsSync(p)) return undefined;
+    return `data:image/png;base64,${readFileSync(p).toString("base64")}`;
+  };
   let rendered = 0;
   for (const s of stores) {
     try {
+      const brandDir = path.join(cohortDir, s.slug, "branding");
+      const branding = {
+        screenshot: dataUri(path.join(brandDir, "screenshot.png")),
+        logo: dataUri(path.join(brandDir, "favicon.png")),
+      };
       const html = composeReport(
-        { meta: s.meta, readiness: s.readiness, manualRuns: [], generatedAt },
+        { meta: s.meta, branding, readiness: s.readiness, manualRuns: [], generatedAt },
         { cohort: benchmark },
       );
       await htmlToPdf(html, path.join(cohortDir, s.slug, "report.pdf"));

@@ -29,9 +29,19 @@ if (existsSync(yamlPath)) {
   manualRuns = manualRunsFileSchema.parse(parseYaml(readFileSync(yamlPath, "utf8"))).runs;
 }
 
+function dataUri(p: string): string | undefined {
+  if (!existsSync(p)) return undefined;
+  const ext = p.toLowerCase().endsWith(".jpg") || p.toLowerCase().endsWith(".jpeg") ? "jpeg" : "png";
+  return `data:image/${ext};base64,${readFileSync(p).toString("base64")}`;
+}
+const branding = {
+  screenshot: dataUri(path.join(dir, "branding/screenshot.png")),
+  logo: dataUri(path.join(dir, "branding/favicon.png")),
+};
+
 const cohort = benchmarkPath ? loadCohort(benchmarkPath) : null;
 const html = composeReport(
-  { meta, readiness, manualRuns, generatedAt: "2026-06-13T00:00:00Z" },
+  { meta, branding, readiness, manualRuns, generatedAt: "2026-06-13T00:00:00Z" },
   { cohort },
 );
 await htmlToPdf(html, path.join(dir, "report.pdf"));

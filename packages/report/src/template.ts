@@ -45,7 +45,10 @@ td, .score-num, .part-num, .vamp-math, .tile-num { font-variant-numeric: tabular
 .muted { color: var(--muted); } .small { font-size: 11px; }
 .badge { font-family: ui-monospace, Menlo, monospace; background: rgba(45,212,191,0.14); color: var(--accent2); border:1px solid rgba(45,212,191,0.4); border-radius: 4px; padding: 1px 6px; font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; }
 .tag { font-family: ui-monospace, Menlo, monospace; background: #1b2330; color: var(--muted); border:1px solid var(--rule); border-radius: 4px; padding: 0 5px; font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; }
-.scorecard { background: linear-gradient(180deg,#141c28,#10161f); border:1px solid var(--rule); color: #fff; padding: 22px; border-radius: 10px; margin-top: 20px; }
+.scorecard { background: linear-gradient(180deg,#141c28,#10161f); border:1px solid var(--rule); color: #fff; padding: 0; border-radius: 10px; margin-top: 20px; overflow: hidden; }
+.scorecard-body { padding: 22px; }
+.shot { display: block; width: 100%; height: 132px; object-fit: cover; object-position: top center; border-bottom: 1px solid var(--rule); }
+.favicon { width: 24px; height: 24px; border-radius: 6px; vertical-align: -5px; margin-right: 10px; background: #fff; }
 .scorecard-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
 .kicker { font-family: ui-monospace, Menlo, monospace; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; color: var(--accent); margin: 0; }
 .scorecard .meta { color: var(--muted); margin: 0; font-size: 12px; }
@@ -110,6 +113,8 @@ export function composeReport(data: ReportData, opts: { cohort?: CohortStats | n
           note: probeRan
             ? "Readiness audit: scored on discovery (public-surface) signals. Order classification and dispute exposure require merchant data and are not included."
             : "Readiness-only audit: discovery (public-surface) signals. The transaction layer (cart, checkout, live agents) was not tested.",
+          screenshot: data.branding?.screenshot,
+          logo: data.branding?.logo,
         })
       : scorecard({
           headline: score.total,
@@ -118,6 +123,8 @@ export function composeReport(data: ReportData, opts: { cohort?: CohortStats | n
           parts: score.parts,
           meta: data.meta,
           generatedAt: data.generatedAt,
+          screenshot: data.branding?.screenshot,
+          logo: data.branding?.logo,
         }),
     executiveSummary(findings),
     benchmarkSection(benchmark),

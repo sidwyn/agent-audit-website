@@ -12,6 +12,8 @@ export function scorecard(opts: {
   meta: StoreMeta;
   generatedAt: string;
   note?: string;
+  screenshot?: string;
+  logo?: string;
 }): string {
   const bars = opts.parts
     .map((p) => {
@@ -20,16 +22,23 @@ export function scorecard(opts: {
     })
     .join("\n");
   const note = opts.note ? `<p class="score-note">${escapeHtml(opts.note)}</p>` : "";
+  const shot = opts.screenshot
+    ? `<img class="shot" src="${opts.screenshot}" alt="${escapeHtml(opts.meta.name)} homepage" />`
+    : "";
+  const fav = opts.logo ? `<img class="favicon" src="${opts.logo}" alt="" />` : "";
   return `<header class="scorecard">
-  <div class="scorecard-head">
-    <div>
-      <p class="kicker">${escapeHtml(opts.kicker)}</p>
-      <h1>${escapeHtml(opts.meta.name)}</h1>
-      <p class="meta">${escapeHtml(opts.meta.domain)} · GMV band ${escapeHtml(opts.meta.gmvBand)} · ${escapeHtml(opts.generatedAt.slice(0, 10))}</p>
+  ${shot}
+  <div class="scorecard-body">
+    <div class="scorecard-head">
+      <div>
+        <p class="kicker">${escapeHtml(opts.kicker)}</p>
+        <h1>${fav}${escapeHtml(opts.meta.name)}</h1>
+        <p class="meta">${escapeHtml(opts.meta.domain)} · GMV band ${escapeHtml(opts.meta.gmvBand)} · ${escapeHtml(opts.generatedAt.slice(0, 10))}</p>
+      </div>
+      <div class="score"><span class="score-num">${opts.headline}</span><span class="score-denom">/ 100</span><span class="score-name">${escapeHtml(opts.scoreName)}</span></div>
     </div>
-    <div class="score"><span class="score-num">${opts.headline}</span><span class="score-denom">/ 100</span><span class="score-name">${escapeHtml(opts.scoreName)}</span></div>
+    <div class="parts">${bars}</div>${note}
   </div>
-  <div class="parts">${bars}</div>${note}
 </header>`;
 }
 

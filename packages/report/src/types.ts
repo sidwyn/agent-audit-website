@@ -7,8 +7,13 @@ export type StoreMeta = {
   contact: string;
 };
 
+// Per-store personalization for the scorecard header (data URIs so the PDF is
+// self-contained): a homepage screenshot banner and the store's favicon/logo.
+export type Branding = { screenshot?: string; logo?: string };
+
 export type ReportData = {
   meta: StoreMeta;
+  branding?: Branding;
   readiness: ReadinessReport;
   // Order classification + manual runs require merchant data. Omitted for
   // readiness-only audits (e.g. non-Shopify stores or the cohort run), which
