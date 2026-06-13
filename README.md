@@ -137,3 +137,69 @@ Send this verbatim — written for a non-technical store owner:
   `node apps/site/scripts/serve-static.mjs`. CTA uses `STRIPE_PAYMENT_LINK` at
   build time, email capture posts to `FORM_ENDPOINT` when Stripe is unset. The
   landing copy renders verbatim from `agent-audit-marketing.md`.
+
+## Agent testing — live per-agent runs & the inbox watcher
+
+The readiness-only reports infer the per-agent matrix from robots/structured-data. To put
+**real** "can this agent buy" data into a store's report, run the agents live and feed the
+results in. Two paths: generate paste-ready prompts (Tier 2), or run a watch-folder that
+auto-rebuilds the PDF as results arrive.
+
+### Quick path — generate prompts, paste replies
+
+```bash
+# 1. print one copy-paste prompt per assistant (ChatGPT / Perplexity / Claude)
+pnpm --filter @agentaudit/audit exec tsx src/cli.ts agent-prompts --store graza.co --product https://graza.co/products/sizzle
+
+# 2. paste each into the agent. Each reply ends with a line like:
+#    RESULT | agent: chatgpt | outcome: success | furthest_stage: payment | blocker: none | notes: ...
+# 3. drop all replies into one file, then fold them in:
+pnpm --filter @agentaudit/audit exec tsx src/cli.ts manual --store graza.co \
+  --from-replies replies.txt --out cohort-2026-06/graza.co
+
+# 4. re-render that store's report
+pnpm --filter @agentaudit/report exec tsx scripts/render-one.mts \
+  cohort-2026-06 graza.co packages/report/fixtures/cohort-stats.json
+```
+
+`agent` is free-form — `chatgpt`, `perplexity`, `claude`, `gemini`, `rufus`, `codex`, etc.
+Known consumer brands populate the per-agent matrix; others appear in the transaction layer.
+Runs must stop before payment and must never bypass a CAPTCHA.
+
+### Auto path — the inbox watcher
+
+Run this once (from the repo root) and leave it running:
+
+```bash
+pnpm --filter @agentaudit/report exec tsx scripts/watch-inbox.mts \
+  "$PWD/inbox" \
+  "$PWD/cohort-2026-06,$PWD/cohort-leads-2026-06,$PWD/cohort-next100-2026-06" \
+  "$PWD/packages/report/fixtures/cohort-stats.json"
+```
+
+Then drop results into `inbox/<domain>/` — the watcher polls every 3s, merges by agent
+(adds/replaces that agent, preserves the others), copies screenshots into the store's
+`live-session/`, and re-renders `report.pdf`. It prints `updated <slug>: N run(s) ...` per change.
+
+```bash
+mkdir -p inbox/graza.co
+pbpaste > inbox/graza.co/chatgpt.txt        # paste an agent reply (must contain a RESULT line)
+cp ~/Downloads/shot.png inbox/graza.co/     # optional screenshots
+```
+
+- `$PWD/` keeps paths absolute (required, since `pnpm --filter` runs from the package dir).
+- The store's folder must already have `readiness.json` in one of the listed cohort dirs.
+- `inbox/` is gitignored. To publish an updated report, commit `cohort-*/<domain>/`.
+
+**Letting Codex (or any file-writing agent) self-serve.** Tell it:
+> After the shopping run, create `inbox/<domain>/` in the repo and write your
+> `RESULT | agent: codex | ...` line to `inbox/<domain>/codex.txt`. Save screenshots as
+> `inbox/<domain>/codex-1.png`, etc. Do not enter payment details or place an order.
+
+Browser/app agents (ChatGPT, Perplexity, Rufus) can't write to disk — paste their reply into
+`inbox/<domain>/<agent>.txt` yourself and drag any screenshots into the same folder.
+
+### Personalizing a report
+
+Drop `cohort-*/<domain>/branding/screenshot.png` (a homepage screenshot) and
+`branding/favicon.png` — they render as a banner + logo in the scorecard on the next rebuild.
