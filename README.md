@@ -183,21 +183,43 @@ Then drop results into `inbox/<domain>/` — the watcher polls every 3s, merges 
 
 ```bash
 mkdir -p inbox/graza.co
-pbpaste > inbox/graza.co/chatgpt.txt        # paste an agent reply (must contain a RESULT line)
-cp ~/Downloads/shot.png inbox/graza.co/     # optional screenshots
+pbpaste > inbox/graza.co/chatgpt.txt              # paste an agent reply (must contain a RESULT line)
+cp ~/Downloads/chatgpt-3-cart.png inbox/graza.co/ # step screenshots (see naming below)
 ```
 
 - `$PWD/` keeps paths absolute (required, since `pnpm --filter` runs from the package dir).
 - The store's folder must already have `readiness.json` in one of the listed cohort dirs.
 - `inbox/` is gitignored. To publish an updated report, commit `cohort-*/<domain>/`.
 
+#### Screenshots — one per step, per agent (required)
+
+We want a screenshot at **every step** from **every agent**. They render as a "Step-by-step
+screenshots" gallery in the report's transaction layer, grouped by agent.
+
+- **Name each file `<agent>-<step>-<stage>.png`** so it attaches to the right agent's run.
+  The watcher links a screenshot to an agent when the filename starts with that agent name
+  (`chatgpt-…`, `perplexity-…`, `claude-…`, `codex-…`, …). Recommended set per agent:
+  - `<agent>-1-product.png` — product page
+  - `<agent>-2-variant.png` — options/variant selected
+  - `<agent>-3-cart.png` — added to cart (cart page or drawer)
+  - `<agent>-4-checkout.png` — checkout (contact/shipping)
+  - `<agent>-5-payment.png` — payment step (card fields visible; stop here)
+- If an agent stalls, still screenshot that step and name it for the stage it reached.
+- Drop them in the **same `inbox/<domain>/`** folder as the reply. The watcher copies them
+  into `cohort-*/<domain>/live-session/`, attaches them to that agent's run, and re-renders.
+
+The `agent-prompts` command already bakes these instructions (and the naming) into each prompt,
+so the agent is told to capture and name every step.
+
 **Letting Codex (or any file-writing agent) self-serve.** Tell it:
-> After the shopping run, create `inbox/<domain>/` in the repo and write your
-> `RESULT | agent: codex | ...` line to `inbox/<domain>/codex.txt`. Save screenshots as
-> `inbox/<domain>/codex-1.png`, etc. Do not enter payment details or place an order.
+> After the shopping run, create `inbox/<domain>/` in the repo. Write your
+> `RESULT | agent: codex | ...` line to `inbox/<domain>/codex.txt`, and save a screenshot at
+> every step as `inbox/<domain>/codex-1-product.png`, `codex-2-variant.png`, `codex-3-cart.png`,
+> `codex-4-checkout.png`, `codex-5-payment.png`. Do not enter payment details or place an order.
 
 Browser/app agents (ChatGPT, Perplexity, Rufus) can't write to disk — paste their reply into
-`inbox/<domain>/<agent>.txt` yourself and drag any screenshots into the same folder.
+`inbox/<domain>/<agent>.txt` yourself, and save each step screenshot into the same folder using
+the `<agent>-<step>-<stage>.png` names above (the agent prompt asks them to take one per step).
 
 ### Personalizing a report
 

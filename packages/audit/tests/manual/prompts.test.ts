@@ -9,7 +9,9 @@ describe("buildAgentPrompts", () => {
     expect(prompts.map((p) => p.agent)).toEqual(["chatgpt", "perplexity", "claude"]);
     for (const p of prompts) {
       expect(p.prompt).toContain(`RESULT | agent: ${p.agent} |`);
-      expect(p.prompt).toContain("STOP at the payment step");
+      expect(p.prompt).toContain("SCREENSHOT AT EVERY STEP");
+      expect(p.prompt).toContain(`${p.agent}-5-payment.png`);
+      expect(p.prompt).toContain("inbox/graza.co/");
       expect(p.prompt).toContain("do not solve or bypass any CAPTCHA");
       expect(p.prompt).toContain("graza.co/products/sizzle");
     }

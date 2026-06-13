@@ -107,6 +107,7 @@ export function discoverySection(readiness: ReadinessReport): string {
 export function transactionSection(
   readiness: ReadinessReport,
   manualRuns: ManualRun[],
+  runScreenshots: Record<string, string[]> = {},
 ): string {
   const probe = readiness.checkout;
   const probeStage = probe.reachedCheckout ? "checkout (info page)" : probe.reachedCart ? "cart" : "product page";
@@ -142,9 +143,20 @@ export function transactionSection(
       ? `<p class="muted">JS errors observed: ${escapeHtml(probe.jsErrors.slice(0, 3).join(" · "))}</p>`
       : "";
 
+  const galleryRows = manualRuns
+    .filter((r) => (runScreenshots[r.agent] ?? []).length > 0)
+    .map((r) => {
+      const imgs = runScreenshots[r.agent]!.map((u) => `<img class="thumb" src="${u}" alt="" />`).join("");
+      return `<div class="shotrow"><span class="shotlabel">${escapeHtml(agentLabel[r.agent] ?? r.agent)}</span><div class="shotimgs">${imgs}</div></div>`;
+    })
+    .join("\n");
+  const gallery = galleryRows
+    ? `<h3>Step-by-step screenshots</h3><div class="shots">${galleryRows}</div>`
+    : "";
+
   return section(
     "transaction",
     "Transaction layer",
-    table(["Agent", "Stage reached", "Blocker / notes"], rows) + jsErrors,
+    table(["Agent", "Stage reached", "Blocker / notes"], rows) + jsErrors + gallery,
   );
 }

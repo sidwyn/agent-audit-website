@@ -39,9 +39,18 @@ const branding = {
   logo: dataUri(path.join(dir, "branding/favicon.png")),
 };
 
+// resolve each run's step screenshots (by basename, from live-session/) into data URIs
+const runScreenshots: Record<string, string[]> = {};
+for (const r of manualRuns) {
+  const uris = (r.screenshots ?? [])
+    .map((s) => dataUri(path.join(dir, "live-session", path.basename(s))))
+    .filter((u): u is string => Boolean(u));
+  if (uris.length) runScreenshots[r.agent] = uris;
+}
+
 const cohort = benchmarkPath ? loadCohort(benchmarkPath) : null;
 const html = composeReport(
-  { meta, branding, readiness, manualRuns, generatedAt: "2026-06-13T00:00:00Z" },
+  { meta, branding, runScreenshots, readiness, manualRuns, generatedAt: "2026-06-13T00:00:00Z" },
   { cohort },
 );
 await htmlToPdf(html, path.join(dir, "report.pdf"));

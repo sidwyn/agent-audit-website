@@ -63,11 +63,14 @@ async function regen(slug: string): Promise<void> {
     .join("\n");
   const liveDir = path.join(storeDir, "live-session");
   mkdirSync(liveDir, { recursive: true });
-  const shotPaths: string[] = [];
+  const shotNames: string[] = [];
   for (const s of files.filter((f) => /\.png$/i.test(f))) {
     copyFileSync(path.join(inSub, s), path.join(liveDir, s));
-    shotPaths.push(path.relative(process.cwd(), path.join(liveDir, s)));
+    shotNames.push(s);
   }
+  // a screenshot named "<agent>-..." or "<agent>_..." belongs to that agent's run
+  const shotsForAgent = (agent: string): string[] =>
+    shotNames.filter((n) => new RegExp(`^${agent.toLowerCase()}[-_]`).test(n.toLowerCase()));
 
   const yamlPath = path.join(storeDir, "manual-runs.yaml");
   let manualRuns: ManualRun[] = existsSync(yamlPath)
@@ -76,7 +79,10 @@ async function regen(slug: string): Promise<void> {
 
   const inboxRuns = parseReplies(text);
   if (inboxRuns.length > 0) {
-    if (shotPaths.length) inboxRuns.forEach((r) => (r.screenshots = shotPaths));
+    inboxRuns.forEach((r) => {
+      const m = shotsForAgent(r.agent);
+      if (m.length) r.screenshots = m;
+    });
     // merge by agent: an inbox run replaces an existing run for the same agent,
     // and preserves other agents' (possibly hand-written, richer) runs.
     const byAgent = new Map(manualRuns.map((r) => [r.agent, r]));
@@ -93,10 +99,20 @@ async function regen(slug: string): Promise<void> {
     screenshot: dataUri(path.join(storeDir, "branding/screenshot.png")),
     logo: dataUri(path.join(storeDir, "branding/favicon.png")),
   };
+  const runScreenshots: Record<string, string[]> = {};
+  for (const r of manualRuns) {
+    const uris = (r.screenshots ?? [])
+      .map((s) => dataUri(path.join(liveDir, path.basename(s))))
+      .filter((u): u is string => Boolean(u));
+    if (uris.length) runScreenshots[r.agent] = uris;
+  }
   const cohort = benchmarkPath ? loadCohort(benchmarkPath) : null;
-  const html = composeReport({ meta, branding, readiness, manualRuns, generatedAt: "2026-06-13T00:00:00Z" }, { cohort });
+  const html = composeReport(
+    { meta, branding, runScreenshots, readiness, manualRuns, generatedAt: "2026-06-13T00:00:00Z" },
+    { cohort },
+  );
   await htmlToPdf(html, path.join(storeDir, "report.pdf"));
-  console.log(`updated ${slug}: ${manualRuns.length} agent run(s), ${shotPaths.length} screenshot(s) -> report.pdf`);
+  console.log(`updated ${slug}: ${manualRuns.length} agent run(s), ${shotNames.length} screenshot(s) -> report.pdf`);
 }
 
 async function main(): Promise<void> {

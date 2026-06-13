@@ -78,6 +78,10 @@ td, .score-num, .part-num, .vamp-math, .tile-num { font-variant-numeric: tabular
 .snippet { background: #0a0e14; color: #cbd5e1; border: 1px solid var(--rule); border-radius: 8px; padding: 12px; overflow-x: auto; font-size: 11px; line-height: 1.45; white-space: pre-wrap; word-break: break-word; }
 .snippet code { background: none; color: inherit; padding: 0; }
 .method li { margin: 7px 0; }
+.shots { display: grid; gap: 12px; margin: 10px 0; }
+.shotlabel { font-family: ui-monospace, Menlo, monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); display: block; margin-bottom: 5px; }
+.shotimgs { display: flex; gap: 7px; flex-wrap: wrap; }
+.thumb { height: 104px; width: auto; border: 1px solid var(--rule); border-radius: 6px; background: #fff; }
 footer { font-family: ui-monospace, Menlo, monospace; margin: 34px 0 6px; color: var(--muted); font-size: 10px; border-top: 1px solid var(--rule); padding-top: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
 .footnote { font-size: 10px; }
 @media print { html, body { background: var(--bg) !important; } * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } section, .tile, .scorecard, .assume { break-inside: avoid-page; } .snippet { white-space: pre-wrap; } }
@@ -146,7 +150,7 @@ export function composeReport(data: ReportData, opts: { cohort?: CohortStats | n
 
   blocks.push(discoverySection(data.readiness));
   if (probeRan || data.manualRuns.length > 0) {
-    blocks.push(transactionSection(data.readiness, data.manualRuns));
+    blocks.push(transactionSection(data.readiness, data.manualRuns, data.runScreenshots ?? {}));
   }
   blocks.push(
     funnelSection(funnel, topFailingStage(funnel)),
