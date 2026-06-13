@@ -17,8 +17,14 @@ test("stats bar shows the three stats with tabular numerals", async ({ page }) =
   const stats = page.locator(".stats li");
   await expect(stats).toHaveCount(3);
   await expect(stats.first()).toContainText("393%");
-  const links = page.locator(".stats li a");
+  const links = page.locator(".stats li a.footnote-ref");
   await expect(links).toHaveCount(3);
+  await expect(links.nth(0)).toHaveText("1");
+  await expect(links.nth(1)).toHaveText("2");
+  await expect(links.nth(2)).toHaveText("3");
+  await expect(stats.first().locator("a").first()).not.toHaveText(
+    "AI traffic to U.S. retail sites grew 393% YoY in Q1 2026",
+  );
   await expect(links.nth(0)).toHaveAttribute(
     "href",
     "https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable",

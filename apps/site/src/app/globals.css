@@ -178,11 +178,18 @@ summary:focus-visible {
   padding-left: 14px;
 }
 
-.stats a {
+.stats .footnote-ref {
   color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 3px;
   text-decoration-color: var(--accent-bright);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.stats sup {
+  line-height: 0;
 }
 
 @media (min-width: 720px) {

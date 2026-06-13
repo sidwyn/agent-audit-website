@@ -1,5 +1,5 @@
 import type { LandingCopy } from "../lib/marketing";
-import { parseBlocks, parseFaq, stripBold } from "../lib/markdown";
+import { parseBlocks, parseFaq, parseInline, stripBold } from "../lib/markdown";
 import { Cta } from "./Cta";
 import { Inline } from "./Inline";
 
@@ -36,13 +36,39 @@ export function StatsBar({ copy }: { copy: LandingCopy["statsBar"] }) {
     <section className="stats" aria-label="Key stats">
       <h2>Why optimize for agents?</h2>
       <ul>
-        {items.map((item) => (
+        {items.map((item, index) => (
           <li key={item}>
-            <Inline text={item} />
+            <StatWithFootnote index={index + 1} text={item} />
           </li>
         ))}
       </ul>
     </section>
+  );
+}
+
+function StatWithFootnote({ index, text }: { index: number; text: string }) {
+  const segments = parseInline(text);
+  const href = segments.find((segment) => segment.href)?.href;
+
+  return (
+    <>
+      {segments.map((segment, segmentIndex) =>
+        segment.bold ? <strong key={segmentIndex}>{segment.text}</strong> : segment.text,
+      )}
+      {href ? (
+        <sup>
+          <a
+            aria-label={`Source ${index}`}
+            className="footnote-ref"
+            href={href}
+            rel="noreferrer"
+            target="_blank"
+          >
+            {index}
+          </a>
+        </sup>
+      ) : null}
+    </>
   );
 }
 
