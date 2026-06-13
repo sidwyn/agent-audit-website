@@ -11,7 +11,7 @@ export const AGENT_UA_TOKENS = [
   "Amazonbot",
   "Applebot-Extended",
   "meta-externalagent",
-  "Bytespider",
+  // "Bytespider", // ByteDance/TikTok — disabled for now (re-enable to restore)
 ] as const;
 
 export type AgentUaToken = (typeof AGENT_UA_TOKENS)[number];

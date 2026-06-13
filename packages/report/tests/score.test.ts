@@ -36,7 +36,7 @@ describe("computeScore", () => {
   it("computes partial component math", () => {
     const base = makeReadiness();
     const readiness = makeReadiness({
-      robots: base.robots.map((r, i) => ({ ...r, allowed: i >= 4 })), // 9/13 allowed
+      robots: base.robots.map((r, i) => ({ ...r, allowed: i >= 4 })), // 8/12 allowed
       productPages: [
         perfectPage(),
         {
@@ -48,7 +48,7 @@ describe("computeScore", () => {
     const { parts, total } = computeScore({ readiness, manualRuns: makeManualRuns() });
     const byKey = Object.fromEntries(parts.map((p) => [p.key, p]));
 
-    expect(byKey.robots!.earned).toBeCloseTo((10 * 9) / 13, 1);
+    expect(byKey.robots!.earned).toBeCloseTo((10 * 8) / 12, 1);
     expect(byKey.structuredData!.earned).toBeCloseTo(15 * ((1 + 0.6) / 2), 1);
     expect(byKey.feeds!.earned).toBe(10);
     expect(byKey.llmsTxt!.earned).toBe(5);

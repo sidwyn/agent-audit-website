@@ -11,7 +11,7 @@ export const AGENT_BRANDS: { brand: string; uas: string[]; liveTestable: boolean
   { brand: "Amazon (Rufus)", uas: ["Amazonbot"], liveTestable: false },
   { brand: "Apple Intelligence", uas: ["Applebot-Extended"], liveTestable: false },
   { brand: "Meta AI", uas: ["meta-externalagent"], liveTestable: false },
-  { brand: "ByteDance (TikTok)", uas: ["Bytespider"], liveTestable: false },
+  // { brand: "ByteDance (TikTok)", uas: ["Bytespider"], liveTestable: false }, // disabled for now
 ];
 
 export type Cell = "yes" | "no" | "partial" | "unknown";

@@ -9,10 +9,11 @@ import {
 } from "../../src/classify/agents.js";
 
 describe("AGENT_UA_TOKENS", () => {
-  it("has the full 13-agent UA list from the spec", () => {
-    expect(AGENT_UA_TOKENS).toHaveLength(13);
+  it("has the agent UA list from the spec (Bytespider disabled for now)", () => {
+    expect(AGENT_UA_TOKENS).toHaveLength(12);
     expect(AGENT_UA_TOKENS).toContain("Claude-SearchBot");
     expect(AGENT_UA_TOKENS).toContain("meta-externalagent");
+    expect(AGENT_UA_TOKENS).not.toContain("Bytespider");
   });
 });
 

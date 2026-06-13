@@ -50,7 +50,7 @@ describe("runReadiness", () => {
 
     const onDisk = JSON.parse(await readFile(outPath, "utf8")) as ReadinessReport;
     expect(onDisk.store).toBe("demo-store.example");
-    expect(onDisk.robots).toHaveLength(13);
+    expect(onDisk.robots).toHaveLength(12);
     expect(onDisk.robots.find((r) => r.agent === "GPTBot")!.allowed).toBe(false);
     expect(onDisk.robots.find((r) => r.agent === "ClaudeBot")!.allowed).toBe(true);
     expect(onDisk.feeds.productsJson.pass).toBe(true);
@@ -61,7 +61,7 @@ describe("runReadiness", () => {
     expect(onDisk.checkout.productUrl).toBe(`${BASE}/products/field-jacket`);
 
     const summary = formatReadinessSummary(report);
-    expect(summary).toContain("12/13 agents allowed");
+    expect(summary).toContain("11/12 agents allowed");
     expect(summary).toContain("blocked: GPTBot");
   });
 
