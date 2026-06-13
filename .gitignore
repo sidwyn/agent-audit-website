@@ -2,10 +2,11 @@ node_modules/
 dist/
 .next/
 out/
-data/
-!data/.gitkeep
-artifacts/
-!artifacts/.gitkeep
+# only the root merchant-data dir — NOT nested data/ dirs like packages/audit/src/classify/data
+/data/
+!/data/.gitkeep
+/artifacts/
+!/artifacts/.gitkeep
 *.log
 .env
 .env.*
