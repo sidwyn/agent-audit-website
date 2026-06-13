@@ -19,9 +19,14 @@ import { htmlToPdf } from "../src/render.js";
 import { composeReport } from "../src/template.js";
 
 const inboxDir = path.resolve(process.argv[2] ?? "inbox");
-const cohortDir = path.resolve(process.argv[3] ?? "cohort");
+// one or more cohort dirs (comma-separated); a slug resolves to whichever holds it
+const cohortDirs = (process.argv[3] ?? "cohort").split(",").map((d) => path.resolve(d.trim()));
 const benchmarkPath = process.argv[4];
 const POLL_MS = 3000;
+
+function storeDirFor(slug: string): string | undefined {
+  return cohortDirs.map((c) => path.join(c, slug)).find((d) => existsSync(path.join(d, "readiness.json")));
+}
 
 function sig(dir: string): string {
   try {
@@ -46,9 +51,9 @@ function dataUri(p: string): string | undefined {
 
 async function regen(slug: string): Promise<void> {
   const inSub = path.join(inboxDir, slug);
-  const storeDir = path.join(cohortDir, slug);
-  if (!existsSync(path.join(storeDir, "readiness.json")) || !existsSync(path.join(storeDir, "store.json"))) {
-    console.log(`skip ${slug}: no readiness.json/store.json under ${cohortDir}`);
+  const storeDir = storeDirFor(slug);
+  if (!storeDir || !existsSync(path.join(storeDir, "store.json"))) {
+    console.log(`skip ${slug}: no readiness.json/store.json found in any cohort dir`);
     return;
   }
   const files = readdirSync(inSub);
@@ -97,7 +102,7 @@ async function regen(slug: string): Promise<void> {
 async function main(): Promise<void> {
   mkdirSync(inboxDir, { recursive: true });
   const seen = new Map<string, string>();
-  console.log(`watching ${inboxDir} -> ${cohortDir} (poll ${POLL_MS}ms). Drop <slug>/result.txt + screenshots.`);
+  console.log(`watching ${inboxDir} -> [${cohortDirs.join(", ")}] (poll ${POLL_MS}ms). Drop <slug>/result.txt + screenshots.`);
   for (;;) {
     for (const slug of readdirSync(inboxDir)) {
       const sub = path.join(inboxDir, slug);
