@@ -33,9 +33,18 @@ export function scorecard(opts: {
 </header>`;
 }
 
+const SEV_LABEL: Record<Finding["severity"], string> = {
+  critical: "HIGH",
+  warning: "MEDIUM",
+  info: "NOTE",
+};
+
 export function executiveSummary(findings: Finding[]): string {
   const items = findings
-    .map((f) => `<li class="sev-${f.severity}">${escapeHtml(f.sentence)}</li>`)
+    .map(
+      (f) =>
+        `<li class="sev-${f.severity}"><span class="sev-tag">${SEV_LABEL[f.severity]}</span>${escapeHtml(f.sentence)}</li>`,
+    )
     .join("\n");
   return section("summary", "Executive summary", `<ul class="findings">${items}</ul>`);
 }

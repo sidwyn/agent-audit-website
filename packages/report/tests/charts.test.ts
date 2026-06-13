@@ -10,13 +10,13 @@ describe("hBarChart", () => {
   it("renders an svg with one filled bar per entry", () => {
     const svg = hBarChart(bars);
     expect(svg.startsWith("<svg")).toBe(true);
-    const fills = svg.match(/<rect[^>]+fill="#312e81"/g) ?? [];
+    const fills = svg.match(/<rect[^>]+fill="#2dd4bf"/g) ?? [];
     expect(fills).toHaveLength(2);
   });
 
   it("scales bar widths proportionally to values", () => {
     const svg = hBarChart(bars);
-    const widths = [...svg.matchAll(/<rect[^>]+width="(\d+)" height="20" rx="3" fill="#312e81"/g)].map(
+    const widths = [...svg.matchAll(/<rect[^>]+width="(\d+)" height="20" rx="3" fill="#2dd4bf"/g)].map(
       (m) => Number(m[1]),
     );
     expect(widths).toHaveLength(2);
