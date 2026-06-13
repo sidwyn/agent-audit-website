@@ -1,0 +1,233 @@
+{
+  "store": "drinklmnt.com",
+  "generatedAt": "2026-06-13T03:25:33.060Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": false,
+      "status": 404,
+      "notes": "products.json returned 404"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 8 product urls sampled",
+      "productUrlCount": 8
+    },
+    "llmsTxt": {
+      "pass": false,
+      "status": 404,
+      "notes": "llms.txt returned 404"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://drinklmnt.com/products/lmnt-insider-bundle",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": false,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://drinklmnt.com/products/lmnt-insider-bundle",
+      "problems": [
+        "offer missing priceCurrency",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://drinklmnt.com/products/lmnt-recharge-electrolyte-drink",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": false,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://drinklmnt.com/products/lmnt-recharge-electrolyte-drink",
+      "problems": [
+        "offer missing priceCurrency",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://drinklmnt.com/products/lmnt-recharge-variety-pack",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": false,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://drinklmnt.com/products/lmnt-recharge-variety-pack",
+      "problems": [
+        "offer missing priceCurrency",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://drinklmnt.com/products/lmnt-sparkling-12oz",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": false,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://drinklmnt.com/products/lmnt-sparkling-12oz",
+      "problems": [
+        "offer missing priceCurrency",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://drinklmnt.com/products/lmnt-sparkling",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": false,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://drinklmnt.com/products/lmnt-sparkling",
+      "problems": [
+        "offer missing priceCurrency",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://drinklmnt.com/products/lmnt-hat",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": false,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://drinklmnt.com/products/lmnt-hat",
+      "problems": [
+        "offer missing priceCurrency",
+        "missing og:image"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

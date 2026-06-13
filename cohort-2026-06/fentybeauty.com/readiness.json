@@ -1,0 +1,215 @@
+{
+  "store": "fentybeauty.com",
+  "generatedAt": "2026-06-13T03:25:12.323Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://fentybeauty.com/products/donate-to-the-clara-lionel-foundation",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://fentybeauty.com/products/donate-to-the-clara-lionel-foundation",
+      "problems": []
+    },
+    {
+      "url": "https://fentybeauty.com/products/clf-3-piece-makeup-bag",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://fentybeauty.com/products/clf-3-piece-makeup-bag",
+      "problems": []
+    },
+    {
+      "url": "https://fentybeauty.com/products/hydra-vizor-refill-invisible-moisturizer-broad-spectrum-spf-30-sunscreen-with-niacinamide-kalahari-melon-us",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://fentybeauty.com/products/hydra-vizor-refill-invisible-moisturizer-broad-spectrum-spf-30-sunscreen-with-niacinamide-kalahari-melon-us",
+      "problems": []
+    },
+    {
+      "url": "https://fentybeauty.com/products/pro-kissr-luscious-lip-balm-pinch-me",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://fentybeauty.com/products/pro-kissr-luscious-lip-balm-latte-lips",
+      "problems": []
+    },
+    {
+      "url": "https://fentybeauty.com/products/hydra-vizor-invisible-moisturizer-broad-spectrum-spf-30-sunscreen-with-niacinamide-kalahari-melon-us",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://fentybeauty.com/products/hydra-vizor-invisible-moisturizer-broad-spectrum-spf-30-sunscreen-with-niacinamide-kalahari-melon-us",
+      "problems": []
+    },
+    {
+      "url": "https://fentybeauty.com/products/instant-reset-brightening-overnight-recovery-gel-cream-with-niacinamide-kalahari-melon-oil",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://fentybeauty.com/products/instant-reset-brightening-overnight-recovery-gel-cream-with-niacinamide-kalahari-melon-oil",
+      "problems": []
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

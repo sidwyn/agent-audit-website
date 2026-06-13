@@ -65,10 +65,11 @@ export function draftFindings(data: ReportData): Finding[] {
     rest.push({ severity: "info", sentence: `All ${readiness.robots.length} agent user-agents are allowed by robots.txt.` });
   }
 
-  if (!readiness.checkout.reachedCheckout) {
+  const probeRan = readiness.checkout.productUrl !== null;
+  if (probeRan && !readiness.checkout.reachedCheckout) {
     const why = readiness.checkout.blockers.map((b) => `${b.kind.replace(/_/g, " ")} at ${b.stage.replace(/_/g, " ")}`).join(", ");
     lead.push({ severity: "critical", sentence: `The automated probe could not reach checkout${why ? ` (${why})` : ""}.` });
-  } else {
+  } else if (probeRan) {
     rest.push({ severity: "info", sentence: `The automated probe reached the checkout information page.` });
   }
 

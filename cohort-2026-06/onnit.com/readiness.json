@@ -1,0 +1,227 @@
+{
+  "store": "onnit.com",
+  "generatedAt": "2026-06-13T03:25:49.237Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://www.onnit.com/products/alpha-brain-instant-blackberry-lemonade-30-ct",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.onnit.com/products/alpha-brain-instant-blackberry-lemonade-30-ct",
+      "problems": [
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://www.onnit.com/products/alpha-brain-focus-shot-tropical-25-fl-oz-24-ct",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.onnit.com/products/alpha-brain-focus-shot-tropical-25-fl-oz-6-ct",
+      "problems": [
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://www.onnit.com/products/new-mood-30-ct",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.onnit.com/products/new-mood-60-ct",
+      "problems": [
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://www.onnit.com/products/alpha-brain-90-ct",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.onnit.com/products/alpha-brain-90-ct",
+      "problems": [
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://www.onnit.com/products/alpha-brain-black-label-80-ct",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.onnit.com/products/alpha-brain-black-label-80-ct",
+      "problems": [
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://www.onnit.com/products/new-mood-60-ct",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.onnit.com/products/new-mood-60-ct",
+      "problems": [
+        "product missing sku/gtin"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

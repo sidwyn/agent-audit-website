@@ -1,0 +1,227 @@
+{
+  "store": "glossier.com",
+  "generatedAt": "2026-06-13T03:25:13.062Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://www.glossier.com/products/field-greens-blanket",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.glossier.com/products/field-greens-blanket",
+      "problems": [
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://www.glossier.com/products/terrazzo-hoodie",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.glossier.com/products/terrazzo-hoodie?variant=43002862010613",
+      "problems": [
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://www.glossier.com/products/pro-tip",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.glossier.com/products/pro-tip",
+      "problems": [
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://www.glossier.com/products/priming-moisturizer-balance",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.glossier.com/products/priming-moisturizer-balance",
+      "problems": [
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://www.glossier.com/products/super-pure",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.glossier.com/products/super-pure",
+      "problems": [
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://www.glossier.com/products/lash-slick-duo",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.glossier.com/products/lash-slick-duo",
+      "problems": [
+        "product missing sku/gtin"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

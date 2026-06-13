@@ -1,0 +1,215 @@
+{
+  "store": "cotopaxi.com",
+  "generatedAt": "2026-06-13T03:26:04.860Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://www.cotopaxi.com/products/cotopaxi-gift-card",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.cotopaxi.com/products/cotopaxi-gift-card",
+      "problems": []
+    },
+    {
+      "url": "https://www.cotopaxi.com/products/mens-do-good-t-shirt",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.cotopaxi.com/products/mens-do-good-t-shirt",
+      "problems": []
+    },
+    {
+      "url": "https://www.cotopaxi.com/products/womens-do-good-t-shirt",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.cotopaxi.com/products/womens-do-good-t-shirt",
+      "problems": []
+    },
+    {
+      "url": "https://www.cotopaxi.com/products/batac-16l-pack-del-dia",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.cotopaxi.com/products/batac-16l-pack-del-dia",
+      "problems": []
+    },
+    {
+      "url": "https://www.cotopaxi.com/products/del-dia-bataan-3l-fanny-pack",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.cotopaxi.com/products/del-dia-bataan-3l-fanny-pack",
+      "problems": []
+    },
+    {
+      "url": "https://www.cotopaxi.com/products/alto-beanie",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.cotopaxi.com/products/alto-beanie",
+      "problems": []
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

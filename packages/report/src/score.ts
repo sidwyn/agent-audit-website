@@ -117,3 +117,16 @@ export function computeScore(
   const total = Math.round(parts.reduce((s, p) => s + p.earned, 0));
   return { total, parts };
 }
+
+const DISCOVERY_KEYS = ["robots", "structuredData", "feeds", "llmsTxt"];
+
+// Public-surface sub-score (0-100): the discovery signals every storefront
+// exposes, independent of order data or a live checkout probe. Used for the
+// cross-store benchmark so readiness-only cohort stores compare apples-to-apples
+// with a fully-audited store.
+export function discoverySubscore(parts: ScorePart[]): number {
+  const disc = parts.filter((p) => DISCOVERY_KEYS.includes(p.key));
+  const earned = disc.reduce((s, p) => s + p.earned, 0);
+  const max = disc.reduce((s, p) => s + p.max, 0);
+  return max === 0 ? 0 : Math.round((earned / max) * 100);
+}

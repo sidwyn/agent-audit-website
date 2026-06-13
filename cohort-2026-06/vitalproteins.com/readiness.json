@@ -1,0 +1,229 @@
+{
+  "store": "vitalproteins.com",
+  "generatedAt": "2026-06-13T03:25:38.361Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://www.vitalproteins.com/products/collagen-peptides",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://www.vitalproteins.com/products/collagen-peptides",
+      "problems": [
+        "1 unparseable ld+json block(s)",
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://www.vitalproteins.com/products/beef-liver-capsules",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://www.vitalproteins.com/products/beef-liver-capsules",
+      "problems": [
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://www.vitalproteins.com/products/beef-gelatin",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://www.vitalproteins.com/products/beef-gelatin",
+      "problems": [
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://www.vitalproteins.com/products/vanilla-collagen-peptides",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://www.vitalproteins.com/products/vanilla-collagen-peptides",
+      "problems": [
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://www.vitalproteins.com/products/marine-collagen-peptides",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://www.vitalproteins.com/products/marine-collagen-peptides",
+      "problems": [
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://www.vitalproteins.com/products/cartilage-collagen",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://www.vitalproteins.com/products/cartilage-collagen",
+      "problems": [
+        "missing og:title"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

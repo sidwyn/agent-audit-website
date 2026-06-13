@@ -147,6 +147,7 @@ export function methodologySection(hasClassify: boolean, windowDays: number): st
     "Methodology & caveats",
     `<ul class="method">
 ${classifyNotes}
+<li>Discovery checks read the <strong>initial HTML response</strong> and do not execute JavaScript. Structured data injected client-side will read as missing here — which is also how agents that don't run JS (most crawler-class agents) see the page.</li>
 <li>Per-agent reachability is inferred from robots access and one shared automated probe except for ChatGPT/Perplexity/Claude, which are run as live purchases. Inferred rows are labeled.</li>
 <li>Automated checks stop at the checkout information page; no purchase is ever completed and no payment fields are entered. CAPTCHA presence is recorded, never solved or bypassed.</li>
 </ul>`,

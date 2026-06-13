@@ -4,29 +4,32 @@ import type { ScorePart } from "./score.js";
 import type { StoreMeta } from "./types.js";
 import { escapeHtml, section, table } from "./html.js";
 
-export function scorecard(
-  score: { total: number; parts: ScorePart[] },
-  meta: StoreMeta,
-  generatedAt: string,
-  mode: "full" | "readiness-only" = "full",
-): string {
-  const bars = score.parts
+export function scorecard(opts: {
+  headline: number;
+  scoreName: string;
+  kicker: string;
+  parts: ScorePart[];
+  meta: StoreMeta;
+  generatedAt: string;
+  note?: string;
+}): string {
+  const bars = opts.parts
     .map((p) => {
       const widthPct = p.max === 0 ? 0 : Math.round((p.earned / p.max) * 100);
       return `<div class="part"><span class="part-label">${escapeHtml(p.label)}</span><span class="part-track"><span class="part-fill" style="width:${widthPct}%"></span></span><span class="part-num">${p.earned}/${p.max}</span></div>`;
     })
     .join("\n");
-  const kicker = mode === "full" ? "AgentAudit · Agent Commerce Audit" : "AgentAudit · Readiness Audit";
+  const note = opts.note ? `<p class="score-note">${escapeHtml(opts.note)}</p>` : "";
   return `<header class="scorecard">
   <div class="scorecard-head">
     <div>
-      <p class="kicker">${kicker}</p>
-      <h1>${escapeHtml(meta.name)}</h1>
-      <p class="meta">${escapeHtml(meta.domain)} · GMV band ${escapeHtml(meta.gmvBand)} · ${escapeHtml(generatedAt.slice(0, 10))}</p>
+      <p class="kicker">${escapeHtml(opts.kicker)}</p>
+      <h1>${escapeHtml(opts.meta.name)}</h1>
+      <p class="meta">${escapeHtml(opts.meta.domain)} · GMV band ${escapeHtml(opts.meta.gmvBand)} · ${escapeHtml(opts.generatedAt.slice(0, 10))}</p>
     </div>
-    <div class="score"><span class="score-num">${score.total}</span><span class="score-denom">/ 100</span><span class="score-name">Agent Readiness Score</span></div>
+    <div class="score"><span class="score-num">${opts.headline}</span><span class="score-denom">/ 100</span><span class="score-name">${escapeHtml(opts.scoreName)}</span></div>
   </div>
-  <div class="parts">${bars}</div>
+  <div class="parts">${bars}</div>${note}
 </header>`;
 }
 

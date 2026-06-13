@@ -5,7 +5,7 @@ import { draftFindings } from "./findings.js";
 import { buildFixList } from "./fixlist.js";
 import { buildFunnel, topFailingStage } from "./funnel.js";
 import { buildRemediation } from "./remediation.js";
-import { computeScore } from "./score.js";
+import { computeScore, discoverySubscore } from "./score.js";
 import {
   classificationSection,
   disputeSection,
@@ -53,6 +53,7 @@ td, .score-num, .part-num, .vamp-math, .tile-num { font-variant-numeric: tabular
 .parts { margin-top: 18px; display: grid; gap: 5px; }
 .part { display: grid; grid-template-columns: 220px 1fr 48px; gap: 10px; align-items: center; font-size: 11px; }
 .part-label { color: #d4d4d8; } .part-track { background: #3f3f46; border-radius: 3px; height: 7px; overflow: hidden; display: block; } .part-fill { background: #a5b4fc; height: 100%; display: block; } .part-num { text-align: right; color: #d4d4d8; }
+.score-note { color: #a1a1aa; font-size: 10px; margin: 14px 0 0; }
 .findings { padding-left: 18px; } .findings li { margin: 5px 0; }
 .findings .sev-critical::marker { color: var(--fail); } .findings .sev-warning::marker { color: var(--warn); }
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 8px 0; }
@@ -79,12 +80,35 @@ export function composeReport(data: ReportData, opts: { cohort?: CohortStats | n
   const funnel = buildFunnel(data.readiness, data.manualRuns);
   const matrix = buildAgentMatrix(data.readiness, data.manualRuns);
   const remediation = buildRemediation(data.readiness, data.meta);
-  const benchmark = opts.cohort ? benchmarkScore(score.total, opts.cohort) : null;
+  const disc = discoverySubscore(score.parts);
+  const benchmark = opts.cohort ? benchmarkScore(disc, opts.cohort) : null;
+  const probeRan = data.readiness.checkout.productUrl !== null;
+  const readinessOnly = !data.classify;
+  const discoveryKeys = ["robots", "structuredData", "feeds", "llmsTxt"];
 
   const blocks: string[] = [
-    scorecard(score, data.meta, data.generatedAt, data.classify ? "full" : "readiness-only"),
+    readinessOnly
+      ? scorecard({
+          headline: disc,
+          scoreName: "Discovery Readiness Score",
+          kicker: "AgentAudit · Readiness Audit",
+          parts: score.parts.filter((p) => discoveryKeys.includes(p.key)),
+          meta: data.meta,
+          generatedAt: data.generatedAt,
+          note: probeRan
+            ? "Readiness audit: scored on discovery (public-surface) signals. Order classification and dispute exposure require merchant data and are not included."
+            : "Readiness-only audit: discovery (public-surface) signals. The transaction layer (cart, checkout, live agents) was not tested.",
+        })
+      : scorecard({
+          headline: score.total,
+          scoreName: "Agent Readiness Score",
+          kicker: "AgentAudit · Agent Commerce Audit",
+          parts: score.parts,
+          meta: data.meta,
+          generatedAt: data.generatedAt,
+        }),
     executiveSummary(findings),
-    benchmarkSection(benchmark, data.readiness, score.total),
+    benchmarkSection(benchmark),
   ];
 
   if (data.classify) {
@@ -101,9 +125,11 @@ export function composeReport(data: ReportData, opts: { cohort?: CohortStats | n
     blocks.push(agentMatrixSection(matrix));
   }
 
+  blocks.push(discoverySection(data.readiness));
+  if (probeRan || data.manualRuns.length > 0) {
+    blocks.push(transactionSection(data.readiness, data.manualRuns));
+  }
   blocks.push(
-    discoverySection(data.readiness),
-    transactionSection(data.readiness, data.manualRuns),
     funnelSection(funnel, topFailingStage(funnel)),
     fixListSection(fixes),
     remediationSection(remediation),

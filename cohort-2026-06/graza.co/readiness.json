@@ -1,0 +1,233 @@
+{
+  "store": "graza.co",
+  "generatedAt": "2026-06-13T03:25:43.668Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://www.graza.co/products/sizzle",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://www.graza.co/products/sizzle",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://www.graza.co/products/drizzle",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://www.graza.co/products/drizzle",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://www.graza.co/products/sizzle-drizzle-combo-pack",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://www.graza.co/products/sizzle-drizzle-combo-pack",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://www.graza.co/products/drizzle-5l-case-of-3",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://www.graza.co/products/drizzle-5l-case-of-3",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://www.graza.co/products/sizzle-5l-case-of-3",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://www.graza.co/products/sizzle-5l-case-of-3",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://www.graza.co/products/gift-set-drizzle-sizzle",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://www.graza.co/products/gift-set-drizzle-sizzle",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:title"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "store": "stanley1913.com",
+  "generatedAt": "2026-06-13T03:25:59.738Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "GPTBot",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "ChatGPT-User",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "OAI-SearchBot",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "PerplexityBot",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "Perplexity-User",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "ClaudeBot",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "Claude-User",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://www.stanley1913.com/products/adventure-the-nesting-two-cup-cook-set",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.stanley1913.com/products/adventure-the-nesting-two-cup-cook-set",
+      "problems": []
+    },
+    {
+      "url": "https://www.stanley1913.com/products/adventure-cooler-16-qt",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.stanley1913.com/products/adventure-cooler-16-qt",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://www.stanley1913.com/products/classic-lunch-box",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.stanley1913.com/products/classic-lunch-box",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://www.stanley1913.com/products/adventure-fast-flow-water-jug-2g",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.stanley1913.com/products/adventure-fast-flow-water-jug-2g",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://www.stanley1913.com/products/classic-easy-fill-wide-mouth-flask-8-oz",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.stanley1913.com/products/classic-easy-fill-wide-mouth-flask-8-oz",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://www.stanley1913.com/products/classic-legendary-food-jar-24-oz",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.stanley1913.com/products/classic-legendary-food-jar-24-oz",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "store": "drinkpoppi.com",
+  "generatedAt": "2026-06-13T03:25:38.856Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://drinkpoppi.com/products/classic-cola",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://drinkpoppi.com/products/classic-cola",
+      "problems": [
+        "product has no Offer",
+        "offer missing price",
+        "offer missing priceCurrency",
+        "offer missing availability"
+      ]
+    },
+    {
+      "url": "https://drinkpoppi.com/products/doc-pop",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://drinkpoppi.com/products/doc-pop",
+      "problems": [
+        "product has no Offer",
+        "offer missing price",
+        "offer missing priceCurrency",
+        "offer missing availability",
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://drinkpoppi.com/products/grape",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://drinkpoppi.com/products/grape",
+      "problems": [
+        "product has no Offer",
+        "offer missing price",
+        "offer missing priceCurrency",
+        "offer missing availability"
+      ]
+    },
+    {
+      "url": "https://drinkpoppi.com/products/watermelon",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://drinkpoppi.com/products/watermelon",
+      "problems": [
+        "product has no Offer",
+        "offer missing price",
+        "offer missing priceCurrency",
+        "offer missing availability"
+      ]
+    },
+    {
+      "url": "https://drinkpoppi.com/products/ginger-lime",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://drinkpoppi.com/products/ginger-lime",
+      "problems": [
+        "product has no Offer",
+        "offer missing price",
+        "offer missing priceCurrency",
+        "offer missing availability"
+      ]
+    },
+    {
+      "url": "https://drinkpoppi.com/products/orange",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://drinkpoppi.com/products/orange",
+      "problems": [
+        "product has no Offer",
+        "offer missing price",
+        "offer missing priceCurrency",
+        "offer missing availability"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

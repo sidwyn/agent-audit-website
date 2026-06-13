@@ -1,0 +1,233 @@
+{
+  "store": "tecovas.com",
+  "generatedAt": "2026-06-13T03:25:14.183Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://www.tecovas.com/products/gift-cards",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.tecovas.com/products/gift-cards",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.tecovas.com/products/the-cartwright",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.tecovas.com/products/the-cartwright",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.tecovas.com/products/the-cartwright?color=cafe-goat",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.tecovas.com/products/the-cartwright?color=cafe-goat",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.tecovas.com/products/the-cartwright?color=midnight-cowhide",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.tecovas.com/products/the-cartwright?color=midnight-cowhide",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.tecovas.com/products/the-cartwright?color=hazelnut-cowhide",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.tecovas.com/products/the-cartwright?color=hazelnut-cowhide",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.tecovas.com/products/the-cartwright?color=iced-tea-cowhide",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.tecovas.com/products/the-cartwright?color=iced-tea-cowhide",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:image"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

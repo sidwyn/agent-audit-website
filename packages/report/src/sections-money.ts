@@ -1,4 +1,4 @@
-import type { ClassifyOutput, ReadinessReport } from "@agentaudit/audit";
+import type { ClassifyOutput } from "@agentaudit/audit";
 import type { AgentRow } from "./agentMatrix.js";
 import type { Benchmark } from "./benchmark.js";
 import { hBarChart, sparkline } from "./charts.js";
@@ -109,14 +109,14 @@ export function remediationSection(snippets: Snippet[]): string {
   return section("remediation", "Copy-paste fixes", blocks);
 }
 
-export function benchmarkSection(b: Benchmark | null, readiness: ReadinessReport, scoreTotal: number): string {
+export function benchmarkSection(b: Benchmark | null): string {
   if (!b) return "";
   const rank = b.percentile >= 50 ? "top" : "bottom";
   const pctFromTop = b.percentile >= 50 ? 100 - b.percentile : b.percentile;
   return section(
     "benchmark",
     "How you compare",
-    `<p>Your Agent Readiness Score of <strong>${scoreTotal}</strong> places you in the <strong>${rank} ${Math.max(pctFromTop, 1)}%</strong> of a cohort of ${b.n} stores (median ${b.median}). ${b.storesBetter} score higher.</p>
-<p class="muted small">Cohort: ${escapeHtml(b.source)}. These are large, well-known stores, so a low rank here is a conservative read — the typical store scores lower. Readiness (public-surface) only; dispute benchmarks are not cohort-derived.</p>`,
+    `<p>Your discovery-readiness score of <strong>${b.score}</strong>/100 — the public-surface signals every store exposes (robots, structured data, feeds, llms.txt) — places you in the <strong>${rank} ${Math.max(pctFromTop, 1)}%</strong> of a cohort of ${b.n} stores (median ${b.median}). ${b.storesBetter} score higher.</p>
+<p class="muted small">Cohort: ${escapeHtml(b.source)}. These are large, well-known stores, so a low rank here is a conservative read — the typical store scores lower. Discovery (public-surface) only; transaction-layer and dispute benchmarks are not cohort-derived.</p>`,
   );
 }
