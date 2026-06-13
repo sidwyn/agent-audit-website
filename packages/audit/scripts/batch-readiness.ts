@@ -7,7 +7,7 @@
  * throttled GET requests to robots.txt, products.json, sitemap, llms.txt and a
  * sample of product pages. No carts touched, nothing purchased.
  *
- * Usage: pnpm exec tsx scripts/batch-readiness.ts <stores.json> <outDir> [concurrency]
+ * Usage: pnpm exec tsx scripts/batch-readiness.ts <stores.json> <outDir> [concurrency] [maxPages]
  *   stores.json: [{ "brand": "...", "domain": "allbirds.com", "category": "apparel" }, ...]
  */
 import { mkdir, writeFile } from "node:fs/promises";
@@ -48,7 +48,8 @@ async function main(): Promise<void> {
   const storesPath = process.argv[2];
   const outDir = path.resolve(process.argv[3] ?? "cohort");
   const concurrency = Number(process.argv[4] ?? 6);
-  if (!storesPath) throw new Error("usage: batch-readiness.ts <stores.json> <outDir> [concurrency]");
+  const maxPages = Number(process.argv[5] ?? 6);
+  if (!storesPath) throw new Error("usage: batch-readiness.ts <stores.json> <outDir> [concurrency] [maxPages]");
 
   const stores = JSON.parse(readFileSync(storesPath, "utf8")) as Store[];
   await mkdir(outDir, { recursive: true });
@@ -73,7 +74,7 @@ async function main(): Promise<void> {
     try {
       const { report } = await runReadiness(
         store.domain,
-        { skipCheckout: true, maxPages: 6, out: path.join(storeDir, "readiness.json") },
+        { skipCheckout: true, maxPages, out: path.join(storeDir, "readiness.json") },
       );
       await mkdir(storeDir, { recursive: true });
       await writeFile(

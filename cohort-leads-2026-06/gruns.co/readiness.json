@@ -1,0 +1,285 @@
+{
+  "store": "gruns.co",
+  "generatedAt": "2026-06-13T03:37:00.470Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://gruns.co/products/upgrade-to-quarterly-on-next-order",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://gruns.co/products/upgrade-to-quarterly-on-next-order",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://gruns.co/products/upgrade-to-quarterly-on-next-order-1",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://gruns.co/products/upgrade-to-quarterly-on-next-order-1",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://gruns.co/products/upgrade-to-quarterly-on-next-order-2",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://gruns.co/products/upgrade-to-quarterly-on-next-order-2",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://gruns.co/products/upgrade-to-quarterly-on-next-order-3",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://gruns.co/products/upgrade-to-quarterly-on-next-order-3",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://gruns.co/products/gruns",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://gruns.co/products/gruns",
+      "problems": [
+        "product has no Offer",
+        "offer missing price",
+        "offer missing priceCurrency",
+        "offer missing availability",
+        "product missing sku/gtin",
+        "product missing image"
+      ]
+    },
+    {
+      "url": "https://gruns.co/products/gruns-kids",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://gruns.co/products/gruns-kids",
+      "problems": [
+        "product has no Offer",
+        "offer missing price",
+        "offer missing priceCurrency",
+        "offer missing availability",
+        "product missing sku/gtin",
+        "product missing image"
+      ]
+    },
+    {
+      "url": "https://gruns.co/products/gruns-olipop-kids",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://gruns.co/products/gruns-olipop-kids",
+      "problems": [
+        "product has no Offer",
+        "offer missing price",
+        "offer missing priceCurrency",
+        "offer missing availability",
+        "product missing sku/gtin",
+        "product missing image"
+      ]
+    },
+    {
+      "url": "https://gruns.co/products/gruns-firecracker",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://gruns.co/products/gruns-firecracker",
+      "problems": [
+        "product has no Offer",
+        "offer missing price",
+        "offer missing priceCurrency",
+        "offer missing availability",
+        "product missing sku/gtin",
+        "product missing image"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

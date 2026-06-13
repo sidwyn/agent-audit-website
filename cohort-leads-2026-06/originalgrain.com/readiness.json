@@ -1,0 +1,259 @@
+{
+  "store": "originalgrain.com",
+  "generatedAt": "2026-06-13T03:38:04.684Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "OAI-SearchBot",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://www.originalgrain.com/products/e-gift-card",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.originalgrain.com/products/e-gift-card",
+      "problems": []
+    },
+    {
+      "url": "https://www.originalgrain.com/products/brewmaster-barrel-brushed-metal-47-bezel",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.originalgrain.com/products/brewmaster-barrel-brushed-metal-47-bezel",
+      "problems": [
+        "product missing image"
+      ]
+    },
+    {
+      "url": "https://www.originalgrain.com/products/sapele-barrel-black-42-bezel",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.originalgrain.com/products/sapele-barrel-black-42-bezel",
+      "problems": [
+        "product missing image"
+      ]
+    },
+    {
+      "url": "https://www.originalgrain.com/products/pop-wood-band-holder-12-pcs",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.originalgrain.com/products/pop-wood-band-holder-12-pcs",
+      "problems": [
+        "product missing image"
+      ]
+    },
+    {
+      "url": "https://www.originalgrain.com/products/pop-wood-band-holder-20-pcs",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.originalgrain.com/products/pop-wood-band-holder-20-pcs",
+      "problems": [
+        "product missing image"
+      ]
+    },
+    {
+      "url": "https://www.originalgrain.com/products/jim-beam-whiskey-stones-set-7",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.originalgrain.com/products/jim-beam-whiskey-stones-set-7",
+      "problems": []
+    },
+    {
+      "url": "https://www.originalgrain.com/products/pop-individual-stands-with-cuffs-1",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.originalgrain.com/products/pop-individual-stands-with-cuffs-1",
+      "problems": [
+        "product missing image"
+      ]
+    },
+    {
+      "url": "https://www.originalgrain.com/products/blank-caseback-barrel-47",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://www.originalgrain.com/products/blank-caseback-barrel-47",
+      "problems": []
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

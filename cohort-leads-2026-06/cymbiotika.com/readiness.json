@@ -1,0 +1,273 @@
+{
+  "store": "cymbiotika.com",
+  "generatedAt": "2026-06-13T03:36:57.800Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://cymbiotika.com/products/the-omega",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://cymbiotika.com/products/the-omega",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://cymbiotika.com/products/b12",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://cymbiotika.com/products/b12",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://cymbiotika.com/products/shilajit-normal-jar",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://cymbiotika.com/products/shilajit-normal-jar",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://cymbiotika.com/products/brain-complex",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://cymbiotika.com/products/brain-complex",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://cymbiotika.com/products/d3",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://cymbiotika.com/products/d3",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://cymbiotika.com/products/vitamin-c",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://cymbiotika.com/products/vitamin-c",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://cymbiotika.com/products/glutathione",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://cymbiotika.com/products/glutathione",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://cymbiotika.com/products/magnesium-complex",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://cymbiotika.com/products/magnesium-complex",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

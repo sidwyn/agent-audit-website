@@ -2,7 +2,7 @@ import type { ManualRun, ReadinessReport } from "@agentaudit/audit";
 import type { Finding } from "./findings.js";
 import type { ScorePart } from "./score.js";
 import type { StoreMeta } from "./types.js";
-import { escapeHtml, section, table } from "./html.js";
+import { escapeHtml, section, table, urlPath } from "./html.js";
 
 export function scorecard(opts: {
   headline: number;
@@ -64,7 +64,7 @@ export function discoverySection(readiness: ReadinessReport): string {
 
   const pages = readiness.productPages;
   const pageRows = pages.map((p) => [
-    `<code>${escapeHtml(new URL(p.url).pathname)}</code>`,
+    `<code>${escapeHtml(urlPath(p.url))}</code>`,
     p.jsonLd.found
       ? ["price", "priceCurrency", "availability", "skuOrGtin", "image"]
           .filter((k) => p.jsonLd[k as keyof typeof p.jsonLd])

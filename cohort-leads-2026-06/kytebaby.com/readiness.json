@@ -1,0 +1,265 @@
+{
+  "store": "kytebaby.com",
+  "generatedAt": "2026-06-13T03:37:26.093Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://kytebaby.com/products/toddler-pajama-set-in-sage",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://kytebaby.com/products/toddler-pajama-set-in-sage",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://kytebaby.com/products/baby-blanket-in-sage",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://kytebaby.com/products/baby-blanket-in-sage",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://kytebaby.com/products/knotted-cap-in-sage",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://kytebaby.com/products/knotted-cap-in-sage",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://kytebaby.com/products/bodysuit-in-sage",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://kytebaby.com/products/bodysuit-in-sage",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://kytebaby.com/products/romper-in-sage",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://kytebaby.com/products/romper-in-sage",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://kytebaby.com/products/footie-in-sage",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://kytebaby.com/products/footie-in-sage",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://kytebaby.com/products/sleep-bag-in-sage-1-0",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://kytebaby.com/products/sleep-bag-in-sage-1-0",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://kytebaby.com/products/sleep-bag-in-sage-2-5",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://kytebaby.com/products/sleep-bag-in-sage-2-5",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

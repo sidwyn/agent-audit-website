@@ -1,0 +1,265 @@
+{
+  "store": "petfinn.com",
+  "generatedAt": "2026-06-13T03:37:38.471Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://petfinn.com/products/hip-and-joint",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://petfinn.com/products/hip-and-joint",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://petfinn.com/products/multivitamin",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://petfinn.com/products/multivitamin",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://petfinn.com/products/skin-and-coat",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://petfinn.com/products/skin-and-coat",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://petfinn.com/products/calming-aid",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://petfinn.com/products/calming-aid",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://petfinn.com/products/senior-pup-bundle",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://petfinn.com/products/senior-pup-bundle",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://petfinn.com/products/super-pup-bundle",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://petfinn.com/products/super-pup-bundle",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://petfinn.com/products/chill-pup-bundle",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://petfinn.com/products/chill-pup-bundle",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://petfinn.com/products/pretty-pup-bundle",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://petfinn.com/products/pretty-pup-bundle",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

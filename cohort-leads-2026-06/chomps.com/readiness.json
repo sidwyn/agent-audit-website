@@ -1,0 +1,249 @@
+{
+  "store": "chomps.com",
+  "generatedAt": "2026-06-13T03:36:39.883Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": false,
+      "matchedGroup": "GPTBot",
+      "matchedRule": "Disallow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "ChatGPT-User",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "OAI-SearchBot",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "PerplexityBot",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "ClaudeBot",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": false,
+      "matchedGroup": "Google-Extended",
+      "matchedRule": "Disallow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://chomps.com/products/gluten-free-snack-beef-jerky-stick-original",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://chomps.com/products/gluten-free-snack-beef-jerky-stick-original",
+      "problems": []
+    },
+    {
+      "url": "https://chomps.com/products/paleo-snack-beef-jerky-stick-spicy-jalapeno",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://chomps.com/products/paleo-snack-beef-jerky-stick-spicy-jalapeno",
+      "problems": []
+    },
+    {
+      "url": "https://chomps.com/products/whole-30-snack-venison-jerky-stick-salt-n-pepper",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://chomps.com/products/whole-30-snack-venison-jerky-stick-salt-n-pepper",
+      "problems": []
+    },
+    {
+      "url": "https://chomps.com/products/gluten-free-snack-turkey-jerky-stick-original",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://chomps.com/products/gluten-free-snack-turkey-jerky-stick-original",
+      "problems": []
+    },
+    {
+      "url": "https://chomps.com/products/high-protein-snack-beef-jerky-stick-mini-original",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://chomps.com/products/high-protein-snack-beef-jerky-stick-mini-original",
+      "problems": []
+    },
+    {
+      "url": "https://chomps.com/products/whole-30-snack-turkey-jerky-stick-mini-original",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://chomps.com/products/whole-30-snack-turkey-jerky-stick-mini-original",
+      "problems": []
+    },
+    {
+      "url": "https://chomps.com/products/allergy-friendly-snack-beef-jerky-stick-sea-salt",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://chomps.com/products/allergy-friendly-snack-beef-jerky-stick-sea-salt",
+      "problems": []
+    },
+    {
+      "url": "https://chomps.com/products/non-gmo-snack-beef-jerky-stick-italian-style",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://chomps.com/products/non-gmo-snack-beef-jerky-stick-italian-style",
+      "problems": []
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

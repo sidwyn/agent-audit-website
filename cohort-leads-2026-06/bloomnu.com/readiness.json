@@ -1,0 +1,269 @@
+{
+  "store": "bloomnu.com",
+  "generatedAt": "2026-06-13T03:37:02.707Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://bloomnu.com/products/blender-bottle",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://bloomnu.com/products/blender-bottle",
+      "problems": [
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://bloomnu.com/products/high-powered-mixer",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://bloomnu.com/products/high-powered-mixer",
+      "problems": [
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://bloomnu.com/products/e-gift-card",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://bloomnu.com/products/e-gift-card",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://bloomnu.com/products/preworkout",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://bloomnu.com/products/preworkout",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://bloomnu.com/products/protein",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://bloomnu.com/products/protein",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://bloomnu.com/products/greens-superfoods",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://bloomnu.com/products/greens-superfoods",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://bloomnu.com/products/scrunchie",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://bloomnu.com/products/scrunchie",
+      "problems": [
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://bloomnu.com/products/scrunchie-amazon",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://bloomnu.com/products/scrunchie-amazon",
+      "problems": [
+        "missing og:title"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

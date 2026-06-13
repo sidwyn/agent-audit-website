@@ -1,0 +1,112 @@
+{
+  "store": "publicrec.com",
+  "generatedAt": "2026-06-13T03:35:50.288Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": false,
+      "matchedGroup": "GPTBot",
+      "matchedRule": "Disallow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": false,
+      "matchedGroup": "ClaudeBot",
+      "matchedRule": "Disallow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": false,
+      "matchedGroup": "Google-Extended",
+      "matchedRule": "Disallow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": false,
+      "matchedGroup": "Amazonbot",
+      "matchedRule": "Disallow: /"
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": false,
+      "matchedGroup": "Applebot-Extended",
+      "matchedRule": "Disallow: /"
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": false,
+      "matchedGroup": "meta-externalagent",
+      "matchedRule": "Disallow: /"
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": false,
+      "matchedGroup": "Bytespider",
+      "matchedRule": "Disallow: /"
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": false,
+      "status": 200,
+      "notes": "products.json returned 200 but no products array (likely disabled or html)"
+    },
+    "sitemap": {
+      "pass": false,
+      "status": 200,
+      "notes": "sitemap.xml is not valid sitemap xml",
+      "productUrlCount": 0
+    },
+    "llmsTxt": {
+      "pass": false,
+      "status": 200,
+      "notes": "llms.txt returned 200 but content is empty or html (likely a soft-404)"
+    }
+  },
+  "productPages": [],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

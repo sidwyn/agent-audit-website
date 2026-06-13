@@ -1,0 +1,273 @@
+{
+  "store": "bearaby.com",
+  "generatedAt": "2026-06-13T03:37:13.305Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "GPTBot",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "ChatGPT-User",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "OAI-SearchBot",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "PerplexityBot",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "Perplexity-User",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "ClaudeBot",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "Google-Extended",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "Amazonbot",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "Applebot-Extended",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "meta-externalagent",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://bearaby.com/products/the-napper",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://bearaby.com/products/the-napper",
+      "problems": [
+        "offer missing price",
+        "offer missing priceCurrency"
+      ]
+    },
+    {
+      "url": "https://bearaby.com/products/velvet-napper",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://bearaby.com/products/velvet-napper",
+      "problems": [
+        "1 unparseable ld+json block(s)",
+        "no schema.org Product in ld+json"
+      ]
+    },
+    {
+      "url": "https://bearaby.com/products/the-nappling",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://bearaby.com/products/the-nappling",
+      "problems": [
+        "offer missing price",
+        "offer missing priceCurrency"
+      ]
+    },
+    {
+      "url": "https://bearaby.com/products/tree-napper",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://bearaby.com/products/tree-napper",
+      "problems": [
+        "offer missing price",
+        "offer missing priceCurrency"
+      ]
+    },
+    {
+      "url": "https://bearaby.com/products/queen-size-weighted-blanket",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://bearaby.com/products/queen-size-weighted-blanket",
+      "problems": [
+        "offer missing price",
+        "offer missing priceCurrency"
+      ]
+    },
+    {
+      "url": "https://bearaby.com/products/travel-weighted-blanket",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://bearaby.com/products/travel-weighted-blanket",
+      "problems": [
+        "offer missing price",
+        "offer missing priceCurrency"
+      ]
+    },
+    {
+      "url": "https://bearaby.com/products/15-lb-weighted-blanket",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://bearaby.com/products/15-lb-weighted-blanket",
+      "problems": [
+        "offer missing price",
+        "offer missing priceCurrency"
+      ]
+    },
+    {
+      "url": "https://bearaby.com/products/pink-weighted-blanket",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": false,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://bearaby.com/products/pink-weighted-blanket",
+      "problems": [
+        "offer missing price",
+        "offer missing priceCurrency"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

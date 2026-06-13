@@ -1,0 +1,502 @@
+[
+  {
+    "brand": "Ridge",
+    "domain": "ridge.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "True Classic",
+    "domain": "trueclassictees.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Cuts Clothing",
+    "domain": "cutsclothing.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Fresh Clean Threads",
+    "domain": "freshcleanthreads.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Western Rise",
+    "domain": "westernrise.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Birddogs",
+    "domain": "birddogs.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Ten Thousand",
+    "domain": "tenthousand.cc",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Rhone",
+    "domain": "rhone.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Mack Weldon",
+    "domain": "mackweldon.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Public Rec",
+    "domain": "publicrec.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Buck Mason",
+    "domain": "buckmason.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Tracksmith",
+    "domain": "tracksmith.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Janji",
+    "domain": "janji.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Bandit Running",
+    "domain": "banditrunning.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Goodr",
+    "domain": "goodr.com",
+    "category": "Apparel & eyewear"
+  },
+  {
+    "brand": "Jones Road Beauty",
+    "domain": "jonesroadbeauty.com",
+    "category": "Beauty & personal care"
+  },
+  {
+    "brand": "Topicals",
+    "domain": "mytopicals.com",
+    "category": "Beauty & personal care"
+  },
+  {
+    "brand": "Starface",
+    "domain": "starface.world",
+    "category": "Beauty & personal care"
+  },
+  {
+    "brand": "Bubble",
+    "domain": "hellobubble.com",
+    "category": "Beauty & personal care"
+  },
+  {
+    "brand": "Geologie",
+    "domain": "geologie.com",
+    "category": "Beauty & personal care"
+  },
+  {
+    "brand": "Oars + Alps",
+    "domain": "oarsandalps.com",
+    "category": "Beauty & personal care"
+  },
+  {
+    "brand": "Duke Cannon",
+    "domain": "dukecannon.com",
+    "category": "Beauty & personal care"
+  },
+  {
+    "brand": "Beardbrand",
+    "domain": "beardbrand.com",
+    "category": "Beauty & personal care"
+  },
+  {
+    "brand": "Boka",
+    "domain": "boka.com",
+    "category": "Beauty & personal care"
+  },
+  {
+    "brand": "Jolie",
+    "domain": "jolieskinco.com",
+    "category": "Beauty & personal care"
+  },
+  {
+    "brand": "Doe Lashes",
+    "domain": "doelashes.com",
+    "category": "Beauty & personal care"
+  },
+  {
+    "brand": "Graza",
+    "domain": "graza.co",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Fly By Jing",
+    "domain": "flybyjing.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Omsom",
+    "domain": "omsom.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Momofuku Goods",
+    "domain": "shop.momofuku.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Brightland",
+    "domain": "brightland.co",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Sanzo",
+    "domain": "drinksanzo.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Immi",
+    "domain": "immieats.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Magic Spoon",
+    "domain": "magicspoon.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Mid-Day Squares",
+    "domain": "middaysquares.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Masa Chips",
+    "domain": "masachips.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Chomps",
+    "domain": "chomps.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Kettle & Fire",
+    "domain": "kettleandfire.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Aura Bora",
+    "domain": "aurabora.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Ghia",
+    "domain": "drinkghia.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Recess",
+    "domain": "takearecess.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Jocko Fuel",
+    "domain": "jockofuel.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Everyday Dose",
+    "domain": "everydaydose.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "MUD\\WTR",
+    "domain": "mudwtr.com",
+    "category": "Food & beverage"
+  },
+  {
+    "brand": "Legion Athletics",
+    "domain": "legionathletics.com",
+    "category": "Supplements & wellness"
+  },
+  {
+    "brand": "Transparent Labs",
+    "domain": "transparentlabs.com",
+    "category": "Supplements & wellness"
+  },
+  {
+    "brand": "Momentous",
+    "domain": "livemomentous.com",
+    "category": "Supplements & wellness"
+  },
+  {
+    "brand": "Thesis",
+    "domain": "takethesis.com",
+    "category": "Supplements & wellness"
+  },
+  {
+    "brand": "Cymbiotika",
+    "domain": "cymbiotika.com",
+    "category": "Supplements & wellness"
+  },
+  {
+    "brand": "Beam",
+    "domain": "shopbeam.com",
+    "category": "Supplements & wellness"
+  },
+  {
+    "brand": "Gruns",
+    "domain": "gruns.co",
+    "category": "Supplements & wellness"
+  },
+  {
+    "brand": "Create",
+    "domain": "trycreate.co",
+    "category": "Supplements & wellness"
+  },
+  {
+    "brand": "Bloom Nutrition",
+    "domain": "bloomnu.com",
+    "category": "Supplements & wellness"
+  },
+  {
+    "brand": "Gainful",
+    "domain": "gainful.com",
+    "category": "Supplements & wellness"
+  },
+  {
+    "brand": "Obvi",
+    "domain": "myobvi.com",
+    "category": "Supplements & wellness"
+  },
+  {
+    "brand": "Brooklinen",
+    "domain": "brooklinen.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Parachute",
+    "domain": "parachutehome.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Bearaby",
+    "domain": "bearaby.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Thuma",
+    "domain": "thuma.co",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Open Spaces",
+    "domain": "getopenspaces.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Simple Modern",
+    "domain": "simplemodern.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "HexClad",
+    "domain": "hexclad.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Caraway",
+    "domain": "carawayhome.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Our Place",
+    "domain": "fromourplace.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Pela",
+    "domain": "pelacase.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "BrüMate",
+    "domain": "brumate.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Rumpl",
+    "domain": "rumpl.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Lalo",
+    "domain": "meetlalo.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Kyte Baby",
+    "domain": "kytebaby.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Little Sleepies",
+    "domain": "littlesleepies.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Dreamland Baby",
+    "domain": "dreamlandbabyco.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Coterie",
+    "domain": "coterie.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Bobbie",
+    "domain": "hibobbie.com",
+    "category": "Home, kitchen & baby"
+  },
+  {
+    "brand": "Sundays for Dogs",
+    "domain": "sundaysfordogs.com",
+    "category": "Pets"
+  },
+  {
+    "brand": "Maev",
+    "domain": "meetmaev.com",
+    "category": "Pets"
+  },
+  {
+    "brand": "Jinx",
+    "domain": "thinkjinx.com",
+    "category": "Pets"
+  },
+  {
+    "brand": "Wild One",
+    "domain": "wildone.com",
+    "category": "Pets"
+  },
+  {
+    "brand": "Finn",
+    "domain": "petfinn.com",
+    "category": "Pets"
+  },
+  {
+    "brand": "Tuft + Paw",
+    "domain": "tuftandpaw.com",
+    "category": "Pets"
+  },
+  {
+    "brand": "The James Brand",
+    "domain": "thejamesbrand.com",
+    "category": "EDC, bags & phone gear"
+  },
+  {
+    "brand": "Craighill",
+    "domain": "craighill.co",
+    "category": "EDC, bags & phone gear"
+  },
+  {
+    "brand": "Tactile Turn",
+    "domain": "tactileturn.com",
+    "category": "EDC, bags & phone gear"
+  },
+  {
+    "brand": "Orbitkey",
+    "domain": "orbitkey.com",
+    "category": "EDC, bags & phone gear"
+  },
+  {
+    "brand": "Nomad",
+    "domain": "nomadgoods.com",
+    "category": "EDC, bags & phone gear"
+  },
+  {
+    "brand": "Moment",
+    "domain": "shopmoment.com",
+    "category": "EDC, bags & phone gear"
+  },
+  {
+    "brand": "Peak Design",
+    "domain": "peakdesign.com",
+    "category": "EDC, bags & phone gear"
+  },
+  {
+    "brand": "Quad Lock",
+    "domain": "quadlockcase.com",
+    "category": "EDC, bags & phone gear"
+  },
+  {
+    "brand": "GORUCK",
+    "domain": "goruck.com",
+    "category": "EDC, bags & phone gear"
+  },
+  {
+    "brand": "Ugmonk",
+    "domain": "ugmonk.com",
+    "category": "EDC, bags & phone gear"
+  },
+  {
+    "brand": "Ana Luisa",
+    "domain": "analuisa.com",
+    "category": "Jewelry & watches"
+  },
+  {
+    "brand": "Ring Concierge",
+    "domain": "ringconcierge.com",
+    "category": "Jewelry & watches"
+  },
+  {
+    "brand": "Aurate",
+    "domain": "auratenewyork.com",
+    "category": "Jewelry & watches"
+  },
+  {
+    "brand": "Catbird",
+    "domain": "catbirdnyc.com",
+    "category": "Jewelry & watches"
+  },
+  {
+    "brand": "Local Eclectic",
+    "domain": "localeclectic.com",
+    "category": "Jewelry & watches"
+  },
+  {
+    "brand": "Gorjana",
+    "domain": "gorjana.com",
+    "category": "Jewelry & watches"
+  },
+  {
+    "brand": "Vaer",
+    "domain": "vaerwatches.com",
+    "category": "Jewelry & watches"
+  },
+  {
+    "brand": "Original Grain",
+    "domain": "originalgrain.com",
+    "category": "Jewelry & watches"
+  },
+  {
+    "brand": "Jack Mason",
+    "domain": "jackmasonbrand.com",
+    "category": "Jewelry & watches"
+  },
+  {
+    "brand": "CROSSNET",
+    "domain": "crossnetgame.com",
+    "category": "Fitness & games"
+  },
+  {
+    "brand": "Crossrope",
+    "domain": "crossrope.com",
+    "category": "Fitness & games"
+  }
+]

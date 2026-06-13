@@ -6,7 +6,11 @@
  * Pass 2: render one readiness-only report.pdf per store WITH its cohort
  *         percentile, plus a cohort-summary.pdf across all stores.
  *
- * Usage: pnpm exec tsx scripts/build-cohort.mts <cohortDir> [generatedAt]
+ * Usage: pnpm exec tsx scripts/build-cohort.mts <cohortDir> [generatedAt] [benchmarkStats.json]
+ *
+ * If benchmarkStats.json is given, each store is benchmarked against THAT cohort
+ * (e.g. the top-50) and the canonical fixture cohort-stats.json is left untouched
+ * — used when auditing a list of prospects against the established baseline.
  */
 import { readFileSync } from "node:fs";
 import { readdir, writeFile } from "node:fs/promises";
@@ -14,7 +18,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { ReadinessReport } from "@agentaudit/audit";
 import { AGENT_UA_TOKENS } from "@agentaudit/audit";
-import type { CohortStats } from "../src/benchmark.js";
+import { loadCohort, type CohortStats } from "../src/benchmark.js";
 import { escapeHtml, table } from "../src/html.js";
 import { htmlToPdf } from "../src/render.js";
 import { computeScore, discoverySubscore } from "../src/score.js";
@@ -98,7 +102,7 @@ function summaryHtml(stores: Loaded[], stats: CohortStats): string {
   return `<!doctype html><html><head><meta charset="utf-8"><title>AgentAudit — Cohort Readiness</title><style>${css}</style></head><body>
 <p class="kicker">AgentAudit · Cohort Benchmark</p>
 <h1>Can AI agents buy from the top Shopify stores?</h1>
-<p>Live agent-readiness checks (robots.txt, product feeds, JSON-LD structured data) run against <strong>${stats.n}</strong> well-known Shopify-powered storefronts on ${escapeHtml(generatedAt.slice(0, 10))}. Discovery-readiness sub-score: median <strong>${median}</strong>/100, mean ${mean}/100, range ${sorted[0] ?? 0}–${sorted[sorted.length - 1] ?? 0}.</p>
+<p>Live agent-readiness checks (robots.txt, product feeds, JSON-LD structured data) run against <strong>${stats.n}</strong> Shopify-powered storefronts on ${escapeHtml(generatedAt.slice(0, 10))}. Discovery-readiness sub-score: median <strong>${median}</strong>/100, mean ${mean}/100, range ${sorted[0] ?? 0}–${sorted[sorted.length - 1] ?? 0}.</p>
 <h2>How many top stores pass each check</h2>
 ${table(["Check", "Stores passing"], checkRows)}
 <h2>How often each AI agent is blocked by robots.txt</h2>
@@ -110,23 +114,33 @@ ${table(["#", "Store", "Domain", "Discovery /100", "Agents blocked", "llms.txt"]
 }
 
 async function main(): Promise<void> {
+  const benchmarkPath = process.argv[4];
   const stores = await load();
   if (stores.length === 0) throw new Error(`no readiness.json found under ${cohortDir}`);
   const stats = buildStats(stores);
 
-  // committed benchmark asset + a copy alongside the cohort
-  await writeFile(FIXTURE_STATS, JSON.stringify(stats, null, 2));
+  // Benchmark each store against an external baseline if given (prospect run),
+  // else against this cohort itself (the canonical top-50 run updates the fixture).
+  const benchmark = benchmarkPath ? loadCohort(benchmarkPath) ?? stats : stats;
+  if (!benchmarkPath) await writeFile(FIXTURE_STATS, JSON.stringify(stats, null, 2));
   await writeFile(path.join(cohortDir, "cohort-stats.json"), JSON.stringify(stats, null, 2));
-  console.log(`cohort-stats: n=${stats.n} median=${[...stats.scores].sort((a, b) => a - b)[Math.floor(stats.scores.length / 2)]}`);
+  console.log(`cohort: n=${stats.n} median=${[...stats.scores].sort((a, b) => a - b)[Math.floor(stats.scores.length / 2)]} | benchmark=${benchmark.source} (n=${benchmark.n})`);
 
+  let rendered = 0;
   for (const s of stores) {
-    const html = composeReport(
-      { meta: s.meta, readiness: s.readiness, manualRuns: [], generatedAt },
-      { cohort: stats },
-    );
-    await htmlToPdf(html, path.join(cohortDir, s.slug, "report.pdf"));
-    console.log(`  report ${s.slug} (discovery ${s.discovery})`);
+    try {
+      const html = composeReport(
+        { meta: s.meta, readiness: s.readiness, manualRuns: [], generatedAt },
+        { cohort: benchmark },
+      );
+      await htmlToPdf(html, path.join(cohortDir, s.slug, "report.pdf"));
+      rendered += 1;
+      console.log(`  report ${s.slug} (discovery ${s.discovery})`);
+    } catch (err) {
+      console.log(`  SKIP ${s.slug}: ${err instanceof Error ? err.message : String(err)}`);
+    }
   }
+  console.log(`rendered ${rendered}/${stores.length} store reports`);
 
   await htmlToPdf(summaryHtml(stores, stats), path.join(cohortDir, "cohort-summary.pdf"));
   console.log(`wrote cohort-summary.pdf and ${stores.length} per-store reports`);

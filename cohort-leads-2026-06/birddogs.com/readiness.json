@@ -1,0 +1,289 @@
+{
+  "store": "birddogs.com",
+  "generatedAt": "2026-06-13T03:36:02.398Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": false,
+      "status": 200,
+      "notes": "llms.txt returned 200 but content is empty or html (likely a soft-404)"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://www.birddogs.com/products/gift-card",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://www.birddogs.com/products/the-flying-wasp",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://www.birddogs.com/products/the-uncle-bucks",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://www.birddogs.com/products/the-fart-garfunkels",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://www.birddogs.com/products/the-indianapolis-jones",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://www.birddogs.com/products/april-big-cannons",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://www.birddogs.com/products/the-teddy-rubskins",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://www.birddogs.com/products/mitch-cumsteins",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

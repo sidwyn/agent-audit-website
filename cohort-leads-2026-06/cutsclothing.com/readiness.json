@@ -1,0 +1,265 @@
+{
+  "store": "cutsclothing.com",
+  "generatedAt": "2026-06-13T03:35:56.647Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": false,
+      "status": 404,
+      "notes": "llms.txt returned 404"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://www.cutsclothing.com/products/white-crew-split-hem",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.cutsclothing.com/products/white-crew-split-hem",
+      "problems": [
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.cutsclothing.com/products/black-crew-curve-hem",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.cutsclothing.com/products/black-crew-curve-hem",
+      "problems": [
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.cutsclothing.com/products/white-crew-curve-hem",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.cutsclothing.com/products/white-crew-curve-hem",
+      "problems": [
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.cutsclothing.com/products/black-l-s-henley-curve-hem",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.cutsclothing.com/products/black-l-s-henley-curve-hem",
+      "problems": [
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.cutsclothing.com/products/mountain-mist-crew-curve-hem",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.cutsclothing.com/products/mountain-mist-crew-curve-hem",
+      "problems": [
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.cutsclothing.com/products/sage-crew-curve-hem",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.cutsclothing.com/products/sage-crew-curve-hem",
+      "problems": [
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.cutsclothing.com/products/black-pyca-polo",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.cutsclothing.com/products/black-pyca-polo",
+      "problems": [
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.cutsclothing.com/products/black-l-s-crew-curve-hem",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.cutsclothing.com/products/black-l-s-crew-curve-hem",
+      "problems": [
+        "missing og:image"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

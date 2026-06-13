@@ -1,0 +1,273 @@
+{
+  "store": "trycreate.co",
+  "generatedAt": "2026-06-13T03:37:10.684Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://trycreate.co/products/create-giftcard",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://trycreate.co/products/create-giftcard",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://trycreate.co/products/create-handgrip",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://trycreate.co/products/create-handgrip",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://trycreate.co/products/create-gym-towel",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://trycreate.co/products/create-gym-towel",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://trycreate.co/products/create-trucker-hat",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://trycreate.co/products/create-trucker-hat",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://trycreate.co/products/create-duffel-bag",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://trycreate.co/products/create-duffel-bag",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://trycreate.co/products/core-latest-product",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://trycreate.co/products/core-latest-product",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://trycreate.co/products/create-ornaments",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://trycreate.co/products/create-ornaments",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://trycreate.co/products/create-waterbottle",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://trycreate.co/products/create-waterbottle",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

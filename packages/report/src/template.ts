@@ -73,6 +73,11 @@ footer { margin: 32px 0 24px; color: var(--muted); font-size: 11px; border-top: 
 @media print { body { max-width: none; } .scorecard, .band-pill, .cell-yes, .cell-no, .cell-partial { -webkit-print-color-adjust: exact; print-color-adjust: exact; } section { break-inside: avoid-page; } .snippet { white-space: pre-wrap; } }
 `;
 
+function footer(contact: string, generatedAt: string): string {
+  const who = contact && contact !== "—" ? `prepared for ${contact} · ` : "";
+  return `<footer>AgentAudit · ${who}${generatedAt.slice(0, 10)} · agentaudit.site</footer>`;
+}
+
 export function composeReport(data: ReportData, opts: { cohort?: CohortStats | null } = {}): string {
   const score = computeScore({ readiness: data.readiness, manualRuns: data.manualRuns });
   const findings = draftFindings(data);
@@ -134,7 +139,7 @@ export function composeReport(data: ReportData, opts: { cohort?: CohortStats | n
     fixListSection(fixes),
     remediationSection(remediation),
     methodologySection(Boolean(data.classify), data.classify?.windowDays ?? 90),
-    `<footer>AgentAudit · prepared for ${data.meta.contact} · ${data.generatedAt.slice(0, 10)} · agentaudit.site</footer>`,
+    footer(data.meta.contact, data.generatedAt),
   );
 
   return `<!doctype html>

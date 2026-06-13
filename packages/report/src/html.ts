@@ -19,6 +19,16 @@ export function table(headers: string[], rows: string[][], className = ""): stri
   return `<table class="${className}"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
 }
 
+// Sitemap-sourced URLs are occasionally malformed (relative, spaces); never let
+// one crash a render.
+export function urlPath(url: string): string {
+  try {
+    return new URL(url).pathname;
+  } catch {
+    return url;
+  }
+}
+
 export function section(id: string, title: string, body: string): string {
   return `<section id="${id}"><h2>${escapeHtml(title)}</h2>\n${body}\n</section>`;
 }

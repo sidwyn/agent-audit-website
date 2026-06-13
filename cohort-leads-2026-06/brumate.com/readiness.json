@@ -1,0 +1,273 @@
+{
+  "store": "brumate.com",
+  "generatedAt": "2026-06-13T03:37:23.274Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "OAI-SearchBot",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": false,
+      "status": 404,
+      "notes": "products.json returned 404"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": false,
+      "status": 404,
+      "notes": "llms.txt returned 404"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://www.brumate.com/products/arctic-adapter-by-brumate-black",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.brumate.com/products/arctic-adapter-by-brumate-black",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.brumate.com/products/uncorkd-xl-14oz-wine-glass-lid",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.brumate.com/products/uncorkd-xl-14oz-wine-glass-lid",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.brumate.com/products/hopsulator-juggernaut-matte-black",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.brumate.com/products/hopsulator-juggernaut-matte-black",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.brumate.com/products/hopsulator-juggernaut-od-green",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.brumate.com/products/hopsulator-juggernaut-od-green",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.brumate.com/products/stainless-steel-reusable-wine-straws",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.brumate.com/products/stainless-steel-reusable-wine-straws",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.brumate.com/products/stainless-steel-reusable-wine-straws-rose-gold-1",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.brumate.com/products/stainless-steel-reusable-wine-straws-rose-gold-1",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.brumate.com/products/glitter-flask-cap-stainless",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.brumate.com/products/glitter-flask-cap-stainless",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://www.brumate.com/products/hopsulator-bottl-aqua",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://www.brumate.com/products/hopsulator-bottl-aqua",
+      "problems": [
+        "product missing sku/gtin",
+        "missing og:image"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}
