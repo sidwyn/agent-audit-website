@@ -53,6 +53,13 @@ RESULT | agent: claude | outcome: abandoned | furthest_stage: cart | blocker: po
     expect(parsed.success).toBe(true);
   });
 
+  it("accepts non-standard agents like codex", () => {
+    const runs = parseReplies("RESULT | agent: Codex | outcome: success | furthest_stage: payment | blocker: none | notes: reached card fields");
+    expect(runs).toHaveLength(1);
+    expect(runs[0]!.agent).toBe("codex");
+    expect(runs[0]!.outcome).toBe("success");
+  });
+
   it("ignores non-RESULT text and dedupes repeated agents", () => {
     expect(parseReplies("no result lines here")).toEqual([]);
     const dupe = "RESULT | agent: chatgpt | outcome: success | furthest_stage: checkout | blocker: none | notes: a\nRESULT | agent: chatgpt | outcome: abandoned | furthest_stage: cart | blocker: x | notes: b";

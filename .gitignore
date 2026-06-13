@@ -16,3 +16,6 @@ test-results/
 playwright-report/
 *.tsbuildinfo
 .vercel/
+.vercel
+.env*.local
+/inbox/

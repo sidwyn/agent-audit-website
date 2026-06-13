@@ -10,3 +10,4 @@ export {
   type ManualRun,
   type ManualRunsFile,
 } from "./manual/schema.js";
+export { buildAgentPrompt, buildAgentPrompts, parseReplies } from "./manual/prompts.js";

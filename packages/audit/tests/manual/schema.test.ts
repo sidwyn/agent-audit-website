@@ -29,12 +29,22 @@ describe("manualRunsFileSchema", () => {
     }
   });
 
-  it("rejects unknown agents and stages with readable errors", () => {
-    const bad = {
+  it("accepts any assistant name (lowercased) — codex, gemini, rufus, etc.", () => {
+    const ok = manualRunsFileSchema.safeParse({
       store: "s",
-      runs: [{ agent: "copilot", task: "t", steps: ["a"], outcome: "success" }],
-    };
-    const result = manualRunsFileSchema.safeParse(bad);
-    expect(result.success).toBe(false);
+      runs: [{ agent: "Codex", task: "t", steps: ["a"], outcome: "success" }],
+    });
+    expect(ok.success).toBe(true);
+    if (ok.success) expect(ok.data.runs[0]!.agent).toBe("codex");
+  });
+
+  it("rejects an empty agent and an invalid stage", () => {
+    expect(manualRunsFileSchema.safeParse({ store: "s", runs: [{ agent: "", task: "t", steps: ["a"], outcome: "success" }] }).success).toBe(false);
+    expect(
+      manualRunsFileSchema.safeParse({
+        store: "s",
+        runs: [{ agent: "claude", task: "t", steps: ["a"], outcome: "abandoned", failure_stage: "bogus" }],
+      }).success,
+    ).toBe(false);
   });
 });

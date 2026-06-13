@@ -74,7 +74,8 @@ export function parseReplies(text: string, opts: { task?: string } = {}): Manual
       parts.set(seg.slice(0, idx).trim().toLowerCase(), seg.slice(idx + 1).trim().replace(/[`*]+$/g, ""));
     }
     const agent = field(parts, "agent").toLowerCase();
-    if (!["chatgpt", "perplexity", "claude"].includes(agent) || seen.has(agent)) continue;
+    // accept any assistant token (chatgpt, perplexity, claude, gemini, codex, rufus, ...)
+    if (!/^[a-z0-9][a-z0-9 ._-]*$/.test(agent) || seen.has(agent)) continue;
     seen.add(agent);
 
     const outcome = field(parts, "outcome").toLowerCase() === "success" ? "success" : "abandoned";

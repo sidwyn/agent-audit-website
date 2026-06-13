@@ -1,8 +1,14 @@
 import { z } from "zod";
 
+// agent is free-form (lowercased) so any assistant works — chatgpt, perplexity,
+// claude, gemini, copilot, rufus, codex, etc. The report's brand matrix maps the
+// known consumer assistants; others still appear in the transaction layer.
 export const manualRunSchema = z
   .object({
-    agent: z.enum(["chatgpt", "perplexity", "claude"]),
+    agent: z
+      .string()
+      .min(1)
+      .transform((s) => s.trim().toLowerCase()),
     task: z.string().min(1),
     steps: z.array(z.string().min(1)).min(1),
     outcome: z.enum(["success", "abandoned"]),
