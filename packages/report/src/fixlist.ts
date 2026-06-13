@@ -52,7 +52,7 @@ export function buildFixList(data: ReportData): FixItem[] {
   const pages = readiness.productPages;
   const jsonLdGaps = pages.some((p) => p.problems.some((x) => x.includes("offer") || x.includes("sku") || x.includes("Product") || x.includes("image")));
   if (jsonLdGaps) {
-    items.push({ id: "jsonld", title: "Complete JSON-LD Product/Offer fields on product pages", impact: 4, effort: 2, rationale: "Price, currency, availability and identifiers are what agents quote and compare before visiting." });
+    items.push({ id: "jsonld", title: "Server-render complete JSON-LD Product/Offer fields", impact: 4, effort: 2, rationale: "Price, currency, availability and identifiers are what agents quote before visiting — and they must be in the initial HTML, since most crawler-class agents don't run JavaScript." });
   }
   const metaGaps = pages.some((p) => p.problems.some((x) => x.includes("og:") || x.includes("canonical")));
   if (metaGaps) {

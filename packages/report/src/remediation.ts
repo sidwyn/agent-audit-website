@@ -49,7 +49,7 @@ export function buildRemediation(readiness: ReadinessReport, meta: StoreMeta): S
   }
 }
 </script>`,
-        note: `Affected pages: ${gapPages.map((p) => safePath(p.url)).slice(0, 6).join(", ")}${gapPages.length > 6 ? ` (+${gapPages.length - 6} more)` : ""}. Missing fields seen: ${[...missing].join("; ")}.`,
+        note: `Serve this in the initial HTML (server-rendered), not injected by JavaScript — most crawler-class agents don't run JS. Affected pages: ${gapPages.map((p) => safePath(p.url)).slice(0, 6).join(", ")}${gapPages.length > 6 ? ` (+${gapPages.length - 6} more)` : ""}.`,
       });
     }
   }

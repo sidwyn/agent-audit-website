@@ -24,6 +24,26 @@ describe("draftFindings", () => {
     expect(s.some((x) => x.includes("abandoned the purchase at the variant step"))).toBe(true);
   });
 
+  it("frames missing structured data as 'not server-rendered', not 'absent'", () => {
+    const base = makeReadiness();
+    const data = makeReportData({
+      classify: undefined,
+      manualRuns: [],
+      readiness: makeReadiness({
+        productPages: [
+          {
+            ...base.productPages[0]!,
+            jsonLd: { found: false, price: false, priceCurrency: false, availability: false, skuOrGtin: false, image: false },
+            problems: ["no schema.org Product in ld+json"],
+          },
+        ],
+      }),
+    });
+    const sentences = draftFindings(data).map((f) => f.sentence);
+    expect(sentences.some((s) => s.includes("no server-rendered Product structured data"))).toBe(true);
+    expect(sentences.some((s) => s.includes("don't execute JavaScript"))).toBe(true);
+  });
+
   it("readiness-only clean data yields positive sentences and no criticals", () => {
     const clean = makeReportData({ classify: undefined, manualRuns: [] });
     const findings = draftFindings(clean);

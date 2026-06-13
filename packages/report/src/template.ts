@@ -21,6 +21,7 @@ import {
   trajectorySection,
 } from "./sections-money.js";
 import { discoverySection, executiveSummary, scorecard, transactionSection } from "./sections.js";
+import { escapeHtml } from "./html.js";
 import { agentShareBand } from "./shareBands.js";
 import type { ReportData } from "./types.js";
 import { monthlyVamp } from "./vampMonthly.js";
@@ -74,8 +75,8 @@ footer { margin: 32px 0 24px; color: var(--muted); font-size: 11px; border-top: 
 `;
 
 function footer(contact: string, generatedAt: string): string {
-  const who = contact && contact !== "—" ? `prepared for ${contact} · ` : "";
-  return `<footer>AgentAudit · ${who}${generatedAt.slice(0, 10)} · agentaudit.site</footer>`;
+  const who = contact && contact !== "—" ? `prepared for ${escapeHtml(contact)} · ` : "";
+  return `<footer>AgentAudit · ${who}${escapeHtml(generatedAt.slice(0, 10))} · agentaudit.site</footer>`;
 }
 
 export function composeReport(data: ReportData, opts: { cohort?: CohortStats | null } = {}): string {
@@ -146,7 +147,7 @@ export function composeReport(data: ReportData, opts: { cohort?: CohortStats | n
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>AgentAudit — ${data.meta.name}</title>
+<title>AgentAudit — ${escapeHtml(data.meta.name)}</title>
 <style>${CSS}</style>
 </head>
 <body>

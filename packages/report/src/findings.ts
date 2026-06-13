@@ -78,10 +78,19 @@ export function draftFindings(data: ReportData): Finding[] {
   if (!readiness.feeds.llmsTxt.pass) rest.push({ severity: "info", sentence: "No llms.txt is published — an emerging convention that guides agents through the catalog." });
 
   const pages = readiness.productPages;
-  const gaps = pages.filter((p) => p.problems.length > 0);
-  if (pages.length > 0 && gaps.length > 0) {
-    const seen = [...new Set(gaps.flatMap((p) => p.problems))].slice(0, 4);
-    rest.push({ severity: "warning", sentence: `${gaps.length} of ${pages.length} sampled product pages have structured-data gaps (${seen.join("; ")}).` });
+  const noSchema = pages.filter((p) => !p.jsonLd.found).length;
+  const fieldGaps = pages.filter((p) => p.jsonLd.found && p.problems.length > 0);
+  if (pages.length > 0 && noSchema > 0) {
+    rest.push({
+      severity: "warning",
+      sentence: `${noSchema} of ${pages.length} sampled product pages expose no server-rendered Product structured data — agents that don't execute JavaScript (most crawler-class agents) can't read price, availability, or SKU.`,
+    });
+  }
+  if (fieldGaps.length > 0) {
+    const seen = [...new Set(fieldGaps.flatMap((p) => p.problems))].filter((x) => !x.includes("no schema.org Product")).slice(0, 4);
+    if (seen.length > 0) {
+      rest.push({ severity: "warning", sentence: `${fieldGaps.length} of ${pages.length} sampled product pages have incomplete Product/Offer fields (${seen.join("; ")}).` });
+    }
   }
 
   for (const r of manualRuns) {

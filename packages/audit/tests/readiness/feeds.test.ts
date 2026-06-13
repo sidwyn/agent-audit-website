@@ -76,6 +76,16 @@ describe("checkSitemap", () => {
     expect(productUrls).toEqual([`${BASE}/products/solo`]);
   });
 
+  it("excludes gift-card and store-credit handles from sampling", async () => {
+    const f = stubFetcher({
+      [`${BASE}/sitemap.xml`]: new Response(
+        `<urlset><url><loc>${BASE}/products/gift-card</loc></url><url><loc>${BASE}/products/e-gift-card</loc></url><url><loc>${BASE}/products/real-jacket</loc></url></urlset>`,
+      ),
+    });
+    const { productUrls } = await checkSitemap(BASE, f);
+    expect(productUrls).toEqual([`${BASE}/products/real-jacket`]);
+  });
+
   it("fails gracefully on missing or malformed sitemap", async () => {
     expect((await checkSitemap(BASE, stubFetcher({}))).result.pass).toBe(false);
     const bad = stubFetcher({ [`${BASE}/sitemap.xml`]: new Response("this is not xml") });

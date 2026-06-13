@@ -19,6 +19,14 @@ export function table(headers: string[], rows: string[][], className = ""): stri
   return `<table class="${className}"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
 }
 
+// Customer-facing relabel of raw audit problem strings. The HTTP fetch sees only
+// server-rendered markup, so "no Product in ld+json" precisely means "not
+// server-rendered" — accurate and still a real gap for non-JS agents.
+export function relabelProblem(p: string): string {
+  if (p.includes("no schema.org Product")) return "no server-rendered Product schema (JavaScript-only or absent)";
+  return p;
+}
+
 // Sitemap-sourced URLs are occasionally malformed (relative, spaces); never let
 // one crash a render.
 export function urlPath(url: string): string {

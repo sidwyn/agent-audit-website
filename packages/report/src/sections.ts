@@ -2,7 +2,7 @@ import type { ManualRun, ReadinessReport } from "@agentaudit/audit";
 import type { Finding } from "./findings.js";
 import type { ScorePart } from "./score.js";
 import type { StoreMeta } from "./types.js";
-import { escapeHtml, section, table, urlPath } from "./html.js";
+import { escapeHtml, relabelProblem, section, table, urlPath } from "./html.js";
 
 export function scorecard(opts: {
   headline: number;
@@ -69,8 +69,8 @@ export function discoverySection(readiness: ReadinessReport): string {
       ? ["price", "priceCurrency", "availability", "skuOrGtin", "image"]
           .filter((k) => p.jsonLd[k as keyof typeof p.jsonLd])
           .length.toString() + "/5"
-      : "no Product",
-    p.problems.length === 0 ? `<span class="pass">clean</span>` : escapeHtml(p.problems.join("; ")),
+      : "not server-rendered",
+    p.problems.length === 0 ? `<span class="pass">clean</span>` : escapeHtml(p.problems.map(relabelProblem).join("; ")),
   ]);
 
   return section(

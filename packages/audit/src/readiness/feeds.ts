@@ -8,6 +8,13 @@ function extractLocs(xml: string): string[] {
   return [...xml.matchAll(/<loc>\s*(.*?)\s*<\/loc>/g)].map((m) => m[1]!);
 }
 
+// Gift cards / digital items legitimately lack Product schema; sampling them
+// skews the structured-data assessment, so prefer real products.
+const NON_PRODUCT = /gift[-_]?cards?|e[-_]?gift|store[-_]?credit/i;
+function isProductUrl(u: string): boolean {
+  return u.includes("/products/") && !NON_PRODUCT.test(u);
+}
+
 export async function checkProductsJson(baseUrl: string, fetcher: Fetcher): Promise<CheckResult> {
   const url = new URL("/products.json?limit=1", baseUrl).toString();
   try {
@@ -67,13 +74,13 @@ export async function checkSitemap(
           const childRes = await fetcher(child);
           if (!childRes.ok) continue;
           const childXml = await childRes.text();
-          productUrls.push(...extractLocs(childXml).filter((u) => u.includes("/products/")));
+          productUrls.push(...extractLocs(childXml).filter(isProductUrl));
         } catch {
           continue; // a broken child sitemap shouldn't sink the whole check
         }
       }
     } else if (/<urlset/i.test(xml)) {
-      productUrls = extractLocs(xml).filter((u) => u.includes("/products/"));
+      productUrls = extractLocs(xml).filter(isProductUrl);
     } else {
       return {
         result: { pass: false, status: res.status, notes: "sitemap.xml is not valid sitemap xml", productUrlCount: 0 },
