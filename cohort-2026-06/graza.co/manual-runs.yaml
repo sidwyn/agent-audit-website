@@ -1,24 +1,29 @@
 store: graza.co
 runs:
   - agent: claude
-    task: Buy one bottle of "Sizzle" olive oil and reach checkout (stop before payment)
+    task: Buy one bottle of "Sizzle" olive oil and go all the way to the payment step (stop before "Pay now")
     steps:
       - Opened the product page graza.co/products/sizzle — loaded normally, no CAPTCHA challenge.
       - An email/SMS-capture popup (Postscript) covered the page; its close control was not reachable via the standard close icon, the Escape key, or an aria-label, so a less-persistent agent would stall here.
       - After the popup cleared, the default variant was already selected and "Add to Cart" was enabled.
       - Clicked Add to Cart — the cart drawer opened with "Sizzle" Spray, 1 can, $7.99.
-      - Clicked Checkout — reached the Shopify checkout information page (email field + Shop Pay / PayPal / Google Pay express checkout, order summary $7.99).
-      - Stopped at the checkout information page. No payment details entered; no purchase placed.
+      - Clicked Checkout — reached the Shopify checkout information page (contact email + Shop Pay / PayPal / Google Pay express checkout).
+      - Entered contact + shipping (placeholder test data, @example.com email so no real inbox is contacted).
+      - Shipping method computed automatically — Standard, 3 to 4 business days, $9.00.
+      - Reached the PAYMENT step — the credit-card entry section (Visa / Mastercard / Amex) rendered, the screen immediately before "Pay now".
+      - Stopped here. No card details entered, no "Pay now" click, no order placed.
     outcome: success
     notes: >-
       Live assisted browser session driven via Claude in Chrome on 2026-06-13 (a real
-      agent-style run, not the consumer Claude shopping feature). Reached the checkout
-      information page in real time. Two findings worth noting on the readout: (1) there is
-      NO CAPTCHA on the product/checkout path — the automated readiness probe's captcha flag
-      was a false positive triggered by a site-wide reCAPTCHA script used for forms; (2) the
-      only real friction was an SMS/email popup interstitial whose close control was hard to
-      reach — a likely drop-off point for less-persistent agents.
+      agent-style run, not the consumer Claude shopping feature). Completed the entire flow up
+      to the payment step: cart -> contact -> shipping address -> shipping method ($9.00
+      Standard) -> credit-card payment screen, stopping immediately before "Pay now". Two
+      findings for the readout: (1) there is NO CAPTCHA on the product/checkout path — the
+      automated readiness probe's captcha flag was a false positive from a site-wide reCAPTCHA
+      script used for forms; (2) the only real friction was an SMS/email popup interstitial whose
+      close control was hard to reach — a likely drop-off point for less-persistent agents.
     screenshots:
       - cohort-2026-06/graza.co/live-session/graza-product.png
       - cohort-2026-06/graza.co/live-session/graza-added.png
       - cohort-2026-06/graza.co/live-session/graza-checkout.png
+      - cohort-2026-06/graza.co/live-session/graza-payment-step.png
