@@ -1,6 +1,6 @@
 {
   "store": "demo-store.example",
-  "generatedAt": "2026-06-12T23:03:15.028Z",
+  "generatedAt": "2026-06-13T02:53:15.061Z",
   "windowDays": 90,
   "totals": {
     "orders": 40,
@@ -14,6 +14,7 @@
       "orderShare": 0.05,
       "gmv": 183,
       "gmvShare": 0.052510760401721666,
+      "aov": 91.5,
       "disputes": 0,
       "disputeRate": 0
     },
@@ -22,6 +23,7 @@
       "orderShare": 0.125,
       "gmv": 592,
       "gmvShare": 0.16987087517934002,
+      "aov": 118.4,
       "disputes": 1,
       "disputeRate": 0.2
     },
@@ -30,6 +32,7 @@
       "orderShare": 0.05,
       "gmv": 64,
       "gmvShare": 0.01836441893830703,
+      "aov": 32,
       "disputes": 1,
       "disputeRate": 0.5
     },
@@ -38,6 +41,7 @@
       "orderShare": 0.775,
       "gmv": 2646,
       "gmvShare": 0.7592539454806313,
+      "aov": 85.35483870967742,
       "disputes": 1,
       "disputeRate": 0.03225806451612903
     }
@@ -70,10 +74,52 @@
   ],
   "agentVsHuman": {
     "agentOrders": 8,
+    "agentGmv": 785,
+    "humanGmv": 2646,
+    "agentAov": 98.125,
+    "humanAov": 85.35483870967742,
     "agentDisputeRate": 0.25,
     "humanDisputeRate": 0.03225806451612903,
     "delta": 0.21774193548387097
   },
+  "monthlyTrend": [
+    {
+      "month": "2026-03",
+      "orders": 9,
+      "agentOrders": 0,
+      "agentOrderShare": 0,
+      "gmv": 685,
+      "agentGmv": 0,
+      "agentGmvShare": 0
+    },
+    {
+      "month": "2026-04",
+      "orders": 19,
+      "agentOrders": 8,
+      "agentOrderShare": 0.42105263157894735,
+      "gmv": 1788,
+      "agentGmv": 785,
+      "agentGmvShare": 0.43903803131991054
+    },
+    {
+      "month": "2026-05",
+      "orders": 10,
+      "agentOrders": 0,
+      "agentOrderShare": 0,
+      "gmv": 887,
+      "agentGmv": 0,
+      "agentGmvShare": 0
+    },
+    {
+      "month": "2026-06",
+      "orders": 2,
+      "agentOrders": 0,
+      "agentOrderShare": 0,
+      "gmv": 125,
+      "agentGmv": 0,
+      "agentGmvShare": 0
+    }
+  ],
   "vamp": {
     "config": {
       "aboveStandard": 0.005,

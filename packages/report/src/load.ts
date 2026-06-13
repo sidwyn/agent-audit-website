@@ -56,6 +56,7 @@ const classSummary = z.object({
   orderShare: z.number(),
   gmv: z.number(),
   gmvShare: z.number(),
+  aov: z.number(),
   disputes: z.number(),
   disputeRate: z.number(),
 });
@@ -76,10 +77,25 @@ const classifySchema = z.object({
   ),
   agentVsHuman: z.object({
     agentOrders: z.number(),
+    agentGmv: z.number(),
+    humanGmv: z.number(),
+    agentAov: z.number(),
+    humanAov: z.number(),
     agentDisputeRate: z.number(),
     humanDisputeRate: z.number(),
     delta: z.number(),
   }),
+  monthlyTrend: z.array(
+    z.object({
+      month: z.string(),
+      orders: z.number(),
+      agentOrders: z.number(),
+      agentOrderShare: z.number(),
+      gmv: z.number(),
+      agentGmv: z.number(),
+      agentGmvShare: z.number(),
+    }),
+  ),
   vamp: z.object({
     config: z.object({ aboveStandard: z.number(), excessive: z.number() }),
     combinedRatio: z.number(),

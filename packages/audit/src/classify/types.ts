@@ -32,8 +32,19 @@ export type ClassSummary = {
   orderShare: number;
   gmv: number;
   gmvShare: number;
+  aov: number;
   disputes: number;
   disputeRate: number;
+};
+
+export type MonthBucket = {
+  month: string; // "YYYY-MM"
+  orders: number;
+  agentOrders: number;
+  agentOrderShare: number;
+  gmv: number;
+  agentGmv: number;
+  agentGmvShare: number;
 };
 
 export type VampConfig = { aboveStandard: number; excessive: number }; // ratios: 0.005, 0.015
@@ -52,10 +63,15 @@ export type ClassifyOutput = {
   }[];
   agentVsHuman: {
     agentOrders: number;
+    agentGmv: number;
+    humanGmv: number;
+    agentAov: number;
+    humanAov: number;
     agentDisputeRate: number;
     humanDisputeRate: number;
     delta: number;
   };
+  monthlyTrend: MonthBucket[];
   vamp: {
     config: VampConfig;
     combinedRatio: number;

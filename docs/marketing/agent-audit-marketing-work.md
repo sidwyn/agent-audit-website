@@ -1,15 +1,48 @@
-# AgentAudit Posting Plan
+# AgentAudit Marketing Work
 
-This file is for copy-paste community posting and outreach. Keep public forum posts value-first, with no links, no contact info, and no paid-audit pitch unless the board explicitly allows offers.
+This is the single review file for community posting, forum copy, and outreach work. Keep public forum posts value-first, with no links, no contact info, and no paid-audit pitch unless the board explicitly allows offers.
 
-## Shopify Community: Primary Post
+## Shopify Community Primary Post
 
 - Venue: Shopify Community, AI Build Your Business
 - Link: https://community.shopify.com/c/ai-build-your-business/308
-- Draft: [shopify-community-ai-build-your-business-post.md](./shopify-community-ai-build-your-business-post.md)
 - Status: ready after one small human edit.
 
 Why this venue works: the category is about practical AI use for Shopify merchants, and current threads already discuss AI visibility, agentic checkout, `llms.txt`, UCP, and Shopify's readiness scanner. The missing angle is whether agents can actually complete the purchase path and whether merchants can attribute existing assistant-driven orders.
+
+Title:
+
+```text
+Has anyone tested whether AI shopping agents can actually complete checkout on their store?
+```
+
+Body:
+
+```text
+I’m looking into agentic commerce readiness for Shopify stores and would love to compare notes with merchants who have tested this directly.
+
+Most of the AI visibility discussion seems focused on whether ChatGPT, Perplexity, Gemini, etc. can discover and recommend a store. I’m more curious about the next step: once an assistant finds a product, can it actually add the right variant to cart and reach checkout without getting stuck?
+
+The failure points I’m looking at are:
+
+- robots.txt rules for agent user agents
+- product schema / offer data
+- product feeds and sitemap access
+- variant selection
+- cart and checkout reachability
+- popups, login walls, CAPTCHA, geo gates
+- whether recent orders can be attributed to assistant/browser-agent traffic
+
+For anyone who has tested this: where did the agent fail first? Discovery, product page, variant selection, cart, checkout, or payment?
+
+Also curious whether anyone has found a reliable way to identify orders that came through assistants versus normal web traffic in Shopify reports.
+```
+
+Posting notes:
+
+- Do not include a link, offer, price, email address, or DM ask in the first post.
+- Make one small personal edit before posting so it does not read like pasted AI copy.
+- If someone asks what you are building, answer transparently in-thread and keep the first response educational.
 
 ## Additional Places To Post
 

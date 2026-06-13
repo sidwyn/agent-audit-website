@@ -50,17 +50,17 @@ export function makeManualRuns(): ManualRun[] {
 }
 
 export function makeClassify(overrides: Partial<ClassifyOutput> = {}): ClassifyOutput {
-  const emptyClass = { orders: 0, orderShare: 0, gmv: 0, gmvShare: 0, disputes: 0, disputeRate: 0 };
+  const emptyClass = { orders: 0, orderShare: 0, gmv: 0, gmvShare: 0, aov: 0, disputes: 0, disputeRate: 0 };
   return {
     store: "demo-store.example",
     generatedAt: "2026-06-12T00:00:00Z",
     windowDays: 90,
     totals: { orders: 412, gmv: 38240, disputes: 3, disputeRate: 3 / 412 },
     byClass: {
-      confirmed_channel: { ...emptyClass, orders: 9, orderShare: 9 / 412, gmv: 1180, gmvShare: 1180 / 38240, disputes: 0 },
-      high_confidence_agent: { ...emptyClass, orders: 13, orderShare: 13 / 412, gmv: 1610, gmvShare: 1610 / 38240, disputes: 1, disputeRate: 1 / 13 },
-      heuristic_agent: { ...emptyClass, orders: 6, orderShare: 6 / 412, gmv: 410, gmvShare: 410 / 38240, disputes: 1, disputeRate: 1 / 6 },
-      human: { ...emptyClass, orders: 384, orderShare: 384 / 412, gmv: 35040, gmvShare: 35040 / 38240, disputes: 1, disputeRate: 1 / 384 },
+      confirmed_channel: { ...emptyClass, orders: 9, orderShare: 9 / 412, gmv: 1180, gmvShare: 1180 / 38240, aov: 1180 / 9, disputes: 0 },
+      high_confidence_agent: { ...emptyClass, orders: 13, orderShare: 13 / 412, gmv: 1610, gmvShare: 1610 / 38240, aov: 1610 / 13, disputes: 1, disputeRate: 1 / 13 },
+      heuristic_agent: { ...emptyClass, orders: 6, orderShare: 6 / 412, gmv: 410, gmvShare: 410 / 38240, aov: 410 / 6, disputes: 1, disputeRate: 1 / 6 },
+      human: { ...emptyClass, orders: 384, orderShare: 384 / 412, gmv: 35040, gmvShare: 35040 / 38240, aov: 35040 / 384, disputes: 1, disputeRate: 1 / 384 },
     },
     distinctSources: [
       { sourceName: "web", appId: "580111", orders: 401, flaggedAssistant: false },
@@ -69,10 +69,19 @@ export function makeClassify(overrides: Partial<ClassifyOutput> = {}): ClassifyO
     ],
     agentVsHuman: {
       agentOrders: 28,
+      agentGmv: 3200,
+      humanGmv: 35040,
+      agentAov: 3200 / 28,
+      humanAov: 35040 / 384,
       agentDisputeRate: 2 / 28,
       humanDisputeRate: 1 / 384,
       delta: 2 / 28 - 1 / 384,
     },
+    monthlyTrend: [
+      { month: "2026-03", orders: 120, agentOrders: 5, agentOrderShare: 5 / 120, gmv: 11200, agentGmv: 560, agentGmvShare: 560 / 11200 },
+      { month: "2026-04", orders: 138, agentOrders: 9, agentOrderShare: 9 / 138, gmv: 12800, agentGmv: 1040, agentGmvShare: 1040 / 12800 },
+      { month: "2026-05", orders: 154, agentOrders: 14, agentOrderShare: 14 / 154, gmv: 14240, agentGmv: 1600, agentGmvShare: 1600 / 14240 },
+    ],
     vamp: {
       config: { aboveStandard: 0.005, excessive: 0.015 },
       combinedRatio: 3 / 412,
