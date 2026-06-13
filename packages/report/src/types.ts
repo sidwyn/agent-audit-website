@@ -10,7 +10,10 @@ export type StoreMeta = {
 export type ReportData = {
   meta: StoreMeta;
   readiness: ReadinessReport;
-  classify: ClassifyOutput;
+  // Order classification + manual runs require merchant data. Omitted for
+  // readiness-only audits (e.g. non-Shopify stores or the cohort run), which
+  // render the discovery/transaction half without the economics half.
+  classify?: ClassifyOutput;
   manualRuns: ManualRun[];
   generatedAt: string;
 };

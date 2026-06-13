@@ -59,6 +59,8 @@ const classSummary = z.object({
   aov: z.number(),
   disputes: z.number(),
   disputeRate: z.number(),
+  refunds: z.number(),
+  refundRate: z.number(),
 });
 
 const classifySchema = z.object({
@@ -94,8 +96,16 @@ const classifySchema = z.object({
       gmv: z.number(),
       agentGmv: z.number(),
       agentGmvShare: z.number(),
+      disputes: z.number(),
     }),
   ),
+  disputeDollars: z.object({
+    total: z.number(),
+    counted: z.number(),
+    coverage: z.number(),
+    agentSide: z.number(),
+    humanSide: z.number(),
+  }),
   vamp: z.object({
     config: z.object({ aboveStandard: z.number(), excessive: z.number() }),
     combinedRatio: z.number(),

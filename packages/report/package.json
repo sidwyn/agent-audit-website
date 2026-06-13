@@ -9,7 +9,7 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
-    "lint": "eslint .",
+    "lint": "eslint src tests",
     "demo": "tsx src/cli.ts demo"
   },
   "dependencies": {

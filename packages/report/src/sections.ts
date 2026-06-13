@@ -8,6 +8,7 @@ export function scorecard(
   score: { total: number; parts: ScorePart[] },
   meta: StoreMeta,
   generatedAt: string,
+  mode: "full" | "readiness-only" = "full",
 ): string {
   const bars = score.parts
     .map((p) => {
@@ -15,10 +16,11 @@ export function scorecard(
       return `<div class="part"><span class="part-label">${escapeHtml(p.label)}</span><span class="part-track"><span class="part-fill" style="width:${widthPct}%"></span></span><span class="part-num">${p.earned}/${p.max}</span></div>`;
     })
     .join("\n");
+  const kicker = mode === "full" ? "AgentAudit · Agent Commerce Audit" : "AgentAudit · Readiness Audit";
   return `<header class="scorecard">
   <div class="scorecard-head">
     <div>
-      <p class="kicker">AgentAudit · Agent Commerce Audit</p>
+      <p class="kicker">${kicker}</p>
       <h1>${escapeHtml(meta.name)}</h1>
       <p class="meta">${escapeHtml(meta.domain)} · GMV band ${escapeHtml(meta.gmvBand)} · ${escapeHtml(generatedAt.slice(0, 10))}</p>
     </div>

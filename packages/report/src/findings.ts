@@ -1,107 +1,95 @@
+import { estimateEconomics } from "./economics.js";
+import { money, pct } from "./html.js";
+import { monthlyVamp } from "./vampMonthly.js";
 import type { ReportData } from "./types.js";
 
 export type Finding = { severity: "critical" | "warning" | "info"; sentence: string };
 
-const pct = (n: number, digits = 1) => `${(n * 100).toFixed(digits)}%`;
+const MIN_AGENT_DISPUTES = 5;
 
 export function draftFindings(data: ReportData): Finding[] {
-  const findings: Finding[] = [];
+  const lead: Finding[] = [];
+  const rest: Finding[] = [];
   const { readiness, classify, manualRuns } = data;
 
+  // Lead with money when we have order data.
+  if (classify) {
+    const econ = estimateEconomics({ classify, readiness, manualRuns });
+    lead.push({
+      severity: "info",
+      sentence: `Agent-attributed orders represent ${money(econ.capturedAgentAnnualLow)}–${money(econ.capturedAgentAnnualHigh)} of annualized revenue (measured from your own orders).`,
+    });
+    if (econ.hasForwardRisk) {
+      lead.push({
+        severity: "critical",
+        sentence: `With the checkout blockers found here, an estimated ${money(econ.forwardAtRiskAnnualLow)}–${money(econ.forwardAtRiskAnnualHigh)}/yr of agent demand is at risk as the channel grows (scenario, not a measurement).`,
+      });
+    }
+    const mv = monthlyVamp(classify.monthlyTrend, classify.vamp.config);
+    if (mv.worstQualifying) {
+      const w = mv.worstQualifying;
+      lead.push({
+        severity: w.band === "ok" ? "info" : "critical",
+        sentence: `Worst qualifying month for disputes was ${w.month}: ${(w.ratio! * 100).toFixed(2)}% (${w.disputes}/${w.orders}), ${w.band === "ok" ? "within" : w.band === "above_standard" ? "above" : "well above"} Visa's monitoring thresholds.`,
+      });
+    }
+    const agentDisputes =
+      classify.byClass.high_confidence_agent.disputes + classify.byClass.heuristic_agent.disputes;
+    if (agentDisputes >= MIN_AGENT_DISPUTES && classify.agentVsHuman.delta > 0) {
+      rest.push({
+        severity: "warning",
+        sentence: `Agent-attributed orders dispute at ${pct(classify.agentVsHuman.agentDisputeRate, 2)} vs ${pct(classify.agentVsHuman.humanDisputeRate, 2)} for human orders.`,
+      });
+    }
+    const trend = classify.monthlyTrend;
+    if (trend.length >= 2) {
+      const first = trend[0]!;
+      const last = trend[trend.length - 1]!;
+      if (last.agentOrderShare > first.agentOrderShare) {
+        rest.push({
+          severity: "info",
+          sentence: `Agent order share rose from ${pct(first.agentOrderShare)} (${first.month}) to ${pct(last.agentOrderShare)} (${last.month}) over the window.`,
+        });
+      }
+    }
+  }
+
+  // Readiness findings (always present).
   const blocked = readiness.robots.filter((r) => !r.allowed);
   if (blocked.length > 0) {
-    findings.push({
+    lead.push({
       severity: "critical",
       sentence: `${blocked.length} of ${readiness.robots.length} agent user-agents are blocked by robots.txt (${blocked.map((b) => b.agent).join(", ")}).`,
     });
   } else {
-    findings.push({
-      severity: "info",
-      sentence: `All ${readiness.robots.length} agent user-agents are allowed by robots.txt.`,
-    });
+    rest.push({ severity: "info", sentence: `All ${readiness.robots.length} agent user-agents are allowed by robots.txt.` });
   }
 
-  if (!readiness.feeds.productsJson.pass) {
-    findings.push({ severity: "warning", sentence: "The /products.json feed is disabled or inaccessible, so agents cannot read the catalog programmatically." });
+  if (!readiness.checkout.reachedCheckout) {
+    const why = readiness.checkout.blockers.map((b) => `${b.kind.replace(/_/g, " ")} at ${b.stage.replace(/_/g, " ")}`).join(", ");
+    lead.push({ severity: "critical", sentence: `The automated probe could not reach checkout${why ? ` (${why})` : ""}.` });
+  } else {
+    rest.push({ severity: "info", sentence: `The automated probe reached the checkout information page.` });
   }
-  if (!readiness.feeds.sitemap.pass) {
-    findings.push({ severity: "warning", sentence: "The sitemap is missing or unreadable, which limits product discovery for crawlers and agents." });
-  }
-  if (!readiness.feeds.llmsTxt.pass) {
-    findings.push({ severity: "info", sentence: "No llms.txt file is published; this is an emerging convention that gives agents a guided index of the store." });
-  }
+
+  if (!readiness.feeds.productsJson.pass) rest.push({ severity: "warning", sentence: "The /products.json catalog feed is disabled or inaccessible to agents." });
+  if (!readiness.feeds.sitemap.pass) rest.push({ severity: "warning", sentence: "The sitemap is missing or unreadable, limiting product discovery." });
+  if (!readiness.feeds.llmsTxt.pass) rest.push({ severity: "info", sentence: "No llms.txt is published — an emerging convention that guides agents through the catalog." });
 
   const pages = readiness.productPages;
-  if (pages.length > 0) {
-    const withProblems = pages.filter((p) => p.problems.length > 0);
-    if (withProblems.length > 0) {
-      const gaps = [...new Set(withProblems.flatMap((p) => p.problems))].slice(0, 4);
-      findings.push({
-        severity: "warning",
-        sentence: `${withProblems.length} of ${pages.length} sampled product pages have structured-data gaps (${gaps.join("; ")}).`,
-      });
-    } else {
-      findings.push({ severity: "info", sentence: `All ${pages.length} sampled product pages carry complete Product/Offer structured data.` });
+  const gaps = pages.filter((p) => p.problems.length > 0);
+  if (pages.length > 0 && gaps.length > 0) {
+    const seen = [...new Set(gaps.flatMap((p) => p.problems))].slice(0, 4);
+    rest.push({ severity: "warning", sentence: `${gaps.length} of ${pages.length} sampled product pages have structured-data gaps (${seen.join("; ")}).` });
+  }
+
+  for (const r of manualRuns) {
+    if (r.outcome === "abandoned") {
+      rest.push({ severity: "warning", sentence: `${agentName(r.agent)} abandoned the purchase at the ${r.failure_stage?.replace(/_/g, " ")} step.` });
     }
   }
 
-  if (readiness.checkout.reachedCheckout) {
-    const secs = readiness.checkout.timeToCheckoutMs !== null ? ` in ${Math.round(readiness.checkout.timeToCheckoutMs / 1000)} seconds` : "";
-    findings.push({ severity: "info", sentence: `The automated probe reached the checkout information page${secs}.` });
-  } else {
-    const why = readiness.checkout.blockers.map((b) => `${b.kind.replace(/_/g, " ")} at ${b.stage.replace(/_/g, " ")}`).join(", ");
-    findings.push({
-      severity: "critical",
-      sentence: `No automated path reached checkout${why ? ` (${why})` : ""}.`,
-    });
-  }
-
-  for (const run of manualRuns) {
-    if (run.outcome === "abandoned") {
-      findings.push({
-        severity: "warning",
-        sentence: `${agentName(run.agent)} abandoned the purchase at the ${run.failure_stage?.replace(/_/g, " ")} step.`,
-      });
-    }
-  }
-  const successes = manualRuns.filter((r) => r.outcome === "success");
-  if (successes.length === manualRuns.length && manualRuns.length > 0) {
-    findings.push({ severity: "info", sentence: `All ${manualRuns.length} live shopping agents completed the purchase task.` });
-  }
-
-  const agentOrderShare =
-    classify.byClass.confirmed_channel.orderShare +
-    classify.byClass.high_confidence_agent.orderShare +
-    classify.byClass.heuristic_agent.orderShare;
-  const agentGmvShare =
-    classify.byClass.confirmed_channel.gmvShare +
-    classify.byClass.high_confidence_agent.gmvShare +
-    classify.byClass.heuristic_agent.gmvShare;
-  findings.push({
-    severity: "info",
-    sentence: `Agent-attributed orders account for ${pct(agentOrderShare)} of orders and ${pct(agentGmvShare)} of GMV over the last ${classify.windowDays} days.`,
-  });
-
-  if (classify.agentVsHuman.delta > 0 && classify.agentVsHuman.agentOrders > 0) {
-    findings.push({
-      severity: "warning",
-      sentence: `Agent-placed orders dispute at ${pct(classify.agentVsHuman.agentDisputeRate)} versus ${pct(classify.agentVsHuman.humanDisputeRate)} for human orders.`,
-    });
-  }
-
-  if (classify.vamp.band === "ok") {
-    findings.push({
-      severity: "info",
-      sentence: `The combined dispute ratio is ${pct(classify.vamp.combinedRatio, 2)}, below Visa's ${pct(classify.vamp.config.aboveStandard, 1)} monitoring threshold with ${pct(classify.vamp.headroomToNextBand ?? 0, 2)} of headroom.`,
-    });
-  } else {
-    findings.push({
-      severity: "critical",
-      sentence: `The combined dispute ratio is ${pct(classify.vamp.combinedRatio, 2)}, ${classify.vamp.band === "excessive" ? "in Visa's excessive band" : `above Visa's ${pct(classify.vamp.config.aboveStandard, 1)} monitoring threshold`} under the April 2026 VAMP rules.`,
-    });
-  }
-
-  return findings;
+  return [...lead, ...rest];
 }
 
 function agentName(agent: string): string {

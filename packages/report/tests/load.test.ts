@@ -17,7 +17,7 @@ describe("loadReportData", () => {
     });
     expect(data.meta.name).toBe("Meridian Supply Co.");
     expect(data.readiness.robots).toHaveLength(13);
-    expect(data.classify.totals.orders).toBe(40);
+    expect(data.classify.totals.orders).toBe(5080);
     expect(data.manualRuns).toHaveLength(3);
 
     const html = composeReport(data);

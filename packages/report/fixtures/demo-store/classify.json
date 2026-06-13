@@ -1,132 +1,139 @@
 {
   "store": "demo-store.example",
-  "generatedAt": "2026-06-13T02:53:15.061Z",
+  "generatedAt": "2026-06-13T03:01:53.038Z",
   "windowDays": 90,
   "totals": {
-    "orders": 40,
-    "gmv": 3485,
-    "disputes": 3,
-    "disputeRate": 0.075
+    "orders": 5080,
+    "gmv": 315985,
+    "disputes": 32,
+    "disputeRate": 0.006299212598425197
   },
   "byClass": {
     "confirmed_channel": {
-      "orders": 2,
-      "orderShare": 0.05,
-      "gmv": 183,
-      "gmvShare": 0.052510760401721666,
-      "aov": 91.5,
+      "orders": 33,
+      "orderShare": 0.006496062992125984,
+      "gmv": 1563,
+      "gmvShare": 0.00494643733088596,
+      "aov": 47.36363636363637,
       "disputes": 0,
-      "disputeRate": 0
+      "disputeRate": 0,
+      "refunds": 2,
+      "refundRate": 0.06060606060606061
     },
     "high_confidence_agent": {
-      "orders": 5,
-      "orderShare": 0.125,
-      "gmv": 592,
-      "gmvShare": 0.16987087517934002,
-      "aov": 118.4,
-      "disputes": 1,
-      "disputeRate": 0.2
+      "orders": 238,
+      "orderShare": 0.046850393700787404,
+      "gmv": 16288,
+      "gmvShare": 0.05154675063689732,
+      "aov": 68.43697478991596,
+      "disputes": 5,
+      "disputeRate": 0.02100840336134454,
+      "refunds": 17,
+      "refundRate": 0.07142857142857142
     },
     "heuristic_agent": {
-      "orders": 2,
-      "orderShare": 0.05,
-      "gmv": 64,
-      "gmvShare": 0.01836441893830703,
-      "aov": 32,
-      "disputes": 1,
-      "disputeRate": 0.5
+      "orders": 154,
+      "orderShare": 0.03031496062992126,
+      "gmv": 9963,
+      "gmvShare": 0.03152997768881434,
+      "aov": 64.6948051948052,
+      "disputes": 8,
+      "disputeRate": 0.05194805194805195,
+      "refunds": 13,
+      "refundRate": 0.08441558441558442
     },
     "human": {
-      "orders": 31,
-      "orderShare": 0.775,
-      "gmv": 2646,
-      "gmvShare": 0.7592539454806313,
-      "aov": 85.35483870967742,
-      "disputes": 1,
-      "disputeRate": 0.03225806451612903
+      "orders": 4655,
+      "orderShare": 0.9163385826771654,
+      "gmv": 288171,
+      "gmvShare": 0.9119768343434024,
+      "aov": 61.90569280343716,
+      "disputes": 19,
+      "disputeRate": 0.004081632653061225,
+      "refunds": 221,
+      "refundRate": 0.047475832438238455
     }
   },
   "distinctSources": [
     {
       "sourceName": "web",
       "appId": "580111",
-      "orders": 37,
+      "orders": 5047,
       "flaggedAssistant": false
     },
     {
       "sourceName": "chatgpt",
-      "appId": null,
-      "orders": 1,
+      "appId": "580111",
+      "orders": 33,
       "flaggedAssistant": true
-    },
-    {
-      "sourceName": "web",
-      "appId": "999001",
-      "orders": 1,
-      "flaggedAssistant": false
-    },
-    {
-      "sourceName": "pos",
-      "appId": "129785",
-      "orders": 1,
-      "flaggedAssistant": false
     }
   ],
   "agentVsHuman": {
-    "agentOrders": 8,
-    "agentGmv": 785,
-    "humanGmv": 2646,
-    "agentAov": 98.125,
-    "humanAov": 85.35483870967742,
-    "agentDisputeRate": 0.25,
-    "humanDisputeRate": 0.03225806451612903,
-    "delta": 0.21774193548387097
+    "agentOrders": 425,
+    "agentGmv": 27814,
+    "humanGmv": 288171,
+    "agentAov": 65.44470588235293,
+    "humanAov": 61.90569280343716,
+    "agentDisputeRate": 0.03058823529411765,
+    "humanDisputeRate": 0.004081632653061225,
+    "delta": 0.026506602641056424
   },
   "monthlyTrend": [
     {
       "month": "2026-03",
-      "orders": 9,
-      "agentOrders": 0,
-      "agentOrderShare": 0,
-      "gmv": 685,
-      "agentGmv": 0,
-      "agentGmvShare": 0
+      "orders": 799,
+      "agentOrders": 49,
+      "agentOrderShare": 0.06132665832290363,
+      "gmv": 48472,
+      "agentGmv": 3090,
+      "agentGmvShare": 0.06374814325796337,
+      "disputes": 3
     },
     {
       "month": "2026-04",
-      "orders": 19,
-      "agentOrders": 8,
-      "agentOrderShare": 0.42105263157894735,
-      "gmv": 1788,
-      "agentGmv": 785,
-      "agentGmvShare": 0.43903803131991054
+      "orders": 1562,
+      "agentOrders": 111,
+      "agentOrderShare": 0.07106274007682459,
+      "gmv": 96949,
+      "agentGmv": 7473,
+      "agentGmvShare": 0.07708176463914017,
+      "disputes": 13
     },
     {
       "month": "2026-05",
-      "orders": 10,
-      "agentOrders": 0,
-      "agentOrderShare": 0,
-      "gmv": 887,
-      "agentGmv": 0,
-      "agentGmvShare": 0
+      "orders": 1905,
+      "agentOrders": 175,
+      "agentOrderShare": 0.09186351706036745,
+      "gmv": 120091,
+      "agentGmv": 11775,
+      "agentGmvShare": 0.09805064492759658,
+      "disputes": 12
     },
     {
       "month": "2026-06",
-      "orders": 2,
-      "agentOrders": 0,
-      "agentOrderShare": 0,
-      "gmv": 125,
-      "agentGmv": 0,
-      "agentGmvShare": 0
+      "orders": 814,
+      "agentOrders": 90,
+      "agentOrderShare": 0.11056511056511056,
+      "gmv": 50473,
+      "agentGmv": 5476,
+      "agentGmvShare": 0.10849365007033464,
+      "disputes": 4
     }
   ],
+  "disputeDollars": {
+    "total": 1564,
+    "counted": 29,
+    "coverage": 0.90625,
+    "agentSide": 366,
+    "humanSide": 1198
+  },
   "vamp": {
     "config": {
       "aboveStandard": 0.005,
       "excessive": 0.015
     },
-    "combinedRatio": 0.075,
-    "band": "excessive",
-    "headroomToNextBand": null
+    "combinedRatio": 0.006299212598425197,
+    "band": "above_standard",
+    "headroomToNextBand": 0.008700787401574803
   }
 }

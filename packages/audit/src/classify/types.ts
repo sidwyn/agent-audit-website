@@ -35,6 +35,8 @@ export type ClassSummary = {
   aov: number;
   disputes: number;
   disputeRate: number;
+  refunds: number; // orders with refunded/partially_refunded/voided financial status
+  refundRate: number;
 };
 
 export type MonthBucket = {
@@ -45,6 +47,18 @@ export type MonthBucket = {
   gmv: number;
   agentGmv: number;
   agentGmvShare: number;
+  disputes: number; // orders created this month that later saw a dispute
+};
+
+// Dollar value of disputes, joined to order class. `counted` is how many
+// disputes carried a non-null amount; `coverage` = counted / total disputes,
+// so the report can disclose when the total is extrapolated from partial data.
+export type DisputeDollars = {
+  total: number;
+  counted: number;
+  coverage: number;
+  agentSide: number;
+  humanSide: number;
 };
 
 export type VampConfig = { aboveStandard: number; excessive: number }; // ratios: 0.005, 0.015
@@ -72,6 +86,7 @@ export type ClassifyOutput = {
     delta: number;
   };
   monthlyTrend: MonthBucket[];
+  disputeDollars: DisputeDollars;
   vamp: {
     config: VampConfig;
     combinedRatio: number;
