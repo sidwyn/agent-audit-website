@@ -1,0 +1,273 @@
+{
+  "store": "gymshark.com",
+  "generatedAt": "2026-06-13T03:44:43.357Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://us.checkout.gymshark.com/products/gift-card",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://us.checkout.gymshark.com/products/gift-card",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://us.checkout.gymshark.com/products/gymshark-sport-shorts-charcoal",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://us.checkout.gymshark.com/products/gymshark-sport-shorts-charcoal",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://us.checkout.gymshark.com/products/gymshark-fruit-infuser-black",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://us.checkout.gymshark.com/products/gymshark-fruit-infuser-black",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://us.checkout.gymshark.com/products/gymshark-lifestyle-holdall-black",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://us.checkout.gymshark.com/products/gymshark-lifestyle-holdall-black",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://us.checkout.gymshark.com/products/gymshark-legacy-pullover-smokey-grey",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://us.checkout.gymshark.com/products/gymshark-legacy-pullover-smokey-grey",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://us.checkout.gymshark.com/products/gymshark-medium-resistance-band-grey",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://us.checkout.gymshark.com/products/gymshark-medium-resistance-band-grey",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://us.checkout.gymshark.com/products/gymshark-critical-drop-armhole-tank-white",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://us.checkout.gymshark.com/products/gymshark-critical-drop-armhole-tank-white",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://us.checkout.gymshark.com/products/gymshark-critical-shorts-black",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://us.checkout.gymshark.com/products/gymshark-critical-shorts-black",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

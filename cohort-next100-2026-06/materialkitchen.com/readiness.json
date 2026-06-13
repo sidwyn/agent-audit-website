@@ -1,0 +1,273 @@
+{
+  "store": "materialkitchen.com",
+  "generatedAt": "2026-06-13T03:45:36.178Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": "Allow: /"
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://materialkitchen.com/products/the-stand",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://materialkitchen.com/products/the-stand",
+      "problems": [
+        "offer missing price",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://materialkitchen.com/products/the-angled-board",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://materialkitchen.com/products/the-angled-board",
+      "problems": [
+        "offer missing price",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://materialkitchen.com/products/the-trio-of-knives",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://materialkitchen.com/products/the-trio-of-knives",
+      "problems": [
+        "offer missing price",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://materialkitchen.com/products/the-8-knife",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://materialkitchen.com/products/the-8-knife",
+      "problems": [
+        "offer missing price",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://materialkitchen.com/products/the-serrated-6-knife",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://materialkitchen.com/products/the-serrated-6-knife",
+      "problems": [
+        "offer missing price",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://materialkitchen.com/products/the-almost-4-knife",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://materialkitchen.com/products/the-almost-4-knife",
+      "problems": [
+        "offer missing price",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://materialkitchen.com/products/the-knives-stand",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://materialkitchen.com/products/the-knives-stand",
+      "problems": [
+        "offer missing price",
+        "missing og:title"
+      ]
+    },
+    {
+      "url": "https://materialkitchen.com/products/the-table-knives",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": false,
+        "image": true
+      },
+      "canonical": "https://materialkitchen.com/products/the-table-knives",
+      "problems": [
+        "offer missing price",
+        "missing og:title"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

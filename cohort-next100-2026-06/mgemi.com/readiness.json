@@ -1,0 +1,272 @@
+{
+  "store": "mgemi.com",
+  "generatedAt": "2026-06-13T03:45:07.258Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://mgemi.com/products/the-esatto-90mm-point-toe-pump-black-leather",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://mgemi.com/products/the-esatto-90mm-point-toe-pump-black-leather",
+      "problems": [
+        "offer missing price",
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://mgemi.com/products/the-esatto-90mm-point-toe-pump-black-patent",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://mgemi.com/products/the-esatto-90mm-point-toe-pump-black-patent",
+      "problems": [
+        "offer missing price",
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://mgemi.com/products/the-esatto-90mm-point-toe-pump-cappuccino-suede",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://mgemi.com/products/the-esatto-90mm-point-toe-pump-cappuccino-suede",
+      "problems": [
+        "offer missing price",
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://mgemi.com/products/the-esatto-90mm-point-toe-pump-navy-suede",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://mgemi.com/products/the-esatto-90mm-point-toe-pump-navy-suede",
+      "problems": [
+        "offer missing price",
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://mgemi.com/products/the-cerchio-woven-leather-sneaker-black-nubuck",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://mgemi.com/products/the-cerchio-woven-leather-sneaker-black-nubuck",
+      "problems": [
+        "offer missing price",
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://mgemi.com/products/the-cerchio-woven-leather-sneaker-dove-nubuck",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://mgemi.com/products/the-cerchio-woven-leather-sneaker-dove-nubuck",
+      "problems": [
+        "offer missing price",
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://mgemi.com/products/the-cerchio-woven-leather-sneaker-gray-nubuck",
+      "jsonLd": {
+        "found": true,
+        "price": false,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": false,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://mgemi.com/products/the-cerchio-woven-leather-sneaker-gray-nubuck",
+      "problems": [
+        "offer missing price",
+        "product missing sku/gtin"
+      ]
+    },
+    {
+      "url": "https://mgemi.com/products/the-dritto-hand-dyed-chelsea-boots-rosewood-leather",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": true
+      },
+      "canonical": "https://mgemi.com/products/the-dritto-hand-dyed-chelsea-boots-rosewood-leather",
+      "problems": [
+        "no schema.org Product in ld+json"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

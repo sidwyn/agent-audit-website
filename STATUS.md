@@ -11,11 +11,23 @@ agent-placed and how do they perform on disputes (Visa VAMP exposure).
 Deliverable per customer: scored PDF report + readout call. Full spec: PLAN.md.
 Runbook + merchant token guide: README.md.
 
-## State: COMPLETE and deployed (v1)
+## State: COMPLETE + deployed; report v2 + 250 live reports generated
 
 pnpm monorepo, TypeScript strict, Node 20, branch `feat/agentaudit-v1`.
-94 unit tests + 7 Playwright E2E, all green. `pnpm typecheck && pnpm test &&
-pnpm lint` clean at root.
+132 unit tests (audit 75, report 47, site 10) + 7 Playwright E2E, all green.
+`pnpm typecheck && pnpm test && pnpm lint` clean at root.
+
+**Report v2 (money-led).** The report now leads with dollars and differentiation
+(see `## Report v2` below): revenue-at-risk + dispute-cost economics with inline
+assumption boxes, monthly Visa VAMP with minimum-volume suppression (no more
+blended 7.5% headline), a per-agent buyability matrix (ChatGPT/Perplexity/Claude
+live-tested, others marked inferred), confidence-banded agent share, an
+agent-share trajectory sparkline, refund-rate-by-class, a failure-stage funnel,
+copy-paste robots/JSON-LD/llms.txt remediation, and a cohort percentile
+benchmark. A `readiness-only` mode renders the discovery half (Discovery
+Readiness Score) for stores with no order data, without faking transaction
+points. Demo data is a seeded, realistic ~5k-order generator so the sample PDF
+shows a believable sub-1% dispute regime.
 
 | Piece | Where | Status |
 |---|---|---|
@@ -25,6 +37,34 @@ pnpm lint` clean at root.
 | Report | packages/report | done — score 0–100 (weights: discovery 40 = robots 10 + structured data 15 + feeds 10 + llms.txt 5; transaction 60 = cart 20 + checkout 20 + manual 20), auto-drafted findings, impact÷effort fix list, inline SVG charts, VAMP math, honest methodology section; HTML → PDF via Playwright. `pnpm demo` → sample-report.pdf from fixtures, zero credentials |
 | Landing page | apps/site | done — Next.js 15 static export; copy rendered VERBATIM from agent-audit-marketing.md (custom ~100-line md parser, unit-tested); CTA → STRIPE_PAYMENT_LINK env at build time, email capture → FORM_ENDPOINT when unset (currently unset → email form, action="#" until FORM_ENDPOINT set); /sample-report.pdf linked from hero (prebuild copies repo-root pdf); privacy counter stub (no-op unless NEXT_PUBLIC_COUNTER_ENDPOINT) |
 | Deploy | Vercel | LIVE at https://agentaudit-two.vercel.app (project `sidwyn-proj/agentaudit`, static out/ deploy). Domain agentaudit.site attached to the project but **DNS pending**: add `A @ 76.76.21.21` at Hover (or move nameservers to Vercel) |
+
+## Report v2 modules (packages/report/src)
+
+- `economics.ts` — captured agent revenue (floor/ceiling, annualized), dispute-cost band, forward at-risk SCENARIO (only when a transaction path failed), all with `assumptions[]` rendered inline. Honesty: bands not point estimates, forward ≠ already-captured.
+- `vampMonthly.ts` — per-month dispute ratio + band, suppressed under `minOrders` (default 200) so a low-volume month can't render 50%; picks worst *qualifying* month.
+- `agentMatrix.ts` — 13 UAs → 8 brands; ChatGPT/Perplexity/Claude can be live-tested, others marked `inferred`.
+- `shareBands.ts` (floor/ceiling), `funnel.ts` (where agents drop off), `remediation.ts` (copy-paste fixes), `benchmark.ts` (percentile vs cohort, discovery sub-score), `charts.ts` (hBarChart + sparkline).
+- `score.ts` `discoverySubscore()` — 0-100 over the 4 discovery parts; used for the cross-store benchmark so readiness-only stores compare apples-to-apples.
+- audit `summary.ts` now also emits: per-class `aov`/`refundRate`, `monthlyTrend` (with disputes), `disputeDollars` (agent vs human, coverage).
+
+## Reports & cohorts (deliverables in repo)
+
+Three folders, each: `<domain>/report.pdf` + `readiness.json` + `store.json`, plus `cohort-summary.pdf`, `cohort-stats.json`, `README.md`, `index.json`, `stores.json`.
+
+- `cohort-2026-06/` — **50 top Shopify stores** audited live (readiness-only). The benchmark cohort: `cohort-stats.json` is copied to `packages/report/fixtures/cohort-stats.json` so every report cites it. Finding: 0/50 block agents, 86% serve real llms.txt, but only 34% have clean Product structured data.
+- `cohort-leads-2026-06/` — **100 enriched-leads** (`docs/marketing/agent-audit-enriched-leads.csv`), each benchmarked vs the top-50. 76/100 Shopify; 25% structured-data clean.
+- `cohort-next100-2026-06/` — **100 next-100 leads** (`docs/marketing/agent-audit-next-100-high-quality-leads.csv`), same pipeline.
+
+Pipeline to (re)generate any cohort:
+```bash
+# 1. CSV -> stores list (columns: store, category, domain)
+pnpm --filter @agentaudit/audit exec tsx scripts/leads-to-stores.ts <leads.csv> <dir>/stores.json
+# 2. live HTTP readiness scour (concurrency 8, 8 product pages each)
+pnpm --filter @agentaudit/audit exec tsx scripts/batch-readiness.ts <dir>/stores.json <dir> 8 8
+# 3. per-store PDFs + summary, benchmarked vs the top-50 fixture (omit last arg for the canonical top-50 run)
+pnpm --filter @agentaudit/report exec tsx scripts/build-cohort.mts <dir> 2026-06-12T00:00:00Z packages/report/fixtures/cohort-stats.json
+```
+Readiness-only (no order data, no checkout probe — gentle on prospect stores). The probe and order/dispute classification are the full paid audit.
 
 ## Key conventions (do not break)
 

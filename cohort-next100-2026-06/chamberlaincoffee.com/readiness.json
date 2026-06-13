@@ -1,0 +1,266 @@
+{
+  "store": "chamberlaincoffee.com",
+  "generatedAt": "2026-06-13T03:44:42.632Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "OAI-SearchBot",
+      "matchedRule": "Allow: /"
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "*",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": false,
+      "status": 200,
+      "notes": "products.json returned 200 but no products array (likely disabled or html)"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": false,
+      "status": 404,
+      "notes": "llms.txt returned 404"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://chamberlaincoffee.com/products/medium-roast-coffee-blend",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://chamberlaincoffee.com/products/medium-roast-coffee-blend",
+      "problems": [
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://chamberlaincoffee.com/products/light-roast-coffee-blend",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://chamberlaincoffee.com/products/light-roast-coffee-blend",
+      "problems": [
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://chamberlaincoffee.com/products/medium-roast-cold-brew-singles",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://chamberlaincoffee.com/products/medium-roast-cold-brew-singles",
+      "problems": [
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://chamberlaincoffee.com/products/chamberlain-coffee-black-stainless-steel-straws",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://chamberlaincoffee.com/products/chamberlain-coffee-black-stainless-steel-straws",
+      "problems": [
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://chamberlaincoffee.com/products/espresso-dark-roast-coffee-blend",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://chamberlaincoffee.com/products/espresso-dark-roast-coffee-blend",
+      "problems": [
+        "1 unparseable ld+json block(s)",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://chamberlaincoffee.com/products/chamberlain-coffee-cold-brew-coffee-starter-pack",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://chamberlaincoffee.com/products/chamberlain-coffee-cold-brew-coffee-starter-pack",
+      "problems": [
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://chamberlaincoffee.com/products/chamberlain-coffee-round-cold-brew-mason-jar",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://chamberlaincoffee.com/products/chamberlain-coffee-round-cold-brew-mason-jar",
+      "problems": [
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://chamberlaincoffee.com/products/chamberlain-coffee-large-cold-brew-mason-jar",
+      "jsonLd": {
+        "found": true,
+        "price": true,
+        "priceCurrency": true,
+        "availability": true,
+        "skuOrGtin": true,
+        "image": true
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://chamberlaincoffee.com/products/chamberlain-coffee-large-cold-brew-mason-jar",
+      "problems": [
+        "missing og:image"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

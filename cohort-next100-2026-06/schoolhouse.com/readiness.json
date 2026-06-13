@@ -1,0 +1,273 @@
+{
+  "store": "schoolhouse.com",
+  "generatedAt": "2026-06-13T03:47:03.536Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": false,
+      "status": 404,
+      "notes": "products.json returned 404"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": false,
+      "status": 404,
+      "notes": "llms.txt returned 404"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://schoolhouse.com/products/ceiling-fan-downrod-60-matte-white",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://schoolhouse.com/products/ceiling-fan-downrod-60-matte-white",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://schoolhouse.com/products/ceiling-fan-downrod-48-sb-satin-brass",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://schoolhouse.com/products/ceiling-fan-downrod-48-sb-satin-brass",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://schoolhouse.com/products/ceiling-fan-downrod-24-brushed-nickel",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://schoolhouse.com/products/ceiling-fan-downrod-24-brushed-nickel",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://schoolhouse.com/products/norfolk-4",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://schoolhouse.com/products/norfolk-4",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://schoolhouse.com/products/swatch-gloss-white",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://schoolhouse.com/products/swatch-gloss-white",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://schoolhouse.com/products/door-backplate-swatch-satin-nickel",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://schoolhouse.com/products/door-backplate-swatch-satin-nickel",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://schoolhouse.com/products/ceiling-fan-canopy-for-vaulted-ceilings-wt-white",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://schoolhouse.com/products/ceiling-fan-canopy-for-vaulted-ceilings-wt-white",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:image"
+      ]
+    },
+    {
+      "url": "https://schoolhouse.com/products/swatch-gloss-black-1",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": true,
+        "image": false
+      },
+      "canonical": "https://schoolhouse.com/products/swatch-gloss-black-1",
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:image"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

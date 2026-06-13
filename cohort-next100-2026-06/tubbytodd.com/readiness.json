@@ -1,0 +1,289 @@
+{
+  "store": "tubbytodd.com",
+  "generatedAt": "2026-06-13T03:44:54.828Z",
+  "robots": [
+    {
+      "agent": "GPTBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "ChatGPT-User",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "PerplexityBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Perplexity-User",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "ClaudeBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-User",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Google-Extended",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Amazonbot",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Applebot-Extended",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "meta-externalagent",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    },
+    {
+      "agent": "Bytespider",
+      "allowed": true,
+      "matchedGroup": "(none)",
+      "matchedRule": null
+    }
+  ],
+  "feeds": {
+    "productsJson": {
+      "pass": true,
+      "status": 200,
+      "notes": "products.json accessible"
+    },
+    "sitemap": {
+      "pass": true,
+      "status": 200,
+      "notes": "sitemap ok, 10 product urls sampled",
+      "productUrlCount": 10
+    },
+    "llmsTxt": {
+      "pass": true,
+      "status": 200,
+      "notes": "llms.txt present"
+    }
+  },
+  "productPages": [
+    {
+      "url": "https://tubbytodd.com/products/hair-body-wash",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://tubbytodd.com/products/bubble-bath",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://tubbytodd.com/products/body-lotion",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://tubbytodd.com/products/all-over-ointment",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://tubbytodd.com/products/dream-cream",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://tubbytodd.com/products/baby-deo",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://tubbytodd.com/products/mama-hand-cream",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    },
+    {
+      "url": "https://tubbytodd.com/products/belly-oil",
+      "jsonLd": {
+        "found": false,
+        "price": false,
+        "priceCurrency": false,
+        "availability": false,
+        "skuOrGtin": false,
+        "image": false
+      },
+      "og": {
+        "title": false,
+        "image": false
+      },
+      "canonical": null,
+      "problems": [
+        "no schema.org Product in ld+json",
+        "missing og:title",
+        "missing og:image",
+        "missing canonical"
+      ]
+    }
+  ],
+  "checkout": {
+    "productUrl": null,
+    "reachedCart": false,
+    "reachedCheckout": false,
+    "blockers": [],
+    "jsErrors": [],
+    "timeToCheckoutMs": null,
+    "screenshots": []
+  }
+}

@@ -1,0 +1,502 @@
+[
+  {
+    "brand": "Poppi",
+    "domain": "drinkpoppi.com",
+    "category": "Food & Beverage"
+  },
+  {
+    "brand": "Allbirds",
+    "domain": "allbirds.com",
+    "category": "Footwear"
+  },
+  {
+    "brand": "Chamberlain Coffee",
+    "domain": "chamberlaincoffee.com",
+    "category": "Food & Beverage"
+  },
+  {
+    "brand": "SKIMS",
+    "domain": "skims.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "Gymshark",
+    "domain": "gymshark.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "Glossier",
+    "domain": "glossier.com",
+    "category": "Beauty"
+  },
+  {
+    "brand": "DEUX",
+    "domain": "eatdeux.com",
+    "category": "Food & Beverage"
+  },
+  {
+    "brand": "Daily Harvest",
+    "domain": "daily-harvest.com",
+    "category": "Food & Beverage"
+  },
+  {
+    "brand": "Tubby Todd",
+    "domain": "tubbytodd.com",
+    "category": "Baby & Kids"
+  },
+  {
+    "brand": "Pipette",
+    "domain": "pipettebaby.com",
+    "category": "Baby & Kids"
+  },
+  {
+    "brand": "Marine Layer",
+    "domain": "marinelayer.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "Alo Yoga",
+    "domain": "aloyoga.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "Monica + Andy",
+    "domain": "monicaandandy.com",
+    "category": "Baby & Kids"
+  },
+  {
+    "brand": "Tecovas",
+    "domain": "tecovas.com",
+    "category": "Footwear"
+  },
+  {
+    "brand": "Kizik",
+    "domain": "kizik.com",
+    "category": "Footwear"
+  },
+  {
+    "brand": "FIGS",
+    "domain": "wearfigs.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "M.Gemi",
+    "domain": "mgemi.com",
+    "category": "Footwear"
+  },
+  {
+    "brand": "Wolf & Shepherd",
+    "domain": "wolfandshepherd.com",
+    "category": "Footwear"
+  },
+  {
+    "brand": "Koio",
+    "domain": "koio.co",
+    "category": "Footwear"
+  },
+  {
+    "brand": "Thursday Boots",
+    "domain": "thursdayboots.com",
+    "category": "Footwear"
+  },
+  {
+    "brand": "Greats",
+    "domain": "greats.com",
+    "category": "Footwear"
+  },
+  {
+    "brand": "Helm Boots",
+    "domain": "helmboots.com",
+    "category": "Footwear"
+  },
+  {
+    "brand": "TomboyX",
+    "domain": "tomboyx.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "Frankies Bikinis",
+    "domain": "frankiesbikinis.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "Andie Swim",
+    "domain": "andieswim.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "MERIT",
+    "domain": "meritbeauty.com",
+    "category": "Beauty"
+  },
+  {
+    "brand": "Summersalt",
+    "domain": "summersalt.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "Tower 28",
+    "domain": "tower28beauty.com",
+    "category": "Beauty"
+  },
+  {
+    "brand": "Kosas",
+    "domain": "kosas.com",
+    "category": "Beauty"
+  },
+  {
+    "brand": "Rare Beauty",
+    "domain": "rarebeauty.com",
+    "category": "Beauty"
+  },
+  {
+    "brand": "Kinship",
+    "domain": "lovekinship.com",
+    "category": "Beauty"
+  },
+  {
+    "brand": "Cocokind",
+    "domain": "cocokind.com",
+    "category": "Beauty"
+  },
+  {
+    "brand": "Dieux",
+    "domain": "dieuxskin.com",
+    "category": "Beauty"
+  },
+  {
+    "brand": "OSEA",
+    "domain": "oseamalibu.com",
+    "category": "Beauty"
+  },
+  {
+    "brand": "Ruggable",
+    "domain": "ruggable.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Great Jones",
+    "domain": "greatjonesgoods.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Floyd",
+    "domain": "floydhome.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Material",
+    "domain": "materialkitchen.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Buffy",
+    "domain": "buffy.co",
+    "category": "Home"
+  },
+  {
+    "brand": "Made In",
+    "domain": "madeincookware.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Snowe",
+    "domain": "snowehome.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Blueland",
+    "domain": "blueland.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Public Goods",
+    "domain": "publicgoods.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Burrow",
+    "domain": "burrow.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Boll & Branch",
+    "domain": "bollandbranch.com",
+    "category": "Home"
+  },
+  {
+    "brand": "The Citizenry",
+    "domain": "the-citizenry.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Revival",
+    "domain": "revivalrugs.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Fable Pets",
+    "domain": "fablepets.com",
+    "category": "Pet"
+  },
+  {
+    "brand": "PrettyLitter",
+    "domain": "prettylitter.com",
+    "category": "Pet"
+  },
+  {
+    "brand": "Maxbone",
+    "domain": "maxbone.com",
+    "category": "Pet"
+  },
+  {
+    "brand": "Smalls",
+    "domain": "smalls.com",
+    "category": "Pet"
+  },
+  {
+    "brand": "Anker",
+    "domain": "anker.com",
+    "category": "Accessories"
+  },
+  {
+    "brand": "LMNT",
+    "domain": "drinklmnt.com",
+    "category": "Wellness"
+  },
+  {
+    "brand": "Lemme",
+    "domain": "lemmelive.com",
+    "category": "Wellness"
+  },
+  {
+    "brand": "Moon Juice",
+    "domain": "moonjuice.com",
+    "category": "Wellness"
+  },
+  {
+    "brand": "Seed",
+    "domain": "seed.com",
+    "category": "Wellness"
+  },
+  {
+    "brand": "Needed",
+    "domain": "thisisneeded.com",
+    "category": "Wellness"
+  },
+  {
+    "brand": "Love Wellness",
+    "domain": "lovewellness.com",
+    "category": "Wellness"
+  },
+  {
+    "brand": "Onnit",
+    "domain": "onnit.com",
+    "category": "Wellness"
+  },
+  {
+    "brand": "Hyperice",
+    "domain": "hyperice.com",
+    "category": "Wellness"
+  },
+  {
+    "brand": "Huel",
+    "domain": "huel.com",
+    "category": "Wellness"
+  },
+  {
+    "brand": "Mejuri",
+    "domain": "mejuri.com",
+    "category": "Jewelry"
+  },
+  {
+    "brand": "Italic",
+    "domain": "italic.com",
+    "category": "Marketplace"
+  },
+  {
+    "brand": "Curie",
+    "domain": "curiebod.com",
+    "category": "Personal Care"
+  },
+  {
+    "brand": "DedCool",
+    "domain": "dedcool.com",
+    "category": "Fragrance"
+  },
+  {
+    "brand": "Lume",
+    "domain": "lumedeodorant.com",
+    "category": "Personal Care"
+  },
+  {
+    "brand": "Dr. Squatch",
+    "domain": "drsquatch.com",
+    "category": "Personal Care"
+  },
+  {
+    "brand": "Backbone",
+    "domain": "playbackbone.com",
+    "category": "Electronics"
+  },
+  {
+    "brand": "Brilliant Earth",
+    "domain": "brilliantearth.com",
+    "category": "Jewelry"
+  },
+  {
+    "brand": "Tonal",
+    "domain": "tonal.com",
+    "category": "Fitness"
+  },
+  {
+    "brand": "Athletic Brewing",
+    "domain": "athleticbrewing.com",
+    "category": "Food & Beverage"
+  },
+  {
+    "brand": "Cometeer",
+    "domain": "cometeer.com",
+    "category": "Food & Beverage"
+  },
+  {
+    "brand": "Fishwife",
+    "domain": "eatfishwife.com",
+    "category": "Food & Beverage"
+  },
+  {
+    "brand": "Maisonette",
+    "domain": "maisonette.com",
+    "category": "Baby & Kids"
+  },
+  {
+    "brand": "Tea Collection",
+    "domain": "teacollection.com",
+    "category": "Baby & Kids"
+  },
+  {
+    "brand": "Faherty",
+    "domain": "fahertybrand.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "Outdoor Voices",
+    "domain": "outdoorvoices.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "Girlfriend Collective",
+    "domain": "girlfriend.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "Westman Atelier",
+    "domain": "westman-atelier.com",
+    "category": "Beauty"
+  },
+  {
+    "brand": "Flamingo",
+    "domain": "shopflamingo.com",
+    "category": "Beauty"
+  },
+  {
+    "brand": "Branch Basics",
+    "domain": "branchbasics.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Coyuchi",
+    "domain": "coyuchi.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Wild Earth",
+    "domain": "wildearth.com",
+    "category": "Pet"
+  },
+  {
+    "brand": "Mous",
+    "domain": "mous.co",
+    "category": "Accessories"
+  },
+  {
+    "brand": "WTHN",
+    "domain": "wthn.com",
+    "category": "Wellness"
+  },
+  {
+    "brand": "Snif",
+    "domain": "snif.co",
+    "category": "Fragrance"
+  },
+  {
+    "brand": "Little Spoon",
+    "domain": "littlespoon.com",
+    "category": "Baby & Kids"
+  },
+  {
+    "brand": "Yumi",
+    "domain": "helloyumi.com",
+    "category": "Baby & Kids"
+  },
+  {
+    "brand": "Billie",
+    "domain": "mybillie.com",
+    "category": "Beauty"
+  },
+  {
+    "brand": "Article",
+    "domain": "article.com",
+    "category": "Home"
+  },
+  {
+    "brand": "The Farmer's Dog",
+    "domain": "thefarmersdog.com",
+    "category": "Pet"
+  },
+  {
+    "brand": "Bellroy",
+    "domain": "bellroy.com",
+    "category": "Accessories"
+  },
+  {
+    "brand": "Pulp Pantry",
+    "domain": "pulppantry.com",
+    "category": "Food & Beverage"
+  },
+  {
+    "brand": "Once Upon a Farm",
+    "domain": "onceuponafarmorganics.com",
+    "category": "Baby & Kids"
+  },
+  {
+    "brand": "Vuori",
+    "domain": "vuoriclothing.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "Chubbies",
+    "domain": "chubbiesshorts.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "Lively",
+    "domain": "wearlively.com",
+    "category": "Apparel"
+  },
+  {
+    "brand": "Levity",
+    "domain": "levityhome.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Schoolhouse",
+    "domain": "schoolhouse.com",
+    "category": "Home"
+  },
+  {
+    "brand": "Twelve South",
+    "domain": "twelvesouth.com",
+    "category": "Accessories"
+  }
+]
