@@ -5,7 +5,8 @@ out/
 # only the root merchant-data dir — NOT nested data/ dirs like packages/audit/src/classify/data
 /data/
 !/data/.gitkeep
-/artifacts/
+# probe screenshots are transient anywhere they're written
+artifacts/
 !/artifacts/.gitkeep
 *.log
 .env
