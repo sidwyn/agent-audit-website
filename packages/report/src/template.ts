@@ -84,7 +84,7 @@ td, .score-num, .part-num, .vamp-math, .tile-num { font-variant-numeric: tabular
 .thumb { height: 104px; width: auto; border: 1px solid var(--rule); border-radius: 6px; background: #fff; }
 footer { font-family: ui-monospace, Menlo, monospace; margin: 34px 0 6px; color: var(--muted); font-size: 10px; border-top: 1px solid var(--rule); padding-top: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
 .footnote { font-size: 10px; }
-@media print { html, body { background: var(--bg) !important; } * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } section, .tile, .scorecard, .assume { break-inside: avoid-page; } .snippet { white-space: pre-wrap; } }
+@media print { html, body { background: var(--bg) !important; } * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .tile, .scorecard, .assume, tr { break-inside: avoid; } h2, h3 { break-after: avoid; } .snippet { white-space: pre-wrap; } }
 `;
 
 function footer(contact: string, generatedAt: string): string {

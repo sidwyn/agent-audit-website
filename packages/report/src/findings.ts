@@ -103,6 +103,6 @@ export function draftFindings(data: ReportData): Finding[] {
 }
 
 function agentName(agent: string): string {
-  const names: Record<string, string> = { chatgpt: "ChatGPT", perplexity: "Perplexity", claude: "Claude" };
+  const names: Record<string, string> = { chatgpt: "ChatGPT", perplexity: "Perplexity", claude: "Claude", gemini: "Gemini" };
   return names[agent] ?? agent;
 }

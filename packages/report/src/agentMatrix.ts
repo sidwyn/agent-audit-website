@@ -1,17 +1,14 @@
 import type { ManualRun, ReadinessReport } from "@agentaudit/audit";
 
-// Maps the 13 crawler/agent user-agents to the buyer-facing brands owners think
-// in. Only ChatGPT/Perplexity/Claude can be live-tested today (manual run enum);
-// every other row is access-inference only and is marked as such.
+// Maps crawler/agent user-agents to the buyer-facing brands owners think in.
+// These are household names, so we drop the vendor parentheticals. ChatGPT,
+// Perplexity, Claude and Gemini are the shopping agents we surface; ChatGPT,
+// Claude and Gemini can be live-tested by hand, and inferred rows are labeled.
 export const AGENT_BRANDS: { brand: string; uas: string[]; liveTestable: boolean }[] = [
-  { brand: "ChatGPT (OpenAI)", uas: ["GPTBot", "ChatGPT-User", "OAI-SearchBot"], liveTestable: true },
+  { brand: "ChatGPT", uas: ["GPTBot", "ChatGPT-User", "OAI-SearchBot"], liveTestable: true },
   { brand: "Perplexity", uas: ["PerplexityBot", "Perplexity-User"], liveTestable: true },
-  { brand: "Claude (Anthropic)", uas: ["ClaudeBot", "Claude-User", "Claude-SearchBot"], liveTestable: true },
-  { brand: "Google (Gemini/AI)", uas: ["Google-Extended"], liveTestable: false },
-  { brand: "Amazon (Rufus)", uas: ["Amazonbot"], liveTestable: false },
-  { brand: "Apple Intelligence", uas: ["Applebot-Extended"], liveTestable: false },
-  { brand: "Meta AI", uas: ["meta-externalagent"], liveTestable: false },
-  // { brand: "ByteDance (TikTok)", uas: ["Bytespider"], liveTestable: false }, // disabled for now
+  { brand: "Claude", uas: ["ClaudeBot", "Claude-User", "Claude-SearchBot"], liveTestable: true },
+  { brand: "Gemini", uas: ["Google-Extended"], liveTestable: true },
 ];
 
 export type Cell = "yes" | "no" | "partial" | "unknown";
@@ -27,9 +24,10 @@ export type AgentRow = {
 };
 
 const MANUAL_BRAND: Record<string, string> = {
-  chatgpt: "ChatGPT (OpenAI)",
+  chatgpt: "ChatGPT",
   perplexity: "Perplexity",
-  claude: "Claude (Anthropic)",
+  claude: "Claude",
+  gemini: "Gemini",
 };
 
 export function buildAgentMatrix(readiness: ReadinessReport, manualRuns: ManualRun[]): AgentRow[] {

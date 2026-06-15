@@ -1,7 +1,7 @@
 # AgentAudit — Agent Commerce Audit
 
 Tooling for a $99 productized audit of Shopify stores: can AI shopping agents
-(ChatGPT, Perplexity, Claude) buy from the store, what share of recent orders
+(ChatGPT, Perplexity, Claude, Gemini) buy from the store, what share of recent orders
 were agent-placed, and how those orders perform on disputes. Output is a scored
 PDF report plus a readout call.
 
@@ -64,7 +64,7 @@ coordinated with the merchant. Record each run in `runs.yaml`:
 ```yaml
 store: store.com
 runs:
-  - agent: chatgpt            # chatgpt | perplexity | claude
+  - agent: chatgpt            # chatgpt | perplexity | claude | gemini
     task: Buy the field jacket in size M
     steps:
       - What the agent did, step by step
@@ -148,7 +148,7 @@ auto-rebuilds the PDF as results arrive.
 ### Quick path — generate prompts, paste replies
 
 ```bash
-# 1. print one copy-paste prompt per assistant (ChatGPT / Perplexity / Claude)
+# 1. print one copy-paste prompt per assistant (ChatGPT / Perplexity / Claude / Gemini)
 pnpm --filter @agentaudit/audit exec tsx src/cli.ts agent-prompts --store graza.co --product https://graza.co/products/sizzle
 
 # 2. paste each into the agent. Each reply ends with a line like:
@@ -217,7 +217,7 @@ so the agent is told to capture and name every step.
 > every step as `inbox/<domain>/codex-1-product.png`, `codex-2-variant.png`, `codex-3-cart.png`,
 > `codex-4-checkout.png`, `codex-5-payment.png`. Do not enter payment details or place an order.
 
-Browser/app agents (ChatGPT, Perplexity, Rufus) can't write to disk — paste their reply into
+Browser/app agents (ChatGPT, Perplexity, Gemini) can't write to disk — paste their reply into
 `inbox/<domain>/<agent>.txt` yourself, and save each step screenshot into the same folder using
 the `<agent>-<step>-<stage>.png` names above (the agent prompt asks them to take one per step).
 

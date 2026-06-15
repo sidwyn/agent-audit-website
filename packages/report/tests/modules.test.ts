@@ -17,9 +17,9 @@ describe("buildAgentMatrix", () => {
   it("maps UAs to brands and marks live-tested vs inferred", () => {
     const chatgpt = matrix.find((m) => m.brand.startsWith("ChatGPT"))!;
     expect(chatgpt.liveTested).toBe(true);
-    const amazon = matrix.find((m) => m.brand.startsWith("Amazon"))!;
-    expect(amazon.liveTested).toBe(false);
-    expect(amazon.manualOutcome).toBe("not live-tested");
+    const gemini = matrix.find((m) => m.brand === "Gemini")!;
+    expect(gemini.liveTested).toBe(false);
+    expect(gemini.manualOutcome).toBe("not live-tested");
   });
 
   it("uses live manual outcomes for transaction columns", () => {
@@ -30,8 +30,8 @@ describe("buildAgentMatrix", () => {
   });
 
   it("marks non-live brands' transaction cells as inference (partial/unknown), not yes", () => {
-    const meta = matrix.find((m) => m.brand.startsWith("Meta"))!;
-    expect(["partial", "unknown", "no"]).toContain(meta.reachCheckout);
+    const gemini = matrix.find((m) => m.brand === "Gemini")!;
+    expect(["partial", "unknown", "no"]).toContain(gemini.reachCheckout);
   });
 });
 

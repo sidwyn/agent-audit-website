@@ -53,8 +53,8 @@ describe("composeReport (full)", () => {
 
   it("marks non-live agents as inferred in the matrix", () => {
     expect(html).toContain("inferred");
-    expect(html).toContain("ChatGPT (OpenAI)");
-    expect(html).toContain("Amazon (Rufus)");
+    expect(html).toContain("ChatGPT");
+    expect(html).toContain("Gemini");
   });
 
   it("benchmarks against the cohort", () => {

@@ -4,10 +4,11 @@ import type { ManualRun } from "./schema.js";
 // ending with a strict, parseable RESULT line, then parse the pasted replies
 // back into ManualRun entries for the report's per-agent matrix.
 
-export const PROMPT_AGENTS: { key: "chatgpt" | "perplexity" | "claude"; label: string }[] = [
+export const PROMPT_AGENTS: { key: "chatgpt" | "perplexity" | "claude" | "gemini"; label: string }[] = [
   { key: "chatgpt", label: "ChatGPT (agent mode)" },
   { key: "perplexity", label: "Perplexity" },
   { key: "claude", label: "Claude" },
+  { key: "gemini", label: "Gemini" },
 ];
 
 const STAGES = "discovery | product_page | variant | cart | checkout | payment";

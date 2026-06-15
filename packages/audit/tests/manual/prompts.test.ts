@@ -5,8 +5,8 @@ import { manualRunsFileSchema } from "../../src/manual/schema.js";
 describe("buildAgentPrompts", () => {
   it("emits one prompt per assistant with the parseable RESULT line and guardrails", () => {
     const prompts = buildAgentPrompts("graza.co", { product: "https://graza.co/products/sizzle" });
-    expect(prompts).toHaveLength(3);
-    expect(prompts.map((p) => p.agent)).toEqual(["chatgpt", "perplexity", "claude"]);
+    expect(prompts).toHaveLength(4);
+    expect(prompts.map((p) => p.agent)).toEqual(["chatgpt", "perplexity", "claude", "gemini"]);
     for (const p of prompts) {
       expect(p.prompt).toContain(`RESULT | agent: ${p.agent} |`);
       expect(p.prompt).toContain("SCREENSHOT AT EVERY STEP");
