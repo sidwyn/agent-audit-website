@@ -10,7 +10,7 @@ import {
   classificationSection,
   disputeSection,
   fixListSection,
-  methodologySection,
+  howWeScoreSection,
 } from "./sections-analysis.js";
 import {
   agentMatrixSection,
@@ -156,7 +156,7 @@ export function composeReport(data: ReportData, opts: { cohort?: CohortStats | n
     funnelSection(funnel, topFailingStage(funnel)),
     fixListSection(fixes),
     remediationSection(remediation),
-    methodologySection(Boolean(data.classify), data.classify?.windowDays ?? 90),
+    howWeScoreSection(Boolean(data.classify), data.classify?.windowDays ?? 90),
     footer(data.meta.contact, data.generatedAt),
   );
 

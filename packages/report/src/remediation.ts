@@ -30,7 +30,7 @@ export function buildRemediation(readiness: ReadinessReport, meta: StoreMeta): S
     const needsOffer = [...missing].some((m) => m.includes("price") || m.includes("availability") || m.includes("Currency"));
     if (needsOffer || [...missing].some((m) => m.includes("sku") || m.includes("Product") || m.includes("image"))) {
       snippets.push({
-        title: "JSON-LD Product/Offer — fill the fields agents quote",
+        title: "Server-rendered JSON-LD Product/Offer",
         language: "html",
         body: `<script type="application/ld+json">
 {

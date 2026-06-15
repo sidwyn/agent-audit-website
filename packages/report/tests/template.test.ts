@@ -34,7 +34,7 @@ describe("composeReport (full)", () => {
       "Where agents drop off",
       "Fix list",
       "Copy-paste fixes",
-      "Methodology",
+      "how we score",
     ]) {
       expect(html, heading).toContain(heading);
     }

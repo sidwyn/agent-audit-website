@@ -3,6 +3,7 @@ import { hBarChart } from "./charts.js";
 import type { Economics } from "./economics.js";
 import type { FixItem } from "./fixlist.js";
 import { escapeHtml, money, pct, section, table } from "./html.js";
+import { DEFAULT_WEIGHTS } from "./score.js";
 import type { ShareBand } from "./shareBands.js";
 import { vampHeadline, type MonthlyVamp } from "./vampMonthly.js";
 
@@ -134,22 +135,47 @@ export function fixListSection(items: FixItem[]): string {
   );
 }
 
-export function methodologySection(hasClassify: boolean, windowDays: number): string {
-  const classifyNotes = hasClassify
-    ? `<li><strong>Confirmed channel</strong>: non-web <code>source_name</code>/<code>app_id</code>, recorded by Shopify, not inferred.</li>
-<li><strong>High-confidence agent</strong>: published agent user-agent, assistant referrer, or assistant utm_source. Referrers can be stripped, so this undercounts.</li>
-<li><strong>Heuristic agent</strong>: headless markers or datacenter IPs (AWS/GCP/Azure). Signals, not proof — VPN users can land here. We report it as the ceiling, never the headline.</li>
-<li><strong>Human</strong> is the default; agents that perfectly mimic a consumer browser are invisible, so true agent share is likely higher.</li>
-<li>Dispute ratio = disputes ÷ orders over ${windowDays} days, shown monthly with minimum-volume suppression. Visa assesses monthly on settled VisaNet transactions via your acquirer — treat this as a directional proxy, not the official figure. Dollar figures use the merchant-reported disputed amount plus an assumed, clearly-labeled fee band.</li>`
-    : `<li>This is a <strong>readiness-only</strong> audit: it measures the public storefront (robots, feeds, structured data, checkout reachability). Order classification and dispute exposure require the merchant's order data and are not included here.</li>`;
+export function howWeScoreSection(hasClassify: boolean, windowDays: number): string {
+  const w = DEFAULT_WEIGHTS;
+  const scoreRows: string[][] = [
+    ["Discovery · Agent access (robots.txt)", String(w.discovery.robots), "allowed agent user-agents ÷ 13, times the weight"],
+    ["Discovery · Structured data (JSON-LD)", String(w.discovery.structuredData), "mean across sampled product pages of (required Product/Offer fields present ÷ 5), times the weight"],
+    ["Discovery · Product feeds", String(w.discovery.feeds), "half for a reachable /products.json, half for a valid sitemap.xml"],
+    ["Discovery · llms.txt", String(w.discovery.llmsTxt), "full if /llms.txt is published"],
+    ["Transaction · Cart reachable", String(w.transaction.cartReachable), "full if the automated probe reached the cart"],
+    ["Transaction · Checkout reachable", String(w.transaction.checkoutReachable), "full if it reached the checkout information page"],
+    ["Transaction · Live agent outcomes", String(w.transaction.manualOutcomes), "successful live agent runs ÷ total live runs, times the weight"],
+  ];
+  const discoveryMax = w.discovery.robots + w.discovery.structuredData + w.discovery.feeds + w.discovery.llmsTxt;
+  const transactionMax = w.transaction.cartReachable + w.transaction.checkoutReachable + w.transaction.manualOutcomes;
+
+  const classifyBlocks = hasClassify
+    ? `<h3>How we classify orders</h3>
+<ul class="method">
+<li><strong>Confirmed channel</strong> — a non-web <code>source_name</code>/<code>app_id</code> recorded by Shopify. Not inferred; zero ambiguity.</li>
+<li><strong>High-confidence agent</strong> — a published agent user-agent, an assistant referrer (chatgpt.com, perplexity.ai, claude.ai, …), or an assistant <code>utm_source</code>. Strong signals, but referrers get stripped, so this undercounts.</li>
+<li><strong>Heuristic agent</strong> — headless-browser markers or datacenter IP ranges (AWS/GCP/Azure). Signals, not proof: VPN users can land here, so we treat this tier as the ceiling and never the headline.</li>
+<li><strong>Human</strong> — the default. Agents that perfectly mimic a consumer browser are invisible in order data, so true agent share is a floor, likely higher than reported.</li>
+</ul>
+<h3>Dispute &amp; VAMP math</h3>
+<p>Dispute ratio = disputes ÷ orders over the ${windowDays}-day window, shown per month with minimum-volume suppression so a low-count month can't manufacture an alarming rate. Visa assesses VAMP monthly on settled VisaNet transactions via your acquirer, so treat our figure as a directional proxy, not the official number. Dollar figures use the merchant-reported disputed amount plus an explicitly-labeled, assumed per-dispute fee band — shown as a range, never a point estimate.</p>`
+    : `<h3>Order classification &amp; disputes</h3>
+<p>This is a <strong>readiness-only</strong> audit of the public storefront. Order classification and dispute exposure require the merchant's order data (a read-only Shopify token) and are not included here; the full audit adds them.</p>`;
+
   return section(
-    "methodology",
-    "Methodology & caveats",
-    `<ul class="method">
-${classifyNotes}
-<li>Discovery checks read the <strong>initial HTML response</strong> and do not execute JavaScript. Structured data injected client-side will read as missing here — which is also how agents that don't run JS (most crawler-class agents) see the page.</li>
-<li>Per-agent reachability is inferred from robots access and one shared automated probe except for ChatGPT/Perplexity/Claude, which are run as live purchases. Inferred rows are labeled.</li>
-<li>Automated checks stop at the checkout information page; no purchase is ever completed and no payment fields are entered. CAPTCHA presence is recorded, never solved or bypassed.</li>
+    "how-we-score",
+    "Appendix — how we score",
+    `<p>The <strong>Agent Readiness Score</strong> runs 0–100, split into a <strong>Discovery half (${discoveryMax} pts)</strong> — can agents find and read your catalog — and a <strong>Transaction half (${transactionMax} pts)</strong> — can they actually buy. Each component is earned proportionally (not pass/fail), then summed.</p>
+${table(["Component", "Max pts", "How points are earned"], scoreRows)}
+<p class="muted small">"Required Product/Offer fields" = price, priceCurrency, availability, SKU or GTIN, and image (5 fields), read from server-rendered JSON-LD.</p>
+<h3>Discovery Readiness Score</h3>
+<p>The four Discovery rows rescaled to 0–100 (discovery points ÷ ${discoveryMax} × 100). It needs no order data, so it is the headline for readiness-only audits and the basis for the cross-store percentile — an apples-to-apples comparison whether or not a store shared its order data.</p>
+${classifyBlocks}
+<h3>Caveats</h3>
+<ul class="method">
+<li>Discovery checks read the <strong>initial HTML response</strong> and do not execute JavaScript. Structured data injected client-side reads as missing here — which is also how agents that don't run JS (most crawler-class agents) see the page.</li>
+<li>Per-agent reachability is inferred from robots access and one shared automated probe, except for live runs (ChatGPT/Perplexity/Claude and any assistant we run by hand), which are real purchase attempts. Inferred rows are labeled.</li>
+<li>Automated and live checks stop at the checkout information / payment step; no purchase is ever completed and no payment details are entered. CAPTCHA presence is recorded, never solved or bypassed.</li>
 </ul>`,
   );
 }

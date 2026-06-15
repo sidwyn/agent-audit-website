@@ -33,7 +33,13 @@ export function scorecard(opts: {
       <div>
         <p class="kicker">${escapeHtml(opts.kicker)}</p>
         <h1>${fav}${escapeHtml(opts.meta.name)}</h1>
-        <p class="meta">${escapeHtml(opts.meta.domain)} · GMV band ${escapeHtml(opts.meta.gmvBand)} · ${escapeHtml(opts.generatedAt.slice(0, 10))}</p>
+        <p class="meta">${[
+          escapeHtml(opts.meta.domain),
+          opts.meta.gmvBand && !/n\/?a|readiness/i.test(opts.meta.gmvBand) ? `GMV band ${escapeHtml(opts.meta.gmvBand)}` : "",
+          escapeHtml(opts.generatedAt.slice(0, 10)),
+        ]
+          .filter(Boolean)
+          .join(" · ")}</p>
       </div>
       <div class="score"><span class="score-num">${opts.headline}</span><span class="score-denom">/ 100</span><span class="score-name">${escapeHtml(opts.scoreName)}</span></div>
     </div>
