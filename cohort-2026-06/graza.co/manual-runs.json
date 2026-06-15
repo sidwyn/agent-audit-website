@@ -35,6 +35,18 @@
       "outcome": "success",
       "notes": "Added Sizzle to cart, entered contact and shipping details, reached the payment section with card fields visible, and did not enter payment details.",
       "screenshots": []
+    },
+    {
+      "agent": "gemini",
+      "task": "Buy a product and reach the payment step",
+      "steps": [
+        "Live gemini run (human-in-the-loop, pasted result).",
+        "Furthest stage reached: payment.",
+        "No blocker reported."
+      ],
+      "outcome": "success",
+      "notes": "Successfully navigated through checkout to the payment step using mock data without hitting any blockers.",
+      "screenshots": []
     }
   ]
 }

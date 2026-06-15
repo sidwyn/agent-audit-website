@@ -152,7 +152,7 @@ export function howWeScoreSection(hasClassify: boolean, windowDays: number): str
   const classifyBlocks = hasClassify
     ? `<h3>How we classify orders</h3>
 <ul class="method">
-<li><strong>Confirmed channel</strong> — a non-web <code>source_name</code>/<code>app_id</code> recorded by Shopify. Not inferred; zero ambiguity.</li>
+<li><strong>Confirmed channel</strong> — a non-web <code>source_name</code>/<code>app_id</code> recorded by Shopify. Zero ambiguity.</li>
 <li><strong>High-confidence agent</strong> — a published agent user-agent, an assistant referrer (chatgpt.com, perplexity.ai, claude.ai, …), or an assistant <code>utm_source</code>. Strong signals, but referrers get stripped, so this undercounts.</li>
 <li><strong>Heuristic agent</strong> — headless-browser markers or datacenter IP ranges (AWS/GCP/Azure). Signals, not proof: VPN users can land here, so we treat this tier as the ceiling and never the headline.</li>
 <li><strong>Human</strong> — the default. Agents that perfectly mimic a consumer browser are invisible in order data, so true agent share is a floor, likely higher than reported.</li>
@@ -174,7 +174,6 @@ ${classifyBlocks}
 <h3>Caveats</h3>
 <ul class="method">
 <li>Discovery checks read the <strong>initial HTML response</strong> and do not execute JavaScript. Structured data injected client-side reads as missing here — which is also how agents that don't run JS (most crawler-class agents) see the page.</li>
-<li>Per-agent reachability is inferred from robots access and one shared automated probe, except for live runs (ChatGPT/Perplexity/Claude and any assistant we run by hand), which are real purchase attempts. Inferred rows are labeled.</li>
 <li>Automated and live checks stop at the checkout information / payment step; no purchase is ever completed and no payment details are entered. CAPTCHA presence is recorded, never solved or bypassed.</li>
 </ul>`,
   );

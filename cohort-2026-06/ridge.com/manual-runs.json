@@ -1,0 +1,23 @@
+{
+  "store": "ridge.com",
+  "runs": [
+    {
+      "agent": "gemini",
+      "task": "Buy a product and reach the payment step",
+      "steps": [
+        "Live gemini run (human-in-the-loop, pasted result).",
+        "Furthest stage reached: payment.",
+        "No blocker reported."
+      ],
+      "outcome": "success",
+      "notes": "Successfully navigated through checkout to the payment step using mock data without hitting any blockers.",
+      "screenshots": [
+        "gemini-1-product.png",
+        "gemini-2-variant.png",
+        "gemini-3-cart.png",
+        "gemini-4-checkout.png",
+        "gemini-5-payment.png"
+      ]
+    }
+  ]
+}

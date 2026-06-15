@@ -1,9 +1,21 @@
 #!/usr/bin/env node
+import { mkdirSync } from "node:fs";
+import path from "node:path";
 import { Command } from "commander";
 import { formatClassifySummary, runClassify } from "./commands/classify.js";
 import { formatManualSummary, runManual, runManualFromReplies } from "./commands/manual.js";
 import { formatReadinessSummary, runReadiness } from "./commands/readiness.js";
 import { buildAgentPrompts } from "./manual/prompts.js";
+
+// Derive the store slug (bare host, no www/scheme) from a product URL so the
+// operator only has to pass the product link — everything else is automated.
+function storeFromUrl(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    throw new Error(`could not parse a store domain from --product "${url}" (expected a full URL like https://store.com/products/x)`);
+  }
+}
 
 export const program = new Command();
 
@@ -58,16 +70,22 @@ program
 program
   .command("agent-prompts")
   .description("print copy-paste prompts (one per assistant) for a directed human-in-the-loop run")
-  .requiredOption("--store <domain>", "store to test")
-  .option("--product <url>", "specific product URL (else the agent picks one)")
+  .option("--product <url>", "product URL to test (the store/inbox folder is derived from it)")
+  .option("--store <domain>", "store domain (optional; defaults to the --product host)")
   .option("--task <text>", "custom task description")
-  .action((opts: { store: string; product?: string; task?: string }) => {
-    const prompts = buildAgentPrompts(opts.store, { product: opts.product, task: opts.task });
+  .action((opts: { store?: string; product?: string; task?: string }) => {
+    if (!opts.product && !opts.store) throw new Error("provide --product <url> (recommended) or --store <domain>");
+    const store = opts.store ?? storeFromUrl(opts.product!);
+    // Auto-create the drop folder so the operator never has to name it.
+    const inbox = path.resolve("inbox", store);
+    mkdirSync(inbox, { recursive: true });
+
+    const prompts = buildAgentPrompts(store, { product: opts.product, task: opts.task });
     for (const p of prompts) {
       console.log(`\n${"=".repeat(70)}\n# ${p.label} — paste this into the agent\n${"=".repeat(70)}\n${p.prompt}`);
     }
     console.log(
-      `\n${"-".repeat(70)}\nThen paste each agent's reply into one file and run:\n  audit manual --store ${opts.store} --from-replies <file> [--out <dir>]\n`,
+      `\n${"-".repeat(70)}\nStore: ${store}\nDrop replies + screenshots into: ${inbox}/  (created)\nThen either run the inbox watcher, or run:\n  audit manual --store ${store} --from-replies <file> [--out <dir>]\n`,
     );
   });
 

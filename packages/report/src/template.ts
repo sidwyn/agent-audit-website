@@ -5,7 +5,7 @@ import { draftFindings } from "./findings.js";
 import { buildFixList } from "./fixlist.js";
 import { buildFunnel, topFailingStage } from "./funnel.js";
 import { buildRemediation } from "./remediation.js";
-import { computeScore, discoverySubscore } from "./score.js";
+import { computeScore, discoverySubscore, type ScorePart } from "./score.js";
 import {
   classificationSection,
   disputeSection,
@@ -87,6 +87,25 @@ footer { font-family: ui-monospace, Menlo, monospace; margin: 34px 0 6px; color:
 @media print { html, body { background: var(--bg) !important; } * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .tile, .scorecard, .assume, tr { break-inside: avoid; } h2, h3 { break-after: avoid; } .snippet { white-space: pre-wrap; } }
 `;
 
+// Rescale a subset of score parts so their maxes sum to 100 and their earned
+// values sum to `target` — used for the discovery-only scorecard so its bars
+// visibly add up to the rescaled /100 headline. The last part absorbs rounding
+// residual so the sums are exact.
+function rescaleToHundred(parts: ScorePart[], target: number): ScorePart[] {
+  const totalMax = parts.reduce((s, p) => s + p.max, 0) || 1;
+  const scale = 100 / totalMax;
+  let maxAcc = 0;
+  let earnedAcc = 0;
+  return parts.map((p, i) => {
+    const last = i === parts.length - 1;
+    const max = last ? 100 - maxAcc : Math.round(p.max * scale);
+    const earned = last ? Math.max(0, target - earnedAcc) : Math.round(p.earned * scale);
+    maxAcc += max;
+    earnedAcc += earned;
+    return { ...p, earned: Math.min(earned, max), max };
+  });
+}
+
 function footer(contact: string, generatedAt: string): string {
   const who = contact && contact !== "—" ? `prepared for ${escapeHtml(contact)} · ` : "";
   return `<footer>AgentAudit · ${who}${escapeHtml(generatedAt.slice(0, 10))} · agentaudit.site</footer>`;
@@ -102,31 +121,37 @@ export function composeReport(data: ReportData, opts: { cohort?: CohortStats | n
   const disc = discoverySubscore(score.parts);
   const benchmark = opts.cohort ? benchmarkScore(disc, opts.cohort) : null;
   const probeRan = data.readiness.checkout.productUrl !== null;
-  const readinessOnly = !data.classify;
   const discoveryKeys = ["robots", "structuredData", "feeds", "llmsTxt"];
+  // Show the full 7-part score (discovery + transaction, summing to 100) whenever
+  // there's any transaction evidence — a probe run or a live agent run. Only a
+  // pure prospect audit (no order data, no probe, no live runs) falls back to a
+  // discovery-only score, rescaled to 100 so its bars still sum to the headline.
+  const hasTransaction = probeRan || data.manualRuns.length > 0;
+  const showFullScore = Boolean(data.classify) || hasTransaction;
 
   const blocks: string[] = [
-    readinessOnly
+    showFullScore
       ? scorecard({
-          headline: disc,
-          scoreName: "Discovery Readiness Score",
-          kicker: "AgentAudit · Readiness Audit",
-          parts: score.parts.filter((p) => discoveryKeys.includes(p.key)),
+          headline: score.total,
+          scoreName: "Agent Readiness Score",
+          kicker: data.classify ? "AgentAudit · Agent Commerce Audit" : "AgentAudit · Agent Readiness Audit",
+          parts: score.parts,
           meta: data.meta,
           generatedAt: data.generatedAt,
-          note: probeRan
-            ? "Readiness audit: scored on discovery (public-surface) signals. Order classification and dispute exposure require merchant data and are not included."
-            : "Readiness-only audit: discovery (public-surface) signals. The transaction layer (cart, checkout, live agents) was not tested.",
+          note: data.classify
+            ? undefined
+            : "Scored across discovery (public-surface) and the live transaction layer. Order classification and dispute exposure require merchant data and are not included.",
           screenshot: data.branding?.screenshot,
           logo: data.branding?.logo,
         })
       : scorecard({
-          headline: score.total,
+          headline: disc,
           scoreName: "Agent Readiness Score",
-          kicker: "AgentAudit · Agent Commerce Audit",
-          parts: score.parts,
+          kicker: "AgentAudit · Readiness Audit",
+          parts: rescaleToHundred(score.parts.filter((p) => discoveryKeys.includes(p.key)), disc),
           meta: data.meta,
           generatedAt: data.generatedAt,
+          note: "Readiness-only audit: discovery (public-surface) signals, rescaled to 100. The transaction layer (cart, checkout, live agents) was not tested.",
           screenshot: data.branding?.screenshot,
           logo: data.branding?.logo,
         }),

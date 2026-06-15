@@ -128,8 +128,9 @@ export function transactionSection(
   const probeRow = probe.productUrl !== null
     ? [[
         "Automated probe",
-        escapeHtml(probeStage) +
-          (probe.timeToCheckoutMs !== null ? ` <span class="muted">(${Math.round(probe.timeToCheckoutMs / 1000)}s)</span>` : ""),
+        `<span class="muted">automated</span>`,
+        escapeHtml(probeStage),
+        "—",
         probeBlockers,
       ]]
     : [];
@@ -137,9 +138,11 @@ export function transactionSection(
     ...probeRow,
     ...manualRuns.map((r) => [
       escapeHtml(agentLabel[r.agent] ?? r.agent),
+      r.model ? escapeHtml(r.model) : `<span class="muted">—</span>`,
       r.outcome === "success"
         ? `<span class="pass">completed</span> <span class="muted">(stopped pre-payment)</span>`
         : escapeHtml(`abandoned at ${r.failure_stage?.replace(/_/g, " ") ?? "unknown"}`),
+      r.secondsToCart != null ? escapeHtml(formatDuration(r.secondsToCart)) : `<span class="muted">—</span>`,
       escapeHtml(r.notes ?? "—"),
     ]),
   ];
@@ -163,6 +166,15 @@ export function transactionSection(
   return section(
     "transaction",
     "Transaction layer",
-    table(["Agent", "Stage reached", "Blocker / notes"], rows) + jsErrors + gallery,
+    table(["Agent", "Model", "Stage reached", "Discovery → cart", "Blocker / notes"], rows) + jsErrors + gallery,
   );
+}
+
+// Compact human duration: "45s", "1m 30s". Used for the discovery→cart timing.
+function formatDuration(seconds: number): string {
+  const s = Math.round(seconds);
+  if (s < 60) return `${s}s`;
+  const m = Math.floor(s / 60);
+  const rem = s % 60;
+  return rem === 0 ? `${m}m` : `${m}m ${rem}s`;
 }

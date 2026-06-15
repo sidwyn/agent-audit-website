@@ -51,9 +51,10 @@ describe("composeReport (full)", () => {
     expect(html).toContain("Assumptions");
   });
 
-  it("marks non-live agents as inferred in the matrix", () => {
-    expect(html).toContain("inferred");
+  it("lists the four household-name shopping agents in the matrix", () => {
     expect(html).toContain("ChatGPT");
+    expect(html).toContain("Perplexity");
+    expect(html).toContain("Claude");
     expect(html).toContain("Gemini");
   });
 

@@ -7,7 +7,11 @@ export * from "./readiness/types.js";
 export {
   manualRunSchema,
   manualRunsFileSchema,
+  FUNNEL_STAGES,
+  BLOCKER_CODES,
   type ManualRun,
   type ManualRunsFile,
+  type FunnelStageName,
+  type BlockerCode,
 } from "./manual/schema.js";
 export { buildAgentPrompt, buildAgentPrompts, parseReplies } from "./manual/prompts.js";

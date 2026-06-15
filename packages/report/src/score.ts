@@ -81,22 +81,35 @@ export function computeScore(
     detail: readiness.feeds.llmsTxt.pass ? "present" : "missing",
   });
 
+  // Cart/checkout reachability counts evidence from EITHER the automated probe or
+  // a live agent run — a real agent reaching the stage is the strongest signal.
+  const manualReachedCart = manualRuns.some(
+    (r) => r.outcome === "success" || r.failure_stage === "checkout" || r.failure_stage === "payment",
+  );
+  const manualReachedCheckout = manualRuns.some((r) => r.outcome === "success" || r.failure_stage === "payment");
+  const cartReached = readiness.checkout.reachedCart || manualReachedCart;
+  const checkoutReached = readiness.checkout.reachedCheckout || manualReachedCheckout;
+  const evidenceLabel = (probe: boolean, live: boolean) =>
+    probe && live ? "automated probe + live agent" : live ? "a live agent run" : "the automated probe";
+
   parts.push({
     key: "cartReachable",
     label: "Cart reachable",
-    earned: readiness.checkout.reachedCart ? weights.transaction.cartReachable : 0,
+    earned: cartReached ? weights.transaction.cartReachable : 0,
     max: weights.transaction.cartReachable,
-    detail: readiness.checkout.reachedCart ? "automated probe reached the cart" : "probe never reached the cart",
+    detail: cartReached
+      ? `reached the cart (${evidenceLabel(readiness.checkout.reachedCart, manualReachedCart)})`
+      : "no probe or live run reached the cart",
   });
 
   parts.push({
     key: "checkoutReachable",
     label: "Checkout reachable",
-    earned: readiness.checkout.reachedCheckout ? weights.transaction.checkoutReachable : 0,
+    earned: checkoutReached ? weights.transaction.checkoutReachable : 0,
     max: weights.transaction.checkoutReachable,
-    detail: readiness.checkout.reachedCheckout
-      ? "automated probe reached the checkout information page"
-      : "probe never reached checkout",
+    detail: checkoutReached
+      ? `reached checkout (${evidenceLabel(readiness.checkout.reachedCheckout, manualReachedCheckout)})`
+      : "no probe or live run reached checkout",
   });
 
   const successes = manualRuns.filter((r) => r.outcome === "success").length;

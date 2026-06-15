@@ -3,7 +3,7 @@ import type { ManualRun, ReadinessReport } from "@agentaudit/audit";
 // Maps crawler/agent user-agents to the buyer-facing brands owners think in.
 // These are household names, so we drop the vendor parentheticals. ChatGPT,
 // Perplexity, Claude and Gemini are the shopping agents we surface; ChatGPT,
-// Claude and Gemini can be live-tested by hand, and inferred rows are labeled.
+// Claude and Gemini can be live-tested by hand.
 export const AGENT_BRANDS: { brand: string; uas: string[]; liveTestable: boolean }[] = [
   { brand: "ChatGPT", uas: ["GPTBot", "ChatGPT-User", "OAI-SearchBot"], liveTestable: true },
   { brand: "Perplexity", uas: ["PerplexityBot", "Perplexity-User"], liveTestable: true },

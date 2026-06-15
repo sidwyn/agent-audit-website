@@ -39,7 +39,7 @@ const CELL_LABEL: Record<string, string> = { yes: "yes", no: "NO", partial: "par
 export function agentMatrixSection(rows: AgentRow[]): string {
   const cell = (v: string) => `<span class="cell cell-${v}">${CELL_LABEL[v] ?? v}</span>`;
   const body = rows.map((r) => [
-    `${escapeHtml(r.brand)}${r.liveTested ? "" : ' <span class="tag">inferred</span>'}`,
+    escapeHtml(r.brand),
     cell(r.discover),
     cell(r.readProduct),
     cell(r.reachCart),
@@ -49,8 +49,7 @@ export function agentMatrixSection(rows: AgentRow[]): string {
   return section(
     "agents",
     "Can each agent buy from you?",
-    table(["Agent", "Discover", "Read product", "Reach cart", "Reach checkout", "Live outcome"], body, "matrix") +
-      `<p class="muted small">Rows tagged <span class="tag">inferred</span> were not live-tested (only ChatGPT, Perplexity and Claude are run as live purchases today). Their cart/checkout cells are inferred from robots access and the shared automated probe, not a per-agent purchase attempt. "Discover" = allowed by robots.txt; "Read product" = required structured-data fields present.</p>`,
+    table(["Agent", "Discover", "Read product", "Reach cart", "Reach checkout", "Live outcome"], body, "matrix"),
   );
 }
 
@@ -116,7 +115,7 @@ export function benchmarkSection(b: Benchmark | null): string {
   return section(
     "benchmark",
     "How you compare",
-    `<p>Your discovery-readiness score of <strong>${b.score}</strong>/100 — the public-surface signals every store exposes (robots, structured data, feeds, llms.txt) — places you in the <strong>${rank} ${Math.max(pctFromTop, 1)}%</strong> of a cohort of ${b.n} stores (median ${b.median}). ${b.storesBetter} score higher.</p>
-<p class="muted small">Cohort: ${escapeHtml(b.source)}. These are large, well-known stores, so a low rank here is a conservative read — the typical store scores lower. Discovery (public-surface) only; transaction-layer and dispute benchmarks are not cohort-derived.</p>`,
+    `<p>Your <strong>discovery sub-score</strong> of <strong>${b.score}</strong>/100 — just the public-surface signals every store exposes (robots, structured data, feeds, llms.txt), the slice we can compare apples-to-apples across stores — places you in the <strong>${rank} ${Math.max(pctFromTop, 1)}%</strong> of a cohort of ${b.n} stores (median ${b.median}). ${b.storesBetter} score higher.</p>
+<p class="muted small">This is a sub-score, not your overall Agent Readiness Score above (which also credits the live transaction layer). Cohort: ${escapeHtml(b.source)} — large, well-known stores, so a low rank here is a conservative read; the typical store scores lower. Discovery-only; transaction-layer and dispute benchmarks are not cohort-derived.</p>`,
   );
 }

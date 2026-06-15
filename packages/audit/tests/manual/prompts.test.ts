@@ -9,11 +9,16 @@ describe("buildAgentPrompts", () => {
     expect(prompts.map((p) => p.agent)).toEqual(["chatgpt", "perplexity", "claude", "gemini"]);
     for (const p of prompts) {
       expect(p.prompt).toContain(`RESULT | agent: ${p.agent} |`);
-      expect(p.prompt).toContain("SCREENSHOT AT EVERY STEP");
-      expect(p.prompt).toContain(`${p.agent}-5-payment.png`);
+      expect(p.prompt).toContain("Walk the FULL shopping funnel");
+      expect(p.prompt).toContain(`${p.agent}-10-payment_boundary.png`);
+      expect(p.prompt).toContain(`${p.agent}-5-variant.png`);
       expect(p.prompt).toContain("inbox/graza.co/");
-      expect(p.prompt).toContain("do not solve or bypass any CAPTCHA");
+      expect(p.prompt).toContain("do NOT solve or bypass it");
       expect(p.prompt).toContain("graza.co/products/sizzle");
+      expect(p.prompt).toContain("model:");
+      expect(p.prompt).toContain("time_to_cart_seconds:");
+      expect(p.prompt).toContain("blocker_code:");
+      expect(p.prompt).toMatch(/stage: <homepage \| search/);
     }
   });
 });
@@ -53,6 +58,47 @@ RESULT | agent: claude | outcome: abandoned | furthest_stage: cart | blocker: po
     const runs = parseReplies(pasted);
     const parsed = manualRunsFileSchema.safeParse({ store: "x", runs });
     expect(parsed.success).toBe(true);
+  });
+
+  it("captures model and discovery→cart timing when present", () => {
+    const runs = parseReplies(
+      "RESULT | agent: gemini | model: Gemini 2.5 Pro | outcome: success | furthest_stage: payment | time_to_cart_seconds: 42 | blocker: none | notes: smooth run",
+    );
+    expect(runs[0]!.model).toBe("Gemini 2.5 Pro");
+    expect(runs[0]!.secondsToCart).toBe(42);
+  });
+
+  it("leaves model/timing undefined when omitted or n/a", () => {
+    const runs = parseReplies(
+      "RESULT | agent: claude | model: n/a | outcome: abandoned | furthest_stage: cart | blocker: popup | notes: stuck",
+    );
+    expect(runs[0]!.model).toBeUndefined();
+    expect(runs[0]!.secondsToCart).toBeUndefined();
+  });
+
+  it("parses a STAGES block and a taxonomy-coded blocker", () => {
+    const reply = `
+stage: homepage | status: pass | note: nav clear
+stage: product | status: pass | note: read price/availability
+stage: variant | status: partial | note: had to guess the color
+stage: add_to_cart | status: fail | note: button stayed disabled
+RESULT | agent: claude | model: Claude Opus 4.8 | outcome: abandoned | furthest_stage: variant | time_to_cart_seconds: none | blocker_code: disabled_button | blocker: add-to-cart never enabled | notes: stuck choosing color`;
+    const runs = parseReplies(reply);
+    expect(runs).toHaveLength(1);
+    const r = runs[0]!;
+    expect(r.stages.map((s) => s.stage)).toEqual(["homepage", "product", "variant", "add_to_cart"]);
+    expect(r.stages.find((s) => s.stage === "add_to_cart")!.status).toBe("fail");
+    expect(r.blockerCode).toBe("disabled_button");
+    expect(r.failure_stage).toBe("variant");
+    expect(r.outcome).toBe("abandoned");
+  });
+
+  it("maps an unknown blocker_code to 'other' and funnel stages to the coarse enum", () => {
+    const runs = parseReplies(
+      "RESULT | agent: gemini | outcome: abandoned | furthest_stage: checkout_info | blocker_code: weird_thing | blocker: ? | notes: x",
+    );
+    expect(runs[0]!.blockerCode).toBe("other");
+    expect(runs[0]!.failure_stage).toBe("checkout"); // checkout_info -> coarse "checkout"
   });
 
   it("accepts non-standard agents like codex", () => {

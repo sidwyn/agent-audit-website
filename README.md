@@ -58,24 +58,32 @@ referring_site, landing_site, total_price, created_at, financial_status`;
 disputes: `order_id, status, type, amount, initiated_at`.
 
 **0:40 — Manual agent runs (~40 min).** Run the same purchase task in ChatGPT
-agent mode, Perplexity, and Claude. Use test mode or cancel before fulfillment,
-coordinated with the merchant. Record each run in `runs.yaml`:
+agent mode, Perplexity, Claude, and Gemini. Use test mode or cancel before
+fulfillment, coordinated with the merchant. Record each run in `runs.yaml`
+(most fields below are auto-filled when you use `--from-replies`):
 
 ```yaml
-store: store.com
+store: ridge.com
 runs:
-  - agent: chatgpt            # chatgpt | perplexity | claude | gemini
-    task: Buy the field jacket in size M
+  - agent: gemini            # free-form: chatgpt | perplexity | claude | gemini | codex | ...
+    model: Gemini 3.5 Pro    # which model/version ran (shown in the report)
+    task: Buy the Ridge Wallet and reach the payment step
+    secondsToCart: 17        # discovery -> cart, in seconds
     steps:
       - What the agent did, step by step
-    outcome: success           # success | abandoned
-    failure_stage: variant     # required when abandoned: discovery|product_page|variant|cart|checkout|payment
-    notes: Optional color
-    screenshots: [artifacts/store.com/manual-chatgpt-01.png]
+    outcome: success         # success | abandoned
+    failure_stage: variant   # required when abandoned: discovery|product_page|variant|cart|checkout|payment
+    blockerCode: none        # forensic taxonomy: none|captcha|cloudflare_challenge|login_required|address_validation|modal_obstruction|disabled_button|...
+    stages:                  # optional per-stage funnel map (auto-filled from --from-replies)
+      - { stage: product, status: pass }
+      - { stage: variant, status: pass, note: selected Royal Black }
+      - { stage: payment_boundary, status: pass, note: stopped before Pay now }
+    notes: Optional
+    screenshots: [cohort-2026-06/ridge.com/live-session/gemini-1-product.png]
 ```
 
 ```bash
-pnpm --filter @agentaudit/audit exec tsx src/cli.ts manual --store store.com --file runs.yaml
+pnpm --filter @agentaudit/audit exec tsx src/cli.ts manual --store ridge.com --file runs.yaml
 ```
 
 **1:20 — Generate the report.** Create `data/<store>/store.json`
@@ -148,23 +156,29 @@ auto-rebuilds the PDF as results arrive.
 ### Quick path — generate prompts, paste replies
 
 ```bash
-# 1. print one copy-paste prompt per assistant (ChatGPT / Perplexity / Claude / Gemini)
-pnpm --filter @agentaudit/audit exec tsx src/cli.ts agent-prompts --store graza.co --product https://graza.co/products/sizzle
+# 1. print one copy-paste prompt per assistant (ChatGPT / Perplexity / Claude / Gemini).
+#    Pass ONLY the product URL — the store slug and the inbox/<domain>/ drop folder
+#    are derived from it and created for you. (--store still works if you want to override.)
+pnpm --filter @agentaudit/audit exec tsx src/cli.ts agent-prompts --product https://ridge.com/products/ridge-wallet
 
-# 2. paste each into the agent. Each reply ends with a line like:
-#    RESULT | agent: chatgpt | outcome: success | furthest_stage: payment | blocker: none | notes: ...
+# 2. paste each prompt into the agent. Each walks the FULL funnel (homepage -> search ->
+#    collection -> product -> variant -> cart -> checkout -> shipping -> payment) and ends
+#    with a STAGES block (one line per stage) + one RESULT line, e.g.:
+#    RESULT | agent: gemini | model: Gemini 3.5 Pro | outcome: success | furthest_stage: payment_boundary | time_to_cart_seconds: 17 | blocker_code: none | blocker: none | notes: ...
 # 3. drop all replies into one file, then fold them in:
-pnpm --filter @agentaudit/audit exec tsx src/cli.ts manual --store graza.co \
-  --from-replies replies.txt --out cohort-2026-06/graza.co
+pnpm --filter @agentaudit/audit exec tsx src/cli.ts manual --store ridge.com \
+  --from-replies replies.txt --out cohort-2026-06/ridge.com
 
 # 4. re-render that store's report
 pnpm --filter @agentaudit/report exec tsx scripts/render-one.mts \
-  cohort-2026-06 graza.co packages/report/fixtures/cohort-stats.json
+  cohort-2026-06 ridge.com packages/report/fixtures/cohort-stats.json
 ```
 
 `agent` is free-form — `chatgpt`, `perplexity`, `claude`, `gemini`, `rufus`, `codex`, etc.
 Known consumer brands populate the per-agent matrix; others appear in the transaction layer.
-Runs must stop before payment and must never bypass a CAPTCHA.
+The reply also carries `model`, `time_to_cart_seconds`, a per-stage `stages` map, and a
+taxonomy-coded `blocker_code` — all parsed automatically. Runs must stop before payment and
+must never bypass a CAPTCHA.
 
 ### Auto path — the inbox watcher
 
@@ -182,9 +196,9 @@ Then drop results into `inbox/<domain>/` — the watcher polls every 3s, merges 
 `live-session/`, and re-renders `report.pdf`. It prints `updated <slug>: N run(s) ...` per change.
 
 ```bash
-mkdir -p inbox/graza.co
-pbpaste > inbox/graza.co/chatgpt.txt              # paste an agent reply (must contain a RESULT line)
-cp ~/Downloads/chatgpt-3-cart.png inbox/graza.co/ # step screenshots (see naming below)
+mkdir -p inbox/ridge.com
+pbpaste > inbox/ridge.com/gemini.txt              # paste an agent reply (must contain a RESULT line)
+cp ~/Downloads/gemini-4-product.png inbox/ridge.com/ # step screenshots (see naming below)
 ```
 
 - `$PWD/` keeps paths absolute (required, since `pnpm --filter` runs from the package dir).
@@ -198,12 +212,12 @@ screenshots" gallery in the report's transaction layer, grouped by agent.
 
 - **Name each file `<agent>-<step>-<stage>.png`** so it attaches to the right agent's run.
   The watcher links a screenshot to an agent when the filename starts with that agent name
-  (`chatgpt-…`, `perplexity-…`, `claude-…`, `codex-…`, …). Recommended set per agent:
-  - `<agent>-1-product.png` — product page
-  - `<agent>-2-variant.png` — options/variant selected
-  - `<agent>-3-cart.png` — added to cart (cart page or drawer)
-  - `<agent>-4-checkout.png` — checkout (contact/shipping)
-  - `<agent>-5-payment.png` — payment step (card fields visible; stop here)
+  (`chatgpt-…`, `gemini-…`, `claude-…`, `codex-…`, …). One per funnel stage (the prompt names them for you):
+  - `<agent>-1-homepage.png`, `-2-search.png`, `-3-collection.png` — discovery/navigation
+  - `<agent>-4-product.png`, `-5-variant.png` — product page + variant selection
+  - `<agent>-6-add_to_cart.png`, `-7-cart.png` — add to cart + cart/drawer
+  - `<agent>-8-checkout_info.png`, `-9-shipping.png` — checkout contact/shipping
+  - `<agent>-10-payment_boundary.png` — payment step (card fields visible; STOP here)
 - If an agent stalls, still screenshot that step and name it for the stage it reached.
 - Drop them in the **same `inbox/<domain>/`** folder as the reply. The watcher copies them
   into `cohort-*/<domain>/live-session/`, attaches them to that agent's run, and re-renders.
@@ -212,10 +226,11 @@ The `agent-prompts` command already bakes these instructions (and the naming) in
 so the agent is told to capture and name every step.
 
 **Letting Codex (or any file-writing agent) self-serve.** Tell it:
-> After the shopping run, create `inbox/<domain>/` in the repo. Write your
+> After the shopping run, create `inbox/<domain>/` in the repo. Write your STAGES block +
 > `RESULT | agent: codex | ...` line to `inbox/<domain>/codex.txt`, and save a screenshot at
-> every step as `inbox/<domain>/codex-1-product.png`, `codex-2-variant.png`, `codex-3-cart.png`,
-> `codex-4-checkout.png`, `codex-5-payment.png`. Do not enter payment details or place an order.
+> every funnel stage as `inbox/<domain>/codex-1-homepage.png`, `codex-4-product.png`,
+> `codex-5-variant.png`, `codex-7-cart.png`, `codex-8-checkout_info.png`,
+> `codex-10-payment_boundary.png`, etc. Do not enter payment details or place an order.
 
 Browser/app agents (ChatGPT, Perplexity, Gemini) can't write to disk — paste their reply into
 `inbox/<domain>/<agent>.txt` yourself, and save each step screenshot into the same folder using

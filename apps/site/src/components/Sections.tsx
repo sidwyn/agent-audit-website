@@ -21,7 +21,12 @@ export function Hero({ copy, env }: { copy: LandingCopy["hero"]; env: Env }) {
       {cta && <Cta label={cta.label} {...env} id="cta-top" />}
       <p className="fine">{fine}</p>
       <p className="sample-link">
-        <a href="/sample-report.pdf" data-testid="sample-report-link">
+        <a
+          href="/sample-report.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-testid="sample-report-link"
+        >
           See a sample report (PDF) →
         </a>
       </p>

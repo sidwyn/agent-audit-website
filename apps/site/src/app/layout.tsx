@@ -12,6 +12,15 @@ const sub = heroBlocks[1]?.type === "p" ? heroBlocks[1].text : "";
 export const metadata: Metadata = {
   title: `AgentAudit — ${headline}`,
   description: sub,
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16.png", type: "image/png", sizes: "16x16" },
+      { url: "/favicon-48.png", type: "image/png", sizes: "48x48" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
