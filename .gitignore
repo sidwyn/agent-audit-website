@@ -19,3 +19,6 @@ playwright-report/
 .vercel
 .env*.local
 /inbox/
+
+# Sensitive lead lists / outreach data — never commit
+docs/marketing/*.csv

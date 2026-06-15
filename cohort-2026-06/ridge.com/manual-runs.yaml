@@ -12,3 +12,30 @@ runs:
     notes: Successfully navigated through checkout to the payment step using mock
       data without hitting any blockers.
     screenshots: []
+  - agent: claude
+    model: Claude Opus 4.8
+    task: Buy a product and reach the payment step
+    steps:
+      - Live claude run via Claude-in-Chrome (automation-controlled browser).
+      - "Furthest stage reached: homepage (blocked at the network edge)."
+      - "Blocker: Cloudflare bot protection — \"Sorry, you have been blocked\" on first load."
+    outcome: abandoned
+    failure_stage: discovery
+    blockerCode: cloudflare_challenge
+    stages:
+      - { stage: homepage, status: fail, note: "Cloudflare \"Sorry, you have been blocked\" interstitial on first request" }
+      - { stage: search, status: skipped }
+      - { stage: collection, status: skipped }
+      - { stage: product, status: skipped }
+      - { stage: variant, status: skipped }
+      - { stage: add_to_cart, status: skipped }
+      - { stage: cart, status: skipped }
+      - { stage: checkout_info, status: skipped }
+      - { stage: shipping, status: skipped }
+      - { stage: payment_boundary, status: skipped }
+      - { stage: confirmation, status: na }
+    notes: Automation-driven Claude-in-Chrome was blocked by Ridge's Cloudflare bot
+      check before any store content loaded — did not solve or bypass it. A
+      human-driven browser (the Gemini run) gets through.
+    screenshots:
+      - claude-1-homepage.png

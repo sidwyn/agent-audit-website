@@ -47,7 +47,7 @@ Three or more actionable findings, or your $99 back.
 **My store isn't on Shopify.** Email me. The readiness audit works on any platform; order classification requires Shopify for now.
 
 ### About
-I'm Sidwyn Koh. I spent 16 years building payments and commerce platforms, most recently leading Meta's virtual currency platform and before that payments at Lyft. Agents are becoming a real buyer surface, and merchants have no instruments for them yet. I run every audit myself.
+I'm Sidwyn Koh. I spent 16 years building payments and commerce platforms, most recently payments at Meta and before that payments at Lyft. Agents are becoming a real buyer surface, and merchants have no instruments for them yet. I run every audit myself.
 
 ---
 
