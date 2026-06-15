@@ -1,27 +1,45 @@
 # AgentAudit — Build Status
 
-_Last updated: 2026-06-12. Paste-able handoff for any coding agent (Codex etc.)._
+_Last updated: 2026-06-15. Paste-able handoff for any coding agent (Codex etc.)._
 
 ## What this is
 
 A $99 productized audit for Shopify merchants ("Agent Commerce Audit"), sold at
 agentaudit.site. Two questions: (1) can AI shopping agents (ChatGPT, Perplexity,
-Claude) buy from the store, (2) what share of the last 90 days of orders were
+Claude, Gemini) buy from the store, (2) what share of the last 90 days of orders were
 agent-placed and how do they perform on disputes (Visa VAMP exposure).
 Deliverable per customer: scored PDF report + readout call. Full spec: PLAN.md.
 Runbook + merchant token guide: README.md.
 
-## State: COMPLETE + deployed; report v2 + 250 live reports generated
+## State: COMPLETE + deployed; report v3 (dark, personalized) + live Tier-1 runs
 
-pnpm monorepo, TypeScript strict, Node 20, branch `feat/agentaudit-v1`.
-132 unit tests (audit 75, report 47, site 10) + 7 Playwright E2E, all green.
-`pnpm typecheck && pnpm test && pnpm lint` clean at root.
+pnpm monorepo, TypeScript strict, Node 20, on `main` (backup branch
+`agentaudit-reports-and-hardening`). 145 unit tests (audit 83, report 52,
+site 10) + 7 Playwright E2E, all green. `pnpm verify`
+(typecheck && test && lint) clean at root.
+
+**Report v3 (dark + personalized).** The whole PDF is now dark-themed (full-bleed,
+zero page margin; palette in `template.ts` CSS). The scorecard is personalized with
+the store's homepage screenshot banner + favicon. A "Step-by-step screenshots"
+gallery renders per-agent thumbnails from live runs. The methodology page is
+replaced by a thorough **"Appendix — how we score"** (points rubric from
+`DEFAULT_WEIGHTS`, classification tiers, VAMP math, caveats). The can-buy matrix is
+trimmed to four household names — **ChatGPT, Perplexity, Claude, Gemini** (dropped
+Amazon/Rufus, Apple, Meta as crawlers, not shopping agents). ByteDance/Bytespider is
+commented out (not deleted). Readiness-only scorecards omit the "GMV band" line.
+Fixed a blank trailing PDF page (section-level `break-inside: avoid-page` cascaded
+whitespace + oversized appendix spilled a 9th page; scoped avoid-page to atomic cards).
+
+**Tier-1 live runs (human-driven Chrome).** `cohort-2026-06/graza.co/` has real
+Claude + Codex checkout runs reaching the payment step (pre Pay-now); KF has a Claude
+run. Live results drop into `inbox/<domain>/` (RESULT line + `<agent>-<step>-<stage>.png`
+screenshots); `scripts/watch-inbox.mts` merges by agent and re-renders the PDF.
 
 **Report v2 (money-led).** The report now leads with dollars and differentiation
 (see `## Report v2` below): revenue-at-risk + dispute-cost economics with inline
 assumption boxes, monthly Visa VAMP with minimum-volume suppression (no more
-blended 7.5% headline), a per-agent buyability matrix (ChatGPT/Perplexity/Claude
-live-tested, others marked inferred), confidence-banded agent share, an
+blended 7.5% headline), a per-agent buyability matrix (ChatGPT/Perplexity/Claude/
+Gemini; rows without a live run marked inferred), confidence-banded agent share, an
 agent-share trajectory sparkline, refund-rate-by-class, a failure-stage funnel,
 copy-paste robots/JSON-LD/llms.txt remediation, and a cohort percentile
 benchmark. A `readiness-only` mode renders the discovery half (Discovery
@@ -31,10 +49,10 @@ shows a believable sub-1% dispute regime.
 
 | Piece | Where | Status |
 |---|---|---|
-| `audit readiness <url>` | packages/audit | done — robots.txt per 13 agent UAs, products.json/sitemap/llms.txt, JSON-LD/OG/canonical on ≤10 product pages (1 req/s), Playwright add-to-cart→checkout probe (hard stop at checkout info page, CAPTCHA detect-only), screenshots → artifacts/, output → data/<store>/readiness.json |
+| `audit readiness <url>` | packages/audit | done — robots.txt per 12 agent UAs (ByteDance commented out), products.json/sitemap/llms.txt, JSON-LD/OG/canonical on ≤10 product pages (1 req/s), Playwright add-to-cart→checkout probe (hard stop at checkout info page, CAPTCHA detect-only), screenshots → artifacts/, output → data/<store>/readiness.json |
 | `audit classify` | packages/audit | done — Shopify Admin REST 2026-01 (custom-app token via env-var NAME, pagination + 429 retry) or CSV fallback; 4 tiers: confirmed_channel → high_confidence_agent (UA/referrer/utm) → heuristic_agent (headless UA, datacenter CIDR — vendored AWS 10.5k + GCP 976 + Azure seed) → human; dispute join, GMV share, agent-vs-human delta, VAMP bands (0.5%/1.5% defaults, flag-configurable) |
-| `audit manual` | packages/audit | done — zod-validated YAML of hand-run agent sessions (agent/task/steps/outcome/failure_stage/screenshots) merged into report data |
-| Report | packages/report | done — score 0–100 (weights: discovery 40 = robots 10 + structured data 15 + feeds 10 + llms.txt 5; transaction 60 = cart 20 + checkout 20 + manual 20), auto-drafted findings, impact÷effort fix list, inline SVG charts, VAMP math, honest methodology section; HTML → PDF via Playwright. `pnpm demo` → sample-report.pdf from fixtures, zero credentials |
+| `audit manual` | packages/audit | done — zod-validated YAML of hand-run agent sessions (agent free-form/task/steps/outcome/failure_stage/screenshots) merged into report data. `audit agent-prompts` prints one copy-paste prompt per assistant (ChatGPT/Perplexity/Claude/Gemini) ending in a parseable RESULT line; `audit manual --from-replies` parses pasted replies. `scripts/watch-inbox.mts` auto-merges inbox drops + re-renders |
+| Report | packages/report | done — dark-themed, personalized (homepage screenshot + favicon), per-step screenshot gallery. Score 0–100 (weights: discovery 40 = robots 10 + structured data 15 + feeds 10 + llms.txt 5; transaction 60 = cart 20 + checkout 20 + manual 20), auto-drafted findings, impact÷effort fix list, inline SVG charts, VAMP math, "Appendix — how we score"; HTML → PDF via Playwright. `pnpm demo` → sample-report.pdf from fixtures, zero credentials |
 | Landing page | apps/site | done — Next.js 15 static export; copy rendered VERBATIM from agent-audit-marketing.md (custom ~100-line md parser, unit-tested); CTA → STRIPE_PAYMENT_LINK env at build time, email capture → FORM_ENDPOINT when unset (currently unset → email form, action="#" until FORM_ENDPOINT set); /sample-report.pdf linked from hero (prebuild copies repo-root pdf); privacy counter stub (no-op unless NEXT_PUBLIC_COUNTER_ENDPOINT) |
 | Deploy | Vercel | LIVE at https://agentaudit-two.vercel.app (project `sidwyn-proj/agentaudit`, static out/ deploy). Domain agentaudit.site attached to the project but **DNS pending**: add `A @ 76.76.21.21` at Hover (or move nameservers to Vercel) |
 
@@ -42,7 +60,7 @@ shows a believable sub-1% dispute regime.
 
 - `economics.ts` — captured agent revenue (floor/ceiling, annualized), dispute-cost band, forward at-risk SCENARIO (only when a transaction path failed), all with `assumptions[]` rendered inline. Honesty: bands not point estimates, forward ≠ already-captured.
 - `vampMonthly.ts` — per-month dispute ratio + band, suppressed under `minOrders` (default 200) so a low-volume month can't render 50%; picks worst *qualifying* month.
-- `agentMatrix.ts` — 13 UAs → 8 brands; ChatGPT/Perplexity/Claude can be live-tested, others marked `inferred`.
+- `agentMatrix.ts` — crawler UAs → 4 household-name brands (ChatGPT/Perplexity/Claude/Gemini, all live-testable); a row stays `inferred` until it has a live run. Amazon/Apple/Meta dropped (crawlers, not shopping agents).
 - `shareBands.ts` (floor/ceiling), `funnel.ts` (where agents drop off), `remediation.ts` (copy-paste fixes), `benchmark.ts` (percentile vs cohort, discovery sub-score), `charts.ts` (hBarChart + sparkline).
 - `score.ts` `discoverySubscore()` — 0-100 over the 4 discovery parts; used for the cross-store benchmark so readiness-only stores compare apples-to-apples.
 - audit `summary.ts` now also emits: per-class `aov`/`refundRate`, `monthlyTrend` (with disputes), `disputeDollars` (agent vs human, coverage).
@@ -74,7 +92,7 @@ Readiness-only (no order data, no checkout probe — gentle on prospect stores).
 - Classifier rules are pure functions with fixture tests; methodology states confidence tiers honestly.
 - Landing copy must come from agent-audit-marketing.md verbatim — no marketing strings hardcoded in components.
 - Deps allowed: playwright, zod, commander, yaml, csv-parse (+ next/react for site) — ask Sidwyn before adding others.
-- Conventional commits on `feat/agentaudit-v1`; typecheck → test → lint before every commit.
+- Conventional commits on `main` (backup branch `agentaudit-reports-and-hardening`); `pnpm verify` (typecheck → test → lint) before every commit.
 
 ## How to redeploy the site
 
@@ -96,5 +114,5 @@ To enable payments: set STRIPE_PAYMENT_LINK before `next build` (build-time env,
 
 ## Transaction-layer reliability (important)
 
-The automated Playwright checkout probe is **not reliable on heavily-custom storefronts** (verified: Ridge — a flagship Shopify Plus store — reads `cart/not_found` because its React app defeats generic add-to-cart selectors, even after broadening selectors + a hydration wait). A "not_found"/"timeout" blocker is INCONCLUSIVE and must never be published as a definitive "an agent can't check out" verdict in outreach — that risks a false-negative that burns the lead. CAPTCHA/popup/password/login blockers are higher-confidence. **For the transaction layer in sellable reports, use `audit manual`** (human runs ChatGPT/Perplexity/Claude and records the YAML) — this is the product's intended design. The probe is a useful manual-assisted signal, not an automated outreach claim.
+The automated Playwright checkout probe is **not reliable on heavily-custom storefronts** (verified: Ridge — a flagship Shopify Plus store — reads `cart/not_found` because its React app defeats generic add-to-cart selectors, even after broadening selectors + a hydration wait). A "not_found"/"timeout" blocker is INCONCLUSIVE and must never be published as a definitive "an agent can't check out" verdict in outreach — that risks a false-negative that burns the lead. CAPTCHA/popup/password/login blockers are higher-confidence. **For the transaction layer in sellable reports, use `audit manual`** (human runs ChatGPT/Perplexity/Claude/Gemini and records the YAML, or drops replies into `inbox/<domain>/`) — this is the product's intended design. The probe is a useful manual-assisted signal, not an automated outreach claim.
 6. Untracked working file: docs/marketing/agent-audit-target-pitches.csv (Sidwyn's outreach list — not part of the build).
