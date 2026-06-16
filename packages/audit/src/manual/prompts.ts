@@ -105,7 +105,7 @@ export function buildInstructions(): string {
 You are a shopping assistant buying on behalf of a user. Attempt a real purchase on the target store and report, in detail, what you could and couldn't do — **stopping safely before payment**. You are running inside this repo, so read/write files here directly.
 
 ## Hard rules
-- **You MUST drive the browser via the chrome-devtools MCP** (\`take_snapshot\`, \`fill\`, \`take_screenshot\`, etc.). This is required — do not coordinate-click, scrape HTML, or use any other browser-control method. See "Driving the browser" below.
+- **You MUST drive the browser via the chrome-devtools MCP** (\`take_snapshot\`, \`fill\`, \`take_screenshot\`, etc.) — do not coordinate-click, scrape HTML, or use any other browser-control method. See "Driving the browser" below. **Exception: Perplexity** drives its own browser (Perplexity Comet) directly and does NOT use the chrome-devtools MCP — it still follows everything else here.
 - Use a **real, non-headless browser**. Headless is NOT allowed (bot-blocked + unrealistic).
 - **STOP before payment.** Never enter card details, never place an order. Use clearly-fake \`@example.com\` test data for contact/shipping.
 - **Never** solve or bypass a CAPTCHA, Cloudflare, or bot check — screenshot it, stop, and report it.
@@ -123,7 +123,7 @@ ${obstacles}
 Save one per stage into \`inbox/<store>/\` named \`<agent>-<n>-<stage>.png\` (e.g. \`claude-4-product.png\`). Crop to the store page, not the whole desktop.
 
 ## Driving the browser — you MUST use the chrome-devtools MCP
-This is mandatory. Drive every step through the chrome-devtools MCP tools below — no coordinate-clicking, no raw HTML scraping, no other automation.
+This is mandatory for all agents **except Perplexity**, which drives its own browser (Perplexity Comet) directly — Perplexity should skip these chrome-devtools steps but still complete the funnel and report in the same format. Everyone else: drive every step through the chrome-devtools MCP tools below — no coordinate-clicking, no raw HTML scraping, no other automation.
 1. **\`take_snapshot\` before every interaction** (not \`take_screenshot\`). It returns the accessibility tree with \`uid\` values for every element — that's how you find buttons, inputs, and iframes without coordinate-clicking. \`take_screenshot\` is only for saving images to disk.
 2. **\`fill\` takes a \`uid\`, not a CSS selector.** Use the \`uid\` from the snapshot (e.g. \`7_36\`) directly in \`fill(uid, value)\` — no \`querySelector\`/XPath.
 3. **Address comboboxes need an Escape after fill.** Shopify's address field is an autocomplete combobox; after \`fill\`, press Escape to dismiss the dropdown before the next field, or the listbox intercepts Tab/focus.
@@ -154,11 +154,15 @@ export function buildBriefPrompt(
   opts: { product?: string; task?: string; productType?: string } = {},
 ): string {
   const target = opts.product ? `the product ${opts.product}` : `any in-stock product on https://${store}`;
+  const browserClause =
+    agentKey === "perplexity"
+      ? "Drive your own browser (Perplexity Comet) directly — you do NOT use the chrome-devtools MCP. Use a real non-headless browser; never bypass a CAPTCHA/bot check."
+      : "You MUST drive the browser via the chrome-devtools MCP, in a real non-headless browser; never bypass a CAPTCHA/bot check.";
   return [
     `Act as a shopping assistant. Buy ${target} on ${store}, going as far as you can — but STOP before payment (no card details, no order).`,
     ...(AGENT_NOTES[agentKey] ? [AGENT_NOTES[agentKey]!(store)] : []),
     ...(opts.productType ? [`This run tests the "${opts.productType}" product type — include "product_type: ${opts.productType}" in the RESULT line.`] : []),
-    `Follow the full method in instructions.md in this repo: the 11-section funnel, the capability checklist + keys, obstacles to watch for, the chrome-devtools tips, and the exact output format. You MUST drive the browser via the chrome-devtools MCP, in a real non-headless browser; never bypass a CAPTCHA/bot check.`,
+    `Follow the full method in instructions.md in this repo: the 11-section funnel, the capability checklist + keys, obstacles to watch for, the chrome-devtools tips, and the exact output format. ${browserClause}`,
     `Save a screenshot per stage into inbox/${store}/ named ${agentKey}-<n>-<stage>.png.`,
     `Reply with the CHECKLIST + OBSTACLES + RESULT block from instructions.md — set agent: ${agentKey} and your real model in the RESULT line.`,
   ].join("\n");

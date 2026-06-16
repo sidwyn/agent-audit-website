@@ -64,6 +64,12 @@ describe("buildAgentPrompts", () => {
     expect(perplexity).toContain("Perplexity saves files to its own sandbox");
     expect(perplexity).toContain("inbox/graza.co/");
     expect(perplexity).toContain("attach or inline every screenshot");
+    // Perplexity is exempt from the chrome-devtools MCP mandate (it uses Comet)
+    expect(perplexity).toContain("Perplexity Comet");
+    expect(perplexity).not.toContain("MUST drive the browser via the chrome-devtools MCP");
+    for (const p of prompts.filter((p) => p.agent !== "perplexity")) {
+      expect(p.prompt).toContain("MUST drive the browser via the chrome-devtools MCP");
+    }
     for (const p of prompts.filter((p) => p.agent !== "perplexity")) {
       expect(p.prompt).not.toContain("Perplexity saves files to its own sandbox");
     }
