@@ -3,7 +3,7 @@ import { CAPABILITY_CHECKS, OBSTACLE_CHECKS, SECTION_LABELS } from "@agentaudit/
 import { escapeHtml, section, table } from "./html.js";
 
 const AGENT_LABEL: Record<string, string> = {
-  chatgpt: "ChatGPT",
+  codex: "Codex",
   perplexity: "Perplexity",
   claude: "Claude",
   gemini: "Gemini",

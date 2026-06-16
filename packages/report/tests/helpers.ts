@@ -59,7 +59,7 @@ export function makeReadiness(overrides: Partial<ReadinessReport> = {}): Readine
 
 export function makeManualRuns(): ManualRun[] {
   return [
-    { agent: "chatgpt", task: "buy", steps: ["s"], outcome: "success", screenshots: [] },
+    { agent: "codex", task: "buy", steps: ["s"], outcome: "success", screenshots: [] },
     { agent: "perplexity", task: "buy", steps: ["s"], outcome: "abandoned", failure_stage: "variant", screenshots: [] },
     { agent: "claude", task: "buy", steps: ["s"], outcome: "abandoned", failure_stage: "checkout", screenshots: [] },
   ];

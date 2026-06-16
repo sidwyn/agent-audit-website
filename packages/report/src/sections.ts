@@ -122,7 +122,7 @@ export function transactionSection(
       ? "—"
       : probe.blockers.map((b) => `${escapeHtml(b.kind.replace(/_/g, " "))} (${escapeHtml(b.stage)})`).join(", ");
 
-  const agentLabel: Record<string, string> = { chatgpt: "ChatGPT", perplexity: "Perplexity", claude: "Claude", gemini: "Gemini" };
+  const agentLabel: Record<string, string> = { codex: "Codex", perplexity: "Perplexity", claude: "Claude", gemini: "Gemini" };
   // Only show the automated-probe row if the probe actually ran (productUrl set);
   // in readiness-only audits it didn't, and a blank row reads as a failure.
   const probeRow = probe.productUrl !== null

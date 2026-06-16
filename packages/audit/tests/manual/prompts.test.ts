@@ -6,8 +6,9 @@ describe("buildAgentPrompts", () => {
   it("emits one prompt per assistant with the parseable RESULT line and guardrails", () => {
     const prompts = buildAgentPrompts("graza.co", { product: "https://graza.co/products/sizzle" });
     expect(prompts).toHaveLength(4);
-    expect(prompts.map((p) => p.agent)).toEqual(["chatgpt", "perplexity", "claude", "gemini"]);
+    expect(prompts.map((p) => p.agent)).toEqual(["codex", "perplexity", "claude", "gemini"]);
     for (const p of prompts) {
+      const agentName = p.agent.charAt(0).toUpperCase() + p.agent.slice(1);
       expect(p.prompt).toContain(`RESULT | agent: ${p.agent} |`);
       expect(p.prompt).toContain("Walk the FULL shopping funnel");
       expect(p.prompt).toContain(`${p.agent}-10-payment_boundary.png`);
@@ -19,6 +20,10 @@ describe("buildAgentPrompts", () => {
       expect(p.prompt).toContain("time_to_cart_seconds:");
       expect(p.prompt).toContain("blocker_code:");
       expect(p.prompt).toMatch(/stage: <homepage \| search/);
+      // every agent must be told to use a real, non-headless browser
+      expect(p.prompt).toContain("non-headless browser");
+      // ...and to tag any new Chrome group with its own name
+      expect(p.prompt).toContain(`- ${agentName}"`);
     }
   });
 

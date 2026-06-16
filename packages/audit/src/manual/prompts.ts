@@ -7,8 +7,8 @@ import { CAPABILITY_CHECKS, CHECK_KEYS, OBSTACLE_KEYS } from "./checklist.js";
 // obstacles, then parse the structured reply back into a ManualRun. The report
 // renders one capability table per agent from it.
 
-export const PROMPT_AGENTS: { key: "chatgpt" | "perplexity" | "claude" | "gemini"; label: string }[] = [
-  { key: "chatgpt", label: "ChatGPT (agent mode)" },
+export const PROMPT_AGENTS: { key: "codex" | "perplexity" | "claude" | "gemini"; label: string }[] = [
+  { key: "codex", label: "Codex" },
   { key: "perplexity", label: "Perplexity" },
   { key: "claude", label: "Claude" },
   { key: "gemini", label: "Gemini" },
@@ -54,10 +54,13 @@ export function buildAgentPrompt(
   opts: { product?: string; task?: string; productType?: string } = {},
 ): string {
   const task = opts.task ?? defaultTask(store);
+  const agentName = agentKey.charAt(0).toUpperCase() + agentKey.slice(1);
   const target = opts.product ? `this product: ${opts.product}` : `any in-stock product on https://${store}`;
   const typeLine = `This run is testing the "${opts.productType}" product type — include "product_type: ${opts.productType}" in the RESULT line.`;
   return [
     `You are acting as a shopping assistant buying on behalf of a user. Task: ${task}.`,
+    `You MUST use a real, non-headless browser. Headless browsers are NOT allowed for this test — they get blocked by bot protection and do not reflect a real shopper.`,
+    `If you create a new browser group, profile, or window in Chrome for this run, append " - ${agentName}" to its name (e.g. "Shopping - ${agentName}") so the operator can tell which agent is which.`,
     ...(AGENT_NOTES[agentKey] ? [AGENT_NOTES[agentKey]!(store)] : []),
     ...(opts.productType ? [typeLine] : []),
     ``,

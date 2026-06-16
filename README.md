@@ -1,7 +1,7 @@
 # AgentAudit — Agent Commerce Audit
 
 Tooling for a $99 productized audit of Shopify stores: can AI shopping agents
-(ChatGPT, Perplexity, Claude, Gemini) buy from the store, what share of recent orders
+(Codex, Perplexity, Claude, Gemini) buy from the store, what share of recent orders
 were agent-placed, and how those orders perform on disputes. Output is a scored
 PDF report plus a readout call.
 
@@ -57,8 +57,8 @@ CSV columns — orders: `id, source_name, app_id, user_agent, browser_ip,
 referring_site, landing_site, total_price, created_at, financial_status`;
 disputes: `order_id, status, type, amount, initiated_at`.
 
-**0:40 — Manual agent runs (~40 min).** Run the same purchase task in ChatGPT
-agent mode, Perplexity, Claude, and Gemini. Use test mode or cancel before
+**0:40 — Manual agent runs (~40 min).** Run the same purchase task in Codex,
+Perplexity, Claude, and Gemini. Use test mode or cancel before
 fulfillment, coordinated with the merchant. Record each run in `runs.yaml`
 (most fields below are auto-filled when you use `--from-replies`):
 
@@ -156,7 +156,7 @@ auto-rebuilds the PDF as results arrive.
 ### Quick path — generate prompts, paste replies
 
 ```bash
-# 1. print one copy-paste prompt per assistant (ChatGPT / Perplexity / Claude / Gemini).
+# 1. print one copy-paste prompt per assistant (Codex / Perplexity / Claude / Gemini).
 #    Pass ONLY the product URL — the store slug and the inbox/<domain>/ drop folder
 #    are derived from it and created for you. (--store still works if you want to override.)
 pnpm --filter @agentaudit/audit exec tsx src/cli.ts agent-prompts --product https://ridge.com/products/ridge-wallet
@@ -176,7 +176,7 @@ pnpm --filter @agentaudit/report exec tsx scripts/render-one.mts \
   cohort-2026-06 ridge.com packages/report/fixtures/cohort-stats.json
 ```
 
-`agent` is free-form — `chatgpt`, `perplexity`, `claude`, `gemini`, `rufus`, `codex`, etc.
+`agent` is free-form — `codex`, `perplexity`, `claude`, `gemini`, `rufus`, etc.
 Known consumer brands populate the per-agent matrix; others appear in the transaction layer.
 The reply also carries `model`, `time_to_cart_seconds`, a per-stage `stages` map, and a
 taxonomy-coded `blocker_code` — all parsed automatically. Runs must stop before payment and
@@ -214,7 +214,7 @@ screenshots" gallery in the report's transaction layer, grouped by agent.
 
 - **Name each file `<agent>-<step>-<stage>.png`** so it attaches to the right agent's run.
   The watcher links a screenshot to an agent when the filename starts with that agent name
-  (`chatgpt-…`, `gemini-…`, `claude-…`, `codex-…`, …). One per funnel stage (the prompt names them for you):
+  (`codex-…`, `gemini-…`, `claude-…`, `perplexity-…`, …). One per funnel stage (the prompt names them for you):
   - `<agent>-1-homepage.png`, `-2-search.png`, `-3-collection.png` — discovery/navigation
   - `<agent>-4-product.png`, `-5-variant.png` — product page + variant selection
   - `<agent>-6-add_to_cart.png`, `-7-cart.png` — add to cart + cart/drawer
@@ -234,7 +234,7 @@ so the agent is told to capture and name every step.
 > `codex-5-variant.png`, `codex-7-cart.png`, `codex-8-checkout_info.png`,
 > `codex-10-payment_boundary.png`, etc. Do not enter payment details or place an order.
 
-Browser/app agents (ChatGPT, Perplexity, Gemini) can't write to disk — paste their reply into
+Browser/app agents (Claude, Perplexity, Gemini) can't write to disk — paste their reply into
 `inbox/<domain>/<agent>.txt` yourself, and save each step screenshot into the same folder using
 the `<agent>-<step>-<stage>.png` names above (the agent prompt asks them to take one per step).
 

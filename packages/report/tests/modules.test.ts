@@ -15,8 +15,8 @@ describe("buildAgentMatrix", () => {
   const matrix = buildAgentMatrix(readiness, makeManualRuns());
 
   it("maps UAs to brands and marks live-tested vs inferred", () => {
-    const chatgpt = matrix.find((m) => m.brand.startsWith("ChatGPT"))!;
-    expect(chatgpt.liveTested).toBe(true);
+    const codex = matrix.find((m) => m.brand.startsWith("Codex"))!;
+    expect(codex.liveTested).toBe(true);
     const gemini = matrix.find((m) => m.brand === "Gemini")!;
     expect(gemini.liveTested).toBe(false);
     expect(gemini.manualOutcome).toBe("not live-tested");

@@ -52,7 +52,7 @@ describe("composeReport (full)", () => {
   });
 
   it("lists the four household-name shopping agents in the matrix", () => {
-    expect(html).toContain("ChatGPT");
+    expect(html).toContain("Codex");
     expect(html).toContain("Perplexity");
     expect(html).toContain("Claude");
     expect(html).toContain("Gemini");

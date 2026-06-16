@@ -1,11 +1,11 @@
 import type { ManualRun, ReadinessReport } from "@agentaudit/audit";
 
 // Maps crawler/agent user-agents to the buyer-facing brands owners think in.
-// These are household names, so we drop the vendor parentheticals. ChatGPT,
-// Perplexity, Claude and Gemini are the shopping agents we surface; ChatGPT,
-// Claude and Gemini can be live-tested by hand.
+// These are household names, so we drop the vendor parentheticals. Codex,
+// Perplexity, Claude and Gemini are the shopping agents we surface; all four can
+// be live-tested by hand. (Codex is OpenAI's agent; the OpenAI crawler UAs map to it.)
 export const AGENT_BRANDS: { brand: string; uas: string[]; liveTestable: boolean }[] = [
-  { brand: "ChatGPT", uas: ["GPTBot", "ChatGPT-User", "OAI-SearchBot"], liveTestable: true },
+  { brand: "Codex", uas: ["GPTBot", "ChatGPT-User", "OAI-SearchBot"], liveTestable: true },
   { brand: "Perplexity", uas: ["PerplexityBot", "Perplexity-User"], liveTestable: true },
   { brand: "Claude", uas: ["ClaudeBot", "Claude-User", "Claude-SearchBot"], liveTestable: true },
   { brand: "Gemini", uas: ["Google-Extended"], liveTestable: true },
@@ -24,7 +24,7 @@ export type AgentRow = {
 };
 
 const MANUAL_BRAND: Record<string, string> = {
-  chatgpt: "ChatGPT",
+  codex: "Codex",
   perplexity: "Perplexity",
   claude: "Claude",
   gemini: "Gemini",
