@@ -21,6 +21,7 @@ import {
   trajectorySection,
 } from "./sections-money.js";
 import { discoverySection, executiveSummary, scorecard, transactionSection } from "./sections.js";
+import { agentCapabilitySection } from "./sections-capability.js";
 import { escapeHtml } from "./html.js";
 import { agentShareBand } from "./shareBands.js";
 import type { ReportData } from "./types.js";
@@ -78,6 +79,9 @@ td, .score-num, .part-num, .vamp-math, .tile-num { font-variant-numeric: tabular
 .snippet { background: #0a0e14; color: #cbd5e1; border: 1px solid var(--rule); border-radius: 8px; padding: 12px; overflow-x: auto; font-size: 11px; line-height: 1.45; white-space: pre-wrap; word-break: break-word; }
 .snippet code { background: none; color: inherit; padding: 0; }
 .method li { margin: 7px 0; }
+.st-pass { color: var(--pass); font-weight: 600; } .st-fail { color: var(--critical); font-weight: 600; } .st-partial { color: var(--warn); font-weight: 600; } .st-blocked { color: var(--critical); font-weight: 700; } .st-na, .st-none { color: var(--muted); }
+.capability td { padding: 4px 10px 4px 0; font-size: 11px; vertical-align: top; }
+.obs-h { font-family: ui-monospace, Menlo, monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin: 16px 0 4px; }
 .shots { display: grid; gap: 12px; margin: 10px 0; }
 .shotlabel { font-family: ui-monospace, Menlo, monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); display: block; margin-bottom: 5px; }
 .shotimgs { display: flex; gap: 7px; flex-wrap: wrap; }
@@ -176,6 +180,7 @@ export function composeReport(data: ReportData, opts: { cohort?: CohortStats | n
   blocks.push(discoverySection(data.readiness));
   if (probeRan || data.manualRuns.length > 0) {
     blocks.push(transactionSection(data.readiness, data.manualRuns, data.runScreenshots ?? {}));
+    blocks.push(agentCapabilitySection(data.manualRuns));
   }
   blocks.push(
     funnelSection(funnel, topFailingStage(funnel)),

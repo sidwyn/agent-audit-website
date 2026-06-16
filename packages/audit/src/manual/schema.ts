@@ -49,6 +49,26 @@ export const BLOCKER_CODES = [
 export type BlockerCode = (typeof BLOCKER_CODES)[number];
 export const blockerCodeSchema = z.enum(BLOCKER_CODES);
 
+// Per-action capability checklist (~40 checks across the funnel — see
+// checklist.ts for the canonical list). Each reported action carries a status.
+export const checkStatusSchema = z.enum(["pass", "fail", "partial", "blocked", "na"]);
+export type CheckStatus = z.infer<typeof checkStatusSchema>;
+
+export const capabilityCheckResultSchema = z.object({
+  section: z.string(), // a FunnelStageName; kept loose to avoid a schema<->checklist cycle
+  key: z.string(),
+  status: checkStatusSchema,
+  note: z.string().optional(),
+});
+export type CapabilityCheckResult = z.infer<typeof capabilityCheckResultSchema>;
+
+export const obstacleResultSchema = z.object({
+  key: z.string(),
+  hit: z.boolean(), // true = the agent encountered this obstacle
+  note: z.string().optional(),
+});
+export type ObstacleResult = z.infer<typeof obstacleResultSchema>;
+
 // agent is free-form (lowercased) so any assistant works — chatgpt, perplexity,
 // claude, gemini, copilot, rufus, codex, etc. The report's brand matrix maps the
 // known consumer assistants; others still appear in the transaction layer.
@@ -68,6 +88,9 @@ export const manualRunSchema = z
     secondsToCart: z.number().nonnegative().nullish(),
     // Per-stage funnel map for this run (empty for legacy one-line results).
     stages: z.array(stageResultSchema).default([]),
+    // Per-action capability checklist + obstacles encountered (the per-agent table).
+    checks: z.array(capabilityCheckResultSchema).default([]),
+    obstacles: z.array(obstacleResultSchema).default([]),
     // Which product this run shopped (so multi-product-type coverage is legible).
     productType: z.string().optional(),
     // Forensic blocker classification (taxonomy above).

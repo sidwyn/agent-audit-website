@@ -13,5 +13,15 @@ export {
   type ManualRunsFile,
   type FunnelStageName,
   type BlockerCode,
+  type CheckStatus,
+  type CapabilityCheckResult,
+  type ObstacleResult,
 } from "./manual/schema.js";
+export {
+  CAPABILITY_CHECKS,
+  OBSTACLE_CHECKS,
+  SECTION_LABELS,
+  type CapabilityCheck,
+  type ObstacleDef,
+} from "./manual/checklist.js";
 export { buildAgentPrompt, buildAgentPrompts, parseReplies } from "./manual/prompts.js";

@@ -93,6 +93,36 @@ RESULT | agent: claude | model: Claude Opus 4.8 | outcome: abandoned | furthest_
     expect(r.outcome).toBe("abandoned");
   });
 
+  it("parses the capability checklist + obstacles and rolls stages up from checks", () => {
+    const reply = `
+homepage.nav: pass | clear
+product.price: pass | $76
+variant.color: pass | Royal Black
+cart.discount: partial | field present, not tested
+add_to_cart.button: fail | button never enabled
+captcha_cloudflare_bot: hit on checkout
+cookie_banner: dismissed
+RESULT | agent: gemini | model: Gemini 3.5 Pro | outcome: success | furthest_stage: payment_boundary | time_to_cart_seconds: 17 | blocker_code: none | blocker: none | notes: ok`;
+    const r = parseReplies(reply)[0]!;
+    expect(r.checks).toHaveLength(5);
+    expect(r.checks.find((c) => c.key === "price")!.status).toBe("pass");
+    expect(r.checks.find((c) => c.key === "discount")!.status).toBe("partial");
+    expect(r.checks.find((c) => c.key === "button")!.note).toBe("button never enabled");
+    expect(r.obstacles.map((o) => o.key)).toEqual(expect.arrayContaining(["captcha_cloudflare_bot", "cookie_banner"]));
+    // section status rolls up from its checks: product (all pass) -> pass; add_to_cart (a fail) -> fail
+    expect(r.stages.find((s) => s.stage === "product")!.status).toBe("pass");
+    expect(r.stages.find((s) => s.stage === "add_to_cart")!.status).toBe("fail");
+  });
+
+  it("ignores unknown check/obstacle keys", () => {
+    const r = parseReplies(
+      "bogus.key: pass\nnot_an_obstacle: hit\nproduct.title: pass\nRESULT | agent: claude | outcome: success | furthest_stage: product | blocker_code: none | blocker: none | notes: x",
+    )[0]!;
+    expect(r.checks).toHaveLength(1);
+    expect(r.checks[0]!.key).toBe("title");
+    expect(r.obstacles).toHaveLength(0);
+  });
+
   it("maps an unknown blocker_code to 'other' and funnel stages to the coarse enum", () => {
     const runs = parseReplies(
       "RESULT | agent: gemini | outcome: abandoned | furthest_stage: checkout_info | blocker_code: weird_thing | blocker: ? | notes: x",

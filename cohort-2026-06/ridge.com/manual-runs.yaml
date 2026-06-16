@@ -11,31 +11,67 @@ runs:
     outcome: success
     notes: Successfully navigated through checkout to the payment step using mock
       data without hitting any blockers.
-    screenshots: []
+    obstacles: []
+    checks:
+      - { section: homepage, key: nav, status: pass, note: "Wallets · Rings · Travel · Tech · Sale" }
+      - { section: homepage, key: search_box, status: pass }
+      - { section: homepage, key: categories, status: pass, note: "Father's Day promo bar" }
+      - { section: search, key: locate, status: pass }
+      - { section: search, key: query_results, status: pass, note: "\"wallet\" returned relevant SKUs" }
+      - { section: search, key: results_parseable, status: pass }
+      - { section: collection, key: grid, status: pass }
+      - { section: collection, key: filter, status: partial, note: present; not exercised }
+      - { section: collection, key: sort, status: partial, note: not exercised }
+      - { section: collection, key: pagination, status: pass }
+      - { section: product, key: title, status: pass, note: Ridge Wallet }
+      - { section: product, key: price, status: pass, note: "$76 (was $95, 20% off)" }
+      - { section: product, key: availability, status: pass, note: in stock }
+      - { section: product, key: options, status: pass, note: 30+ colors/materials }
+      - { section: product, key: reviews, status: pass, note: "48,537 reviews" }
+      - { section: product, key: shipping_returns, status: pass }
+      - { section: product, key: images, status: pass }
+      - { section: variant, key: color, status: pass, note: Royal Black }
+      - { section: variant, key: material_kit, status: partial, note: Wallet-only vs Full Kit; default kept }
+      - { section: variant, key: addon, status: partial, note: Tracker Card toggle left off }
+      - { section: variant, key: quantity, status: pass }
+      - { section: variant, key: atc_gating, status: na, note: default variant pre-selected }
+      - { section: add_to_cart, key: button, status: pass }
+      - { section: add_to_cart, key: confirmation, status: pass, note: cart drawer opened }
+      - { section: cart, key: read, status: pass }
+      - { section: cart, key: edit_qty, status: pass }
+      - { section: cart, key: remove, status: partial, note: available; not exercised }
+      - { section: cart, key: discount, status: partial, note: field present; not tested }
+      - { section: cart, key: subtotal, status: pass }
+      - { section: checkout_info, key: reach, status: pass }
+      - { section: checkout_info, key: email, status: pass, note: test@example.com }
+      - { section: checkout_info, key: address, status: pass, note: fake test data }
+      - { section: checkout_info, key: phone, status: pass }
+      - { section: checkout_info, key: validation, status: pass }
+      - { section: shipping, key: options, status: pass }
+      - { section: shipping, key: select, status: pass, note: Standard }
+      - { section: shipping, key: cost, status: pass }
+      - { section: payment_boundary, key: reach_card, status: pass }
+      - { section: payment_boundary, key: methods_visible, status: pass, note: card · express checkout }
+      - { section: payment_boundary, key: stopped_safely, status: pass, note: hard stop before Pay now }
+      - { section: confirmation, key: parseable, status: na, note: stopped before paying }
   - agent: claude
     model: Claude Opus 4.8
     task: Buy a product and reach the payment step
     steps:
-      - Live claude run via Claude-in-Chrome (automation-controlled browser).
+      - Live claude run via automation/CDP-controlled Chrome (not the Claude for Chrome extension).
       - "Furthest stage reached: homepage (blocked at the network edge)."
       - "Blocker: Cloudflare bot protection — \"Sorry, you have been blocked\" on first load."
     outcome: abandoned
     failure_stage: discovery
     blockerCode: cloudflare_challenge
-    stages:
-      - { stage: homepage, status: fail, note: "Cloudflare \"Sorry, you have been blocked\" interstitial on first request" }
-      - { stage: search, status: skipped }
-      - { stage: collection, status: skipped }
-      - { stage: product, status: skipped }
-      - { stage: variant, status: skipped }
-      - { stage: add_to_cart, status: skipped }
-      - { stage: cart, status: skipped }
-      - { stage: checkout_info, status: skipped }
-      - { stage: shipping, status: skipped }
-      - { stage: payment_boundary, status: skipped }
-      - { stage: confirmation, status: na }
-    notes: Automation-driven Claude-in-Chrome was blocked by Ridge's Cloudflare bot
-      check before any store content loaded — did not solve or bypass it. A
-      human-driven browser (the Gemini run) gets through.
+    notes: Automation/CDP-driven browser was blocked by Ridge's Cloudflare bot check
+      before any store content loaded — did not solve or bypass it. A human-driven
+      browser (the Gemini run) gets through.
+    obstacles:
+      - { key: captcha_cloudflare_bot, hit: true, note: "\"Sorry, you have been blocked\" on first request; not bypassed" }
+    checks:
+      - { section: homepage, key: nav, status: blocked, note: Cloudflare block before any content }
+      - { section: homepage, key: search_box, status: blocked }
+      - { section: homepage, key: categories, status: blocked }
     screenshots:
       - claude-1-homepage.png

@@ -1,9 +1,11 @@
-import { BLOCKER_CODES, FUNNEL_STAGES, type ManualRun } from "./schema.js";
+import { BLOCKER_CODES, FUNNEL_STAGES, type CapabilityCheckResult, type CheckStatus, type ManualRun, type ObstacleResult } from "./schema.js";
 import type { BlockerCode, FunnelStageName } from "./schema.js";
+import { CAPABILITY_CHECKS, CHECK_KEYS, OBSTACLE_KEYS } from "./checklist.js";
 
 // Tier-2 human-in-the-loop: generate one copy-paste prompt per assistant that
-// walks the FULL shopping funnel, then parse the structured reply (a per-stage
-// STAGES block + one RESULT line) back into a ManualRun for the report.
+// walks the FULL shopping funnel and fills a ~40-action capability checklist +
+// obstacles, then parse the structured reply back into a ManualRun. The report
+// renders one capability table per agent from it.
 
 export const PROMPT_AGENTS: { key: "chatgpt" | "perplexity" | "claude" | "gemini"; label: string }[] = [
   { key: "chatgpt", label: "ChatGPT (agent mode)" },
@@ -12,7 +14,7 @@ export const PROMPT_AGENTS: { key: "chatgpt" | "perplexity" | "claude" | "gemini
   { key: "gemini", label: "Gemini" },
 ];
 
-// What to test at each funnel stage — drives both the prompt and the report.
+// What to test at each funnel stage — the human-readable section guidance.
 const STAGE_TESTS: { stage: FunnelStageName; test: string }[] = [
   { stage: "homepage", test: "can you read the nav, search box, and categories?" },
   { stage: "search", test: "can you search for a product and get usable results?" },
@@ -29,6 +31,8 @@ const STAGE_TESTS: { stage: FunnelStageName; test: string }[] = [
 
 const BLOCKER_LIST = BLOCKER_CODES.join(" | ");
 const STAGE_NAMES = FUNNEL_STAGES.join(" | ");
+const keysFor = (stage: FunnelStageName): string =>
+  CAPABILITY_CHECKS.filter((c) => c.section === stage).map((c) => `${c.section}.${c.key}`).join(", ");
 
 export function defaultTask(store: string): string {
   return `Buy any in-stock product from ${store} and get as far as the payment step`;
@@ -48,17 +52,27 @@ export function buildAgentPrompt(
     ``,
     `Note the START TIME before you begin. You will report how many seconds it took to get the item into the cart.`,
     ``,
-    `Walk the FULL shopping funnel on ${store}, attempting to buy ${target}, going as far as you can. STOP before payment. At EACH stage below, judge whether you could do it (pass / fail / partial / skipped / na), and CAPTURE A SCREENSHOT of that stage:`,
-    ...STAGE_TESTS.map((s, i) => `${i + 1}. ${s.stage} — ${s.test} Screenshot: ${agentKey}-${i + 1}-${s.stage}.png`),
+    `Walk the FULL shopping funnel on ${store}, attempting to buy ${target}, going as far as you can. STOP before payment. Work through the 11 sections below; for each, CAPTURE A SCREENSHOT and judge each individual check (the dotted keys) as pass / fail / partial / blocked / na:`,
+    ...STAGE_TESTS.map(
+      (s, i) =>
+        `${i + 1}. ${s.stage} — ${s.test}\n   Screenshot: ${agentKey}-${i + 1}-${s.stage}.png\n   checks: ${keysFor(s.stage)}`,
+    ),
     ``,
-    `Also watch for OBSTACLES and report any you hit: cookie banner, email/SMS popup, a modal you couldn't close, a cart drawer you couldn't parse, a sticky add-to-cart bar, a login wall, address/phone validation errors, disabled buttons, iframe or cross-domain checkout. If you hit a CAPTCHA, Cloudflare, or bot check, do NOT solve or bypass it — screenshot it, stop, and report it.`,
+    `Also watch for OBSTACLES: cookie banner, email/SMS popup, a modal you couldn't close, a cart drawer you couldn't parse, a sticky add-to-cart bar, a login wall, address/phone validation errors, disabled buttons, iframe or cross-domain checkout. If you hit a CAPTCHA, Cloudflare, or bot check, do NOT solve or bypass it — screenshot it, stop, and report it.`,
     ``,
-    `Screenshots: save every screenshot into the folder inbox/${store}/ in the repo. If you (the model) cannot save files, the operator will capture them — in that case capture just the STORE BROWSER PAGE (crop to the page, not the whole desktop) so each shot clearly shows that stage on ${store}.`,
+    `Screenshots: save every screenshot into the folder inbox/${store}/ in the repo. If you (the model) cannot save files, the operator will capture them — capture just the STORE BROWSER PAGE (crop to the page, not the whole desktop).`,
     ``,
-    `Report your results in TWO parts. First, one STAGES line per stage you attempted:`,
-    `stage: <${STAGE_NAMES}> | status: <pass|fail|partial|skipped|na> | note: <what you saw, or why it failed>`,
+    `Report your results in THREE parts.`,
     ``,
-    `Then end with EXACTLY one summary line:`,
+    `PART 1 — CHECKLIST: one line per check you attempted, using the EXACT dotted keys above. Format:`,
+    `<section.key>: <pass|fail|partial|blocked|na> | <optional short note>`,
+    `(pass = worked; fail = tried but broke; partial = worked but clunky/uncertain; blocked = couldn't, due to an obstacle; na = not applicable.) Example:  product.price: pass | $76, clearly shown`,
+    ``,
+    `PART 2 — OBSTACLES: list ONLY the ones you actually hit, one per line, using these keys:`,
+    `cookie_banner | email_sms_popup | uncloseable_modal | cart_drawer_unparsed | sticky_atc | login_wall | address_validation_error | phone_validation_error | disabled_buttons | iframe_issue | cross_domain_checkout | captcha_cloudflare_bot`,
+    `Format:  <obstacle_key>: <short note>`,
+    ``,
+    `PART 3 — exactly one summary line:`,
     `RESULT | agent: ${agentKey} | model: <the exact model/version you are, e.g. Gemini 2.5 Pro, GPT-5, Claude Opus 4.8> | outcome: <success|abandoned> | furthest_stage: <${STAGE_NAMES}> | time_to_cart_seconds: <integer seconds from opening the product to the item being in the cart, or none> | blocker_code: <${BLOCKER_LIST}> | blocker: <short description or none> | notes: <one short sentence>`,
     `- outcome=success = you reached the checkout or payment step without placing an order.`,
     `- outcome=abandoned = you could not get that far; set furthest_stage to the last stage reached and blocker_code to the precise reason.`,
@@ -78,6 +92,7 @@ export function buildAgentPrompts(
 
 const STAGE_STATUS = ["pass", "fail", "partial", "skipped", "na"] as const;
 type StageStatus = (typeof STAGE_STATUS)[number];
+const CHECK_STATUS = ["pass", "fail", "partial", "blocked", "na"] as const;
 
 // Coarse failure_stage (the legacy enum the matrix/funnel read) derived from a
 // fine-grained funnel stage so the older report logic keeps working.
@@ -121,29 +136,89 @@ function normalizeStage(raw: string): { funnel?: FunnelStageName; coarse: Coarse
   return { coarse: "discovery" };
 }
 
-// Parse pasted agent replies. Tolerant of surrounding markdown/code fences:
-// collects any `stage: ... | status: ...` lines into a per-agent funnel map, and
-// the RESULT line(s) into the headline. One ManualRun per recognized agent.
+// Parse a "section.key: status | note" capability line. Returns null if it isn't
+// a recognized check.
+function parseCheckLine(line: string): CapabilityCheckResult | null {
+  const m = line.match(/(?:^|[\s>*`-])([a-z_]+\.[a-z_]+)\s*:\s*([a-z_]+)\b\s*(?:\|\s*(.*))?$/i);
+  if (!m) return null;
+  const id = m[1]!.toLowerCase();
+  if (!CHECK_KEYS.has(id)) return null;
+  let status = m[2]!.toLowerCase();
+  if (status === "skipped") status = "na";
+  if (!(CHECK_STATUS as readonly string[]).includes(status)) return null;
+  const [section, key] = id.split(".") as [string, string];
+  const note = (m[3] ?? "").trim().replace(/[`*]+$/g, "");
+  return { section, key, status: status as CheckStatus, ...(note ? { note } : {}) };
+}
+
+// Parse an "obstacle_key: note" line. Returns null if the key isn't a known obstacle.
+function parseObstacleLine(line: string): ObstacleResult | null {
+  const m = line.match(/(?:^|[\s>*`-])([a-z_]+)\s*:\s*(.*)$/i);
+  if (!m) return null;
+  const key = m[1]!.toLowerCase();
+  if (!OBSTACLE_KEYS.has(key)) return null;
+  const note = (m[2] ?? "").trim().replace(/[`*]+$/g, "");
+  return { key, hit: true, ...(note && !/^(no|none|n\/?a)$/i.test(note) ? { note } : {}) };
+}
+
+// Roll a section's individual checks up into one stage status for the legacy
+// stages[] field (which the funnel/matrix read).
+function rollupStages(checks: CapabilityCheckResult[]): { stage: FunnelStageName; status: StageStatus }[] {
+  const out: { stage: FunnelStageName; status: StageStatus }[] = [];
+  for (const stage of FUNNEL_STAGES) {
+    const inSection = checks.filter((c) => c.section === stage).map((c) => c.status);
+    if (inSection.length === 0) continue;
+    let status: StageStatus;
+    if (inSection.some((s) => s === "blocked")) status = "fail";
+    else if (inSection.every((s) => s === "na")) status = "na";
+    else if (inSection.every((s) => s === "pass" || s === "na")) status = "pass";
+    else if (inSection.every((s) => s === "fail" || s === "na")) status = "fail";
+    else status = "partial";
+    out.push({ stage, status });
+  }
+  return out;
+}
+
+// Parse pasted agent replies. Tolerant of markdown/code fences. Collects the
+// CHECKLIST + OBSTACLES blocks and the RESULT line. One ManualRun per agent.
+// NOTE: the structured blocks aren't agent-scoped, so they attach to the run in
+// this reply — agents are run one at a time (one reply per agent).
 export function parseReplies(text: string, opts: { task?: string } = {}): ManualRun[] {
   const lines = text.split(/\r?\n/);
 
-  // First pass: gather stage lines (they aren't agent-scoped in the format, so
-  // they attach to the single run in this reply — agents are run one at a time).
-  const stages: { stage: FunnelStageName; status: StageStatus; note?: string }[] = [];
+  const checks: CapabilityCheckResult[] = [];
+  const obstacles: ObstacleResult[] = [];
+  const stageLines: { stage: FunnelStageName; status: StageStatus; note?: string }[] = [];
+  const seenObstacle = new Set<string>();
   for (const line of lines) {
-    const m = line.match(/(?:^|[\s>*`-])stage\s*:\s*(.+)$/i);
-    if (!m || /RESULT\s*\|/i.test(line)) continue;
-    const parts = splitFields(`stage: ${m[1]}`);
-    const stageRaw = field(parts, "stage");
-    const { funnel } = normalizeStage(stageRaw);
-    if (!funnel) continue;
-    const statusRaw = field(parts, "status").toLowerCase();
-    const status: StageStatus = (STAGE_STATUS as readonly string[]).includes(statusRaw)
-      ? (statusRaw as StageStatus)
-      : "partial";
-    const note = field(parts, "note");
-    stages.push({ stage: funnel, status, ...(note ? { note } : {}) });
+    if (/RESULT\s*\|/i.test(line)) continue;
+    const check = parseCheckLine(line);
+    if (check) {
+      checks.push(check);
+      continue;
+    }
+    // Legacy "stage: <name> | status: <s>" lines (older prompt format).
+    const sm = line.match(/(?:^|[\s>*`-])stage\s*:\s*(.+)$/i);
+    if (sm) {
+      const parts = splitFields(`stage: ${sm[1]}`);
+      const { funnel } = normalizeStage(field(parts, "stage"));
+      if (funnel) {
+        const statusRaw = field(parts, "status").toLowerCase();
+        const status = (STAGE_STATUS as readonly string[]).includes(statusRaw)
+          ? (statusRaw as StageStatus)
+          : "partial";
+        stageLines.push({ stage: funnel, status });
+      }
+      continue;
+    }
+    const obstacle = parseObstacleLine(line);
+    if (obstacle && !seenObstacle.has(obstacle.key)) {
+      seenObstacle.add(obstacle.key);
+      obstacles.push(obstacle);
+    }
   }
+  // Prefer the fine-grained checklist rollup; fall back to legacy stage lines.
+  const stages = checks.length > 0 ? rollupStages(checks) : stageLines;
 
   const runs: ManualRun[] = [];
   const seen = new Set<string>();
@@ -187,6 +262,8 @@ export function parseReplies(text: string, opts: { task?: string } = {}): Manual
       outcome,
       ...(secondsToCart != null ? { secondsToCart } : {}),
       stages,
+      checks,
+      obstacles,
       ...(productType ? { productType } : {}),
       ...(blockerCode ? { blockerCode } : {}),
       ...(outcome === "abandoned" ? { failure_stage: coarse } : {}),
