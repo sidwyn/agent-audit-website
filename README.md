@@ -156,16 +156,19 @@ auto-rebuilds the PDF as results arrive.
 ### Quick path — generate prompts, paste replies
 
 ```bash
-# 1. print one copy-paste prompt per assistant (Codex / Perplexity / Claude / Gemini).
-#    Pass ONLY the product URL — the store slug and the inbox/<domain>/ drop folder
-#    are derived from it and created for you. (--store still works if you want to override.)
+# 1. print one SHORT copy-paste prompt per assistant (Codex / Perplexity / Claude / Gemini).
+#    Pass ONLY the product URL — the store slug + the inbox/<domain>/ drop folder are derived
+#    and created for you, and the full method is (re)written to instructions.md in the repo root.
+#    The short prompt just tells the agent to follow instructions.md (the agent runs in the repo,
+#    so it reads the file). Use --full to inline the whole method for agents without repo access.
 pnpm --filter @agentaudit/audit exec tsx src/cli.ts agent-prompts --product https://ridge.com/products/ridge-wallet
 
-# 2. paste each prompt into the agent. Each walks the FULL funnel and replies in 3 parts:
+# 2. the agent follows instructions.md (11-section funnel, ~40-check capability list, obstacles,
+#    chrome-devtools tips, output format) and replies in 3 parts:
 #    PART 1 CHECKLIST — one line per action, e.g.  product.price: pass | $76, clearly shown
 #    PART 2 OBSTACLES — only the ones hit, e.g.    captcha_cloudflare_bot: blocked on first load
 #    PART 3 one RESULT line, e.g.:
-#    RESULT | agent: gemini | model: Gemini 3.5 Pro | outcome: success | furthest_stage: payment_boundary | time_to_cart_seconds: 17 | blocker_code: none | blocker: none | notes: ...
+#    RESULT | agent: codex | model: GPT-5 | outcome: success | furthest_stage: payment_boundary | time_to_cart_seconds: 17 | blocker_code: none | blocker: none | notes: ...
 #    The ~40 checks + obstacles render as a per-agent capability table in the report.
 # 3. drop all replies into one file, then fold them in:
 pnpm --filter @agentaudit/audit exec tsx src/cli.ts manual --store ridge.com \

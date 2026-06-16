@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-import { mkdirSync } from "node:fs";
+import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { Command } from "commander";
 import { formatClassifySummary, runClassify } from "./commands/classify.js";
 import { formatManualSummary, runManual, runManualFromReplies } from "./commands/manual.js";
 import { formatReadinessSummary, runReadiness } from "./commands/readiness.js";
-import { buildAgentPrompts } from "./manual/prompts.js";
+import { buildAgentPrompts, buildInstructions } from "./manual/prompts.js";
 
 // Derive the store slug (bare host, no www/scheme) from a product URL so the
 // operator only has to pass the product link — everything else is automated.
@@ -14,6 +14,18 @@ function storeFromUrl(url: string): string {
     return new URL(url).hostname.replace(/^www\./, "");
   } catch {
     throw new Error(`could not parse a store domain from --product "${url}" (expected a full URL like https://store.com/products/x)`);
+  }
+}
+
+// Walk up to the repo root so inbox/ and instructions.md land there, not in the
+// package dir (pnpm --filter runs the CLI with cwd = packages/audit).
+function repoRoot(): string {
+  let dir = process.cwd();
+  for (;;) {
+    if (existsSync(path.join(dir, "pnpm-workspace.yaml")) || existsSync(path.join(dir, ".git"))) return dir;
+    const parent = path.dirname(dir);
+    if (parent === dir) return process.cwd();
+    dir = parent;
   }
 }
 
@@ -73,19 +85,24 @@ program
   .option("--product <url>", "product URL to test (the store/inbox folder is derived from it)")
   .option("--store <domain>", "store domain (optional; defaults to the --product host)")
   .option("--task <text>", "custom task description")
-  .action((opts: { store?: string; product?: string; task?: string }) => {
+  .option("--full", "inline the full method in each prompt instead of pointing at instructions.md (for agents without repo access)")
+  .action((opts: { store?: string; product?: string; task?: string; full?: boolean }) => {
     if (!opts.product && !opts.store) throw new Error("provide --product <url> (recommended) or --store <domain>");
     const store = opts.store ?? storeFromUrl(opts.product!);
+    const root = repoRoot();
     // Auto-create the drop folder so the operator never has to name it.
-    const inbox = path.resolve("inbox", store);
+    const inbox = path.join(root, "inbox", store);
     mkdirSync(inbox, { recursive: true });
+    // Refresh the shared playbook the brief prompts point at (kept in sync with code).
+    const instrPath = path.join(root, "instructions.md");
+    writeFileSync(instrPath, buildInstructions());
 
-    const prompts = buildAgentPrompts(store, { product: opts.product, task: opts.task });
+    const prompts = buildAgentPrompts(store, { product: opts.product, task: opts.task, full: opts.full });
     for (const p of prompts) {
       console.log(`\n${"=".repeat(70)}\n# ${p.label} — paste this into the agent\n${"=".repeat(70)}\n${p.prompt}`);
     }
     console.log(
-      `\n${"-".repeat(70)}\nStore: ${store}\nDrop replies + screenshots into: ${inbox}/  (created)\nThen either run the inbox watcher, or run:\n  audit manual --store ${store} --from-replies <file> [--out <dir>]\n`,
+      `\n${"-".repeat(70)}\nStore: ${store}\nMethod: ${opts.full ? "inlined in each prompt" : `instructions.md (refreshed at ${instrPath})`}\nDrop replies + screenshots into: ${inbox}/  (created)\nThen either run the inbox watcher, or run:\n  audit manual --store ${store} --from-replies <file> [--out <dir>]\n`,
     );
   });
 

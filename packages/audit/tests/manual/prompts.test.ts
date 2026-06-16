@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { buildAgentPrompts, parseReplies } from "../../src/manual/prompts.js";
+import { buildAgentPrompts, buildInstructions, parseReplies } from "../../src/manual/prompts.js";
 import { manualRunsFileSchema } from "../../src/manual/schema.js";
 
 describe("buildAgentPrompts", () => {
-  it("emits one prompt per assistant with the parseable RESULT line and guardrails", () => {
-    const prompts = buildAgentPrompts("graza.co", { product: "https://graza.co/products/sizzle" });
+  it("emits the full inline prompt per assistant with the parseable RESULT line and guardrails", () => {
+    const prompts = buildAgentPrompts("graza.co", { product: "https://graza.co/products/sizzle", full: true });
     expect(prompts).toHaveLength(4);
     expect(prompts.map((p) => p.agent)).toEqual(["codex", "perplexity", "claude", "gemini"]);
     for (const p of prompts) {
@@ -25,6 +25,30 @@ describe("buildAgentPrompts", () => {
       // ...and to tag any new Chrome group with its own name
       expect(p.prompt).toContain(`- ${agentName}"`);
     }
+  });
+
+  it("emits a short prompt that points at instructions.md by default", () => {
+    const prompts = buildAgentPrompts("graza.co", { product: "https://graza.co/products/sizzle" });
+    for (const p of prompts) {
+      expect(p.prompt).toContain("instructions.md");
+      expect(p.prompt).toContain("graza.co/products/sizzle");
+      expect(p.prompt).toContain(`${p.agent}-<n>-<stage>.png`);
+      expect(p.prompt).toContain("STOP before payment");
+      // the brief prompt must NOT inline the full funnel walk
+      expect(p.prompt).not.toContain("Walk the FULL shopping funnel");
+      expect(p.prompt.length).toBeLessThan(900);
+    }
+  });
+
+  it("renders instructions.md with the funnel, chrome-devtools tips and output format", () => {
+    const md = buildInstructions();
+    expect(md).toContain("take_snapshot");
+    expect(md).toContain("?skip_shop_pay=true");
+    expect(md).toContain("checkout.pci.shopifyinc.com");
+    expect(md).toContain("homepage.nav");
+    expect(md).toContain("captcha_cloudflare_bot");
+    expect(md).toContain("RESULT | agent:");
+    expect(md).toContain("non-headless browser");
   });
 
   it("adds agent-specific notes only to their own prompts", () => {

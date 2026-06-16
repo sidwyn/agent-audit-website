@@ -24,4 +24,4 @@ export {
   type CapabilityCheck,
   type ObstacleDef,
 } from "./manual/checklist.js";
-export { buildAgentPrompt, buildAgentPrompts, parseReplies } from "./manual/prompts.js";
+export { buildAgentPrompt, buildAgentPrompts, buildBriefPrompt, buildInstructions, parseReplies } from "./manual/prompts.js";

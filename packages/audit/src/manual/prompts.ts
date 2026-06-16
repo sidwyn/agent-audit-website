@@ -1,6 +1,6 @@
 import { BLOCKER_CODES, FUNNEL_STAGES, type CapabilityCheckResult, type CheckStatus, type ManualRun, type ObstacleResult } from "./schema.js";
 import type { BlockerCode, FunnelStageName } from "./schema.js";
-import { CAPABILITY_CHECKS, CHECK_KEYS, OBSTACLE_KEYS } from "./checklist.js";
+import { CAPABILITY_CHECKS, CHECK_KEYS, OBSTACLE_CHECKS, OBSTACLE_KEYS } from "./checklist.js";
 
 // Tier-2 human-in-the-loop: generate one copy-paste prompt per assistant that
 // walks the FULL shopping funnel and fills a ~40-action capability checklist +
@@ -93,14 +93,84 @@ export function buildAgentPrompt(
   ].join("\n");
 }
 
-export function buildAgentPrompts(
+// The full method as a standalone playbook the agent reads from the repo
+// (instructions.md), so the per-run prompt can stay short. Built from the
+// canonical checklist + the chrome-devtools driving tips, so it stays in sync.
+export function buildInstructions(): string {
+  const funnel = STAGE_TESTS.map((s, i) => `${i + 1}. **${s.stage}** — ${s.test}\n   checks: ${keysFor(s.stage)}`).join("\n");
+  const obstacles = OBSTACLE_CHECKS.map((o) => `- \`${o.key}\` — ${o.label}`).join("\n");
+  const statuses = "pass | fail | partial | blocked | na";
+  return `# Agent shopping-run instructions
+
+You are a shopping assistant buying on behalf of a user. Attempt a real purchase on the target store and report, in detail, what you could and couldn't do — **stopping safely before payment**. You are running inside this repo, so read/write files here directly.
+
+## Hard rules
+- Use a **real, non-headless browser**. Headless is NOT allowed (bot-blocked + unrealistic).
+- **STOP before payment.** Never enter card details, never place an order. Use clearly-fake \`@example.com\` test data for contact/shipping.
+- **Never** solve or bypass a CAPTCHA, Cloudflare, or bot check — screenshot it, stop, and report it.
+- If you create a new Chrome browser group/profile/window, append \` - <AgentName>\` to its name (e.g. "Shopping - Claude").
+
+## Walk the full funnel (11 sections)
+For each section, try the actions, judge each check \`(${statuses})\`, and capture a screenshot.
+
+${funnel}
+
+## Obstacles to watch for
+${obstacles}
+
+## Screenshots
+Save one per stage into \`inbox/<store>/\` named \`<agent>-<n>-<stage>.png\` (e.g. \`claude-4-product.png\`). Crop to the store page, not the whole desktop.
+
+## If you drive the browser via the chrome-devtools MCP
+1. **\`take_snapshot\` before every interaction** (not \`take_screenshot\`). It returns the accessibility tree with \`uid\` values for every element — that's how you find buttons, inputs, and iframes without coordinate-clicking. \`take_screenshot\` is only for saving images to disk.
+2. **\`fill\` takes a \`uid\`, not a CSS selector.** Use the \`uid\` from the snapshot (e.g. \`7_36\`) directly in \`fill(uid, value)\` — no \`querySelector\`/XPath.
+3. **Address comboboxes need an Escape after fill.** Shopify's address field is an autocomplete combobox; after \`fill\`, press Escape to dismiss the dropdown before the next field, or the listbox intercepts Tab/focus.
+4. **Shipping populates automatically after the ZIP is blurred.** Don't poll — fill the ZIP, press Tab to blur, then \`take_snapshot\`; shipping options appear in that snapshot.
+5. **Append \`?skip_shop_pay=true\` to the checkout URL.** When Shopify redirects to shop.app you lose the page; this keeps you on the store with an empty guest form.
+6. **PCI card iframes cannot be filled.** Card fields live in \`checkout.pci.shopifyinc.com\` cross-origin iframes (nested RootWebArea nodes in the snapshot). Stop at stage 10 — screenshot and report.
+7. **Save screenshots with \`filePath\`:** \`take_screenshot(filePath="/absolute/path/inbox/<store>/<agent>-8-checkout_info.png", fullPage=true)\`. Without \`filePath\` the image is only inline and isn't saved to disk.
+
+## Report format
+Write your reply (or \`inbox/<store>/<agent>.txt\`) in three parts.
+
+PART 1 — CHECKLIST, one line per check using the dotted keys above:
+\`<section.key>: <${statuses}> | <optional short note>\`
+
+PART 2 — OBSTACLES, only the ones you hit:
+\`<obstacle_key>: <short note>\`
+
+PART 3 — exactly one RESULT line:
+\`RESULT | agent: <agent> | model: <your exact model> | outcome: <success|abandoned> | furthest_stage: <${STAGE_NAMES}> | time_to_cart_seconds: <int or none> | blocker_code: <${BLOCKER_LIST}> | blocker: <short or none> | notes: <one sentence>\`
+`;
+}
+
+// Short per-run prompt that points at instructions.md (the agent reads it from
+// the repo). Use buildAgentPrompt (full inline) only for agents without repo access.
+export function buildBriefPrompt(
+  agentKey: string,
   store: string,
   opts: { product?: string; task?: string; productType?: string } = {},
+): string {
+  const target = opts.product ? `the product ${opts.product}` : `any in-stock product on https://${store}`;
+  return [
+    `Act as a shopping assistant. Buy ${target} on ${store}, going as far as you can — but STOP before payment (no card details, no order).`,
+    ...(AGENT_NOTES[agentKey] ? [AGENT_NOTES[agentKey]!(store)] : []),
+    ...(opts.productType ? [`This run tests the "${opts.productType}" product type — include "product_type: ${opts.productType}" in the RESULT line.`] : []),
+    `Follow the full method in instructions.md in this repo: the 11-section funnel, the capability checklist + keys, obstacles to watch for, the chrome-devtools tips, and the exact output format. Use a real non-headless browser; never bypass a CAPTCHA/bot check.`,
+    `Save a screenshot per stage into inbox/${store}/ named ${agentKey}-<n>-<stage>.png.`,
+    `Reply with the CHECKLIST + OBSTACLES + RESULT block from instructions.md — set agent: ${agentKey} and your real model in the RESULT line.`,
+  ].join("\n");
+}
+
+export function buildAgentPrompts(
+  store: string,
+  opts: { product?: string; task?: string; productType?: string; full?: boolean } = {},
 ): { agent: string; label: string; prompt: string }[] {
+  const build = opts.full ? buildAgentPrompt : buildBriefPrompt;
   return PROMPT_AGENTS.map((a) => ({
     agent: a.key,
     label: a.label,
-    prompt: buildAgentPrompt(a.key, store, opts),
+    prompt: build(a.key, store, opts),
   }));
 }
 
