@@ -36,8 +36,13 @@ describe("buildAgentPrompts", () => {
       expect(p.prompt).toContain("STOP before payment");
       // the brief prompt must NOT inline the full funnel walk
       expect(p.prompt).not.toContain("Walk the FULL shopping funnel");
-      expect(p.prompt.length).toBeLessThan(1200); // brief: far shorter than the full inline prompt
+      expect(p.prompt.length).toBeLessThan(1300); // brief: far shorter than the full inline prompt
     }
+    // each chrome-devtools agent gets its own debugging port; Perplexity (Comet) gets none
+    expect(prompts.find((p) => p.agent === "codex")!.prompt).toContain("--remote-debugging-port=9222");
+    expect(prompts.find((p) => p.agent === "claude")!.prompt).toContain("--remote-debugging-port=9223");
+    expect(prompts.find((p) => p.agent === "gemini")!.prompt).toContain("--remote-debugging-port=9224");
+    expect(prompts.find((p) => p.agent === "perplexity")!.prompt).not.toContain("remote-debugging-port");
   });
 
   it("renders instructions.md with the funnel, chrome-devtools tips and output format", () => {
@@ -50,6 +55,9 @@ describe("buildAgentPrompts", () => {
     expect(md).toContain("captcha_cloudflare_bot");
     expect(md).toContain("RESULT | agent:");
     expect(md).toContain("non-headless browser");
+    // dedicated per-agent debugging ports table
+    expect(md).toContain("port 9223");
+    expect(md).toContain("port 9224");
   });
 
   it("adds agent-specific notes only to their own prompts", () => {

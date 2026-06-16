@@ -54,6 +54,13 @@ Save one per stage into `inbox/<store>/` named `<agent>-<n>-<stage>.png` (e.g. `
 
 ## Driving the browser — you MUST use the chrome-devtools MCP
 This is mandatory for all agents **except Perplexity**, which drives its own browser (Perplexity Comet) directly — Perplexity should skip these chrome-devtools steps but still complete the funnel and report in the same format. Everyone else: drive every step through the chrome-devtools MCP tools below — no coordinate-clicking, no raw HTML scraping, no other automation.
+
+**Use your dedicated remote-debugging port** (launch/attach Chrome with `--remote-debugging-port=<your port>` and point the chrome-devtools MCP at it) so parallel agents don't collide on 9222:
+- Codex → port 9222
+- Perplexity → n/a (drives its own browser, Comet)
+- Claude → port 9223
+- Gemini → port 9224
+If your port is already taken, use the next free port and note it in your reply.
 1. **`take_snapshot` before every interaction** (not `take_screenshot`). It returns the accessibility tree with `uid` values for every element — that's how you find buttons, inputs, and iframes without coordinate-clicking. `take_screenshot` is only for saving images to disk.
 2. **`fill` takes a `uid`, not a CSS selector.** Use the `uid` from the snapshot (e.g. `7_36`) directly in `fill(uid, value)` — no `querySelector`/XPath.
 3. **Address comboboxes need an Escape after fill.** Shopify's address field is an autocomplete combobox; after `fill`, press Escape to dismiss the dropdown before the next field, or the listbox intercepts Tab/focus.

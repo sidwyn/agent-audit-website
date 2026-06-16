@@ -39,6 +39,14 @@ const AGENT_NOTES: Record<string, (store: string) => string> = {
     `Perplexity saves files to its own sandbox — copy/download each screenshot into inbox/${store}/ in the repo. If you cannot write to the repo, attach or inline every screenshot directly in your chat reply so the operator can save them.`,
 };
 
+// Each chrome-devtools agent drives Chrome on its OWN remote-debugging port so
+// parallel runs don't fight over 9222. Perplexity is absent — it uses Comet.
+const AGENT_PORTS: Record<string, number> = {
+  codex: 9222,
+  claude: 9223,
+  gemini: 9224,
+};
+
 const BLOCKER_LIST = BLOCKER_CODES.join(" | ");
 const STAGE_NAMES = FUNNEL_STAGES.join(" | ");
 const keysFor = (stage: FunnelStageName): string =>
@@ -61,6 +69,9 @@ export function buildAgentPrompt(
     `You are acting as a shopping assistant buying on behalf of a user. Task: ${task}.`,
     `You MUST use a real, non-headless browser. Headless browsers are NOT allowed for this test — they get blocked by bot protection and do not reflect a real shopper.`,
     `If you create a new browser group, profile, or window in Chrome for this run, append " - ${agentName}" to its name (e.g. "Shopping - ${agentName}") so the operator can tell which agent is which.`,
+    ...(agentKey !== "perplexity" && AGENT_PORTS[agentKey]
+      ? [`Drive via the chrome-devtools MCP on remote-debugging port ${AGENT_PORTS[agentKey]} (launch/attach Chrome with --remote-debugging-port=${AGENT_PORTS[agentKey]}) — your dedicated port, so parallel agents don't collide on 9222.`]
+      : []),
     ...(AGENT_NOTES[agentKey] ? [AGENT_NOTES[agentKey]!(store)] : []),
     ...(opts.productType ? [typeLine] : []),
     ``,
@@ -124,6 +135,10 @@ Save one per stage into \`inbox/<store>/\` named \`<agent>-<n>-<stage>.png\` (e.
 
 ## Driving the browser — you MUST use the chrome-devtools MCP
 This is mandatory for all agents **except Perplexity**, which drives its own browser (Perplexity Comet) directly — Perplexity should skip these chrome-devtools steps but still complete the funnel and report in the same format. Everyone else: drive every step through the chrome-devtools MCP tools below — no coordinate-clicking, no raw HTML scraping, no other automation.
+
+**Use your dedicated remote-debugging port** (launch/attach Chrome with \`--remote-debugging-port=<your port>\` and point the chrome-devtools MCP at it) so parallel agents don't collide on 9222:
+${PROMPT_AGENTS.map((a) => `- ${a.label} → ${AGENT_PORTS[a.key] ? `port ${AGENT_PORTS[a.key]}` : "n/a (drives its own browser, Comet)"}`).join("\n")}
+If your port is already taken, use the next free port and note it in your reply.
 1. **\`take_snapshot\` before every interaction** (not \`take_screenshot\`). It returns the accessibility tree with \`uid\` values for every element — that's how you find buttons, inputs, and iframes without coordinate-clicking. \`take_screenshot\` is only for saving images to disk.
 2. **\`fill\` takes a \`uid\`, not a CSS selector.** Use the \`uid\` from the snapshot (e.g. \`7_36\`) directly in \`fill(uid, value)\` — no \`querySelector\`/XPath.
 3. **Address comboboxes need an Escape after fill.** Shopify's address field is an autocomplete combobox; after \`fill\`, press Escape to dismiss the dropdown before the next field, or the listbox intercepts Tab/focus.
@@ -154,10 +169,11 @@ export function buildBriefPrompt(
   opts: { product?: string; task?: string; productType?: string } = {},
 ): string {
   const target = opts.product ? `the product ${opts.product}` : `any in-stock product on https://${store}`;
+  const port = AGENT_PORTS[agentKey];
   const browserClause =
     agentKey === "perplexity"
       ? "Drive your own browser (Perplexity Comet) directly — you do NOT use the chrome-devtools MCP. Use a real non-headless browser; never bypass a CAPTCHA/bot check."
-      : "You MUST drive the browser via the chrome-devtools MCP, in a real non-headless browser; never bypass a CAPTCHA/bot check.";
+      : `You MUST drive the browser via the chrome-devtools MCP, in a real non-headless browser${port ? `, on remote-debugging port ${port} (your dedicated port — launch/attach Chrome with --remote-debugging-port=${port} so parallel agents don't collide on 9222)` : ""}. Never bypass a CAPTCHA/bot check.`;
   return [
     `Act as a shopping assistant. Buy ${target} on ${store}, going as far as you can — but STOP before payment (no card details, no order).`,
     ...(AGENT_NOTES[agentKey] ? [AGENT_NOTES[agentKey]!(store)] : []),
