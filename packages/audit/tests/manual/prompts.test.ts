@@ -21,6 +21,15 @@ describe("buildAgentPrompts", () => {
       expect(p.prompt).toMatch(/stage: <homepage \| search/);
     }
   });
+
+  it("adds the Claude Chrome extension note only to the Claude prompt", () => {
+    const prompts = buildAgentPrompts("graza.co", { product: "https://graza.co/products/sizzle" });
+    const note = "Use the Claude Chrome extension to achieve this.";
+    expect(prompts.find((p) => p.agent === "claude")!.prompt).toContain(note);
+    for (const p of prompts.filter((p) => p.agent !== "claude")) {
+      expect(p.prompt).not.toContain(note);
+    }
+  });
 });
 
 describe("parseReplies", () => {

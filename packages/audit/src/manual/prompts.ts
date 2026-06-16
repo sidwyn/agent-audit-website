@@ -29,6 +29,13 @@ const STAGE_TESTS: { stage: FunnelStageName; test: string }[] = [
   { stage: "confirmation", test: "would the order-confirmation page be parseable? (you stop before paying — answer na if you can't tell)" },
 ];
 
+// Agent-specific guidance. Claude is told to run via the real Claude Chrome
+// extension (a logged-in browser session), which avoids the bot-detection wall
+// that an automation/CDP-controlled browser hits on Cloudflare-protected stores.
+const AGENT_NOTES: Record<string, string> = {
+  claude: "Use the Claude Chrome extension to achieve this.",
+};
+
 const BLOCKER_LIST = BLOCKER_CODES.join(" | ");
 const STAGE_NAMES = FUNNEL_STAGES.join(" | ");
 const keysFor = (stage: FunnelStageName): string =>
@@ -48,6 +55,7 @@ export function buildAgentPrompt(
   const typeLine = `This run is testing the "${opts.productType}" product type — include "product_type: ${opts.productType}" in the RESULT line.`;
   return [
     `You are acting as a shopping assistant buying on behalf of a user. Task: ${task}.`,
+    ...(AGENT_NOTES[agentKey] ? [AGENT_NOTES[agentKey]!] : []),
     ...(opts.productType ? [typeLine] : []),
     ``,
     `Note the START TIME before you begin. You will report how many seconds it took to get the item into the cart.`,
