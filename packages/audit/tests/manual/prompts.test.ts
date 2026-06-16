@@ -22,12 +22,20 @@ describe("buildAgentPrompts", () => {
     }
   });
 
-  it("adds the Claude Chrome extension note only to the Claude prompt", () => {
+  it("adds agent-specific notes only to their own prompts", () => {
     const prompts = buildAgentPrompts("graza.co", { product: "https://graza.co/products/sizzle" });
-    const note = "Use the Claude Chrome extension to achieve this.";
-    expect(prompts.find((p) => p.agent === "claude")!.prompt).toContain(note);
+    const claudeNote = "Use the Claude Chrome extension to achieve this.";
+    expect(prompts.find((p) => p.agent === "claude")!.prompt).toContain(claudeNote);
     for (const p of prompts.filter((p) => p.agent !== "claude")) {
-      expect(p.prompt).not.toContain(note);
+      expect(p.prompt).not.toContain(claudeNote);
+    }
+
+    const perplexity = prompts.find((p) => p.agent === "perplexity")!.prompt;
+    expect(perplexity).toContain("Perplexity saves files to its own sandbox");
+    expect(perplexity).toContain("inbox/graza.co/");
+    expect(perplexity).toContain("attach or inline every screenshot");
+    for (const p of prompts.filter((p) => p.agent !== "perplexity")) {
+      expect(p.prompt).not.toContain("Perplexity saves files to its own sandbox");
     }
   });
 });

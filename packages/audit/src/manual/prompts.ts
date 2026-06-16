@@ -29,11 +29,14 @@ const STAGE_TESTS: { stage: FunnelStageName; test: string }[] = [
   { stage: "confirmation", test: "would the order-confirmation page be parseable? (you stop before paying — answer na if you can't tell)" },
 ];
 
-// Agent-specific guidance. Claude is told to run via the real Claude Chrome
-// extension (a logged-in browser session), which avoids the bot-detection wall
-// that an automation/CDP-controlled browser hits on Cloudflare-protected stores.
-const AGENT_NOTES: Record<string, string> = {
-  claude: "Use the Claude Chrome extension to achieve this.",
+// Agent-specific guidance (may reference the store's inbox folder). Claude runs
+// via the real Claude Chrome extension (a logged-in browser session) to avoid the
+// bot-detection wall a CDP browser hits; Perplexity sandboxes its files, so it's
+// told to get the screenshots out to the local folder or into the chat reply.
+const AGENT_NOTES: Record<string, (store: string) => string> = {
+  claude: () => "Use the Claude Chrome extension to achieve this.",
+  perplexity: (store) =>
+    `Perplexity saves files to its own sandbox — copy/download each screenshot into inbox/${store}/ in the repo. If you cannot write to the repo, attach or inline every screenshot directly in your chat reply so the operator can save them.`,
 };
 
 const BLOCKER_LIST = BLOCKER_CODES.join(" | ");
@@ -55,7 +58,7 @@ export function buildAgentPrompt(
   const typeLine = `This run is testing the "${opts.productType}" product type — include "product_type: ${opts.productType}" in the RESULT line.`;
   return [
     `You are acting as a shopping assistant buying on behalf of a user. Task: ${task}.`,
-    ...(AGENT_NOTES[agentKey] ? [AGENT_NOTES[agentKey]!] : []),
+    ...(AGENT_NOTES[agentKey] ? [AGENT_NOTES[agentKey]!(store)] : []),
     ...(opts.productType ? [typeLine] : []),
     ``,
     `Note the START TIME before you begin. You will report how many seconds it took to get the item into the cart.`,
