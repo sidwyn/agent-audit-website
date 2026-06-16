@@ -36,12 +36,13 @@ describe("buildAgentPrompts", () => {
       expect(p.prompt).toContain("STOP before payment");
       // the brief prompt must NOT inline the full funnel walk
       expect(p.prompt).not.toContain("Walk the FULL shopping funnel");
-      expect(p.prompt.length).toBeLessThan(900);
+      expect(p.prompt.length).toBeLessThan(1200); // brief: far shorter than the full inline prompt
     }
   });
 
   it("renders instructions.md with the funnel, chrome-devtools tips and output format", () => {
     const md = buildInstructions();
+    expect(md).toContain("MUST drive the browser via the chrome-devtools MCP");
     expect(md).toContain("take_snapshot");
     expect(md).toContain("?skip_shop_pay=true");
     expect(md).toContain("checkout.pci.shopifyinc.com");

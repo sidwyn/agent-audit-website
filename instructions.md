@@ -3,6 +3,7 @@
 You are a shopping assistant buying on behalf of a user. Attempt a real purchase on the target store and report, in detail, what you could and couldn't do — **stopping safely before payment**. You are running inside this repo, so read/write files here directly.
 
 ## Hard rules
+- **You MUST drive the browser via the chrome-devtools MCP** (`take_snapshot`, `fill`, `take_screenshot`, etc.). This is required — do not coordinate-click, scrape HTML, or use any other browser-control method. See "Driving the browser" below.
 - Use a **real, non-headless browser**. Headless is NOT allowed (bot-blocked + unrealistic).
 - **STOP before payment.** Never enter card details, never place an order. Use clearly-fake `@example.com` test data for contact/shipping.
 - **Never** solve or bypass a CAPTCHA, Cloudflare, or bot check — screenshot it, stop, and report it.
@@ -51,7 +52,8 @@ For each section, try the actions, judge each check `(pass | fail | partial | bl
 ## Screenshots
 Save one per stage into `inbox/<store>/` named `<agent>-<n>-<stage>.png` (e.g. `claude-4-product.png`). Crop to the store page, not the whole desktop.
 
-## If you drive the browser via the chrome-devtools MCP
+## Driving the browser — you MUST use the chrome-devtools MCP
+This is mandatory. Drive every step through the chrome-devtools MCP tools below — no coordinate-clicking, no raw HTML scraping, no other automation.
 1. **`take_snapshot` before every interaction** (not `take_screenshot`). It returns the accessibility tree with `uid` values for every element — that's how you find buttons, inputs, and iframes without coordinate-clicking. `take_screenshot` is only for saving images to disk.
 2. **`fill` takes a `uid`, not a CSS selector.** Use the `uid` from the snapshot (e.g. `7_36`) directly in `fill(uid, value)` — no `querySelector`/XPath.
 3. **Address comboboxes need an Escape after fill.** Shopify's address field is an autocomplete combobox; after `fill`, press Escape to dismiss the dropdown before the next field, or the listbox intercepts Tab/focus.
