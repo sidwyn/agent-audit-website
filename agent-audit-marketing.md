@@ -7,12 +7,19 @@ Working name: **AgentProof**. It reads two ways: proof your store works for agen
 ## Landing page copy
 
 ### Hero
-**Can an AI agent buy from your store?**
+**Open to agents. Hard to exploit.**
 
-ChatGPT, Perplexity, and Claude now shop on behalf of real buyers. Their orders land in your dashboard labeled as ordinary web traffic. We test your store against three shopping agents, classify 90 days of your orders, and show you what agent traffic earns you or costs you.
+ChatGPT, Perplexity, and Claude now buy on behalf of real customers. Those orders are your best-converting traffic — and your least-watched risk. AgentAudit measures both, then shows you exactly where you leak.
 
-**[Get the audit for $99]**
+**[Get the audit — $99]**
 Founding rate for the first 20 stores. List price $499.
+
+### Duality
+**Agents convert.** AI traffic to U.S. retail sites grew 393% year-over-year in Q1 2026, and converted 42% better than non-AI traffic in March 2026. If an agent can't get through your checkout, that's revenue walking out the door.
+
+**Agents probe.** The same channel has no CAPTCHA, no checkout screen, none of the friction that slows a human down. An agent can test every promo code, price, and policy at once — and the orders arrive in your dashboard labeled as ordinary web traffic.
+
+Most stores can't see this channel at all. We make it visible — the money it brings in, and the money it quietly lets out.
 
 ### Stats bar
 - [AI traffic to U.S. retail sites grew 393% YoY in Q1 2026](https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable)
@@ -22,32 +29,56 @@ Founding rate for the first 20 stores. List price $499.
 ### What you get
 A scored report and a 30-minute readout call.
 
-1. **Agent Readiness Score.** Automated checks on your robots.txt, structured data, product feeds, and checkout flow, then live purchase attempts by ChatGPT, Perplexity, and Claude. You see the exact step where each one fails.
-2. **Order classification.** Your last 90 days of orders split into human, browser agent, and assistant channel, with revenue share for each.
-3. **Dispute exposure.** Dispute rate by segment, mapped against Visa's monitoring thresholds, with the math on how close you sit to penalties.
-4. **Fix list.** Every issue ranked by revenue impact and effort. Most take under a day to fix.
+1. **Agent Readiness Score — can an agent actually buy from you?** Automated checks on your robots.txt, structured data, product feeds, and checkout flow, followed by live purchase attempts from ChatGPT, Perplexity, and Claude. You see the exact step where each one fails.
+2. **Order classification — what the channel already earns you.** Your last 90 days of orders, split into human, browser agent, and assistant channel, with the revenue share for each. Most merchants have never seen this number.
+3. **Leak & dispute exposure — what the channel quietly costs you.** The promo, pricing, and policy gaps an agent surfaces by testing everything at once, plus your dispute rate by segment mapped against Visa's monitoring thresholds — the excessive VAMP threshold dropped to 1.5% on April 1, 2026 — with the math on how close you sit to penalties.
+4. **Fix list — ranked by dollars, not by severity theater.** Every issue ordered by revenue impact and effort. Most take under a day to fix.
 
 ### How it works
-1. Pay and answer five questions about your store. Two minutes.
-2. Create a read-only API token using our guide. Ten minutes, no code changes, nothing installed.
-3. Get your report and book the readout. Three business days.
+1. **Pay and answer five questions about your store.** Two minutes.
+2. **Create a read-only API token using our guide.** Ten minutes, no code changes, nothing installed.
+3. **Get your report and book the readout.** Three business days.
+
+### Live dataset
+- [__]% of audited stores fail at least one of the three agents at checkout.
+- [__]% leak B2B or regional pricing to consumer-facing agents.
+- The median audited store already earns [__]% of revenue from agent channels — unattributed.
+
+AgentAudit is building the first dataset on agent commerce across real stores. Every audit sharpens the next one.
+
+### Monitoring
+A one-time audit shows you today's gaps. But agents re-test you every time you launch a promotion or change a price — and a new leak can run for months before it shows up in your margins.
+
+Ask about ongoing monitoring: we watch the agent channel and flag fresh gaps the moment they appear, not a quarter later.
+
+[Ask about monitoring →](mailto:sidwyn@gmail.com)
 
 ### Guarantee
 Three or more actionable findings, or your $99 back.
 
+### Who it's for
+Shopify stores doing $500K+ a year. Below that, the dispute analysis carries less money, though the readiness half still applies.
+
+Not on Shopify? The readiness audit works on any platform. Order classification requires Shopify for now — email me and I'll tell you what I can do today.
+
 ### FAQ
-**Will agents place real orders?** No. Automated checks stop at the checkout page. Manual agent runs use test mode or get canceled before fulfillment, coordinated with you.
+**Will agents place real orders?**
+No. Automated checks stop at the checkout page. Manual agent runs use test mode or get canceled before fulfillment, coordinated with you.
 
-**What access do you need?** A read-only token you create in two clicks and revoke the moment we deliver. Your order data stays on one machine and gets deleted after delivery.
+**What access do you need?**
+A read-only token you create in two clicks and revoke the moment we deliver. Your order data stays on one machine and is deleted after delivery.
 
-**Who is this for?** Shopify stores doing $500K+ a year. Below that, the dispute analysis carries less money, though the readiness half still applies.
+**Why should I want agent traffic at all?**
+Because it's already here and it converts better than your other traffic. The goal isn't to block agents — it's to be the store they can buy from cleanly, without being the store they can game. Open and resilient are the same project.
 
-**Why $99?** I'm building the first dataset on agent commerce across real stores. Founding stores get the audit at cost. The price moves to $499 after 20.
+**Why $99?**
+I'm building the first dataset on agent commerce across real stores. Founding stores get the audit at cost. The price moves to $499 after the first 20.
 
-**My store isn't on Shopify.** Email me. The readiness audit works on any platform; order classification requires Shopify for now.
+**My store isn't on Shopify.**
+Email me. The readiness audit works on any platform; order classification requires Shopify for now.
 
 ### About
-I'm Sidwyn Koh. I spent 16 years building payments and commerce platforms, most recently payments at Meta and before that payments at Lyft. Agents are becoming a real buyer surface, and merchants have no instruments for them yet. I run every audit myself.
+I'm Sidwyn Koh. I spent 16 years building payments and commerce platforms — most recently payments at Meta, and before that payments at Lyft. Agents are becoming a real buyer surface, and merchants have no instruments for them yet. I run every audit myself.
 
 ---
 

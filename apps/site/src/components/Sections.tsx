@@ -77,13 +77,86 @@ function StatWithFootnote({ index, text }: { index: number; text: string }) {
   );
 }
 
+export function Duality({ copy }: { copy: LandingCopy["duality"] }) {
+  const blocks = parseBlocks(copy);
+  return (
+    <section className="duality">
+      <h2>Two things are true about agent traffic</h2>
+      {blocks.map((b, i) =>
+        b.type === "p" ? (
+          <p key={i}>
+            <Inline text={b.text} />
+          </p>
+        ) : null,
+      )}
+    </section>
+  );
+}
+
+export function LiveDataset({ copy }: { copy: LandingCopy["liveDataset"] }) {
+  const blocks = parseBlocks(copy);
+  const list = blocks.find((b) => b.type === "ul");
+  const framing = blocks.find((b) => b.type === "p");
+  return (
+    <section className="live-dataset">
+      <h2>What we&apos;re seeing across stores</h2>
+      {list?.type === "ul" && (
+        <ul>
+          {list.items.map((item) => (
+            <li key={item}>
+              <Inline text={item} />
+            </li>
+          ))}
+        </ul>
+      )}
+      {framing && (
+        <p className="framing">
+          <Inline text={framing.text} />
+        </p>
+      )}
+    </section>
+  );
+}
+
+export function Monitoring({ copy }: { copy: LandingCopy["monitoring"] }) {
+  const blocks = parseBlocks(copy);
+  return (
+    <section className="monitoring">
+      <h2>An audit is a snapshot. The channel moves.</h2>
+      {blocks.map((b, i) =>
+        b.type === "p" ? (
+          <p key={i}>
+            <Inline text={b.text} />
+          </p>
+        ) : null,
+      )}
+    </section>
+  );
+}
+
+export function WhoItsFor({ copy }: { copy: LandingCopy["whoItsFor"] }) {
+  const blocks = parseBlocks(copy);
+  return (
+    <section className="who">
+      <h2>Who this is for</h2>
+      {blocks.map((b, i) =>
+        b.type === "p" ? (
+          <p key={i}>
+            <Inline text={b.text} />
+          </p>
+        ) : null,
+      )}
+    </section>
+  );
+}
+
 export function WhatYouGet({ copy }: { copy: LandingCopy["whatYouGet"] }) {
   const blocks = parseBlocks(copy);
   const intro = blocks[0]?.type === "p" ? blocks[0].text : "";
   const list = blocks.find((b) => b.type === "ol");
   return (
     <section className="get" id="what-you-get">
-      <h2>What you get</h2>
+      <h2>A scored report and a 30-minute readout call</h2>
       <p className="intro">
         <Inline text={intro} />
       </p>
@@ -102,7 +175,7 @@ export function HowItWorks({ copy }: { copy: LandingCopy["howItWorks"] }) {
   const list = parseBlocks(copy).find((b) => b.type === "ol");
   return (
     <section className="how" id="how-it-works">
-      <h2>How it works</h2>
+      <h2>Three steps, three business days</h2>
       <ol className="steps">
         {(list?.type === "ol" ? list.items : []).map((item) => (
           <li key={item}>

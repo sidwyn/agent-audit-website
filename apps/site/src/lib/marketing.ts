@@ -3,20 +3,28 @@ import path from "node:path";
 
 export type LandingCopy = {
   hero: string;
+  duality: string;
   statsBar: string;
   whatYouGet: string;
   howItWorks: string;
+  liveDataset: string;
+  monitoring: string;
   guarantee: string;
+  whoItsFor: string;
   faq: string;
   about: string;
 };
 
 const SECTION_KEYS: { heading: string; key: keyof LandingCopy }[] = [
   { heading: "Hero", key: "hero" },
+  { heading: "Duality", key: "duality" },
   { heading: "Stats bar", key: "statsBar" },
   { heading: "What you get", key: "whatYouGet" },
   { heading: "How it works", key: "howItWorks" },
+  { heading: "Live dataset", key: "liveDataset" },
+  { heading: "Monitoring", key: "monitoring" },
   { heading: "Guarantee", key: "guarantee" },
+  { heading: "Who it's for", key: "whoItsFor" },
   { heading: "FAQ", key: "faq" },
   { heading: "About", key: "about" },
 ];

@@ -7,9 +7,9 @@ const copy = loadLandingCopy();
 describe("parseBlocks", () => {
   it("turns the hero into headline, paragraph, cta and fine print", () => {
     const blocks = parseBlocks(copy.hero);
-    expect(blocks[0]).toEqual({ type: "p", text: "**Can an AI agent buy from your store?**" });
+    expect(blocks[0]).toEqual({ type: "p", text: "**Open to agents. Hard to exploit.**" });
     expect(blocks[1]!.type).toBe("p");
-    expect(blocks[2]).toEqual({ type: "cta", label: "Get the audit for $99" });
+    expect(blocks[2]).toEqual({ type: "cta", label: "Get the audit — $99" });
     expect(blocks[3]).toEqual({
       type: "p",
       text: "Founding rate for the first 20 stores. List price $499.",

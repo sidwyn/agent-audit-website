@@ -1,12 +1,16 @@
 import {
   About,
   BottomCta,
+  Duality,
   Faq,
   Guarantee,
   Hero,
   HowItWorks,
+  LiveDataset,
+  Monitoring,
   StatsBar,
   WhatYouGet,
+  WhoItsFor,
 } from "../components/Sections";
 import { loadLandingCopy } from "../lib/marketing";
 
@@ -20,10 +24,14 @@ export default function Page() {
   return (
     <main>
       <Hero copy={copy.hero} env={env} />
+      <Duality copy={copy.duality} />
       <StatsBar copy={copy.statsBar} />
       <WhatYouGet copy={copy.whatYouGet} />
       <HowItWorks copy={copy.howItWorks} />
+      <LiveDataset copy={copy.liveDataset} />
+      <Monitoring copy={copy.monitoring} />
       <Guarantee copy={copy.guarantee} />
+      <WhoItsFor copy={copy.whoItsFor} />
       <Faq copy={copy.faq} />
       <About copy={copy.about} />
       <BottomCta copy={copy.hero} env={env} />
