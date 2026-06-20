@@ -1,16 +1,15 @@
 import {
   About,
   BottomCta,
-  Duality,
-  Faq,
-  Guarantee,
+  ContinuousScanning,
+  FraudMonitoring,
   Hero,
   HowItWorks,
-  LiveDataset,
-  Monitoring,
-  StatsBar,
-  WhatYouGet,
-  WhoItsFor,
+  OngoingAudits,
+  Pricing,
+  Stakes,
+  Trust,
+  WhatWeTest,
 } from "../components/Sections";
 import { loadLandingCopy } from "../lib/marketing";
 
@@ -24,22 +23,21 @@ export default function Page() {
   return (
     <main>
       <Hero copy={copy.hero} env={env} />
-      <Duality copy={copy.duality} />
-      <StatsBar copy={copy.statsBar} />
-      <WhatYouGet copy={copy.whatYouGet} />
+      <Stakes copy={copy.stakes} />
       <HowItWorks copy={copy.howItWorks} />
-      <LiveDataset copy={copy.liveDataset} />
-      <Monitoring copy={copy.monitoring} />
-      <Guarantee copy={copy.guarantee} />
-      <WhoItsFor copy={copy.whoItsFor} />
-      <Faq copy={copy.faq} />
+      <OngoingAudits copy={copy.ongoingAudits} />
+      <ContinuousScanning copy={copy.continuousScanning} />
+      <FraudMonitoring copy={copy.fraudMonitoring} />
+      <WhatWeTest copy={copy.whatWeTest} />
+      <Trust copy={copy.trust} />
+      <Pricing copy={copy.pricing} env={env} />
       <About copy={copy.about} />
       <BottomCta copy={copy.hero} env={env} />
       <footer>
         <p>
           AgentAudit · run by Sidwyn Koh · <a href="mailto:sidwyn@gmail.com">sidwyn@gmail.com</a>
         </p>
-        <p className="footnote">No cookies, no trackers. Merchant data is deleted after delivery.</p>
+        <p className="footnote">No cookies, no trackers. Merchant data is deleted on cancellation.</p>
       </footer>
     </main>
   );

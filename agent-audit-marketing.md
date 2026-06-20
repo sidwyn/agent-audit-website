@@ -7,78 +7,68 @@ Working name: **AgentProof**. It reads two ways: proof your store works for agen
 ## Landing page copy
 
 ### Hero
-**Open to agents. Hard to exploit.**
+Agent Abuse & Fraud Protection · for Shopify
 
-ChatGPT, Perplexity, and Claude now buy on behalf of real customers. Those orders are your best-converting traffic — and your least-watched risk. AgentAudit measures both, then shows you exactly where you leak.
+**Stop agents from gaming your store.**
 
-**[Get the audit — $99]**
-Founding rate for the first 20 stores. List price $499.
+ChatGPT, Perplexity, and Claude can now read your catalog and check out straight through Shopify's agent endpoints — no CAPTCHA, no checkout screen, none of the friction that slows a human down. So they probe every promo, price, and policy at machine speed, and the orders land in your dashboard looking ordinary. AgentAudit watches the agent channel for abuse and fraud, and warns you the moment a change opens a new hole. $39/month.
 
-### Duality
-**Agents convert.** AI traffic to U.S. retail sites grew 393% year-over-year in Q1 2026, and converted 42% better than non-AI traffic in March 2026. If an agent can't get through your checkout, that's revenue walking out the door.
+**[Start — $39/month]**
 
-**Agents probe.** The same channel has no CAPTCHA, no checkout screen, none of the friction that slows a human down. An agent can test every promo code, price, and policy at once — and the orders arrive in your dashboard labeled as ordinary web traffic.
+### Stakes
+Shopify handed AI shopping agents a direct line into your store. It's your fastest-growing traffic and your least-watched risk at the same time — and because agent orders look like ordinary web traffic, most merchants can't see the channel at all. An agent runs thousands of promo and pricing combinations faster than any human, and whatever it finds gets shared to other agents and posted online. One weak spot gets hit everywhere.
 
-Most stores can't see this channel at all. We make it visible — the money it brings in, and the money it quietly lets out.
-
-### Stats bar
-- [AI traffic to U.S. retail sites grew 393% YoY in Q1 2026](https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable)
-- [AI traffic converted 42% better than non-AI traffic in March 2026](https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable)
-- [Visa's excessive VAMP threshold fell to 1.5% on April 1, 2026](https://merchantriskcouncil.org/learning/resource-center/member-news/blog/2026/stricter-vamp-ratio-thresholds-are-now-in-effect-heres-how-to-stay-compliant)
-
-### What you get
-A scored report and a 30-minute readout call.
-
-1. **Agent Readiness Score — can an agent actually buy from you?** Automated checks on your robots.txt, structured data, product feeds, and checkout flow, followed by live purchase attempts from ChatGPT, Perplexity, and Claude. You see the exact step where each one fails.
-2. **Order classification — what the channel already earns you.** Your last 90 days of orders, split into human, browser agent, and assistant channel, with the revenue share for each. Most merchants have never seen this number.
-3. **Leak & dispute exposure — what the channel quietly costs you.** The promo, pricing, and policy gaps an agent surfaces by testing everything at once, plus your dispute rate by segment mapped against Visa's monitoring thresholds — the excessive VAMP threshold dropped to 1.5% on April 1, 2026 — with the math on how close you sit to penalties.
-4. **Fix list — ranked by dollars, not by severity theater.** Every issue ordered by revenue impact and effort. Most take under a day to fix.
+- **393%** · [YoY growth in AI traffic to U.S. retail sites, Q1 2026](https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable)
+- **42%** · [how much better AI traffic converted vs non-AI, March 2026](https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable)
+- **1.5%** · [Visa's excessive VAMP dispute threshold as of April 1, 2026 — where penalties start](https://merchantriskcouncil.org/learning/resource-center/member-news/blog/2026/stricter-vamp-ratio-thresholds-are-now-in-effect-heres-how-to-stay-compliant)
 
 ### How it works
-1. **Pay and answer five questions about your store.** Two minutes.
-2. **Create a read-only API token using our guide.** Ten minutes, no code changes, nothing installed.
-3. **Get your report and book the readout.** Three business days.
+1. **Connect in two clicks.** Create a read-only token from your Shopify admin. No code, nothing installed, revoke anytime.
+2. **We watch the agent channel.** AgentAudit probes your store the way a hostile agent would, monitors every change you publish, and flags fraud-prone orders as they come in.
+3. **You get the report.** Ongoing audits land in your inbox, and the moment a change opens a new vector or an order looks abusive, you hear about it — ranked by dollars.
 
-### Live dataset
-- [__]% of audited stores fail at least one of the three agents at checkout.
-- [__]% leak B2B or regional pricing to consumer-facing agents.
-- The median audited store already earns [__]% of revenue from agent channels — unattributed.
+### Ongoing audits
+Always-on audit
 
-AgentAudit is building the first dataset on agent commerce across real stores. Every audit sharpens the next one.
+**The attack, re-run on your store — every week, not once**
 
-### Monitoring
-A one-time audit shows you today's gaps. But agents re-test you every time you launch a promotion or change a price — and a new leak can run for months before it shows up in your margins.
+A one-time audit is a snapshot, and agents re-test you daily. AgentAudit keeps running the full attack — promo enumeration, currency and pricing checks, checkout and policy probes — against your live agent endpoints, and emails you a ranked report. You see what leaks, how much it costs, and exactly how to close it.
 
-Ask about ongoing monitoring: we watch the agent channel and flag fresh gaps the moment they appear, not a quarter later.
+### Continuous scanning
+Change-time protection
 
-[Ask about monitoring →](mailto:sidwyn@gmail.com)
+**Publish a change, see what it opens**
 
-### Guarantee
-Three or more actionable findings, or your $99 back.
+Every product, promo, price, or policy you publish is a new thing for an agent to test. AgentAudit's Shopify integration watches for those changes and tells you, in plain language, which vectors each one opens — before your customers' agents find them.
 
-### Who it's for
-Shopify stores doing $500K+ a year. Below that, the dispute analysis carries less money, though the readiness half still applies.
+### Fraud monitoring
+Fraud watch
 
-Not on Shopify? The readiness audit works on any platform. Order classification requires Shopify for now — email me and I'll tell you what I can do today.
+**Catch the abusive order before it becomes a dispute**
 
-### FAQ
-**Will agents place real orders?**
-No. Automated checks stop at the checkout page. Manual agent runs use test mode or get canceled before fulfillment, coordinated with you.
+Agents make abuse cheap: thousands of legit-looking accounts, rotated email aliases, single-use codes redeemed over and over. AgentAudit watches your incoming agent-channel orders for those patterns and flags the risky ones — so they don't quietly push you toward Visa's dispute thresholds.
 
-**What access do you need?**
-A read-only token you create in two clicks and revoke the moment we deliver. Your order data stays on one machine and is deleted after delivery.
+### What we test
+- **Revenue leakage** — promo enumeration, stacking, shipping arbitrage, and "one per customer" limits that fall apart against rotated aliases.
+- **Pricing inconsistencies** — cheapest geography, currency mismatches, and segment pricing surfaced by checking every market at once.
+- **Checkout integrity** — cart and checkout state abuse, payment and mandate handoff weak points, and inventory edge cases under repetition.
+- **Policy probing** — cancellation, return, and refund gaps across discounted, bundled, and partially fulfilled orders.
+- **Access & abuse resistance** — cross-buyer authorization, catalog/data exposure, rate limits, and input fuzzing.
+- **Order fraud** — alias rotation, reused single-use codes, and dispute-prone patterns in live agent orders.
 
-**Why should I want agent traffic at all?**
-Because it's already here and it converts better than your other traffic. The goal isn't to block agents — it's to be the store they can buy from cleanly, without being the store they can game. Open and resilient are the same project.
+### Trust
+- Read-only token you create in two clicks and revoke anytime.
+- Scans never complete a purchase — they stop at checkout.
+- Your data stays on one machine and is deleted on cancellation.
+- No cookies, no trackers. Run by one person who reviews every store himself.
 
-**Why $99?**
-I'm building the first dataset on agent commerce across real stores. Founding stores get the audit at cost. The price moves to $499 after the first 20.
+### Pricing
+Ongoing audits emailed, continuous scanning through the Shopify integration, and fraud order monitoring — all included. No setup fee, no contract, cancel anytime.
 
-**My store isn't on Shopify.**
-Email me. The readiness audit works on any platform; order classification requires Shopify for now.
+**[Start — $39/month]**
 
 ### About
-I'm Sidwyn Koh. I spent 16 years building payments and commerce platforms — most recently payments at Meta, and before that payments at Lyft. Agents are becoming a real buyer surface, and merchants have no instruments for them yet. I run every audit myself.
+I'm Sidwyn Koh. I spent 16 years building payments and commerce platforms — most recently payments at Meta, before that payments at Lyft. Agents are becoming a real buyer surface, and merchants have no instruments for them yet. I built AgentAudit to be that instrument.
 
 ---
 

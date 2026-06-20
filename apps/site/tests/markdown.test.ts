@@ -1,38 +1,30 @@
 import { describe, expect, it } from "vitest";
-import { parseBlocks, parseFaq, parseInline, stripBold } from "../src/lib/markdown.js";
+import { parseBlocks, parseInline, stripBold } from "../src/lib/markdown.js";
 import { loadLandingCopy } from "../src/lib/marketing.js";
 
 const copy = loadLandingCopy();
 
 describe("parseBlocks", () => {
-  it("turns the hero into headline, paragraph, cta and fine print", () => {
+  it("turns the hero into eyebrow, headline, subhead, and cta", () => {
     const blocks = parseBlocks(copy.hero);
-    expect(blocks[0]).toEqual({ type: "p", text: "**Open to agents. Hard to exploit.**" });
-    expect(blocks[1]!.type).toBe("p");
-    expect(blocks[2]).toEqual({ type: "cta", label: "Get the audit — $99" });
-    expect(blocks[3]).toEqual({
-      type: "p",
-      text: "Founding rate for the first 20 stores. List price $499.",
-    });
+    expect(blocks[0]).toEqual({ type: "p", text: "Agent Abuse & Fraud Protection · for Shopify" });
+    expect(blocks[1]).toEqual({ type: "p", text: "**Stop agents from gaming your store.**" });
+    expect(blocks[2]!.type).toBe("p");
+    expect(blocks[3]).toEqual({ type: "cta", label: "Start — $39/month" });
   });
 
-  it("parses the stats bar as an unordered list of three", () => {
-    const blocks = parseBlocks(copy.statsBar);
-    expect(blocks).toHaveLength(1);
-    expect(blocks[0]).toMatchObject({ type: "ul" });
-    expect((blocks[0] as { items: string[] }).items).toHaveLength(3);
+  it("parses stakes as body paragraph plus unordered list of three", () => {
+    const blocks = parseBlocks(copy.stakes);
+    expect(blocks[0]!.type).toBe("p");
+    const list = blocks.find((b) => b.type === "ul");
+    expect(list).toBeDefined();
+    expect((list as { items: string[] }).items).toHaveLength(3);
   });
 
   it("parses how-it-works as an ordered list of three", () => {
     const blocks = parseBlocks(copy.howItWorks);
     expect(blocks[0]).toMatchObject({ type: "ol" });
-    expect((blocks[0] as { items: string[] }).items[0]).toContain("Pay and answer five questions");
-  });
-
-  it("parses what-you-get as intro paragraph plus ordered list of four", () => {
-    const blocks = parseBlocks(copy.whatYouGet);
-    expect(blocks[0]).toEqual({ type: "p", text: "A scored report and a 30-minute readout call." });
-    expect((blocks[1] as { items: string[] }).items).toHaveLength(4);
+    expect((blocks[0] as { items: string[] }).items[0]).toContain("Connect in two clicks");
   });
 });
 
@@ -43,8 +35,8 @@ describe("parseInline / stripBold", () => {
       { bold: true, text: "b" },
       { bold: false, text: " c" },
     ]);
-    expect(stripBold("**Agent Readiness Score.** Automated checks")).toBe(
-      "Agent Readiness Score. Automated checks",
+    expect(stripBold("**Stop agents from gaming your store.**")).toBe(
+      "Stop agents from gaming your store.",
     );
   });
 
@@ -58,18 +50,5 @@ describe("parseInline / stripBold", () => {
       },
       { bold: false, text: "." },
     ]);
-    expect(stripBold("[Adobe data](https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable)")).toBe(
-      "Adobe data",
-    );
-  });
-});
-
-describe("parseFaq", () => {
-  it("extracts five q/a pairs from the faq section", () => {
-    const faq = parseFaq(copy.faq);
-    expect(faq).toHaveLength(5);
-    expect(faq[0]!.q).toBe("Will agents place real orders?");
-    expect(faq[0]!.a).toContain("Automated checks stop at the checkout page.");
-    expect(faq[4]!.q).toBe("My store isn't on Shopify.");
   });
 });

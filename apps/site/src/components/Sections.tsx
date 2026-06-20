@@ -1,5 +1,5 @@
 import type { LandingCopy } from "../lib/marketing";
-import { parseBlocks, parseFaq, parseInline, stripBold } from "../lib/markdown";
+import { parseBlocks, parseInline, stripBold } from "../lib/markdown";
 import { Cta } from "./Cta";
 import { Inline } from "./Inline";
 
@@ -7,166 +7,53 @@ type Env = { stripeUrl?: string; formEndpoint?: string };
 
 export function Hero({ copy, env }: { copy: LandingCopy["hero"]; env: Env }) {
   const blocks = parseBlocks(copy);
-  const headline = blocks[0]?.type === "p" ? stripBold(blocks[0].text) : "";
-  const sub = blocks[1]?.type === "p" ? blocks[1].text : "";
+  const eyebrow = blocks[0]?.type === "p" ? blocks[0].text : "";
+  const headline = blocks[1]?.type === "p" ? stripBold(blocks[1].text) : "";
+  const sub = blocks[2]?.type === "p" ? blocks[2].text : "";
   const cta = blocks.find((b) => b.type === "cta");
-  const fine = blocks[3]?.type === "p" ? blocks[3].text : "";
   return (
     <section className="hero">
       <p className="brand">AgentAudit</p>
+      <p className="eyebrow">{eyebrow}</p>
       <h1>{headline}</h1>
       <p className="sub">
         <Inline text={sub} />
       </p>
       {cta && <Cta label={cta.label} {...env} id="cta-top" />}
-      <p className="fine">{fine}</p>
-      <p className="sample-link">
-        <a
-          href="/sample-report.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-testid="sample-report-link"
-        >
-          See a sample report (PDF) →
-        </a>
-      </p>
     </section>
   );
 }
 
-export function StatsBar({ copy }: { copy: LandingCopy["statsBar"] }) {
-  const first = parseBlocks(copy)[0];
-  const items = first?.type === "ul" ? first.items : [];
-  return (
-    <section className="stats" aria-label="Key stats">
-      <h2>Why optimize for agents?</h2>
-      <ul>
-        {items.map((item, index) => (
-          <li key={item}>
-            <StatWithFootnote index={index + 1} text={item} />
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-function StatWithFootnote({ index, text }: { index: number; text: string }) {
-  const segments = parseInline(text);
-  const href = segments.find((segment) => segment.href)?.href;
-
-  return (
-    <>
-      {segments.map((segment, segmentIndex) =>
-        segment.bold ? <strong key={segmentIndex}>{segment.text}</strong> : segment.text,
-      )}
-      {href ? (
-        <sup>
-          <a
-            aria-label={`Source ${index}`}
-            className="footnote-ref"
-            href={href}
-            rel="noreferrer"
-            target="_blank"
-          >
-            {index}
-          </a>
-        </sup>
-      ) : null}
-    </>
-  );
-}
-
-export function Duality({ copy }: { copy: LandingCopy["duality"] }) {
+export function Stakes({ copy }: { copy: LandingCopy["stakes"] }) {
   const blocks = parseBlocks(copy);
-  return (
-    <section className="duality">
-      <h2>Two things are true about agent traffic</h2>
-      {blocks.map((b, i) =>
-        b.type === "p" ? (
-          <p key={i}>
-            <Inline text={b.text} />
-          </p>
-        ) : null,
-      )}
-    </section>
-  );
-}
-
-export function LiveDataset({ copy }: { copy: LandingCopy["liveDataset"] }) {
-  const blocks = parseBlocks(copy);
+  const body = blocks[0]?.type === "p" ? blocks[0].text : "";
   const list = blocks.find((b) => b.type === "ul");
-  const framing = blocks.find((b) => b.type === "p");
+  const items = list?.type === "ul" ? list.items : [];
   return (
-    <section className="live-dataset">
-      <h2>What we&apos;re seeing across stores</h2>
-      {list?.type === "ul" && (
-        <ul>
-          {list.items.map((item) => (
-            <li key={item}>
-              <Inline text={item} />
-            </li>
-          ))}
-        </ul>
-      )}
-      {framing && (
-        <p className="framing">
-          <Inline text={framing.text} />
-        </p>
-      )}
-    </section>
-  );
-}
-
-export function Monitoring({ copy }: { copy: LandingCopy["monitoring"] }) {
-  const blocks = parseBlocks(copy);
-  return (
-    <section className="monitoring">
-      <h2>An audit is a snapshot. The channel moves.</h2>
-      {blocks.map((b, i) =>
-        b.type === "p" ? (
-          <p key={i}>
-            <Inline text={b.text} />
-          </p>
-        ) : null,
-      )}
-    </section>
-  );
-}
-
-export function WhoItsFor({ copy }: { copy: LandingCopy["whoItsFor"] }) {
-  const blocks = parseBlocks(copy);
-  return (
-    <section className="who">
-      <h2>Who this is for</h2>
-      {blocks.map((b, i) =>
-        b.type === "p" ? (
-          <p key={i}>
-            <Inline text={b.text} />
-          </p>
-        ) : null,
-      )}
-    </section>
-  );
-}
-
-export function WhatYouGet({ copy }: { copy: LandingCopy["whatYouGet"] }) {
-  const blocks = parseBlocks(copy);
-  const intro = blocks[0]?.type === "p" ? blocks[0].text : "";
-  const list = blocks.find((b) => b.type === "ol");
-  return (
-    <section className="get" id="what-you-get">
-      <h2>A scored report and a 30-minute readout call</h2>
-      <p className="intro">
-        <Inline text={intro} />
+    <section className="stakes">
+      <h2>A new entrance, and nobody is watching it</h2>
+      <p className="stakes-body">
+        <Inline text={body} />
       </p>
-      <ol className="cards">
-        {(list?.type === "ol" ? list.items : []).map((item) => (
-          <li key={item}>
-            <Inline text={item} />
-          </li>
-        ))}
-      </ol>
+      <div className="stat-cards">
+        {items.map((item) => {
+          const segs = parseInline(item);
+          const numSeg = segs.find((s) => s.bold);
+          const linkSeg = segs.find((s) => s.href);
+          return (
+            <div key={item} className="stat-card">
+              <div className="stat-number">{numSeg?.text}</div>
+              <div className="stat-desc">
+                {linkSeg ? (
+                  <a href={linkSeg.href} target="_blank" rel="noreferrer">
+                    {linkSeg.text}
+                  </a>
+                ) : null}
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 }
@@ -175,7 +62,7 @@ export function HowItWorks({ copy }: { copy: LandingCopy["howItWorks"] }) {
   const list = parseBlocks(copy).find((b) => b.type === "ol");
   return (
     <section className="how" id="how-it-works">
-      <h2>Three steps, three business days</h2>
+      <h2>Covered in three clicks</h2>
       <ol className="steps">
         {(list?.type === "ol" ? list.items : []).map((item) => (
           <li key={item}>
@@ -187,28 +74,193 @@ export function HowItWorks({ copy }: { copy: LandingCopy["howItWorks"] }) {
   );
 }
 
-export function Guarantee({ copy }: { copy: LandingCopy["guarantee"] }) {
+function ScanFeedCard() {
   return (
-    <section className="guarantee" id="guarantee">
-      <h2>Guarantee</h2>
-      <p>
-        <Inline text={copy} />
-      </p>
+    <div className="demo-card demo-card--dark" aria-hidden="true">
+      <div className="demo-card__header">AGENTAUDIT · ridge.com · live</div>
+      <ul className="demo-feed">
+        <li>
+          <span className="feed-icon feed-icon--fail">✗</span>
+          <span className="feed-key">promo SVEND</span>
+          <span className="feed-val">10% leak live — found on public coupon sites</span>
+        </li>
+        <li>
+          <span className="feed-icon feed-icon--fail">✗</span>
+          <span className="feed-key">CA / AU / GB checkout</span>
+          <span className="feed-val">buyers shown USD, not local currency</span>
+        </li>
+        <li>
+          <span className="feed-icon feed-icon--warn">⚠</span>
+          <span className="feed-key">cart total</span>
+          <span className="feed-val">understates tax by ~10% to agents</span>
+        </li>
+        <li>
+          <span className="feed-icon feed-icon--flag">⚑</span>
+          <span className="feed-key">order #1182</span>
+          <span className="feed-val">3 alias orders, one card — flagged as abuse</span>
+        </li>
+      </ul>
+      <div className="demo-card__footer">4 issues · ranked by dollars · 1 new since your last change</div>
+    </div>
+  );
+}
+
+export function OngoingAudits({ copy }: { copy: LandingCopy["ongoingAudits"] }) {
+  const blocks = parseBlocks(copy);
+  const eyebrow = blocks[0]?.type === "p" ? blocks[0].text : "";
+  const heading = blocks[1]?.type === "p" ? stripBold(blocks[1].text) : "";
+  const body = blocks[2]?.type === "p" ? blocks[2].text : "";
+  return (
+    <section className="feature">
+      <div className="feature-copy">
+        <p className="eyebrow">{eyebrow}</p>
+        <h2 className="feature-h2">{heading}</h2>
+        <p>
+          <Inline text={body} />
+        </p>
+      </div>
+      <div className="demo-card demo-card--email" aria-hidden="true">
+        <div className="demo-card__header">📧 Your weekly AgentAudit · ridge.com</div>
+        <div className="demo-card__body">
+          <p className="demo-summary">2 new issues, 1 resolved since last week</p>
+          <ul className="demo-feed">
+            <li>
+              <span className="feed-badge feed-badge--high">HIGH</span>
+              promo BUNDLE20 stacks with SVEND → ~28% off
+            </li>
+            <li>
+              <span className="feed-badge feed-badge--med">MED</span>
+              AU buyers shown USD via agents (currency mismatch)
+            </li>
+            <li>
+              <span className="feed-badge feed-badge--fixed">FIXED</span>
+              cart tax now disclosed pre-checkout
+            </li>
+          </ul>
+          <a className="demo-btn" href="#" onClick={(e) => e.preventDefault()}>
+            View full report
+          </a>
+        </div>
+      </div>
     </section>
   );
 }
 
-export function Faq({ copy }: { copy: LandingCopy["faq"] }) {
-  const entries = parseFaq(copy);
+export function ContinuousScanning({ copy }: { copy: LandingCopy["continuousScanning"] }) {
+  const blocks = parseBlocks(copy);
+  const eyebrow = blocks[0]?.type === "p" ? blocks[0].text : "";
+  const heading = blocks[1]?.type === "p" ? stripBold(blocks[1].text) : "";
+  const body = blocks[2]?.type === "p" ? blocks[2].text : "";
   return (
-    <section className="faq" id="faq">
-      <h2>FAQ</h2>
-      {entries.map((e) => (
-        <details key={e.q}>
-          <summary>{e.q}</summary>
-          <p>{e.a}</p>
-        </details>
-      ))}
+    <section className="feature feature--flip">
+      <div className="feature-copy">
+        <p className="eyebrow">{eyebrow}</p>
+        <h2 className="feature-h2">{heading}</h2>
+        <p>
+          <Inline text={body} />
+        </p>
+      </div>
+      <div className="demo-card demo-card--pr" aria-hidden="true">
+        <div className="demo-card__header">⚠️ AgentAudit · change detected</div>
+        <div className="demo-card__body">
+          <p className="demo-label">Published: &ldquo;Titanium Wallet&rdquo; + promo BUNDLE20</p>
+          <ul className="demo-findings">
+            <li>→ BUNDLE20 is stackable with active code SVEND — agents can compound to ~28% off</li>
+            <li>→ New variant exposed via UCP in USD only — AU/CA/GB buyers see wrong currency</li>
+          </ul>
+          <p className="demo-meta">Opens 2 vectors · Severity: High</p>
+          <div className="demo-actions">
+            <a className="demo-btn" href="#" onClick={(e) => e.preventDefault()}>Mark reviewed</a>
+            <a className="demo-btn demo-btn--secondary" href="#" onClick={(e) => e.preventDefault()}>See the fix</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function FraudMonitoring({ copy }: { copy: LandingCopy["fraudMonitoring"] }) {
+  const blocks = parseBlocks(copy);
+  const eyebrow = blocks[0]?.type === "p" ? blocks[0].text : "";
+  const heading = blocks[1]?.type === "p" ? stripBold(blocks[1].text) : "";
+  const body = blocks[2]?.type === "p" ? blocks[2].text : "";
+  return (
+    <section className="feature">
+      <div className="feature-copy">
+        <p className="eyebrow">{eyebrow}</p>
+        <h2 className="feature-h2">{heading}</h2>
+        <p>
+          <Inline text={body} />
+        </p>
+      </div>
+      <div className="demo-card demo-card--dark" aria-hidden="true">
+        <div className="demo-card__header">⚑ AgentAudit · order flags</div>
+        <ul className="demo-feed">
+          <li>
+            <span className="feed-id">#1182</span>
+            <span className="feed-val">buyer+a1@…, buyer+a2@…, buyer+a3@… · same card, code SVEND ×3</span>
+            <span className="feed-badge feed-badge--high">abuse</span>
+          </li>
+          <li>
+            <span className="feed-id">#1179</span>
+            <span className="feed-val">agent order · ships-to ≠ billing region · high-velocity</span>
+            <span className="feed-badge feed-badge--med">review</span>
+          </li>
+          <li>
+            <span className="feed-id">#1170</span>
+            <span className="feed-val">clean</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+export function WhatWeTest({ copy }: { copy: LandingCopy["whatWeTest"] }) {
+  const list = parseBlocks(copy).find((b) => b.type === "ul");
+  return (
+    <section className="what-we-test">
+      <h2>Six ways an agent drains your store</h2>
+      <ul className="test-grid">
+        {(list?.type === "ul" ? list.items : []).map((item) => (
+          <li key={item}>
+            <Inline text={item} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export function Trust({ copy }: { copy: LandingCopy["trust"] }) {
+  const list = parseBlocks(copy).find((b) => b.type === "ul");
+  return (
+    <section className="trust">
+      <h2>Safe by design</h2>
+      <ul className="trust-list">
+        {(list?.type === "ul" ? list.items : []).map((item) => (
+          <li key={item}>
+            <Inline text={item} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export function Pricing({ copy, env }: { copy: LandingCopy["pricing"]; env: Env }) {
+  const blocks = parseBlocks(copy);
+  const body = blocks[0]?.type === "p" ? blocks[0].text : "";
+  const cta = blocks.find((b) => b.type === "cta");
+  return (
+    <section className="pricing" id="pricing">
+      <h2>One plan. $39/month.</h2>
+      <div className="pricing-card">
+        <p className="pricing-body">
+          <Inline text={body} />
+        </p>
+        {cta && <Cta label={cta.label} {...env} id="cta-pricing" />}
+      </div>
     </section>
   );
 }
@@ -243,15 +295,14 @@ export function About({ copy }: { copy: LandingCopy["about"] }) {
 
 export function BottomCta({ copy, env }: { copy: LandingCopy["hero"]; env: Env }) {
   const blocks = parseBlocks(copy);
-  const headline = blocks[0]?.type === "p" ? stripBold(blocks[0].text) : "";
+  const headline = blocks[1]?.type === "p" ? stripBold(blocks[1].text) : "";
   const cta = blocks.find((b) => b.type === "cta");
-  const fine = blocks[3]?.type === "p" ? blocks[3].text : "";
   if (!cta) return null;
   return (
     <section className="bottom-cta">
       <h2>{headline}</h2>
+      <p className="bottom-cta-sub">Agent abuse and fraud protection for Shopify. $39/month, cancel anytime.</p>
       <Cta label={cta.label} {...env} id="cta-bottom" />
-      <p className="fine">{fine}</p>
     </section>
   );
 }
