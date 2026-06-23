@@ -4,35 +4,40 @@ import { loadLandingCopy } from "../src/lib/marketing.js";
 describe("loadLandingCopy", () => {
   const copy = loadLandingCopy();
 
-  it("extracts all ten landing sections", () => {
+  it("extracts all eight landing sections", () => {
     for (const key of [
       "hero",
-      "stakes",
+      "twoTruths",
+      "whatItStops",
       "howItWorks",
-      "ongoingAudits",
-      "continuousScanning",
-      "fraudMonitoring",
-      "whatWeTest",
-      "trust",
+      "builtFor",
       "pricing",
-      "about",
+      "whoBuiltIt",
+      "faq",
     ] as const) {
       expect(copy[key].length, key).toBeGreaterThan(10);
     }
   });
 
   it("keeps the copy verbatim", () => {
-    expect(copy.hero).toContain("**Stop agents from gaming your store.**");
-    expect(copy.hero).toContain("$39/month");
-    expect(copy.hero).toContain("**[Start — $39/month]**");
-    expect(copy.stakes).toContain("**393%**");
-    expect(copy.stakes).toContain("https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable");
-    expect(copy.stakes).toContain("https://merchantriskcouncil.org/learning/resource-center/member-news/blog/2026/stricter-vamp-ratio-thresholds-are-now-in-effect-heres-how-to-stay-compliant");
-    expect(copy.pricing).toContain("**[Start — $39/month]**");
-    expect(copy.about).toContain("I'm Sidwyn Koh.");
+    expect(copy.hero).toContain("**Open to agents. Hard to exploit.**");
+    expect(copy.hero).toContain("**[Get early access]**");
+    expect(copy.twoTruths).toContain("**Agents convert.**");
+    expect(copy.twoTruths).toContain("**Agents probe.**");
+    expect(copy.whatItStops).toContain("**Promo code farming.**");
+    expect(copy.pricing).toContain("**[Get early access]**");
+    expect(copy.whoBuiltIt).toContain("I'm **Sidwyn Koh**.");
   });
 
-  it("does not bleed into the social posts section", () => {
-    expect(copy.about).not.toContain("X launch post");
+  it("does not mention price or AgentAudit", () => {
+    for (const key of ["hero", "pricing", "whoBuiltIt", "faq"] as const) {
+      expect(copy[key], key).not.toContain("€39");
+      expect(copy[key].toLowerCase(), key).not.toContain("agentaudit");
+    }
+  });
+
+  it("does not bleed across sections", () => {
+    expect(copy.whoBuiltIt).not.toContain("### FAQ");
+    expect(copy.faq).not.toContain("Footer");
   });
 });

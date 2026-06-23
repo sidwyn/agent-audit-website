@@ -3,40 +3,36 @@ import path from "node:path";
 
 export type LandingCopy = {
   hero: string;
-  stakes: string;
+  twoTruths: string;
+  whatItStops: string;
   howItWorks: string;
-  ongoingAudits: string;
-  continuousScanning: string;
-  fraudMonitoring: string;
-  whatWeTest: string;
-  trust: string;
+  builtFor: string;
   pricing: string;
-  about: string;
+  whoBuiltIt: string;
+  faq: string;
 };
 
 const SECTION_KEYS: { heading: string; key: keyof LandingCopy }[] = [
   { heading: "Hero", key: "hero" },
-  { heading: "Stakes", key: "stakes" },
+  { heading: "Two truths", key: "twoTruths" },
+  { heading: "What it stops", key: "whatItStops" },
   { heading: "How it works", key: "howItWorks" },
-  { heading: "Ongoing audits", key: "ongoingAudits" },
-  { heading: "Continuous scanning", key: "continuousScanning" },
-  { heading: "Fraud monitoring", key: "fraudMonitoring" },
-  { heading: "What we test", key: "whatWeTest" },
-  { heading: "Trust", key: "trust" },
+  { heading: "Built for self-hosted Shopware", key: "builtFor" },
   { heading: "Pricing", key: "pricing" },
-  { heading: "About", key: "about" },
+  { heading: "Who built it", key: "whoBuiltIt" },
+  { heading: "FAQ", key: "faq" },
 ];
 
 export function findMarketingFile(startDir = process.cwd()): string {
   let dir = startDir;
   for (let i = 0; i < 6; i++) {
-    const candidate = path.join(dir, "agent-audit-marketing.md");
+    const candidate = path.join(dir, "agentarmor-marketing.md");
     if (existsSync(candidate)) return candidate;
     const parent = path.dirname(dir);
     if (parent === dir) break;
     dir = parent;
   }
-  throw new Error(`agent-audit-marketing.md not found above ${startDir}`);
+  throw new Error(`agentarmor-marketing.md not found above ${startDir}`);
 }
 
 // All landing copy comes verbatim from the marketing markdown; components never

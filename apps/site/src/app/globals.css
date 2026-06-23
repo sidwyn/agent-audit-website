@@ -708,3 +708,65 @@ footer .footnote {
   font-size: 16px;
   margin: 0 0 24px;
 }
+
+.bottom-cta a {
+  color: #fff;
+  text-decoration-color: var(--accent-bright);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* ---- two truths ---- */
+.truths-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.truth-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent-bright);
+  border-radius: 8px;
+  padding: 22px 24px;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.truth-card strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 18px;
+  color: var(--ink);
+}
+
+@media (min-width: 720px) {
+  .truths-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---- how it works (statement block) ---- */
+.how .guarantee {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 24px;
+  background: #fff;
+  box-shadow: 6px 6px 0 var(--accent-bright);
+}
+
+.how .guarantee p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+/* ---- built for ---- */
+.built-for-body {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 64ch;
+  margin: 0;
+}
