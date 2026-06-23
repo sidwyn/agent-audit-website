@@ -26,9 +26,7 @@ export default function Page() {
       <WhoBuiltIt copy={copy.whoBuiltIt} />
       <Faq copy={copy.faq} />
       <footer>
-        <p>
-          AgentArmor · by Sidwyn Koh · <a href="mailto:sidwyn@gmail.com">sidwyn@gmail.com</a>
-        </p>
+        <p>AgentArmor by AgentAudit</p>
         <p className="footnote">Runs inside your store. No cookies, no trackers. Your data stays yours.</p>
       </footer>
     </main>

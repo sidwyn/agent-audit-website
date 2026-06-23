@@ -59,7 +59,7 @@ test("all sections render in order", async ({ page }) => {
   ]) {
     await expect(page.locator(`#${id}`)).toBeVisible();
   }
-  await expect(page.locator("footer")).toContainText("by Sidwyn Koh");
+  await expect(page.locator("footer")).toContainText("AgentArmor by AgentAudit");
 });
 
 test("about section shows Sidwyn's circular portrait", async ({ page }) => {
