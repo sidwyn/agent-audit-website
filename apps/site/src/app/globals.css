@@ -144,6 +144,28 @@ summary:focus-visible {
   outline-offset: 2px;
 }
 
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.capture .hp {
+  display: none;
+}
+
+.capture-success {
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0;
+}
+
+.capture-error {
+  flex-basis: 100%;
+  color: #b91c1c;
+  font-size: 14px;
+  margin: 4px 0 0;
+}
+
 /* ---- stats band ---- */
 .stats {
   max-width: none;

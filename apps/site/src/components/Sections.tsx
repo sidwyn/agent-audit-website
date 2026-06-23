@@ -40,7 +40,7 @@ export function Hero({ copy, env }: { copy: LandingCopy["hero"]; env: Env }) {
       {ctaBlock?.type === "cta" && <Cta label={ctaBlock.label} {...env} id="cta-top" />}
       {after.map((f, i) => (
         <p key={i} className="fine">
-          {f}
+          <Inline text={f} />
         </p>
       ))}
     </section>

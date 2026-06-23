@@ -1,3 +1,11 @@
+"use client";
+
+import { useState, type FormEvent } from "react";
+
+// Default Formspree endpoint (public id, safe to ship client-side).
+// Override at build time with FORM_ENDPOINT if needed.
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xaqgnzga";
+
 export type CtaProps = {
   label: string;
   stripeUrl?: string;
@@ -5,10 +13,15 @@ export type CtaProps = {
   id?: string;
 };
 
-// Primary CTA links to the Stripe payment link; when STRIPE_PAYMENT_LINK is
-// unset at build time we fall back to a plain-HTML email capture form that
-// POSTs to FORM_ENDPOINT (Formspree-style) and works with JS disabled.
+type Status = "idle" | "submitting" | "success" | "error";
+
+// Primary CTA. If STRIPE_PAYMENT_LINK is set it renders a payment link;
+// otherwise it captures an email via Formspree over AJAX (no redirect, inline
+// success). Falls back gracefully to the configured endpoint.
 export function Cta({ label, stripeUrl, formEndpoint, id }: CtaProps) {
+  const endpoint = formEndpoint ?? FORMSPREE_ENDPOINT;
+  const [status, setStatus] = useState<Status>("idle");
+
   if (stripeUrl) {
     return (
       <a className="btn" href={stripeUrl} id={id} data-testid="cta-button">
@@ -16,8 +29,38 @@ export function Cta({ label, stripeUrl, formEndpoint, id }: CtaProps) {
       </a>
     );
   }
+
+  if (status === "success") {
+    return (
+      <p className="capture-success" data-testid="email-capture-success">
+        Thanks, you&rsquo;re on the early-access list.
+      </p>
+    );
+  }
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    setStatus("submitting");
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+      if (res.ok) {
+        form.reset();
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
-    <form className="capture" method="POST" action={formEndpoint ?? "#"} data-testid="email-capture">
+    <form className="capture" onSubmit={onSubmit} data-testid="email-capture">
       <input
         type="email"
         name="email"
@@ -25,9 +68,16 @@ export function Cta({ label, stripeUrl, formEndpoint, id }: CtaProps) {
         placeholder="you@yourstore.com"
         aria-label="Email address"
       />
-      <button type="submit" className="btn">
-        {label}
+      {/* Honeypot: bots fill this, humans never see it. */}
+      <input type="text" name="_gotcha" className="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+      <button type="submit" className="btn" id={id} disabled={status === "submitting"}>
+        {status === "submitting" ? "Sending…" : label}
       </button>
+      {status === "error" && (
+        <p className="capture-error" role="alert">
+          Something went wrong. Please try again.
+        </p>
+      )}
     </form>
   );
 }
