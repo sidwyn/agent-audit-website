@@ -4,7 +4,6 @@ import {
   Hero,
   HowItWorks,
   Pricing,
-  TwoTruths,
   WhatItStops,
   WhoBuiltIt,
 } from "../components/Sections";
@@ -20,7 +19,6 @@ export default function Page() {
   return (
     <main>
       <Hero copy={copy.hero} env={env} />
-      <TwoTruths copy={copy.twoTruths} />
       <WhatItStops copy={copy.whatItStops} />
       <HowItWorks copy={copy.howItWorks} />
       <BuiltFor copy={copy.builtFor} />

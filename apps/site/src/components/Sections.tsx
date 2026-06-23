@@ -18,39 +18,31 @@ function paragraphs(copy: string): string[] {
 
 export function Hero({ copy, env }: { copy: LandingCopy["hero"]; env: Env }) {
   const blocks = parseBlocks(copy);
-  const ps = blocks.filter((b) => b.type === "p").map((b) => (b.type === "p" ? b.text : ""));
-  const headline = ps[0] ? stripBold(ps[0]) : "";
-  const sub = ps[1] ?? "";
-  const fine = ps[2] ?? "";
-  const cta = blocks.find((b) => b.type === "cta");
+  const ctaIndex = blocks.findIndex((b) => b.type === "cta");
+  const ctaBlock = ctaIndex >= 0 ? blocks[ctaIndex] : undefined;
+  const before = (ctaIndex >= 0 ? blocks.slice(0, ctaIndex) : blocks)
+    .filter((b) => b.type === "p")
+    .map((b) => (b.type === "p" ? b.text : ""));
+  const after = (ctaIndex >= 0 ? blocks.slice(ctaIndex + 1) : [])
+    .filter((b) => b.type === "p")
+    .map((b) => (b.type === "p" ? b.text : ""));
+  const headline = before[0] ? stripBold(before[0]) : "";
+  const subs = before.slice(1);
   return (
     <section className="hero">
       <p className="brand">AgentArmor</p>
       <h1>{headline}</h1>
-      <p className="sub">
-        <Inline text={sub} />
-      </p>
-      {cta && <Cta label={cta.label} {...env} id="cta-top" />}
-      {fine && <p className="fine">{fine}</p>}
-      <p className="sample-link">
-        <a href="#what-it-stops">See what it catches ↓</a>
-      </p>
-    </section>
-  );
-}
-
-export function TwoTruths({ copy }: { copy: LandingCopy["twoTruths"] }) {
-  const items = listItems(copy);
-  return (
-    <section className="truths" id="two-truths">
-      <h2>Two things are true about agent traffic</h2>
-      <div className="truths-grid">
-        {items.map((item) => (
-          <div key={item} className="truth-card">
-            <Inline text={item} />
-          </div>
-        ))}
-      </div>
+      {subs.map((s, i) => (
+        <p key={i} className="sub">
+          <Inline text={s} />
+        </p>
+      ))}
+      {ctaBlock?.type === "cta" && <Cta label={ctaBlock.label} {...env} id="cta-top" />}
+      {after.map((f, i) => (
+        <p key={i} className="fine">
+          {f}
+        </p>
+      ))}
     </section>
   );
 }
@@ -61,11 +53,22 @@ export function WhatItStops({ copy }: { copy: LandingCopy["whatItStops"] }) {
     <section className="get" id="what-it-stops">
       <h2>What it stops</h2>
       <ul className="cards">
-        {items.map((item) => (
-          <li key={item}>
-            <Inline text={item} />
-          </li>
-        ))}
+        {items.map((item) => {
+          const m = item.match(/^\*\*(.+?)\*\*\s*([\s\S]*)$/);
+          const lead = m?.[1] ?? "";
+          const rest = m?.[2] ?? item;
+          const sentences = rest.split(/(?<=\.)\s+(?=[A-Z*])/).filter((s) => s.trim().length > 0);
+          return (
+            <li key={item}>
+              <strong>{lead}</strong>
+              {sentences.map((s, i) => (
+                <p key={i}>
+                  <Inline text={s} />
+                </p>
+              ))}
+            </li>
+          );
+        })}
       </ul>
     </section>
   );
@@ -76,13 +79,11 @@ export function HowItWorks({ copy }: { copy: LandingCopy["howItWorks"] }) {
   return (
     <section className="how" id="how-it-works">
       <h2>How it works</h2>
-      <div className="guarantee">
-        {ps.map((p, i) => (
-          <p key={i}>
-            <Inline text={p} />
-          </p>
-        ))}
-      </div>
+      {ps.map((p, i) => (
+        <p key={i} className="how-body">
+          <Inline text={p} />
+        </p>
+      ))}
     </section>
   );
 }

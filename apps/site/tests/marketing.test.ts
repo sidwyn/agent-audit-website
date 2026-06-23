@@ -4,10 +4,9 @@ import { loadLandingCopy } from "../src/lib/marketing.js";
 describe("loadLandingCopy", () => {
   const copy = loadLandingCopy();
 
-  it("extracts all eight landing sections", () => {
+  it("extracts all seven landing sections", () => {
     for (const key of [
       "hero",
-      "twoTruths",
       "whatItStops",
       "howItWorks",
       "builtFor",
@@ -22,8 +21,6 @@ describe("loadLandingCopy", () => {
   it("keeps the copy verbatim", () => {
     expect(copy.hero).toContain("**Open to agents. Hard to exploit.**");
     expect(copy.hero).toContain("**[Get early access]**");
-    expect(copy.twoTruths).toContain("**Agents convert.**");
-    expect(copy.twoTruths).toContain("**Agents probe.**");
     expect(copy.whatItStops).toContain("**Promo code farming.**");
     expect(copy.pricing).toContain("**[Get early access]**");
     expect(copy.whoBuiltIt).toContain("I'm **Sidwyn Koh**.");

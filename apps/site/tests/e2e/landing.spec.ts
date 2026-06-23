@@ -12,15 +12,6 @@ test("hero renders the verbatim headline and subcopy", async ({ page }) => {
   await expect(page.locator(".brand")).toHaveText("AgentArmor");
 });
 
-test("two truths shows both cards", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.locator(".truths h2")).toHaveText("Two things are true about agent traffic");
-  const cards = page.locator(".truth-card");
-  await expect(cards).toHaveCount(2);
-  await expect(cards.first()).toContainText("Agents convert.");
-  await expect(cards.nth(1)).toContainText("Agents probe.");
-});
-
 test("what it stops lists the three threats", async ({ page }) => {
   await page.goto("/");
   const cards = page.locator("#what-it-stops .cards li");
@@ -59,7 +50,6 @@ test("no horizontal overflow at 390px", async ({ page }) => {
 test("all sections render in order", async ({ page }) => {
   await page.goto("/");
   for (const id of [
-    "two-truths",
     "what-it-stops",
     "how-it-works",
     "built-for",

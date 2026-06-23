@@ -5,12 +5,11 @@ import { loadLandingCopy } from "../src/lib/marketing.js";
 const copy = loadLandingCopy();
 
 describe("parseBlocks", () => {
-  it("turns the hero into headline, subhead, cta, and fine print", () => {
+  it("turns the hero into headline, subheads, cta, and fine print", () => {
     const blocks = parseBlocks(copy.hero);
     expect(blocks[0]).toEqual({ type: "p", text: "**Open to agents. Hard to exploit.**" });
     expect(blocks[1]!.type).toBe("p");
-    expect(blocks[2]).toEqual({ type: "cta", label: "Get early access" });
-    expect(blocks[3]!.type).toBe("p");
+    expect(blocks.find((b) => b.type === "cta")).toEqual({ type: "cta", label: "Get early access" });
   });
 
   it("parses what-it-stops as an unordered list of three", () => {
@@ -23,7 +22,9 @@ describe("parseBlocks", () => {
   it("parses how-it-works as paragraphs", () => {
     const blocks = parseBlocks(copy.howItWorks);
     expect(blocks[0]!.type).toBe("p");
-    expect((blocks[0] as { text: string }).text).toContain("AgentArmor is a normal Shopware plugin");
+    expect(stripBold((blocks[0] as { text: string }).text)).toContain(
+      "AgentArmor is a normal Shopware plugin",
+    );
   });
 });
 

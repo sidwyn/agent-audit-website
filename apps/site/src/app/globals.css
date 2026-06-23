@@ -32,14 +32,14 @@ main {
 
 section,
 footer {
-  padding: 48px 20px;
+  padding: 28px 20px;
   max-width: var(--max);
   margin: 0 auto;
 }
 
 h2 {
-  font-size: 13px;
-  letter-spacing: 0.16em;
+  font-size: 18px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent-bright);
   margin: 0 0 20px;
@@ -234,7 +234,16 @@ summary:focus-visible {
 
 .cards strong {
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 8px;
+}
+
+.cards li p {
+  margin: 0 0 10px;
+  color: var(--muted);
+}
+
+.cards li p:last-child {
+  margin-bottom: 0;
 }
 
 @media (min-width: 720px) {
@@ -716,51 +725,16 @@ footer .footnote {
   text-underline-offset: 3px;
 }
 
-/* ---- two truths ---- */
-.truths-grid {
-  display: grid;
-  gap: 16px;
-}
-
-.truth-card {
-  background: #fff;
-  border: 1px solid var(--rule);
-  border-left: 3px solid var(--accent-bright);
-  border-radius: 8px;
-  padding: 22px 24px;
-  font-size: 16px;
-  line-height: 1.55;
-}
-
-.truth-card strong {
-  display: block;
-  margin-bottom: 4px;
-  font-size: 18px;
-  color: var(--ink);
-}
-
-@media (min-width: 720px) {
-  .truths-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* ---- how it works (statement block) ---- */
-.how .guarantee {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  border: 2px solid var(--ink);
-  border-radius: 8px;
-  padding: 24px;
-  background: #fff;
-  box-shadow: 6px 6px 0 var(--accent-bright);
-}
-
-.how .guarantee p {
-  margin: 0;
+/* ---- how it works ---- */
+.how-body {
   font-size: 17px;
-  line-height: 1.55;
+  line-height: 1.6;
+  max-width: 64ch;
+  margin: 0 0 16px;
+}
+
+.how-body:last-child {
+  margin-bottom: 0;
 }
 
 /* ---- built for ---- */
