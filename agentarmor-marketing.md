@@ -40,10 +40,10 @@ It is **free while it is only watching**, and you pay when you switch protection
 I'm **Sidwyn Koh**. I spent 16 years building payments and commerce, with payments roles at Meta and, before that, Lyft. Agents are a real buyer surface now, and merchants have no instruments for them yet. AgentArmor is that instrument.
 
 ### FAQ
-**Will it slow my checkout?** No. It adds a few milliseconds and never blocks a real order. It runs in watch-only mode until you decide otherwise.
+**Will AgentArmor slow my checkout?** No. AgentArmor adds a few milliseconds and never blocks a real order. It runs in watch-only mode until you decide otherwise.
 
-**Will it block legitimate agents like ChatGPT or Gemini?** No. Known agents are allowlisted. Protection targets untrusted, abusive traffic.
+**Will AgentArmor block legitimate agents like ChatGPT or Gemini?** No. Known agents are allowlisted. AgentArmor only targets untrusted, abusive traffic.
 
-**Does my data leave the store?** No. It runs inside your Shopware install. There are no cookies, no trackers, and no external calls with your data.
+**Does my data leave the store?** No. AgentArmor runs inside your Shopware install. There are no cookies, no trackers, and no external calls with your data.
 
 **Do you support Shopware Cloud?** Not yet. AgentArmor installs as a plugin, and plugins only run on self-hosted or PaaS Shopware. If you are on Shopware Cloud, email me and I will walk you through your options.
