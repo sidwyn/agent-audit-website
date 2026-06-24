@@ -1,4 +1,5 @@
 import {
+  AdminShots,
   BuiltFor,
   Faq,
   Hero,
@@ -23,6 +24,7 @@ export default function Page() {
       <WhatItStops copy={copy.whatItStops} />
       <SeeItWork />
       <HowItWorks copy={copy.howItWorks} />
+      <AdminShots />
       <BuiltFor copy={copy.builtFor} />
       <Pricing copy={copy.pricing} env={env} />
       <WhoBuiltIt copy={copy.whoBuiltIt} />

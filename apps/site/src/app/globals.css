@@ -822,6 +822,59 @@ footer .footnote {
   margin-bottom: 0;
 }
 
+/* ---- admin screenshots ---- */
+.admin-intro {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--muted);
+  max-width: 64ch;
+  margin: 0 0 28px;
+}
+
+.shot {
+  margin: 0 0 28px;
+}
+
+.shot:last-child {
+  margin-bottom: 0;
+}
+
+.shot-frame {
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 20px 50px -26px rgba(14, 15, 18, 0.4);
+}
+
+.shot-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 14px;
+  background: #f5f5f2;
+  border-bottom: 1px solid var(--rule);
+}
+
+.shot-bar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d4d4d8;
+}
+
+.shot-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.shot figcaption {
+  margin-top: 11px;
+  font-size: 14px;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
 /* ---- built for ---- */
 .built-for-body {
   font-size: 16px;

@@ -107,6 +107,60 @@ export function HowItWorks({ copy }: { copy: LandingCopy["howItWorks"] }) {
   );
 }
 
+export function AdminShots() {
+  return (
+    <section className="admin" id="admin">
+      <h2>Inside your Shopware admin</h2>
+      <p className="admin-intro">
+        No new dashboard to learn. AgentArmor lives in Shopware admin: every agent decision, the euros AgentArmor
+        protects, and controls you own.
+      </p>
+
+      <figure className="shot">
+        <div className="shot-frame">
+          <span className="shot-bar">
+            <span />
+            <span />
+            <span />
+          </span>
+          <img
+            src="/admin-dashboard.png"
+            alt="AgentArmor dashboard in Shopware admin: metric cards for scrapers seen, fields hidden, rate-limit flags, promo blocks, text sanitized, and watch-mode would-blocks, plus money protected and euros still exposed in watch mode."
+            width="1440"
+            height="900"
+            loading="lazy"
+          />
+        </div>
+        <figcaption>
+          Every agent decision in one view, with the money protected by enforce set against the exposure still open
+          in watch mode.
+        </figcaption>
+      </figure>
+
+      <figure className="shot">
+        <div className="shot-frame">
+          <span className="shot-bar">
+            <span />
+            <span />
+            <span />
+          </span>
+          <img
+            src="/admin-config.png"
+            alt="AgentArmor settings panel in Shopware admin: a Watch or Enforce mode selector, a pause-all-protection kill switch, and a trusted agent key ids field."
+            width="1440"
+            height="900"
+            loading="lazy"
+          />
+        </div>
+        <figcaption>
+          You stay in charge: flip watch to enforce, pause all protection with one switch, and allowlist the agents
+          you trust.
+        </figcaption>
+      </figure>
+    </section>
+  );
+}
+
 export function BuiltFor({ copy }: { copy: LandingCopy["builtFor"] }) {
   const ps = paragraphs(copy);
   return (
