@@ -132,8 +132,8 @@ export function AdminShots() {
           />
         </div>
         <figcaption>
-          Every agent decision in one view, with the money protected by enforce set against the exposure still open
-          in watch mode.
+          See every agent decision in one place. The green number is money AgentArmor has already saved you. The
+          amber number is what is still at risk while you are only watching.
         </figcaption>
       </figure>
 
@@ -153,8 +153,8 @@ export function AdminShots() {
           />
         </div>
         <figcaption>
-          You stay in charge: flip watch to enforce, pause all protection with one switch, and allowlist the agents
-          you trust.
+          Change anything in one click. Switch from watch to enforce, pause all protection with a single toggle, or
+          add the agents you trust to the allowlist.
         </figcaption>
       </figure>
     </section>
