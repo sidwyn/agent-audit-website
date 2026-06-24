@@ -56,7 +56,7 @@ export function Hero({ copy, env }: { copy: LandingCopy["hero"]; env: Env }) {
 export function SeeItWork() {
   return (
     <section className="see-it-work" id="see-it-work">
-      <h2>See it work</h2>
+      <h2>See AgentArmor work</h2>
       <p className="see-it-intro">
         Send a bad request and see what AgentArmor does. In <strong>Watch mode</strong>, AgentArmor only logs the
         threat. In <strong>Enforce mode</strong>, AgentArmor stops it.
@@ -97,7 +97,7 @@ export function HowItWorks({ copy }: { copy: LandingCopy["howItWorks"] }) {
   const ps = paragraphs(copy);
   return (
     <section className="how" id="how-it-works">
-      <h2>How it works</h2>
+      <h2>How AgentArmor works</h2>
       {ps.map((p, i) => (
         <p key={i} className="how-body">
           <Inline text={p} />
