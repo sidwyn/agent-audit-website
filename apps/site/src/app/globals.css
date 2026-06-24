@@ -875,6 +875,16 @@ footer .footnote {
   max-width: 70ch;
 }
 
+.cap-green {
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.cap-amber {
+  color: #d97706;
+  font-weight: 700;
+}
+
 /* ---- built for ---- */
 .built-for-body {
   font-size: 16px;

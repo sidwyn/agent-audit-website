@@ -132,8 +132,9 @@ export function AdminShots() {
           />
         </div>
         <figcaption>
-          See every agent decision in one place. The green number is money AgentArmor has already saved you. The
-          amber number is what is still at risk while you are only watching.
+          See every agent decision in one place. The <span className="cap-green">green</span> number is money
+          AgentArmor has already saved you. The <span className="cap-amber">amber</span> number is what is still at
+          risk while you are only watching.
         </figcaption>
       </figure>
 
