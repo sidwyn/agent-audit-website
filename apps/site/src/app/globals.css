@@ -746,6 +746,42 @@ footer .footnote {
   box-shadow: 0 4px 20px rgba(14, 15, 18, 0.06);
 }
 
+.price {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 0 16px;
+}
+
+.price-amount {
+  font-size: clamp(2rem, 6vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #71717a;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #b4b4bb;
+}
+
+.price-per {
+  font-size: 0.42em;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.price-badge {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
 .pricing-body {
   font-size: 16px;
   color: var(--muted);
