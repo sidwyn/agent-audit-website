@@ -4,6 +4,7 @@ import {
   Hero,
   HowItWorks,
   Pricing,
+  SeeItWork,
   WhatItStops,
   WhoBuiltIt,
 } from "../components/Sections";
@@ -20,6 +21,7 @@ export default function Page() {
     <main>
       <Hero copy={copy.hero} env={env} />
       <WhatItStops copy={copy.whatItStops} />
+      <SeeItWork />
       <HowItWorks copy={copy.howItWorks} />
       <BuiltFor copy={copy.builtFor} />
       <Pricing copy={copy.pricing} env={env} />

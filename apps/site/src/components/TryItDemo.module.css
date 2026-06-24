@@ -1,0 +1,269 @@
+/* "Try it" — interactive watch/enforce demo. Self-contained, no deps. */
+
+.demo {
+  container-type: inline-size;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(14, 15, 18, 0.05);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  align-items: center;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.controlLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* mode toggle */
+.toggle {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 8px;
+  background: #f1f0ec;
+  border: 1px solid var(--rule);
+}
+
+.toggleBtn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 7px 16px;
+  border-radius: 6px;
+  color: var(--muted);
+  transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.toggleBtn[aria-pressed="true"] {
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(14, 15, 18, 0.2);
+}
+
+.toggleBtn.enforceOn[aria-pressed="true"] {
+  background: #b91c1c;
+}
+
+.attacks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.attackBtn {
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1.5px solid var(--ink);
+  background: #fff;
+  color: var(--ink);
+  transition: background 140ms ease, color 140ms ease, transform 80ms ease;
+}
+
+.attackBtn:hover { background: var(--ink); color: #fff; }
+.attackBtn:active { transform: translateY(1px); }
+
+.toggleBtn:focus-visible,
+.attackBtn:focus-visible {
+  outline: 3px solid var(--accent-bright);
+  outline-offset: 2px;
+}
+
+/* track / visualization */
+.track {
+  position: relative;
+  height: 96px;
+  margin: 22px 0 6px;
+  border-radius: 10px;
+  background:
+    radial-gradient(120% 80% at 0% 50%, rgba(79, 70, 229, 0.05), transparent 60%),
+    #faf9f6;
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+
+.tGate {
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  left: 50%;
+  width: 26px;
+  transform: translateX(-50%);
+  border-radius: 7px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-bright));
+  display: grid;
+  place-items: center;
+  transition: box-shadow 200ms ease;
+}
+
+.tGate.lit {
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.18), 0 6px 18px rgba(49, 46, 129, 0.3);
+}
+
+.tGateLabel {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.tStore {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tChip {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(8cqw, -50%);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1.5px solid var(--rule);
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(14, 15, 18, 0.1);
+  font-size: clamp(11px, 3cqw, 13px);
+  font-weight: 600;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.tChipName { font-weight: 700; }
+.tChipPay {
+  font-family: "SF Mono", "Fira Code", Consolas, monospace;
+  font-size: 0.85em;
+  color: var(--muted);
+}
+
+/* run states (animated) */
+.tChip.runPass { animation: try-pass 1.7s ease forwards; }
+.tChip.runBounce { animation: try-bounce 1.7s ease forwards; }
+
+.tChip.caught { border-color: #d97706; background: #fffbeb; }
+.tChip.blocked { border-color: #dc2626; background: #fef2f2; color: #991b1b; }
+.tChip.stripped { border-color: #16a34a; background: #f0fdf4; color: #166534; }
+
+@keyframes try-pass {
+  0% { transform: translate(8cqw, -50%); opacity: 0; }
+  12% { opacity: 1; }
+  42% { transform: translate(46cqw, -50%); opacity: 1; }
+  58% { transform: translate(46cqw, -50%); opacity: 1; }
+  90% { transform: translate(82cqw, -50%); opacity: 1; }
+  100% { transform: translate(82cqw, -50%); opacity: 1; }
+}
+
+@keyframes try-bounce {
+  0% { transform: translate(8cqw, -50%); opacity: 0; }
+  12% { opacity: 1; }
+  45% { transform: translate(44cqw, -50%); opacity: 1; }
+  55% { transform: translate(44cqw, -50%); opacity: 1; }
+  100% { transform: translate(12cqw, -50%); opacity: 1; }
+}
+
+/* static (reduced motion): chip is placed, not animated */
+.tChip.staticPlaced {
+  opacity: 1;
+  transition: none;
+}
+.tChip.staticPass { transform: translate(80cqw, -50%); }
+.tChip.staticBounce { transform: translate(13cqw, -50%); }
+
+/* decision log */
+.logHead {
+  margin: 18px 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: "SF Mono", "Fira Code", Consolas, monospace;
+  font-size: 13px;
+}
+
+.log:empty::after {
+  content: "Send a request to see the decision log.";
+  color: var(--muted);
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-style: italic;
+}
+
+.logLine {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  padding: 9px 12px;
+  border-radius: 7px;
+  border-left: 3px solid var(--rule);
+  background: #faf9f6;
+  animation: log-in 260ms ease;
+}
+
+.logWatch { border-left-color: #d97706; }
+.logBlocked { border-left-color: #dc2626; }
+.logStripped { border-left-color: #16a34a; }
+
+.logVerb { font-weight: 700; }
+.logWatch .logVerb { color: #b45309; }
+.logBlocked .logVerb { color: #b91c1c; }
+.logStripped .logVerb { color: #15803d; }
+.logRest { color: var(--muted); }
+
+@keyframes log-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tChip.runPass,
+  .tChip.runBounce { animation: none; }
+  .logLine { animation: none; }
+  .toggleBtn,
+  .attackBtn,
+  .tGate { transition: none; }
+}

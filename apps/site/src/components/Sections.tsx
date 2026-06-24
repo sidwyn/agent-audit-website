@@ -2,6 +2,8 @@ import type { LandingCopy } from "../lib/marketing";
 import { parseBlocks, parseFaq, stripBold } from "../lib/markdown";
 import { Cta } from "./Cta";
 import { Inline } from "./Inline";
+import { TheGate } from "./TheGate";
+import { TryItDemo } from "./TryItDemo";
 
 type Env = { stripeUrl?: string; formEndpoint?: string };
 
@@ -43,6 +45,20 @@ export function Hero({ copy, env }: { copy: LandingCopy["hero"]; env: Env }) {
           <Inline text={f} />
         </p>
       ))}
+      <TheGate />
+    </section>
+  );
+}
+
+export function SeeItWork() {
+  return (
+    <section className="see-it-work" id="see-it-work">
+      <h2>See it work</h2>
+      <p className="see-it-intro">
+        Flip between watch and enforce, then send a malicious request. Watch-only logs what it would do without
+        stopping anything. Enforce blocks or strips it.
+      </p>
+      <TryItDemo />
     </section>
   );
 }

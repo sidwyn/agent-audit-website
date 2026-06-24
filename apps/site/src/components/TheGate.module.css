@@ -1,0 +1,304 @@
+/* "The Gate" — looping hero animation. Self-contained, no deps.
+   Motion uses container-query width units (cqw) so it scales with the
+   container while text stays in px (readable on mobile). */
+
+.wrap {
+  container-type: inline-size;
+  width: 100%;
+  margin: 36px 0 8px;
+}
+
+.stage {
+  position: relative;
+  height: clamp(180px, 46cqw, 230px);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background:
+    radial-gradient(120% 80% at 0% 50%, rgba(79, 70, 229, 0.05), transparent 60%),
+    #fff;
+  overflow: hidden;
+}
+
+/* ---- fixed nodes ---- */
+.src,
+.store {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.src {
+  left: 2.5cqw;
+  width: 9cqw;
+  min-width: 56px;
+}
+
+.store {
+  right: 1.5cqw;
+  width: 13cqw;
+  min-width: 84px;
+  color: var(--ink);
+}
+
+.storeIcon {
+  display: block;
+  margin: 0 auto 6px;
+  width: 34px;
+  height: 34px;
+  color: var(--accent);
+}
+
+.srcDot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+  margin: 0 auto 6px;
+  opacity: 0.7;
+}
+
+/* ---- the gate ---- */
+.gate {
+  position: absolute;
+  top: 14%;
+  bottom: 14%;
+  left: 50cqw;
+  width: 30px;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-bright) 100%);
+  box-shadow: 0 6px 20px rgba(49, 46, 129, 0.28);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.gateLabel {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.gateShield {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 22px;
+  color: var(--accent-bright);
+}
+
+/* slow scan line for premium feel */
+.scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  animation: gate-scan 4.5s ease-in-out infinite;
+}
+
+@keyframes gate-scan {
+  0%, 100% { top: -24px; }
+  50% { top: 100%; }
+}
+
+/* ---- chips ---- */
+.chip {
+  position: absolute;
+  left: 0;
+  transform: translateX(8cqw);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation-duration: 12s;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i, 0) * -2.4s);
+}
+
+.pill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  padding: 7px 11px;
+  border-radius: 999px;
+  border: 1.5px solid var(--rule);
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(14, 15, 18, 0.08);
+  font-size: clamp(10px, 2.6cqw, 13px);
+  font-weight: 600;
+  color: var(--ink);
+  animation-duration: 12s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i, 0) * -2.4s);
+}
+
+.name {
+  font-weight: 700;
+}
+
+.tag {
+  font-size: 0.82em;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.payload {
+  position: relative;
+  font-family: "SF Mono", "Fira Code", Consolas, monospace;
+  font-size: 0.86em;
+  color: var(--muted);
+}
+
+.payRaw {
+  animation-duration: 12s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i, 0) * -2.4s);
+}
+
+.paySafe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  color: #16a34a;
+  font-weight: 700;
+  animation-duration: 12s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i, 0) * -2.4s);
+}
+
+.strike {
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  height: 2px;
+  width: calc(100% + 4px);
+  background: #dc2626;
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation-duration: 12s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i, 0) * -2.4s);
+}
+
+/* lanes + per-type wiring */
+.c0 { top: 20%; }
+.c1 { top: 50%; }
+.c2 { top: 80%; }
+.c3 { top: 34%; }
+.c4 { top: 66%; }
+
+.pass { animation-name: gate-pass; }
+.bounce { animation-name: gate-bounce; }
+.greenify { animation-name: gate-greenify; }
+.amberify { animation-name: gate-amberify; }
+.redactOut { animation-name: gate-fade-out; }
+.redactIn { animation-name: gate-fade-in; }
+.strikeRun { animation-name: gate-strike; }
+
+@keyframes gate-pass {
+  0%   { transform: translateX(8cqw);  opacity: 0; }
+  5%   { opacity: 1; }
+  30%  { transform: translateX(43cqw); opacity: 1; }
+  40%  { transform: translateX(43cqw); opacity: 1; }
+  53%  { transform: translateX(85cqw); opacity: 1; }
+  60%  { opacity: 0; }
+  100% { transform: translateX(85cqw); opacity: 0; }
+}
+
+@keyframes gate-bounce {
+  0%   { transform: translateX(8cqw);  opacity: 0; }
+  5%   { opacity: 1; }
+  30%  { transform: translateX(43cqw); opacity: 1; }
+  38%  { transform: translateX(43cqw); opacity: 1; }
+  52%  { transform: translateX(14cqw); opacity: 1; }
+  60%  { opacity: 0; }
+  100% { transform: translateX(14cqw); opacity: 0; }
+}
+
+@keyframes gate-greenify {
+  0%, 31% { border-color: var(--rule); color: var(--ink); background: #fff; }
+  41%, 100% { border-color: #16a34a; color: #166534; background: #f0fdf4; }
+}
+
+@keyframes gate-amberify {
+  0%, 31% { border-color: var(--rule); background: #fff; }
+  41%, 100% { border-color: #d97706; background: #fffbeb; }
+}
+
+@keyframes gate-fade-out {
+  0%, 31% { opacity: 1; }
+  41%, 100% { opacity: 0; }
+}
+
+@keyframes gate-fade-in {
+  0%, 33% { opacity: 0; }
+  43%, 100% { opacity: 1; }
+}
+
+@keyframes gate-strike {
+  0%, 31% { transform: scaleX(0); }
+  41%, 100% { transform: scaleX(1); }
+}
+
+/* ---- static (reduced-motion) fallback ---- */
+.static {
+  display: none;
+  position: absolute;
+  inset: 0;
+  padding: 14px 12cqw;
+}
+
+.staticRow {
+  position: absolute;
+  left: 13cqw;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1.5px solid var(--rule);
+  background: #fff;
+  font-size: clamp(10px, 2.4cqw, 12px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.staticRow svg { width: 14px; height: 14px; flex: none; }
+.sr0 { top: 12%; }
+.sr1 { top: 34%; }
+.sr2 { top: 56%; }
+.sr3 { top: 78%; }
+.ok { border-color: #16a34a; color: #166534; }
+.ok svg { color: #16a34a; }
+.warn { border-color: #d97706; color: #92400e; }
+.warn svg { color: #d97706; }
+
+@media (prefers-reduced-motion: reduce) {
+  .chip { display: none; }
+  .scan { animation: none; display: none; }
+  .static { display: block; }
+}
