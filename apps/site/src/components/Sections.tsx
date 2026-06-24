@@ -58,8 +58,8 @@ export function SeeItWork() {
     <section className="see-it-work" id="see-it-work">
       <h2>See it work</h2>
       <p className="see-it-intro">
-        Send a bad request and see what AgentArmor does. In Watch mode, it only logs the threat. In Enforce mode, it
-        stops it.
+        Send a bad request and see what AgentArmor does. In <strong>Watch mode</strong>, AgentArmor only logs the
+        threat. In <strong>Enforce mode</strong>, AgentArmor stops it.
       </p>
       <TryItDemo />
     </section>
@@ -70,7 +70,7 @@ export function WhatItStops({ copy }: { copy: LandingCopy["whatItStops"] }) {
   const items = listItems(copy);
   return (
     <section className="get" id="what-it-stops">
-      <h2>What it stops</h2>
+      <h2>What AgentArmor stops</h2>
       <ul className="cards">
         {items.map((item) => {
           const m = item.match(/^\*\*(.+?)\*\*\s*([\s\S]*)$/);
@@ -146,7 +146,7 @@ export function WhoBuiltIt({ copy }: { copy: LandingCopy["whoBuiltIt"] }) {
   const ps = paragraphs(copy);
   return (
     <section className="about" id="about">
-      <h2>Who built it</h2>
+      <h2>Who built AgentArmor</h2>
       <div className="about-inner">
         <img
           alt="Sidwyn Koh"

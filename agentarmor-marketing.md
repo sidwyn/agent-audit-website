@@ -16,7 +16,7 @@ AgentArmor is the Shopware plugin that lets them buy, without letting them **scr
 
 **[Get early access]**
 
-It starts in **watch-only mode**, so you see what it would block before it blocks anything.
+AgentArmor starts in **watch-only mode**, so you see what AgentArmor would flag before anything is blocked.
 
 ### What it stops
 - **Price and stock scraping.** Competitors pull your prices, SKUs, and exact stock to undercut you automatically. AgentArmor hides those fields from untrusted agents and rate-limits the scrapers.
@@ -24,12 +24,12 @@ It starts in **watch-only mode**, so you see what it would block before it block
 - **Dangerous text.** Agents type hidden commands and injection like SQL or scripts into notes and fields. AgentArmor cleans them out before they reach your database, logs, or AI tools.
 
 ### How it works
-AgentArmor is a normal Shopware plugin. You install it from the Shopware Store, set it up in admin, and you are done. **No proxy, no DNS changes, no separate server.** It runs inside your store, so no agent data ever leaves.
+AgentArmor is a normal Shopware plugin. You install AgentArmor from the Shopware Store, set it up in admin, and you are done. **No proxy, no DNS changes, no separate server.** AgentArmor runs inside your store, so no agent data ever leaves.
 
-It starts in watch-only mode and logs what it would block, so you can see your exposure first. You switch on protection when you are ready.
+AgentArmor starts in watch-only mode and logs what it would block, so you can see your exposure first. You switch on protection when you are ready.
 
 ### Built for self-hosted Shopware
-AgentArmor is a plugin for **self-hosted (or PaaS) Shopware 6**. It is built for the B2B and mid-market stores doing real volume. Shopware Cloud and SaaS are not supported for now.
+AgentArmor is a plugin for **self-hosted (or PaaS) Shopware 6**. AgentArmor is built for the B2B and mid-market stores doing real volume. Shopware Cloud and SaaS are not supported for now.
 
 ### Pricing
 Get in now and pay nothing while AgentArmor is in beta. For enterprise or multi-store, get in touch.
@@ -40,7 +40,7 @@ Get in now and pay nothing while AgentArmor is in beta. For enterprise or multi-
 I'm **Sidwyn Koh**. I spent 16 years building payments and commerce, with payments roles at Meta and, before that, Lyft. Agents are real buyers now, but merchants have no tools built for them. AgentArmor is that tool.
 
 ### FAQ
-**Will AgentArmor slow my checkout?** No. AgentArmor adds a few milliseconds and never blocks a real order. It runs in watch-only mode until you decide otherwise.
+**Will AgentArmor slow my checkout?** No. AgentArmor adds a few milliseconds and never blocks a real order. AgentArmor runs in watch-only mode until you decide otherwise.
 
 **Will AgentArmor block legitimate agents like ChatGPT or Gemini?** No. Known agents are allowlisted. AgentArmor only targets untrusted, abusive traffic.
 
