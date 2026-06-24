@@ -41,7 +41,6 @@ export function Hero({ copy, env }: { copy: LandingCopy["hero"]; env: Env }) {
       ))}
       <p className="hero-offer">
         <span className="price-badge">Free during beta</span>
-        <span className="hero-offer-note">then €39/month</span>
       </p>
       {ctaBlock?.type === "cta" && <Cta label={ctaBlock.label} {...env} id="cta-top" />}
       {after.map((f, i) => (
