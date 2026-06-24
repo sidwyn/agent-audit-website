@@ -124,7 +124,7 @@ export function Pricing({ copy, env }: { copy: LandingCopy["pricing"]; env: Env 
   const cta = blocks.find((b) => b.type === "cta");
   return (
     <section className="pricing" id="pricing">
-      <h2>One plan, every threat.</h2>
+      <h2>Free during early access.</h2>
       <div className="pricing-card">
         <p className="pricing-body">{body?.type === "p" ? <Inline text={body.text} /> : null}</p>
         {cta && <Cta label={cta.label} {...env} id="cta-pricing" />}

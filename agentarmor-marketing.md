@@ -32,7 +32,7 @@ It starts in watch-only mode and logs what it would block, so you can see your e
 AgentArmor is a plugin for **self-hosted (or PaaS) Shopware 6**. It is built for the B2B and mid-market stores doing real volume. Shopware Cloud and SaaS are not supported for now.
 
 ### Pricing
-It is **free while it is only watching**, and you pay when you switch protection on. For enterprise or multi-store, get in touch.
+AgentArmor is **free of charge** for now. For enterprise or multi-store, get in touch.
 
 **[Get early access]**
 
