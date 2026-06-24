@@ -1,23 +1,38 @@
 /* "The Gate" — looping hero animation. Self-contained, no deps.
-   Motion uses container-query width units (cqw) so it scales with the
-   container while text stays in px (readable on mobile). */
+   Dark diagram surface (Socket/Cloudflare style): dotted grid, connector rails,
+   monospace tokens, severity dots, glowing gate. Motion uses container-query
+   width units (cqw) so it scales with the container; text stays in px. */
 
 .wrap {
   container-type: inline-size;
   width: 100%;
-  margin: 36px 0 8px;
+  margin: 40px 0 8px;
 }
 
 .stage {
   position: relative;
-  height: clamp(180px, 46cqw, 230px);
-  border: 1px solid var(--rule);
-  border-radius: 12px;
+  height: clamp(190px, 44cqw, 240px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   background:
-    radial-gradient(120% 80% at 0% 50%, rgba(79, 70, 229, 0.05), transparent 60%),
-    #fff;
+    radial-gradient(60% 90% at 50% 50%, rgba(99, 102, 241, 0.16), transparent 70%),
+    radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px) 0 0 / 22px 22px,
+    #0c0d11;
+  box-shadow: 0 24px 60px -28px rgba(12, 13, 17, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
   overflow: hidden;
 }
+
+/* ---- connector rails ---- */
+.rail {
+  position: absolute;
+  left: 11cqw;
+  right: 16cqw;
+  height: 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+.railA { top: 28%; }
+.railB { top: 50%; }
+.railC { top: 72%; }
 
 /* ---- fixed nodes ---- */
 .src,
@@ -25,94 +40,86 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.5);
   text-align: center;
-  line-height: 1.3;
+  line-height: 1.4;
+  z-index: 2;
 }
 
-.src {
-  left: 2.5cqw;
-  width: 9cqw;
-  min-width: 56px;
-}
+.src { left: 2cqw; width: 9cqw; min-width: 52px; }
+.store { right: 1.5cqw; width: 12cqw; min-width: 78px; color: rgba(255, 255, 255, 0.78); }
 
-.store {
-  right: 1.5cqw;
-  width: 13cqw;
-  min-width: 84px;
-  color: var(--ink);
-}
-
-.storeIcon {
-  display: block;
-  margin: 0 auto 6px;
-  width: 34px;
-  height: 34px;
-  color: var(--accent);
-}
+.storeIcon { display: block; margin: 0 auto 7px; width: 30px; height: 30px; color: #818cf8; }
 
 .srcDot {
   display: block;
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: var(--accent-bright);
-  margin: 0 auto 6px;
-  opacity: 0.7;
+  background: #818cf8;
+  margin: 0 auto 8px;
+  box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.5);
+  animation: gate-ping 2.6s ease-out infinite;
+}
+
+@keyframes gate-ping {
+  0% { box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.5); }
+  70%, 100% { box-shadow: 0 0 0 9px rgba(129, 140, 248, 0); }
 }
 
 /* ---- the gate ---- */
 .gate {
   position: absolute;
-  top: 14%;
-  bottom: 14%;
+  top: 16%;
+  bottom: 16%;
   left: 50cqw;
-  width: 30px;
+  width: 22px;
   transform: translateX(-50%);
-  border-radius: 8px;
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-bright) 100%);
-  box-shadow: 0 6px 20px rgba(49, 46, 129, 0.28);
+  border-radius: 7px;
+  background: linear-gradient(180deg, #4f46e5, #6366f1);
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   display: grid;
   place-items: center;
   overflow: hidden;
+  z-index: 3;
 }
 
 .gateLabel {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font-size: 11px;
+  font-size: 9px;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .gateShield {
   position: absolute;
-  top: -11px;
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
   width: 22px;
   height: 22px;
-  color: var(--accent-bright);
+  color: #a5b4fc;
+  filter: drop-shadow(0 0 6px rgba(129, 140, 248, 0.6));
 }
 
-/* slow scan line for premium feel */
 .scan {
   position: absolute;
   left: 0;
   right: 0;
-  height: 24px;
-  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  height: 26px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.35), transparent);
   animation: gate-scan 4.5s ease-in-out infinite;
 }
 
 @keyframes gate-scan {
-  0%, 100% { top: -24px; }
+  0%, 100% { top: -26px; }
   50% { top: 100%; }
 }
 
@@ -122,9 +129,10 @@
   left: 0;
   transform: translateX(8cqw);
   opacity: 0;
+  z-index: 4;
   will-change: transform, opacity;
   animation-duration: 12s;
-  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   animation-iteration-count: infinite;
   animation-delay: calc(var(--i, 0) * -2.4s);
 }
@@ -138,35 +146,35 @@
   align-items: center;
   gap: 8px;
   white-space: nowrap;
-  padding: 7px 11px;
-  border-radius: 999px;
-  border: 1.5px solid var(--rule);
-  background: #fff;
-  box-shadow: 0 3px 12px rgba(14, 15, 18, 0.08);
-  font-size: clamp(10px, 2.6cqw, 13px);
+  padding: 7px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(22, 24, 30, 0.92);
+  box-shadow: 0 8px 22px -8px rgba(0, 0, 0, 0.7);
+  font-size: clamp(10px, 2.5cqw, 12.5px);
   font-weight: 600;
-  color: var(--ink);
+  color: #e6e7ec;
   animation-duration: 12s;
   animation-timing-function: ease;
   animation-iteration-count: infinite;
   animation-delay: calc(var(--i, 0) * -2.4s);
 }
 
-.name {
-  font-weight: 700;
-}
+.dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.dotOk { background: #34d399; box-shadow: 0 0 8px rgba(52, 211, 153, 0.7); }
+.dotWarn { background: #fbbf24; box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
+.dotBad { background: #f87171; box-shadow: 0 0 8px rgba(248, 113, 113, 0.6); }
 
-.tag {
-  font-size: 0.82em;
-  font-weight: 600;
-  color: var(--muted);
-}
+.name { font-weight: 700; letter-spacing: -0.01em; }
 
 .payload {
   position: relative;
   font-family: "SF Mono", "Fira Code", Consolas, monospace;
-  font-size: 0.86em;
-  color: var(--muted);
+  font-size: 0.84em;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .payRaw {
@@ -178,10 +186,10 @@
 
 .paySafe {
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 6px;
+  top: 2px;
   opacity: 0;
-  color: #16a34a;
+  color: #34d399;
   font-weight: 700;
   animation-duration: 12s;
   animation-timing-function: ease;
@@ -191,11 +199,11 @@
 
 .strike {
   position: absolute;
-  left: -2px;
+  left: 3px;
+  right: 3px;
   top: 50%;
-  height: 2px;
-  width: calc(100% + 4px);
-  background: #dc2626;
+  height: 1.5px;
+  background: #f87171;
   transform: scaleX(0);
   transform-origin: left center;
   animation-duration: 12s;
@@ -204,12 +212,10 @@
   animation-delay: calc(var(--i, 0) * -2.4s);
 }
 
-/* lanes + per-type wiring */
-.c0 { top: 20%; }
-.c1 { top: 50%; }
-.c2 { top: 80%; }
-.c3 { top: 34%; }
-.c4 { top: 66%; }
+/* lanes (3 rails) + per-type wiring */
+.laneA { top: 28%; }
+.laneB { top: 50%; }
+.laneC { top: 72%; }
 
 .pass { animation-name: gate-pass; }
 .bounce { animation-name: gate-bounce; }
@@ -221,32 +227,32 @@
 
 @keyframes gate-pass {
   0%   { transform: translateX(8cqw);  opacity: 0; }
-  5%   { opacity: 1; }
+  6%   { opacity: 1; }
   30%  { transform: translateX(43cqw); opacity: 1; }
   40%  { transform: translateX(43cqw); opacity: 1; }
-  53%  { transform: translateX(85cqw); opacity: 1; }
+  54%  { transform: translateX(85cqw); opacity: 1; }
   60%  { opacity: 0; }
   100% { transform: translateX(85cqw); opacity: 0; }
 }
 
 @keyframes gate-bounce {
   0%   { transform: translateX(8cqw);  opacity: 0; }
-  5%   { opacity: 1; }
+  6%   { opacity: 1; }
   30%  { transform: translateX(43cqw); opacity: 1; }
   38%  { transform: translateX(43cqw); opacity: 1; }
-  52%  { transform: translateX(14cqw); opacity: 1; }
+  52%  { transform: translateX(13cqw); opacity: 1; }
   60%  { opacity: 0; }
-  100% { transform: translateX(14cqw); opacity: 0; }
+  100% { transform: translateX(13cqw); opacity: 0; }
 }
 
 @keyframes gate-greenify {
-  0%, 31% { border-color: var(--rule); color: var(--ink); background: #fff; }
-  41%, 100% { border-color: #16a34a; color: #166534; background: #f0fdf4; }
+  0%, 31% { border-color: rgba(255, 255, 255, 0.12); box-shadow: 0 8px 22px -8px rgba(0, 0, 0, 0.7); }
+  41%, 100% { border-color: rgba(52, 211, 153, 0.6); box-shadow: 0 0 18px -2px rgba(52, 211, 153, 0.35); }
 }
 
 @keyframes gate-amberify {
-  0%, 31% { border-color: var(--rule); background: #fff; }
-  41%, 100% { border-color: #d97706; background: #fffbeb; }
+  0%, 31% { border-color: rgba(255, 255, 255, 0.12); }
+  41%, 100% { border-color: rgba(251, 191, 36, 0.55); }
 }
 
 @keyframes gate-fade-out {
@@ -265,12 +271,7 @@
 }
 
 /* ---- static (reduced-motion) fallback ---- */
-.static {
-  display: none;
-  position: absolute;
-  inset: 0;
-  padding: 14px 12cqw;
-}
+.static { display: none; position: absolute; inset: 0; }
 
 .staticRow {
   position: absolute;
@@ -278,27 +279,27 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 10px;
-  border-radius: 999px;
-  border: 1.5px solid var(--rule);
-  background: #fff;
+  padding: 6px 11px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(22, 24, 30, 0.92);
+  color: #e6e7ec;
   font-size: clamp(10px, 2.4cqw, 12px);
   font-weight: 600;
   white-space: nowrap;
 }
 
-.staticRow svg { width: 14px; height: 14px; flex: none; }
+.staticRow svg { width: 13px; height: 13px; flex: none; }
 .sr0 { top: 12%; }
-.sr1 { top: 34%; }
-.sr2 { top: 56%; }
-.sr3 { top: 78%; }
-.ok { border-color: #16a34a; color: #166534; }
-.ok svg { color: #16a34a; }
-.warn { border-color: #d97706; color: #92400e; }
-.warn svg { color: #d97706; }
+.sr1 { top: 36%; }
+.sr2 { top: 60%; }
+.sr3 { top: 84%; }
+.ok svg { color: #34d399; }
+.warn svg { color: #fbbf24; }
 
 @media (prefers-reduced-motion: reduce) {
-  .chip { display: none; }
-  .scan { animation: none; display: none; }
+  .chip,
+  .scan { display: none; }
+  .srcDot { animation: none; }
   .static { display: block; }
 }

@@ -39,6 +39,10 @@ export function TheGate() {
   return (
     <div className={styles.wrap} role="img" aria-label={ARIA}>
       <div className={styles.stage}>
+        <span className={`${styles.rail} ${styles.railA}`} aria-hidden="true" />
+        <span className={`${styles.rail} ${styles.railB}`} aria-hidden="true" />
+        <span className={`${styles.rail} ${styles.railC}`} aria-hidden="true" />
+
         <div className={styles.src} aria-hidden="true">
           <span className={styles.srcDot} />
           AI agents
@@ -56,15 +60,16 @@ export function TheGate() {
         </div>
 
         {/* animated chips */}
-        <div className={`${styles.chip} ${styles.c0} ${styles.pass}`} style={{ "--i": 0 } as Vars} aria-hidden="true">
+        <div className={`${styles.chip} ${styles.laneA} ${styles.pass}`} style={{ "--i": 0 } as Vars} aria-hidden="true">
           <span className={`${styles.pill} ${styles.greenify}`}>
+            <span className={`${styles.dot} ${styles.dotOk}`} />
             <span className={styles.name}>ChatGPT</span>
-            <span className={styles.tag}>pass</span>
           </span>
         </div>
 
-        <div className={`${styles.chip} ${styles.c1} ${styles.pass}`} style={{ "--i": 1 } as Vars} aria-hidden="true">
+        <div className={`${styles.chip} ${styles.laneB} ${styles.pass}`} style={{ "--i": 1 } as Vars} aria-hidden="true">
           <span className={`${styles.pill} ${styles.amberify}`}>
+            <span className={`${styles.dot} ${styles.dotWarn}`} />
             <span className={styles.name}>Scraper</span>
             <span className={styles.payload}>
               <span className={styles.payRaw + " " + styles.redactOut}>stock: 87</span>
@@ -73,15 +78,16 @@ export function TheGate() {
           </span>
         </div>
 
-        <div className={`${styles.chip} ${styles.c2} ${styles.pass}`} style={{ "--i": 2 } as Vars} aria-hidden="true">
+        <div className={`${styles.chip} ${styles.laneC} ${styles.pass}`} style={{ "--i": 2 } as Vars} aria-hidden="true">
           <span className={`${styles.pill} ${styles.greenify}`}>
+            <span className={`${styles.dot} ${styles.dotOk}`} />
             <span className={styles.name}>Gemini</span>
-            <span className={styles.tag}>pass</span>
           </span>
         </div>
 
-        <div className={`${styles.chip} ${styles.c3} ${styles.pass}`} style={{ "--i": 3 } as Vars} aria-hidden="true">
+        <div className={`${styles.chip} ${styles.laneA} ${styles.pass}`} style={{ "--i": 3 } as Vars} aria-hidden="true">
           <span className={`${styles.pill} ${styles.amberify}`}>
+            <span className={`${styles.dot} ${styles.dotWarn}`} />
             <span className={styles.name}>Order note</span>
             <span className={styles.payload}>
               <span className={styles.payRaw + " " + styles.redactOut}>{"'); DROP TABLE"}</span>
@@ -91,10 +97,11 @@ export function TheGate() {
           </span>
         </div>
 
-        <div className={`${styles.chip} ${styles.c4} ${styles.bounce}`} style={{ "--i": 4 } as Vars} aria-hidden="true">
+        <div className={`${styles.chip} ${styles.laneB} ${styles.bounce}`} style={{ "--i": 4 } as Vars} aria-hidden="true">
           <span className={`${styles.pill} ${styles.amberify}`}>
+            <span className={`${styles.dot} ${styles.dotBad}`} />
             <span className={styles.name}>Promo bot</span>
-            <span className={styles.tag}>code reuse</span>
+            <span className={styles.payload}>code reuse</span>
           </span>
         </div>
 

@@ -16,9 +16,9 @@ type Outcome = {
 };
 
 const ATTACKS: { id: Attack; name: string; payload: string }[] = [
-  { id: "scraper", name: "Scraper", payload: "GET /catalog · sku, stock" },
-  { id: "promo", name: "Promo bot", payload: "code SAVE10 ×900" },
-  { id: "injection", name: "Injection", payload: "'); DROP TABLE" },
+  { id: "scraper", name: "Scraper", payload: "GET /catalog" },
+  { id: "promo", name: "Promo bot", payload: "code SAVE10" },
+  { id: "injection", name: "Injection", payload: "'); DROP" },
 ];
 
 function decide(mode: Mode, attack: Attack): Outcome {
@@ -152,12 +152,14 @@ export function TryItDemo() {
       </div>
 
       <div className={styles.track} aria-hidden="true">
+        <span className={styles.rail} />
         <div className={`${styles.tGate} ${active ? styles.lit : ""}`}>
           <span className={styles.tGateLabel}>AgentArmor</span>
         </div>
         <span className={styles.tStore}>Store</span>
         {active && meta && (
           <div key={runId} className={chipClasses}>
+            <span className={styles.dot} />
             <span className={styles.tChipName}>{meta.name}</span>
             <span className={styles.tChipPay}>{meta.payload}</span>
           </div>
