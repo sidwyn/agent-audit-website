@@ -55,7 +55,7 @@ export function SeeItWork() {
     <section className="see-it-work" id="see-it-work">
       <h2>See it work</h2>
       <p className="see-it-intro">
-        Send a bad request and see what AgentArmor does. In Watch mode it only logs the threat. In Enforce mode it
+        Send a bad request and see what AgentArmor does. In Watch mode, it only logs the threat. In Enforce mode, it
         stops it.
       </p>
       <TryItDemo />
