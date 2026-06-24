@@ -37,7 +37,7 @@ It is **free while it is only watching**, and you pay when you switch protection
 **[Get early access]**
 
 ### Who built it
-I'm **Sidwyn Koh**. I spent 16 years building payments and commerce, with payments roles at Meta and, before that, Lyft. Agents are a real buyer surface now, and merchants have no instruments for them yet. AgentArmor is that instrument.
+I'm **Sidwyn Koh**. I spent 16 years building payments and commerce, with payments roles at Meta and, before that, Lyft. Agents are real buyers now, but merchants have no tools built for them. AgentArmor is that tool.
 
 ### FAQ
 **Will AgentArmor slow my checkout?** No. AgentArmor adds a few milliseconds and never blocks a real order. It runs in watch-only mode until you decide otherwise.
