@@ -107,6 +107,20 @@ a {
   margin-top: 12px;
 }
 
+.hero-offer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 16px;
+}
+
+.hero-offer-note {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
 .sample-link {
   margin-top: 6px;
   font-size: 15px;
