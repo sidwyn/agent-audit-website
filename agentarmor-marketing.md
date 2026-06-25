@@ -19,20 +19,16 @@ AgentArmor is the Shopware plugin that lets them buy, without letting them **far
 AgentArmor starts in **watch-only mode**, so you see what AgentArmor would flag before anything is blocked.
 
 ### What it stops
-- **Promo farming.** Shopware caps promo use per account, and an agent makes new accounts for free. AgentArmor ties each single-use code to the payment card, so the same card cannot claim twice.
+- **Promo farming.** Shopware caps promo use per account, and an agent makes new accounts for free. AgentArmor looks past the account and catches the same buyer claiming a single-use code twice, however many fresh logins it spins up.
 - **Price and stock scraping.** Untrusted agents get SKU, barcode, and exact stock hidden, with stock coarsened to in, low, or out. The win is not blocking requests, it is devaluing what gets scraped, even against rotating IPs.
 - **Agent text injection.** AgentArmor treats agent text as data, never commands. It strips hidden payloads like zero-width and control characters, lookalike Unicode, and hidden markup, then flags the field untrusted so it never reaches your tools or AI as a trusted instruction.
 
 ### Promo depth
 **Promo limits stop at the account. Agents don't.**
 
-Shopware's promo controls do their job. They cap redemptions per customer and per code. But per customer means per account, and an agent makes accounts for free: new email, new login, limits reset. **The card behind them never changes.**
+Shopware's promo controls do their job. They cap redemptions per customer and per code. But per customer means per account, and an agent makes accounts for free: new email, new login, limits reset. The card behind them never changes.
 
-AgentArmor adds the layer the account can't see. AgentArmor ties each single-use code to the payment card, not just the login. The agent can rotate accounts, emails, and IPs all it wants. **The same card gets caught on the second try.** One claim per card, checked right at checkout so two orders placed at once can't both win.
-
-This runs alongside Shopware's own limits, not instead of them. Your rules keep working exactly as you set them. AgentArmor just closes the gap agents walk through.
-
-And it all stays on your server. AgentArmor spots card-level abuse without ever storing or sending a card number. **It keeps only a one-way hash, inside your own database.**
+AgentArmor adds a layer that looks past the account. It reads the signals an agent can't easily fake and **catches the same buyer coming back for a second bite**, no matter how many fresh logins, emails, or IPs it spins up. It runs alongside your existing limits, never instead of them, and it all stays on your server, with nothing sensitive ever stored or sent.
 
 ### How it works
 AgentArmor is a normal Shopware plugin. You install AgentArmor from the Shopware Store, set it up in admin, and you are done. **No proxy, no DNS changes, no separate server.** AgentArmor runs inside your store, so no agent data ever leaves.

@@ -76,7 +76,7 @@ function usePrefersReducedMotion(): boolean {
 }
 
 export function TryItDemo() {
-  const [mode, setMode] = useState<Mode>("watch");
+  const [mode, setMode] = useState<Mode>("enforce");
   const [runId, setRunId] = useState(0);
   const [active, setActive] = useState<{ attack: Attack; outcome: Outcome } | null>(null);
   const [log, setLog] = useState<{ key: number; mode: Mode; outcome: Outcome }[]>([]);
@@ -120,19 +120,19 @@ export function TryItDemo() {
           <div className={styles.toggle} role="group" aria-labelledby="mode-label">
             <button
               type="button"
-              className={styles.toggleBtn}
-              aria-pressed={mode === "watch"}
-              onClick={() => setMode("watch")}
-            >
-              Watch
-            </button>
-            <button
-              type="button"
               className={`${styles.toggleBtn} ${styles.enforceOn}`}
               aria-pressed={mode === "enforce"}
               onClick={() => setMode("enforce")}
             >
               Enforce
+            </button>
+            <button
+              type="button"
+              className={styles.toggleBtn}
+              aria-pressed={mode === "watch"}
+              onClick={() => setMode("watch")}
+            >
+              Watch
             </button>
           </div>
         </div>
