@@ -40,7 +40,7 @@ export function Hero({ copy, env }: { copy: LandingCopy["hero"]; env: Env }) {
         </p>
       ))}
       <p className="hero-offer">
-        <span className="price-badge">Free during beta</span>
+        <span className="price-badge">Free plugin</span>
       </p>
       {ctaBlock?.type === "cta" && <Cta label={ctaBlock.label} {...env} id="cta-top" />}
       {after.map((f, i) => (
@@ -201,7 +201,7 @@ export function Pricing({ copy, env }: { copy: LandingCopy["pricing"]; env: Env 
       <h2>Pricing</h2>
       <div className="pricing-card">
         <div className="price">
-          <span className="price-badge">Free during beta</span>
+          <span className="price-badge">Free plugin</span>
         </div>
         <p className="pricing-body">{body?.type === "p" ? <Inline text={body.text} /> : null}</p>
         {cta && <Cta label={cta.label} {...env} id="cta-pricing" />}
