@@ -22,7 +22,7 @@ describe("loadLandingCopy", () => {
   it("keeps the copy verbatim", () => {
     expect(copy.hero).toContain("**Open to agents. Hard to exploit.**");
     expect(copy.hero).toContain("**[Get early access]**");
-    expect(copy.whatItStops).toContain("**Promo code farming.**");
+    expect(copy.whatItStops).toContain("**Promo farming.**");
     expect(copy.pricing).toContain("**[Get early access]**");
     expect(copy.whoBuiltIt).toContain("I'm **Sidwyn Koh**.");
   });

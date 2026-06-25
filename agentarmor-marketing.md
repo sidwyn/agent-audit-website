@@ -12,16 +12,16 @@
 
 AI agents now shop on your store.
 
-AgentArmor is the Shopware plugin that lets them buy, without letting them **scrape your prices, farm your promo codes, or slip dangerous text** into your systems.
+AgentArmor is the Shopware plugin that lets them buy, without letting them **farm your promo codes, scrape your prices, or slip dangerous text** into your systems.
 
 **[Get early access]**
 
 AgentArmor starts in **watch-only mode**, so you see what AgentArmor would flag before anything is blocked.
 
 ### What it stops
-- **Price and stock scraping.** Competitors pull your prices, SKUs, and exact stock to undercut you automatically. AgentArmor hides those fields from untrusted agents and rate-limits the scrapers.
-- **Promo code farming.** Bot farms drain new-customer and single-use codes across thousands of fake accounts. AgentArmor ties each code to a real login and card, so the same card cannot claim it twice.
-- **Dangerous text.** Agents type hidden commands and injection like SQL or scripts into notes and fields. AgentArmor cleans them out before they reach your database, logs, or AI tools.
+- **Promo farming.** Shopware caps promo use per account, and an agent makes new accounts for free. AgentArmor ties each single-use code to the payment card, so the same card cannot claim twice.
+- **Price and stock scraping.** Untrusted agents get SKU, barcode, and exact stock hidden, with stock coarsened to in, low, or out. The win is not blocking requests, it is devaluing what gets scraped, even against rotating IPs.
+- **Agent text injection.** AgentArmor treats agent text as data, never commands. It strips hidden payloads like zero-width and control characters, lookalike Unicode, and hidden markup, then flags the field untrusted so it never reaches your tools or AI as a trusted instruction.
 
 ### Promo depth
 **Promo limits stop at the account. Agents don't.**

@@ -16,9 +16,9 @@ test("what it stops lists the three threats", async ({ page }) => {
   await page.goto("/");
   const cards = page.locator("#what-it-stops .cards li");
   await expect(cards).toHaveCount(3);
-  await expect(cards.nth(0)).toContainText("Price and stock scraping.");
-  await expect(cards.nth(1)).toContainText("Promo code farming.");
-  await expect(cards.nth(2)).toContainText("Dangerous text.");
+  await expect(cards.nth(0)).toContainText("Promo farming.");
+  await expect(cards.nth(1)).toContainText("Price and stock scraping.");
+  await expect(cards.nth(2)).toContainText("Agent text injection.");
 });
 
 test("email capture renders when stripe link is unset at build time", async ({ page }) => {
