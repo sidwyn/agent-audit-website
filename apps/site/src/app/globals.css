@@ -822,6 +822,79 @@ footer .footnote {
   margin-bottom: 0;
 }
 
+/* ---- promo depth ---- */
+.promo-headline {
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  text-transform: none;
+  color: var(--ink);
+  margin: 0 0 18px;
+  max-width: 20ch;
+}
+
+.promo-body {
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 64ch;
+  margin: 0 0 14px;
+}
+
+.promo-compare {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 16px 18px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.promo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.promo-tag-k {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.promo-tag--armor {
+  border-color: var(--accent-bright);
+}
+
+.promo-tag--armor .promo-tag-k {
+  color: var(--accent-bright);
+}
+
+.promo-plus {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.promo-compare-note {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+@media (min-width: 640px) {
+  .promo-compare-note {
+    margin-left: auto;
+  }
+}
+
 /* ---- admin screenshots ---- */
 .admin-intro {
   font-size: clamp(1rem, 2vw, 1.15rem);

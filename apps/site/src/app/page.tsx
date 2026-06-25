@@ -5,6 +5,7 @@ import {
   Hero,
   HowItWorks,
   Pricing,
+  PromoDepth,
   SeeItWork,
   WhatItStops,
   WhoBuiltIt,
@@ -22,6 +23,7 @@ export default function Page() {
     <main>
       <Hero copy={copy.hero} env={env} />
       <WhatItStops copy={copy.whatItStops} />
+      <PromoDepth copy={copy.promoDepth} />
       <SeeItWork />
       <HowItWorks copy={copy.howItWorks} />
       <AdminShots />

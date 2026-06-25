@@ -93,6 +93,33 @@ export function WhatItStops({ copy }: { copy: LandingCopy["whatItStops"] }) {
   );
 }
 
+export function PromoDepth({ copy }: { copy: LandingCopy["promoDepth"] }) {
+  const ps = paragraphs(copy);
+  const headline = ps[0] ? stripBold(ps[0]) : "";
+  const body = ps.slice(1);
+  return (
+    <section className="promo-depth" id="promo-defense">
+      <p className="eyebrow">Promo defense</p>
+      <h2 className="promo-headline">{headline}</h2>
+      {body.map((p, i) => (
+        <p key={i} className="promo-body">
+          <Inline text={p} />
+        </p>
+      ))}
+      <div className="promo-compare" aria-hidden="true">
+        <span className="promo-tag">
+          <span className="promo-tag-k">Shopware</span> per account
+        </span>
+        <span className="promo-plus">+</span>
+        <span className="promo-tag promo-tag--armor">
+          <span className="promo-tag-k">AgentArmor</span> per card
+        </span>
+        <span className="promo-compare-note">A fresh login isn&rsquo;t a fresh discount.</span>
+      </div>
+    </section>
+  );
+}
+
 export function HowItWorks({ copy }: { copy: LandingCopy["howItWorks"] }) {
   const ps = paragraphs(copy);
   return (

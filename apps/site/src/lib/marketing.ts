@@ -4,6 +4,7 @@ import path from "node:path";
 export type LandingCopy = {
   hero: string;
   whatItStops: string;
+  promoDepth: string;
   howItWorks: string;
   builtFor: string;
   pricing: string;
@@ -14,6 +15,7 @@ export type LandingCopy = {
 const SECTION_KEYS: { heading: string; key: keyof LandingCopy }[] = [
   { heading: "Hero", key: "hero" },
   { heading: "What it stops", key: "whatItStops" },
+  { heading: "Promo depth", key: "promoDepth" },
   { heading: "How it works", key: "howItWorks" },
   { heading: "Built for self-hosted Shopware", key: "builtFor" },
   { heading: "Pricing", key: "pricing" },

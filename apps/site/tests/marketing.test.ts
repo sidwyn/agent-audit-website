@@ -4,10 +4,11 @@ import { loadLandingCopy } from "../src/lib/marketing.js";
 describe("loadLandingCopy", () => {
   const copy = loadLandingCopy();
 
-  it("extracts all seven landing sections", () => {
+  it("extracts all eight landing sections", () => {
     for (const key of [
       "hero",
       "whatItStops",
+      "promoDepth",
       "howItWorks",
       "builtFor",
       "pricing",
