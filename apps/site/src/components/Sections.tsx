@@ -201,10 +201,7 @@ export function Pricing({ copy, env }: { copy: LandingCopy["pricing"]; env: Env 
       <h2>Pricing</h2>
       <div className="pricing-card">
         <div className="price">
-          <span className="price-amount">
-            €39<span className="price-per">/month</span>
-          </span>
-          <span className="price-badge">Waived during beta</span>
+          <span className="price-badge">Free during beta</span>
         </div>
         <p className="pricing-body">{body?.type === "p" ? <Inline text={body.text} /> : null}</p>
         {cta && <Cta label={cta.label} {...env} id="cta-pricing" />}
