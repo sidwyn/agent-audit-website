@@ -58,8 +58,7 @@ export function SeeItWork() {
     <section className="see-it-work" id="see-it-work">
       <h2>See AgentArmor work</h2>
       <p className="see-it-intro">
-        Send a bad request and see what AgentArmor does. In <strong>Watch mode</strong>, AgentArmor only logs the
-        threat. In <strong>Enforce mode</strong>, AgentArmor stops it.
+        Send a bad request. <strong>Enforce mode</strong> stops it; <strong>Watch mode</strong> only logs it.
       </p>
       <TryItDemo />
     </section>
@@ -106,16 +105,6 @@ export function PromoDepth({ copy }: { copy: LandingCopy["promoDepth"] }) {
           <Inline text={p} />
         </p>
       ))}
-      <div className="promo-compare" aria-hidden="true">
-        <span className="promo-tag">
-          <span className="promo-tag-k">Shopware</span> per account
-        </span>
-        <span className="promo-plus">+</span>
-        <span className="promo-tag promo-tag--armor">
-          <span className="promo-tag-k">AgentArmor</span> per card
-        </span>
-        <span className="promo-compare-note">A fresh login isn&rsquo;t a fresh discount.</span>
-      </div>
     </section>
   );
 }

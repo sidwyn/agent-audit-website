@@ -185,6 +185,21 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
+.tVerdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 2px;
+  padding-left: 9px;
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 0.86em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.tVerdict svg { width: 13px; height: 13px; flex: none; }
+.tVerdictOk { color: #34d399; }
+.tVerdictBad { color: #f87171; }
+
 .tChip.runPass { animation: try-pass 1.7s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
 .tChip.runBounce { animation: try-bounce 1.7s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
 
@@ -198,10 +213,10 @@
 @keyframes try-pass {
   0% { transform: translate(8cqw, -50%); opacity: 0; }
   12% { opacity: 1; }
-  42% { transform: translate(44cqw, -50%); opacity: 1; }
-  58% { transform: translate(44cqw, -50%); opacity: 1; }
-  90% { transform: translate(74cqw, -50%); opacity: 1; }
-  100% { transform: translate(74cqw, -50%); opacity: 1; }
+  42% { transform: translate(40cqw, -50%); opacity: 1; }
+  58% { transform: translate(40cqw, -50%); opacity: 1; }
+  90% { transform: translate(58cqw, -50%); opacity: 1; }
+  100% { transform: translate(58cqw, -50%); opacity: 1; }
 }
 
 @keyframes try-bounce {
@@ -213,7 +228,7 @@
 }
 
 .tChip.staticPlaced { opacity: 1; }
-.tChip.staticPass { transform: translate(72cqw, -50%); }
+.tChip.staticPass { transform: translate(58cqw, -50%); }
 .tChip.staticBounce { transform: translate(13cqw, -50%); }
 
 /* decision log */

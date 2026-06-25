@@ -212,6 +212,27 @@
   animation-delay: calc(var(--i, 0) * -2.4s);
 }
 
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 2px;
+  padding-left: 8px;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 0.82em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  animation-name: gate-fade-in;
+  animation-duration: 12s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i, 0) * -2.4s);
+}
+.verdict svg { width: 12px; height: 12px; flex: none; }
+.verdictOk { color: #34d399; }
+.verdictBad { color: #f87171; }
+
 /* lanes (3 rails) + per-type wiring */
 .laneA { top: 28%; }
 .laneB { top: 50%; }

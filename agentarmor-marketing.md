@@ -26,9 +26,9 @@ AgentArmor starts in **watch-only mode**, so you see what AgentArmor would flag 
 ### Promo depth
 **Promo limits stop at the account. Agents don't.**
 
-Shopware's promo controls do their job. They cap redemptions per customer and per code. But per customer means per account, and an agent makes accounts for free: new email, new login, limits reset. The card behind them never changes.
+Shopware caps promo redemptions per customer and per code, and that works. But per customer means per account, and an agent makes new accounts for free.
 
-AgentArmor adds a layer that looks past the account. It reads the signals an agent can't easily fake and **catches the same buyer coming back for a second bite**, no matter how many fresh logins, emails, or IPs it spins up. It runs alongside your existing limits, never instead of them, and it all stays on your server, with nothing sensitive ever stored or sent.
+AgentArmor adds a layer that looks past the account, reading the signals an agent can't easily fake. It **catches the same buyer coming back for seconds**, however many logins, emails, or IPs it spins up.
 
 ### How it works
 AgentArmor is a normal Shopware plugin. You install AgentArmor from the Shopware Store, set it up in admin, and you are done. **No proxy, no DNS changes, no separate server.** AgentArmor runs inside your store, so no agent data ever leaves.

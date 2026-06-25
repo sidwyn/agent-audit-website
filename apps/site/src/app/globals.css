@@ -25,7 +25,7 @@
 }
 
 .see-it-intro {
-  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-size: 16px;
   color: var(--muted);
   max-width: 64ch;
   margin: 0 0 24px;
@@ -812,7 +812,7 @@ footer .footnote {
 
 /* ---- how it works ---- */
 .how-body {
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.6;
   max-width: 64ch;
   margin: 0 0 16px;
@@ -897,7 +897,7 @@ footer .footnote {
 
 /* ---- admin screenshots ---- */
 .admin-intro {
-  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-size: 16px;
   color: var(--muted);
   max-width: 64ch;
   margin: 0 0 28px;

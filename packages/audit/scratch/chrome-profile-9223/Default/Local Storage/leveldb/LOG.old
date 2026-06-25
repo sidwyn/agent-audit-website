@@ -1,0 +1,8 @@
+2026/06/16-13:57:36.233 174534a Creating DB /Users/sidwyn/Personal Projects/interviewing/agent-commerce-audit/packages/audit/scratch/chrome-profile-9223/Default/Local Storage/leveldb since it was missing.
+2026/06/16-13:57:36.241 174534a Reusing MANIFEST /Users/sidwyn/Personal Projects/interviewing/agent-commerce-audit/packages/audit/scratch/chrome-profile-9223/Default/Local Storage/leveldb/MANIFEST-000001
+2026/06/16-13:58:36.246 174534d Level-0 table #5: started
+2026/06/16-13:58:36.252 174534d Level-0 table #5: 100108 bytes OK
+2026/06/16-13:58:36.253 174534d Delete type=0 #3
+2026/06/16-14:00:45.623 174534a Level-0 table #7: started
+2026/06/16-14:00:45.630 174534a Level-0 table #7: 72726 bytes OK
+2026/06/16-14:00:45.635 174534a Delete type=0 #4

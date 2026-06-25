@@ -1,0 +1,47 @@
+{
+   "checksum": "8a12e82bc9f9f52c2c9a359ce6086872",
+   "roots": {
+      "bookmark_bar": {
+         "children": [  ],
+         "date_added": "13426205328028884",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "Bookmarks Bar",
+         "type": "folder"
+      },
+      "other": {
+         "children": [ {
+            "date_added": "13426205425123083",
+            "date_last_used": "0",
+            "guid": "18ccb6dc-76d5-4d8f-b087-3e069ed8cdfa",
+            "id": "5",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "New Tab",
+            "type": "url",
+            "url": "chrome://newtab/"
+         } ],
+         "date_added": "13426205328028884",
+         "date_last_used": "0",
+         "date_modified": "13426205425123083",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "Other Bookmarks",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13426205328028884",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "Mobile Bookmarks",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}

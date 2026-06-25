@@ -26,6 +26,21 @@ function StoreIcon({ className }: { className?: string }) {
 const CheckIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
 );
+const XIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
+);
+const Allowed = () => (
+  <span className={`${styles.verdict} ${styles.verdictOk}`}>
+    <CheckIcon />
+    Allowed
+  </span>
+);
+const Rejected = () => (
+  <span className={`${styles.verdict} ${styles.verdictBad}`}>
+    <XIcon />
+    Rejected
+  </span>
+);
 const ShieldSmall = () => (
   <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3Z" fill="currentColor" /></svg>
 );
@@ -64,6 +79,7 @@ export function TheGate() {
           <span className={`${styles.pill} ${styles.greenify}`}>
             <span className={`${styles.dot} ${styles.dotOk}`} />
             <span className={styles.name}>ChatGPT</span>
+            <Allowed />
           </span>
         </div>
 
@@ -75,6 +91,7 @@ export function TheGate() {
               <span className={styles.payRaw + " " + styles.redactOut}>stock: 87</span>
               <span className={styles.paySafe + " " + styles.redactIn}>in stock</span>
             </span>
+            <Allowed />
           </span>
         </div>
 
@@ -82,6 +99,7 @@ export function TheGate() {
           <span className={`${styles.pill} ${styles.greenify}`}>
             <span className={`${styles.dot} ${styles.dotOk}`} />
             <span className={styles.name}>Gemini</span>
+            <Allowed />
           </span>
         </div>
 
@@ -94,6 +112,7 @@ export function TheGate() {
               <span className={styles.strike + " " + styles.strikeRun} />
               <span className={styles.paySafe + " " + styles.redactIn}>sanitized</span>
             </span>
+            <Allowed />
           </span>
         </div>
 
@@ -102,6 +121,7 @@ export function TheGate() {
             <span className={`${styles.dot} ${styles.dotBad}`} />
             <span className={styles.name}>Promo bot</span>
             <span className={styles.payload}>code reuse</span>
+            <Rejected />
           </span>
         </div>
 

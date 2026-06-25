@@ -1,0 +1,15 @@
+2026/06/16-13:57:45.623 174534a Creating DB /Users/sidwyn/Personal Projects/interviewing/agent-commerce-audit/packages/audit/scratch/chrome-profile-9223/Default/Session Storage since it was missing.
+2026/06/16-13:57:45.630 174534a Reusing MANIFEST /Users/sidwyn/Personal Projects/interviewing/agent-commerce-audit/packages/audit/scratch/chrome-profile-9223/Default/Session Storage/MANIFEST-000001
+2026/06/16-13:57:57.882 174534d Level-0 table #5: started
+2026/06/16-13:57:57.886 174534d Level-0 table #5: 119043 bytes OK
+2026/06/16-13:57:57.889 174534d Delete type=0 #3
+2026/06/16-13:59:28.468 174534d Level-0 table #7: started
+2026/06/16-13:59:28.476 174534d Level-0 table #7: 121171 bytes OK
+2026/06/16-13:59:28.478 174534d Delete type=0 #4
+2026/06/16-14:00:42.751 174534d Level-0 table #9: started
+2026/06/16-14:00:42.762 174534d Level-0 table #9: 121247 bytes OK
+2026/06/16-14:00:42.767 174534d Delete type=0 #6
+2026/06/16-14:02:18.736 174534d Level-0 table #11: started
+2026/06/16-14:02:18.762 174534d Level-0 table #11: 121352 bytes OK
+2026/06/16-14:02:18.777 174534d Delete type=0 #8
+2026/06/16-14:03:10.740 174534d Level-0 table #13: started
