@@ -12,8 +12,8 @@ const destDir = path.resolve(here, "../public");
 const dest = path.join(destDir, "sample-report.pdf");
 
 if (!existsSync(src)) {
-  console.error("sample-report.pdf not found at repo root — run `pnpm demo` first");
-  process.exit(1);
+  console.warn("sample-report.pdf not found at repo root, skipping copy (the page no longer links it)");
+  process.exit(0);
 }
 await mkdir(destDir, { recursive: true });
 await copyFile(src, dest);
