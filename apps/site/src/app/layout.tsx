@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { loadLandingCopy } from "../lib/marketing";
 import { parseBlocks, stripBold } from "../lib/markdown";
 import { VisitPing } from "../components/VisitPing";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const copy = loadLandingCopy();
@@ -29,6 +31,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {children}
         <VisitPing />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
