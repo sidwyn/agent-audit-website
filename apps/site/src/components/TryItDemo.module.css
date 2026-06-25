@@ -1,0 +1,294 @@
+/* "Try it" — interactive watch/enforce demo. Self-contained, no deps.
+   Dark console surface to match the hero diagram (Socket/Cloudflare style). */
+
+.demo {
+  container-type: inline-size;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(99, 102, 241, 0.12), transparent 70%),
+    #0c0d11;
+  padding: 22px;
+  box-shadow: 0 24px 60px -28px rgba(12, 13, 17, 0.55);
+  color: #e6e7ec;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 26px;
+  align-items: flex-end;
+}
+
+.control { display: flex; flex-direction: column; gap: 9px; }
+
+.controlLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* mode toggle */
+.toggle {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toggleBtn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 7px 18px;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.6);
+  transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.toggleBtn[aria-pressed="true"] {
+  background: #4f46e5;
+  color: #fff;
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.5);
+}
+
+.toggleBtn.enforceOn[aria-pressed="true"] {
+  background: #dc2626;
+  box-shadow: 0 0 16px rgba(220, 38, 38, 0.5);
+}
+
+.attacks { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.attackBtn {
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: #e6e7ec;
+  transition: background 140ms ease, border-color 140ms ease, transform 80ms ease;
+}
+
+.attackBtn:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.32); }
+.attackBtn:active { transform: translateY(1px); }
+
+.toggleBtn:focus-visible,
+.attackBtn:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 2px;
+}
+
+/* track / visualization */
+.track {
+  position: relative;
+  height: 124px;
+  margin: 22px 0 4px;
+  border-radius: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background:
+    radial-gradient(60% 90% at 50% 50%, rgba(99, 102, 241, 0.12), transparent 70%),
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 20px 20px,
+    #0a0b0e;
+  overflow: hidden;
+}
+
+.rail {
+  position: absolute;
+  left: 8cqw;
+  right: 14cqw;
+  top: 50%;
+  height: 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.tGate {
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  left: 50%;
+  width: 26px;
+  transform: translateX(-50%);
+  border-radius: 7px;
+  background: linear-gradient(180deg, #4f46e5, #6366f1);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 22px rgba(99, 102, 241, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: box-shadow 220ms ease;
+  z-index: 2;
+}
+
+.tGate.lit { box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.22), 0 0 26px rgba(99, 102, 241, 0.7); }
+
+.tGateLabel {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.tStore {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.tChip {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(8cqw, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  padding: 8px 13px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(22, 24, 30, 0.95);
+  box-shadow: 0 8px 22px -8px rgba(0, 0, 0, 0.7);
+  font-size: clamp(11px, 3cqw, 13px);
+  font-weight: 600;
+  color: #e6e7ec;
+  opacity: 0;
+  z-index: 3;
+  will-change: transform, opacity;
+}
+
+.dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.tChipName { font-weight: 700; }
+.tChipPay {
+  font-family: "SF Mono", "Fira Code", Consolas, monospace;
+  font-size: 0.84em;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.tVerdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 2px;
+  padding-left: 9px;
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 0.86em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.tVerdict svg { width: 13px; height: 13px; flex: none; }
+.tVerdictOk { color: #34d399; }
+.tVerdictBad { color: #f87171; }
+
+.tChip.runPass { animation: try-pass 1.7s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.tChip.runBounce { animation: try-bounce 1.7s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+.caught { border-color: rgba(251, 191, 36, 0.6); }
+.caught .dot { background: #fbbf24; box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
+.blocked { border-color: rgba(248, 113, 113, 0.65); background: rgba(45, 22, 24, 0.95); }
+.blocked .dot { background: #f87171; box-shadow: 0 0 8px rgba(248, 113, 113, 0.6); }
+.stripped { border-color: rgba(52, 211, 153, 0.6); background: rgba(18, 38, 30, 0.95); }
+.stripped .dot { background: #34d399; box-shadow: 0 0 8px rgba(52, 211, 153, 0.6); }
+
+@keyframes try-pass {
+  0% { transform: translate(8cqw, -50%); opacity: 0; }
+  12% { opacity: 1; }
+  42% { transform: translate(40cqw, -50%); opacity: 1; }
+  58% { transform: translate(40cqw, -50%); opacity: 1; }
+  90% { transform: translate(58cqw, -50%); opacity: 1; }
+  100% { transform: translate(58cqw, -50%); opacity: 1; }
+}
+
+@keyframes try-bounce {
+  0% { transform: translate(8cqw, -50%); opacity: 0; }
+  12% { opacity: 1; }
+  45% { transform: translate(44cqw, -50%); opacity: 1; }
+  55% { transform: translate(44cqw, -50%); opacity: 1; }
+  100% { transform: translate(12cqw, -50%); opacity: 1; }
+}
+
+.tChip.staticPlaced { opacity: 1; }
+.tChip.staticPass { transform: translate(58cqw, -50%); }
+.tChip.staticBounce { transform: translate(13cqw, -50%); }
+
+/* decision log */
+.logHead {
+  margin: 20px 0 9px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: "SF Mono", "Fira Code", Consolas, monospace;
+  font-size: 12.5px;
+}
+
+.log:empty::after {
+  content: "// send a request to see the decision log";
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.logLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  padding: 9px 13px;
+  border-radius: 8px;
+  border-left: 3px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.035);
+  animation: log-in 260ms ease;
+}
+
+.logWatch { border-left-color: #fbbf24; }
+.logBlocked { border-left-color: #f87171; }
+.logStripped { border-left-color: #34d399; }
+
+.logVerb { font-weight: 700; }
+.logWatch .logVerb { color: #fbbf24; }
+.logBlocked .logVerb { color: #f87171; }
+.logStripped .logVerb { color: #34d399; }
+.logRest { color: rgba(255, 255, 255, 0.5); }
+
+@keyframes log-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tChip.runPass,
+  .tChip.runBounce { animation: none; }
+  .logLine { animation: none; }
+  .toggleBtn,
+  .attackBtn,
+  .tGate { transition: none; }
+}

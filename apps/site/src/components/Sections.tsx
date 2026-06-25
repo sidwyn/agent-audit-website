@@ -1,275 +1,220 @@
 import type { LandingCopy } from "../lib/marketing";
-import { parseBlocks, parseInline, stripBold } from "../lib/markdown";
+import { parseBlocks, parseFaq, stripBold } from "../lib/markdown";
 import { Cta } from "./Cta";
 import { Inline } from "./Inline";
+import { TheGate } from "./TheGate";
+import { TryItDemo } from "./TryItDemo";
 
 type Env = { stripeUrl?: string; formEndpoint?: string };
 
+function listItems(copy: string): string[] {
+  const list = parseBlocks(copy).find((b) => b.type === "ul");
+  return list?.type === "ul" ? list.items : [];
+}
+
+function paragraphs(copy: string): string[] {
+  return parseBlocks(copy)
+    .filter((b) => b.type === "p")
+    .map((b) => (b.type === "p" ? b.text : ""));
+}
+
 export function Hero({ copy, env }: { copy: LandingCopy["hero"]; env: Env }) {
   const blocks = parseBlocks(copy);
-  const eyebrow = blocks[0]?.type === "p" ? blocks[0].text : "";
-  const headline = blocks[1]?.type === "p" ? stripBold(blocks[1].text) : "";
-  const sub = blocks[2]?.type === "p" ? blocks[2].text : "";
-  const cta = blocks.find((b) => b.type === "cta");
+  const ctaIndex = blocks.findIndex((b) => b.type === "cta");
+  const ctaBlock = ctaIndex >= 0 ? blocks[ctaIndex] : undefined;
+  const before = (ctaIndex >= 0 ? blocks.slice(0, ctaIndex) : blocks)
+    .filter((b) => b.type === "p")
+    .map((b) => (b.type === "p" ? b.text : ""));
+  const after = (ctaIndex >= 0 ? blocks.slice(ctaIndex + 1) : [])
+    .filter((b) => b.type === "p")
+    .map((b) => (b.type === "p" ? b.text : ""));
+  const headline = before[0] ? stripBold(before[0]) : "";
+  const subs = before.slice(1);
   return (
     <section className="hero">
-      <p className="brand">AgentAudit</p>
-      <p className="eyebrow">{eyebrow}</p>
+      <p className="brand">AgentArmor</p>
       <h1>{headline}</h1>
-      <p className="sub">
-        <Inline text={sub} />
+      {subs.map((s, i) => (
+        <p key={i} className="sub">
+          <Inline text={s} />
+        </p>
+      ))}
+      <p className="hero-offer">
+        <span className="price-badge">Free plugin</span>
       </p>
-      {cta && <Cta label={cta.label} {...env} id="cta-top" />}
+      {ctaBlock?.type === "cta" && <Cta label={ctaBlock.label} {...env} id="cta-top" />}
+      {after.map((f, i) => (
+        <p key={i} className="fine">
+          <Inline text={f} />
+        </p>
+      ))}
+      <TheGate />
     </section>
   );
 }
 
-export function Stakes({ copy }: { copy: LandingCopy["stakes"] }) {
-  const blocks = parseBlocks(copy);
-  const body = blocks[0]?.type === "p" ? blocks[0].text : "";
-  const list = blocks.find((b) => b.type === "ul");
-  const items = list?.type === "ul" ? list.items : [];
+export function SeeItWork() {
   return (
-    <section className="stakes">
-      <h2>A new entrance, and nobody is watching it</h2>
-      <p className="stakes-body">
-        <Inline text={body} />
+    <section className="see-it-work" id="see-it-work">
+      <h2>See AgentArmor work</h2>
+      <p className="see-it-intro">
+        Send a bad request. <strong>Enforce mode</strong> stops it; <strong>Watch mode</strong> only logs it.
       </p>
-      <div className="stat-cards">
+      <TryItDemo />
+    </section>
+  );
+}
+
+export function WhatItStops({ copy }: { copy: LandingCopy["whatItStops"] }) {
+  const items = listItems(copy);
+  return (
+    <section className="get" id="what-it-stops">
+      <h2>What AgentArmor stops</h2>
+      <ul className="cards">
         {items.map((item) => {
-          const segs = parseInline(item);
-          const numSeg = segs.find((s) => s.bold);
-          const linkSeg = segs.find((s) => s.href);
+          const m = item.match(/^\*\*(.+?)\*\*\s*([\s\S]*)$/);
+          const lead = m?.[1] ?? "";
+          const rest = m?.[2] ?? item;
+          const sentences = rest.split(/(?<=\.)\s+(?=[A-Z*])/).filter((s) => s.trim().length > 0);
           return (
-            <div key={item} className="stat-card">
-              <div className="stat-number">{numSeg?.text}</div>
-              <div className="stat-desc">
-                {linkSeg ? (
-                  <a href={linkSeg.href} target="_blank" rel="noreferrer">
-                    {linkSeg.text}
-                  </a>
-                ) : null}
-              </div>
-            </div>
+            <li key={item}>
+              <strong>{lead}</strong>
+              {sentences.map((s, i) => (
+                <p key={i}>
+                  <Inline text={s} />
+                </p>
+              ))}
+            </li>
           );
         })}
-      </div>
+      </ul>
+    </section>
+  );
+}
+
+export function PromoDepth({ copy }: { copy: LandingCopy["promoDepth"] }) {
+  const ps = paragraphs(copy);
+  const headline = ps[0] ? stripBold(ps[0]) : "";
+  const body = ps.slice(1);
+  return (
+    <section className="promo-depth" id="promo-defense">
+      <p className="eyebrow">Promo defense</p>
+      <h2 className="promo-headline">{headline}</h2>
+      {body.map((p, i) => (
+        <p key={i} className="promo-body">
+          <Inline text={p} />
+        </p>
+      ))}
     </section>
   );
 }
 
 export function HowItWorks({ copy }: { copy: LandingCopy["howItWorks"] }) {
-  const list = parseBlocks(copy).find((b) => b.type === "ol");
+  const ps = paragraphs(copy);
   return (
     <section className="how" id="how-it-works">
-      <h2>Covered in three clicks</h2>
-      <ol className="steps">
-        {(list?.type === "ol" ? list.items : []).map((item) => (
-          <li key={item}>
-            <Inline text={item} />
-          </li>
-        ))}
-      </ol>
+      <h2>How AgentArmor works</h2>
+      {ps.map((p, i) => (
+        <p key={i} className="how-body">
+          <Inline text={p} />
+        </p>
+      ))}
     </section>
   );
 }
 
-function ScanFeedCard() {
+export function AdminShots() {
   return (
-    <div className="demo-card demo-card--dark" aria-hidden="true">
-      <div className="demo-card__header">AGENTAUDIT · ridge.com · live</div>
-      <ul className="demo-feed">
-        <li>
-          <span className="feed-icon feed-icon--fail">✗</span>
-          <span className="feed-key">promo SVEND</span>
-          <span className="feed-val">10% leak live — found on public coupon sites</span>
-        </li>
-        <li>
-          <span className="feed-icon feed-icon--fail">✗</span>
-          <span className="feed-key">CA / AU / GB checkout</span>
-          <span className="feed-val">buyers shown USD, not local currency</span>
-        </li>
-        <li>
-          <span className="feed-icon feed-icon--warn">⚠</span>
-          <span className="feed-key">cart total</span>
-          <span className="feed-val">understates tax by ~10% to agents</span>
-        </li>
-        <li>
-          <span className="feed-icon feed-icon--flag">⚑</span>
-          <span className="feed-key">order #1182</span>
-          <span className="feed-val">3 alias orders, one card — flagged as abuse</span>
-        </li>
-      </ul>
-      <div className="demo-card__footer">4 issues · ranked by dollars · 1 new since your last change</div>
-    </div>
-  );
-}
+    <section className="admin" id="admin">
+      <h2>Inside your Shopware admin</h2>
+      <p className="admin-intro">
+        No new dashboard to learn. AgentArmor lives in Shopware admin: every agent decision, the euros AgentArmor
+        protects, and controls you own.
+      </p>
 
-export function OngoingAudits({ copy }: { copy: LandingCopy["ongoingAudits"] }) {
-  const blocks = parseBlocks(copy);
-  const eyebrow = blocks[0]?.type === "p" ? blocks[0].text : "";
-  const heading = blocks[1]?.type === "p" ? stripBold(blocks[1].text) : "";
-  const body = blocks[2]?.type === "p" ? blocks[2].text : "";
-  return (
-    <section className="feature">
-      <div className="feature-copy">
-        <p className="eyebrow">{eyebrow}</p>
-        <h2 className="feature-h2">{heading}</h2>
-        <p>
-          <Inline text={body} />
-        </p>
-      </div>
-      <div className="demo-card demo-card--email" aria-hidden="true">
-        <div className="demo-card__header">📧 Your weekly AgentAudit · ridge.com</div>
-        <div className="demo-card__body">
-          <p className="demo-summary">2 new issues, 1 resolved since last week</p>
-          <ul className="demo-feed">
-            <li>
-              <span className="feed-badge feed-badge--high">HIGH</span>
-              promo BUNDLE20 stacks with SVEND → ~28% off
-            </li>
-            <li>
-              <span className="feed-badge feed-badge--med">MED</span>
-              AU buyers shown USD via agents (currency mismatch)
-            </li>
-            <li>
-              <span className="feed-badge feed-badge--fixed">FIXED</span>
-              cart tax now disclosed pre-checkout
-            </li>
-          </ul>
-          <a className="demo-btn" href="#" onClick={(e) => e.preventDefault()}>
-            View full report
-          </a>
+      <figure className="shot">
+        <div className="shot-frame">
+          <span className="shot-bar">
+            <span />
+            <span />
+            <span />
+          </span>
+          <img
+            src="/dashboard.png"
+            alt="AgentArmor dashboard in Shopware admin: metric cards for catalog scraping, promo abuse, and untrusted text, with money protected and a live feed of every agent decision."
+            width="1680"
+            height="1050"
+            loading="lazy"
+          />
         </div>
-      </div>
-    </section>
-  );
-}
+        <figcaption>
+          See every agent decision in one place. The <span className="cap-green">green</span> number is money
+          AgentArmor has already saved you. The <span className="cap-amber">amber</span> number is what is still at
+          risk while you are only watching.
+        </figcaption>
+      </figure>
 
-export function ContinuousScanning({ copy }: { copy: LandingCopy["continuousScanning"] }) {
-  const blocks = parseBlocks(copy);
-  const eyebrow = blocks[0]?.type === "p" ? blocks[0].text : "";
-  const heading = blocks[1]?.type === "p" ? stripBold(blocks[1].text) : "";
-  const body = blocks[2]?.type === "p" ? blocks[2].text : "";
-  return (
-    <section className="feature feature--flip">
-      <div className="feature-copy">
-        <p className="eyebrow">{eyebrow}</p>
-        <h2 className="feature-h2">{heading}</h2>
-        <p>
-          <Inline text={body} />
-        </p>
-      </div>
-      <div className="demo-card demo-card--pr" aria-hidden="true">
-        <div className="demo-card__header">⚠️ AgentAudit · change detected</div>
-        <div className="demo-card__body">
-          <p className="demo-label">Published: &ldquo;Titanium Wallet&rdquo; + promo BUNDLE20</p>
-          <ul className="demo-findings">
-            <li>→ BUNDLE20 is stackable with active code SVEND — agents can compound to ~28% off</li>
-            <li>→ New variant exposed via UCP in USD only — AU/CA/GB buyers see wrong currency</li>
-          </ul>
-          <p className="demo-meta">Opens 2 vectors · Severity: High</p>
-          <div className="demo-actions">
-            <a className="demo-btn" href="#" onClick={(e) => e.preventDefault()}>Mark reviewed</a>
-            <a className="demo-btn demo-btn--secondary" href="#" onClick={(e) => e.preventDefault()}>See the fix</a>
-          </div>
+      <figure className="shot">
+        <div className="shot-frame">
+          <span className="shot-bar">
+            <span />
+            <span />
+            <span />
+          </span>
+          <img
+            src="/trends.png"
+            alt="AgentArmor daily trends table in Shopware admin: catalog scraping, promo abuse, and untrusted text broken down day by day, showing what watch mode would have blocked versus what enforce mode actually stopped."
+            width="1680"
+            height="1050"
+            loading="lazy"
+          />
         </div>
-      </div>
+        <figcaption>
+          Watch first, then enforce. The daily trends show what AgentArmor would have blocked while watching, so you
+          can turn on enforcement once you trust the numbers.
+        </figcaption>
+      </figure>
     </section>
   );
 }
 
-export function FraudMonitoring({ copy }: { copy: LandingCopy["fraudMonitoring"] }) {
-  const blocks = parseBlocks(copy);
-  const eyebrow = blocks[0]?.type === "p" ? blocks[0].text : "";
-  const heading = blocks[1]?.type === "p" ? stripBold(blocks[1].text) : "";
-  const body = blocks[2]?.type === "p" ? blocks[2].text : "";
+export function BuiltFor({ copy }: { copy: LandingCopy["builtFor"] }) {
+  const ps = paragraphs(copy);
   return (
-    <section className="feature">
-      <div className="feature-copy">
-        <p className="eyebrow">{eyebrow}</p>
-        <h2 className="feature-h2">{heading}</h2>
-        <p>
-          <Inline text={body} />
+    <section className="built-for" id="built-for">
+      <h2>Built for self-hosted Shopware</h2>
+      {ps.map((p, i) => (
+        <p key={i} className="built-for-body">
+          <Inline text={p} />
         </p>
-      </div>
-      <div className="demo-card demo-card--dark" aria-hidden="true">
-        <div className="demo-card__header">⚑ AgentAudit · order flags</div>
-        <ul className="demo-feed">
-          <li>
-            <span className="feed-id">#1182</span>
-            <span className="feed-val">buyer+a1@…, buyer+a2@…, buyer+a3@… · same card, code SVEND ×3</span>
-            <span className="feed-badge feed-badge--high">abuse</span>
-          </li>
-          <li>
-            <span className="feed-id">#1179</span>
-            <span className="feed-val">agent order · ships-to ≠ billing region · high-velocity</span>
-            <span className="feed-badge feed-badge--med">review</span>
-          </li>
-          <li>
-            <span className="feed-id">#1170</span>
-            <span className="feed-val">clean</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-  );
-}
-
-export function WhatWeTest({ copy }: { copy: LandingCopy["whatWeTest"] }) {
-  const list = parseBlocks(copy).find((b) => b.type === "ul");
-  return (
-    <section className="what-we-test">
-      <h2>Six ways an agent drains your store</h2>
-      <ul className="test-grid">
-        {(list?.type === "ul" ? list.items : []).map((item) => (
-          <li key={item}>
-            <Inline text={item} />
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-export function Trust({ copy }: { copy: LandingCopy["trust"] }) {
-  const list = parseBlocks(copy).find((b) => b.type === "ul");
-  return (
-    <section className="trust">
-      <h2>Safe by design</h2>
-      <ul className="trust-list">
-        {(list?.type === "ul" ? list.items : []).map((item) => (
-          <li key={item}>
-            <Inline text={item} />
-          </li>
-        ))}
-      </ul>
+      ))}
     </section>
   );
 }
 
 export function Pricing({ copy, env }: { copy: LandingCopy["pricing"]; env: Env }) {
   const blocks = parseBlocks(copy);
-  const body = blocks[0]?.type === "p" ? blocks[0].text : "";
+  const body = blocks.find((b) => b.type === "p");
   const cta = blocks.find((b) => b.type === "cta");
   return (
     <section className="pricing" id="pricing">
-      <h2>One plan. $39/month.</h2>
+      <h2>Pricing</h2>
       <div className="pricing-card">
-        <p className="pricing-body">
-          <Inline text={body} />
-        </p>
+        <div className="price">
+          <span className="price-badge">Free plugin</span>
+        </div>
+        <p className="pricing-body">{body?.type === "p" ? <Inline text={body.text} /> : null}</p>
         {cta && <Cta label={cta.label} {...env} id="cta-pricing" />}
       </div>
     </section>
   );
 }
 
-export function About({ copy }: { copy: LandingCopy["about"] }) {
-  const blocks = parseBlocks(copy);
+export function WhoBuiltIt({ copy }: { copy: LandingCopy["whoBuiltIt"] }) {
+  const ps = paragraphs(copy);
   return (
     <section className="about" id="about">
-      <h2>About</h2>
+      <h2>Who built AgentArmor</h2>
       <div className="about-inner">
         <img
           alt="Sidwyn Koh"
@@ -280,29 +225,30 @@ export function About({ copy }: { copy: LandingCopy["about"] }) {
           width="128"
         />
         <div className="about-copy">
-          {blocks.map((b, i) =>
-            b.type === "p" ? (
-              <p key={i}>
-                <Inline text={b.text} />
-              </p>
-            ) : null,
-          )}
+          {ps.map((p, i) => (
+            <p key={i}>
+              <Inline text={p} />
+            </p>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-export function BottomCta({ copy, env }: { copy: LandingCopy["hero"]; env: Env }) {
-  const blocks = parseBlocks(copy);
-  const headline = blocks[1]?.type === "p" ? stripBold(blocks[1].text) : "";
-  const cta = blocks.find((b) => b.type === "cta");
-  if (!cta) return null;
+export function Faq({ copy }: { copy: LandingCopy["faq"] }) {
+  const entries = parseFaq(copy);
   return (
-    <section className="bottom-cta">
-      <h2>{headline}</h2>
-      <p className="bottom-cta-sub">Agent abuse and fraud protection for Shopify. $39/month, cancel anytime.</p>
-      <Cta label={cta.label} {...env} id="cta-bottom" />
+    <section className="faq" id="faq">
+      <h2>FAQ</h2>
+      {entries.map((entry) => (
+        <details key={entry.q}>
+          <summary>{entry.q}</summary>
+          <p>
+            <Inline text={entry.a} />
+          </p>
+        </details>
+      ))}
     </section>
   );
 }

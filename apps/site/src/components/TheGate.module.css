@@ -1,0 +1,326 @@
+/* "The Gate" — looping hero animation. Self-contained, no deps.
+   Dark diagram surface (Socket/Cloudflare style): dotted grid, connector rails,
+   monospace tokens, severity dots, glowing gate. Motion uses container-query
+   width units (cqw) so it scales with the container; text stays in px. */
+
+.wrap {
+  container-type: inline-size;
+  width: 100%;
+  margin: 40px 0 8px;
+}
+
+.stage {
+  position: relative;
+  height: clamp(190px, 44cqw, 240px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(60% 90% at 50% 50%, rgba(99, 102, 241, 0.16), transparent 70%),
+    radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px) 0 0 / 22px 22px,
+    #0c0d11;
+  box-shadow: 0 24px 60px -28px rgba(12, 13, 17, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+/* ---- connector rails ---- */
+.rail {
+  position: absolute;
+  left: 11cqw;
+  right: 16cqw;
+  height: 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+.railA { top: 28%; }
+.railB { top: 50%; }
+.railC { top: 72%; }
+
+/* ---- fixed nodes ---- */
+.src,
+.store {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  line-height: 1.4;
+  z-index: 2;
+}
+
+.src { left: 2cqw; width: 9cqw; min-width: 52px; }
+.store { right: 1.5cqw; width: 12cqw; min-width: 78px; color: rgba(255, 255, 255, 0.78); }
+
+.storeIcon { display: block; margin: 0 auto 7px; width: 30px; height: 30px; color: #818cf8; }
+
+.srcDot {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #818cf8;
+  margin: 0 auto 8px;
+  box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.5);
+  animation: gate-ping 2.6s ease-out infinite;
+}
+
+@keyframes gate-ping {
+  0% { box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.5); }
+  70%, 100% { box-shadow: 0 0 0 9px rgba(129, 140, 248, 0); }
+}
+
+/* ---- the gate ---- */
+.gate {
+  position: absolute;
+  top: 16%;
+  bottom: 16%;
+  left: 50cqw;
+  width: 22px;
+  transform: translateX(-50%);
+  border-radius: 7px;
+  background: linear-gradient(180deg, #4f46e5, #6366f1);
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.gateLabel {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.gateShield {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 22px;
+  color: #a5b4fc;
+  filter: drop-shadow(0 0 6px rgba(129, 140, 248, 0.6));
+}
+
+.scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 26px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: gate-scan 4.5s ease-in-out infinite;
+}
+
+@keyframes gate-scan {
+  0%, 100% { top: -26px; }
+  50% { top: 100%; }
+}
+
+/* ---- chips ---- */
+.chip {
+  position: absolute;
+  left: 0;
+  transform: translateX(8cqw);
+  opacity: 0;
+  z-index: 4;
+  will-change: transform, opacity;
+  animation-duration: 12s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i, 0) * -2.4s);
+}
+
+.pill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  padding: 7px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(22, 24, 30, 0.92);
+  box-shadow: 0 8px 22px -8px rgba(0, 0, 0, 0.7);
+  font-size: clamp(10px, 2.5cqw, 12.5px);
+  font-weight: 600;
+  color: #e6e7ec;
+  animation-duration: 12s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i, 0) * -2.4s);
+}
+
+.dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.dotOk { background: #34d399; box-shadow: 0 0 8px rgba(52, 211, 153, 0.7); }
+.dotWarn { background: #fbbf24; box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
+.dotBad { background: #f87171; box-shadow: 0 0 8px rgba(248, 113, 113, 0.6); }
+
+.name { font-weight: 700; letter-spacing: -0.01em; }
+
+.payload {
+  position: relative;
+  font-family: "SF Mono", "Fira Code", Consolas, monospace;
+  font-size: 0.84em;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.payRaw {
+  animation-duration: 12s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i, 0) * -2.4s);
+}
+
+.paySafe {
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  opacity: 0;
+  color: #34d399;
+  font-weight: 700;
+  animation-duration: 12s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i, 0) * -2.4s);
+}
+
+.strike {
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  top: 50%;
+  height: 1.5px;
+  background: #f87171;
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation-duration: 12s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i, 0) * -2.4s);
+}
+
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 2px;
+  padding-left: 8px;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 0.82em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  animation-name: gate-fade-in;
+  animation-duration: 12s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i, 0) * -2.4s);
+}
+.verdict svg { width: 12px; height: 12px; flex: none; }
+.verdictOk { color: #34d399; }
+.verdictBad { color: #f87171; }
+
+/* lanes (3 rails) + per-type wiring */
+.laneA { top: 28%; }
+.laneB { top: 50%; }
+.laneC { top: 72%; }
+
+.pass { animation-name: gate-pass; }
+.bounce { animation-name: gate-bounce; }
+.greenify { animation-name: gate-greenify; }
+.amberify { animation-name: gate-amberify; }
+.redactOut { animation-name: gate-fade-out; }
+.redactIn { animation-name: gate-fade-in; }
+.strikeRun { animation-name: gate-strike; }
+
+@keyframes gate-pass {
+  0%   { transform: translateX(8cqw);  opacity: 0; }
+  6%   { opacity: 1; }
+  30%  { transform: translateX(43cqw); opacity: 1; }
+  40%  { transform: translateX(43cqw); opacity: 1; }
+  54%  { transform: translateX(85cqw); opacity: 1; }
+  60%  { opacity: 0; }
+  100% { transform: translateX(85cqw); opacity: 0; }
+}
+
+@keyframes gate-bounce {
+  0%   { transform: translateX(8cqw);  opacity: 0; }
+  6%   { opacity: 1; }
+  30%  { transform: translateX(43cqw); opacity: 1; }
+  38%  { transform: translateX(43cqw); opacity: 1; }
+  52%  { transform: translateX(13cqw); opacity: 1; }
+  60%  { opacity: 0; }
+  100% { transform: translateX(13cqw); opacity: 0; }
+}
+
+@keyframes gate-greenify {
+  0%, 31% { border-color: rgba(255, 255, 255, 0.12); box-shadow: 0 8px 22px -8px rgba(0, 0, 0, 0.7); }
+  41%, 100% { border-color: rgba(52, 211, 153, 0.6); box-shadow: 0 0 18px -2px rgba(52, 211, 153, 0.35); }
+}
+
+@keyframes gate-amberify {
+  0%, 31% { border-color: rgba(255, 255, 255, 0.12); }
+  41%, 100% { border-color: rgba(251, 191, 36, 0.55); }
+}
+
+@keyframes gate-fade-out {
+  0%, 31% { opacity: 1; }
+  41%, 100% { opacity: 0; }
+}
+
+@keyframes gate-fade-in {
+  0%, 33% { opacity: 0; }
+  43%, 100% { opacity: 1; }
+}
+
+@keyframes gate-strike {
+  0%, 31% { transform: scaleX(0); }
+  41%, 100% { transform: scaleX(1); }
+}
+
+/* ---- static (reduced-motion) fallback ---- */
+.static { display: none; position: absolute; inset: 0; }
+
+.staticRow {
+  position: absolute;
+  left: 13cqw;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 11px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(22, 24, 30, 0.92);
+  color: #e6e7ec;
+  font-size: clamp(10px, 2.4cqw, 12px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.staticRow svg { width: 13px; height: 13px; flex: none; }
+.sr0 { top: 12%; }
+.sr1 { top: 36%; }
+.sr2 { top: 60%; }
+.sr3 { top: 84%; }
+.ok svg { color: #34d399; }
+.warn svg { color: #fbbf24; }
+
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .scan { display: none; }
+  .srcDot { animation: none; }
+  .static { display: block; }
+}

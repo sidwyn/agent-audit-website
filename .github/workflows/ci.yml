@@ -11,9 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Version comes from "packageManager" in package.json (pnpm@10.2.1).
+      # Don't also set `version:` here; pnpm/action-setup@v4 errors on both.
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - uses: actions/setup-node@v4
         with:
@@ -21,6 +21,10 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
+
+      # Build the workspace dependency so downstream packages (report) can
+      # resolve "@agentaudit/audit" types from its emitted dist/.
+      - run: pnpm --filter @agentaudit/audit build
 
       # Unit tests are pure (no browser); the Playwright checkout probe is gated
       # behind SMOKE_STORE_URL and skipped in CI.

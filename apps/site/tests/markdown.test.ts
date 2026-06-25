@@ -5,26 +5,26 @@ import { loadLandingCopy } from "../src/lib/marketing.js";
 const copy = loadLandingCopy();
 
 describe("parseBlocks", () => {
-  it("turns the hero into eyebrow, headline, subhead, and cta", () => {
+  it("turns the hero into headline, subheads, cta, and fine print", () => {
     const blocks = parseBlocks(copy.hero);
-    expect(blocks[0]).toEqual({ type: "p", text: "Agent Abuse & Fraud Protection · for Shopify" });
-    expect(blocks[1]).toEqual({ type: "p", text: "**Stop agents from gaming your store.**" });
-    expect(blocks[2]!.type).toBe("p");
-    expect(blocks[3]).toEqual({ type: "cta", label: "Start — $39/month" });
+    expect(blocks[0]).toEqual({ type: "p", text: "**Open to agents. Hard to exploit.**" });
+    expect(blocks[1]!.type).toBe("p");
+    expect(blocks.find((b) => b.type === "cta")).toEqual({ type: "cta", label: "Get early access" });
   });
 
-  it("parses stakes as body paragraph plus unordered list of three", () => {
-    const blocks = parseBlocks(copy.stakes);
-    expect(blocks[0]!.type).toBe("p");
+  it("parses what-it-stops as an unordered list of three", () => {
+    const blocks = parseBlocks(copy.whatItStops);
     const list = blocks.find((b) => b.type === "ul");
     expect(list).toBeDefined();
     expect((list as { items: string[] }).items).toHaveLength(3);
   });
 
-  it("parses how-it-works as an ordered list of three", () => {
+  it("parses how-it-works as paragraphs", () => {
     const blocks = parseBlocks(copy.howItWorks);
-    expect(blocks[0]).toMatchObject({ type: "ol" });
-    expect((blocks[0] as { items: string[] }).items[0]).toContain("Connect in two clicks");
+    expect(blocks[0]!.type).toBe("p");
+    expect(stripBold((blocks[0] as { text: string }).text)).toContain(
+      "AgentArmor is a normal Shopware plugin",
+    );
   });
 });
 

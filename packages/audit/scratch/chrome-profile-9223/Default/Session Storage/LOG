@@ -1,0 +1,49 @@
+2026/06/17-14:28:51.329 192681b Reusing MANIFEST /Users/sidwyn/Personal Projects/interviewing/agent-commerce-audit/packages/audit/scratch/chrome-profile-9223/Default/Session Storage/MANIFEST-000001
+2026/06/17-14:28:51.330 192681b Recovering log #10
+2026/06/17-14:28:51.334 192681b Level-0 table #13: started
+2026/06/17-14:28:51.337 192681b Level-0 table #13: 256031 bytes OK
+2026/06/17-14:28:51.337 192681b Recovering log #12
+2026/06/17-14:28:51.338 192681b Reusing old log /Users/sidwyn/Personal Projects/interviewing/agent-commerce-audit/packages/audit/scratch/chrome-profile-9223/Default/Session Storage/000012.log 
+2026/06/17-14:28:51.340 192681b Delete type=0 #10
+2026/06/17-14:29:57.557 192681e Level-0 table #15: started
+2026/06/17-14:29:57.562 192681e Level-0 table #15: 349291 bytes OK
+2026/06/17-14:29:57.564 192681e Delete type=0 #12
+2026/06/17-14:29:57.566 192681e Compacting 4@0 + 1@1 files
+2026/06/17-14:29:57.573 192681e Generated table #16@0: 200 keys, 963824 bytes
+2026/06/17-14:29:57.573 192681e Compacted 4@0 + 1@1 files => 963824 bytes
+2026/06/17-14:29:57.574 192681e compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/06/17-14:29:57.574 192681e Delete type=2 #15
+2026/06/17-14:29:57.574 192681e Delete type=2 #7
+2026/06/17-14:29:57.575 192681e Delete type=2 #13
+2026/06/17-14:29:57.575 192681e Delete type=2 #11
+2026/06/17-14:29:57.575 192681e Delete type=2 #9
+2026/06/17-14:34:13.554 192681e Level-0 table #18: started
+2026/06/17-14:34:13.582 192681e Level-0 table #18: 353122 bytes OK
+2026/06/17-14:34:13.584 192681e Delete type=0 #14
+2026/06/17-14:35:39.819 192681e Level-0 table #20: started
+2026/06/17-14:35:39.833 192681e Level-0 table #20: 348744 bytes OK
+2026/06/17-14:35:39.848 192681e Delete type=0 #17
+2026/06/17-14:36:56.220 192681e Level-0 table #22: started
+2026/06/17-14:36:56.234 192681e Level-0 table #22: 348692 bytes OK
+2026/06/17-14:36:56.242 192681e Delete type=0 #19
+2026/06/17-14:38:33.086 192681e Level-0 table #24: started
+2026/06/17-14:38:33.095 192681e Level-0 table #24: 348817 bytes OK
+2026/06/17-14:38:33.098 192681e Delete type=0 #21
+2026/06/17-14:38:33.101 192681e Compacting 4@0 + 1@1 files
+2026/06/17-14:38:33.124 192681e Generated table #25@0: 340 keys, 1747160 bytes
+2026/06/17-14:38:33.124 192681e Compacted 4@0 + 1@1 files => 1747160 bytes
+2026/06/17-14:38:33.125 192681e compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/06/17-14:38:33.126 192681e Delete type=2 #16
+2026/06/17-14:38:33.126 192681e Delete type=2 #20
+2026/06/17-14:38:33.126 192681e Delete type=2 #22
+2026/06/17-14:38:33.126 192681e Delete type=2 #18
+2026/06/17-14:38:33.126 192681e Delete type=2 #24
+2026/06/17-14:39:01.852 192681e Level-0 table #27: started
+2026/06/17-14:39:01.862 192681e Level-0 table #27: 348622 bytes OK
+2026/06/17-14:39:01.866 192681e Delete type=0 #23
+2026/06/17-14:39:14.005 192681e Level-0 table #29: started
+2026/06/17-14:39:14.021 192681e Level-0 table #29: 348751 bytes OK
+2026/06/17-14:39:14.027 192681e Delete type=0 #26
+2026/06/17-15:42:47.424 192681e Level-0 table #31: started
+2026/06/17-15:42:47.469 192681e Level-0 table #31: 348732 bytes OK
+2026/06/17-15:42:47.491 192681e Delete type=0 #28

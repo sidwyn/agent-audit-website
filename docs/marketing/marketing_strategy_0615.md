@@ -4,13 +4,13 @@
 
 These targets represent high-value Shopify stores where the leadership has a strong public presence (X, LinkedIn). We leverage their focus on growth and operations to sell the audit as a technical edge.
 
-| Brand | Target Person | Role / Context | Technical Failure |
-| :--- | :--- | :--- | :--- |
-| **Ridge** | **Sean Frank** | CEO/Public Operator; very ecommerce-ops/payment minded. | 0/8 clean product pages |
-| **Jones Road Beauty** | **Cody Plofker** | CEO/Growth Authority; if he cares, DTC Twitter listens. | 0/8 clean product pages |
-| **Mid-Day Squares** | **Jake Karls, Lezlie Karls, Nick Saltarelli** | Very public builder brand; checkout failures become content stories. | 0/8 clean product pages |
-| **Jolie** | **Ryan Babenzien** | Public Founder/Operator (Co-founder: Arjan Singh); strong brand credibility. | 2/8 clean product pages |
-| **Kettle & Fire** | **Justin Mares** | Legit Founder; health ecommerce authority; less day-to-day focused now. | 0/8 clean product pages |
+| Brand | Target Person | Role / Context | Technical Failure | Contacts |
+| :--- | :--- | :--- | :--- | :--- |
+| **Ridge** | **Sean Frank** | CEO/Public Operator; very ecommerce-ops/payment minded. | 0/8 clean product pages | X: [@SeanEcom](https://x.com/SeanEcom) · [LinkedIn](https://www.linkedin.com/in/seandavidfrank/) |
+| **Jones Road Beauty** | **Cody Plofker** | CEO/Growth Authority; if he cares, DTC Twitter listens. | 0/8 clean product pages | X: [@codyplof](https://x.com/codyplof) · [LinkedIn](https://www.linkedin.com/in/cody-plofker-47a29b120/) |
+| **Mid-Day Squares** | **Jake Karls, Lezlie Karls, Nick Saltarelli** | Very public builder brand; checkout failures become content stories. | 0/8 clean product pages | Jake: X [@KarlsJake](https://x.com/KarlsJake) · [LinkedIn](https://ca.linkedin.com/in/jake-karls-653106ba)<br>Lezlie: X [@LezKarls](https://x.com/LezKarls) · [LinkedIn](https://ca.linkedin.com/in/lezlie-karls-1b3a1a8b)<br>Nick: X [@nickywonka](https://x.com/nickywonka) · [LinkedIn](https://www.linkedin.com/in/nick-saltarelli-063a5965) · nick@middaysquares.com |
+| **Jolie** | **Ryan Babenzien** | Public Founder/Operator (Co-founder: Arjan Singh); strong brand credibility. | 2/8 clean product pages | Ryan: X [@ryanbbabenzien](https://x.com/ryanbbabenzien) · [LinkedIn](https://www.linkedin.com/in/ryan-babenzien-bb094a9/)<br>Arjan: [LinkedIn](https://www.linkedin.com/in/arjanhsingh/) |
+| **Kettle & Fire** | **Justin Mares** | Legit Founder; health ecommerce authority; less day-to-day focused now. | 0/8 clean product pages | X: [@jwmares](https://x.com/jwmares) · [LinkedIn](https://www.linkedin.com/in/justinmares/) · justin@kettleandfire.com |
 
 ## Outreach Playbook
 

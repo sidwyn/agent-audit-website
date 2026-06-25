@@ -25,7 +25,7 @@
 ## File structure
 
 ```
-agent-commerce-audit/
+agent-audit-website/
 ├── PLAN.md                       # this file
 ├── README.md                     # runbook + merchant token guide (Task 24)
 ├── Makefile                      # scrub task (Task 24)

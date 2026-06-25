@@ -1,15 +1,14 @@
 import {
-  About,
-  BottomCta,
-  ContinuousScanning,
-  FraudMonitoring,
+  AdminShots,
+  BuiltFor,
+  Faq,
   Hero,
   HowItWorks,
-  OngoingAudits,
   Pricing,
-  Stakes,
-  Trust,
-  WhatWeTest,
+  PromoDepth,
+  SeeItWork,
+  WhatItStops,
+  WhoBuiltIt,
 } from "../components/Sections";
 import { loadLandingCopy } from "../lib/marketing";
 
@@ -23,21 +22,18 @@ export default function Page() {
   return (
     <main>
       <Hero copy={copy.hero} env={env} />
-      <Stakes copy={copy.stakes} />
+      <WhatItStops copy={copy.whatItStops} />
+      <PromoDepth copy={copy.promoDepth} />
+      <SeeItWork />
       <HowItWorks copy={copy.howItWorks} />
-      <OngoingAudits copy={copy.ongoingAudits} />
-      <ContinuousScanning copy={copy.continuousScanning} />
-      <FraudMonitoring copy={copy.fraudMonitoring} />
-      <WhatWeTest copy={copy.whatWeTest} />
-      <Trust copy={copy.trust} />
+      <AdminShots />
+      <BuiltFor copy={copy.builtFor} />
       <Pricing copy={copy.pricing} env={env} />
-      <About copy={copy.about} />
-      <BottomCta copy={copy.hero} env={env} />
+      <WhoBuiltIt copy={copy.whoBuiltIt} />
+      <Faq copy={copy.faq} />
       <footer>
-        <p>
-          AgentAudit · run by Sidwyn Koh · <a href="mailto:sidwyn@gmail.com">sidwyn@gmail.com</a>
-        </p>
-        <p className="footnote">No cookies, no trackers. Merchant data is deleted on cancellation.</p>
+        <p>AgentArmor by AgentAudit</p>
+        <p className="footnote">Runs inside your store. No cookies, no trackers. Your data stays yours.</p>
       </footer>
     </main>
   );

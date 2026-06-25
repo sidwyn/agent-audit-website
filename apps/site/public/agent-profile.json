@@ -1,0 +1,23 @@
+{
+  "ucp": {
+    "version": "2026-04-08",
+    "name": "Gemini Shopping Assistant",
+    "capabilities": {
+      "dev.ucp.shopping.checkout": [
+        {
+          "version": "2026-04-08"
+        }
+      ],
+      "dev.ucp.shopping.cart": [
+        {
+          "version": "2026-04-08"
+        }
+      ],
+      "dev.ucp.shopping.catalog.search": [
+        {
+          "version": "2026-04-08"
+        }
+      ]
+    }
+  }
+}

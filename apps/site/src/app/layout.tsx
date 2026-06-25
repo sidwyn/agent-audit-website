@@ -2,15 +2,17 @@ import type { Metadata } from "next";
 import { loadLandingCopy } from "../lib/marketing";
 import { parseBlocks, stripBold } from "../lib/markdown";
 import { VisitPing } from "../components/VisitPing";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const copy = loadLandingCopy();
 const heroBlocks = parseBlocks(copy.hero);
-const headline = heroBlocks[0]?.type === "p" ? stripBold(heroBlocks[0].text) : "AgentAudit";
-const sub = heroBlocks[1]?.type === "p" ? heroBlocks[1].text : "";
+const headline = heroBlocks[0]?.type === "p" ? stripBold(heroBlocks[0].text) : "AgentArmor";
+const sub = heroBlocks[1]?.type === "p" ? stripBold(heroBlocks[1].text) : "";
 
 export const metadata: Metadata = {
-  title: `AgentAudit — ${headline}`,
+  title: `AgentArmor · ${headline}`,
   description: sub,
   icons: {
     icon: [
@@ -29,6 +31,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {children}
         <VisitPing />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
