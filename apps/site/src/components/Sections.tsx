@@ -140,10 +140,10 @@ export function AdminShots() {
             <span />
           </span>
           <img
-            src="/admin-dashboard.png"
-            alt="AgentArmor dashboard in Shopware admin: metric cards for scrapers seen, fields hidden, rate-limit flags, promo blocks, text sanitized, and watch-mode would-blocks, plus money protected and euros still exposed in watch mode."
-            width="1440"
-            height="900"
+            src="/dashboard.png"
+            alt="AgentArmor dashboard in Shopware admin: metric cards for catalog scraping, promo abuse, and untrusted text, with money protected and a live feed of every agent decision."
+            width="1680"
+            height="1050"
             loading="lazy"
           />
         </div>
@@ -162,16 +162,16 @@ export function AdminShots() {
             <span />
           </span>
           <img
-            src="/admin-config.png"
-            alt="AgentArmor settings panel in Shopware admin: a Watch or Enforce mode selector, a pause-all-protection kill switch, and a trusted agent key ids field."
-            width="1440"
-            height="900"
+            src="/trends.png"
+            alt="AgentArmor daily trends table in Shopware admin: catalog scraping, promo abuse, and untrusted text broken down day by day, showing what watch mode would have blocked versus what enforce mode actually stopped."
+            width="1680"
+            height="1050"
             loading="lazy"
           />
         </div>
         <figcaption>
-          Change anything in one click. Switch from watch to enforce, pause all protection with a single toggle, or
-          add the agents you trust to the allowlist.
+          Watch first, then enforce. The daily trends show what AgentArmor would have blocked while watching, so you
+          can turn on enforcement once you trust the numbers.
         </figcaption>
       </figure>
     </section>
